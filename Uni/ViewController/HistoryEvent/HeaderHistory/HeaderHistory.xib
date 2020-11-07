@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Raleway-Medium.ttf">
+            <string>Raleway-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HeaderHistory" customModule="Uni" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="U6b-Vx-4bR" customClass="HeaderHistory" customModule="Uni" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2020" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8PZ-2Z-Ky7">
+                    <rect key="frame" x="10" y="10" width="41.5" height="30"/>
+                    <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="18"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <constraints>
+                <constraint firstItem="8PZ-2Z-Ky7" firstAttribute="top" secondItem="U6b-Vx-4bR" secondAttribute="top" constant="10" id="0l2-K8-KUC"/>
+                <constraint firstItem="8PZ-2Z-Ky7" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" constant="10" id="HTX-jU-Ij3"/>
+                <constraint firstAttribute="bottom" secondItem="8PZ-2Z-Ky7" secondAttribute="bottom" constant="10" id="RqZ-HO-fgv"/>
+            </constraints>
+            <connections>
+                <outlet property="lbYear" destination="8PZ-2Z-Ky7" id="xEZ-of-FHj"/>
+            </connections>
+            <point key="canvasLocation" x="45" y="71"/>
+        </collectionReusableView>
+    </objects>
+</document>
