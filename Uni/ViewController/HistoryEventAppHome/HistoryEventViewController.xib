@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -26,7 +26,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h0I-yG-8dD">
-                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B0z-NO-puo">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -132,7 +132,6 @@
                                 <constraint firstItem="UFg-jZ-FU5" firstAttribute="leading" secondItem="hxm-FK-VNF" secondAttribute="trailing" constant="50" id="Cbn-dR-869"/>
                                 <constraint firstItem="UFg-jZ-FU5" firstAttribute="width" secondItem="B0z-NO-puo" secondAttribute="width" multiplier="0.362319" id="L0v-yG-SoQ"/>
                                 <constraint firstItem="dxc-9S-e0R" firstAttribute="leading" secondItem="B0z-NO-puo" secondAttribute="leading" constant="22" id="YZj-pp-MP4"/>
-                                <constraint firstItem="hxm-FK-VNF" firstAttribute="width" secondItem="B0z-NO-puo" secondAttribute="width" multiplier="0.362319" id="bTJ-nW-d9V"/>
                                 <constraint firstItem="2ag-fV-oDM" firstAttribute="leading" secondItem="B0z-NO-puo" secondAttribute="leading" constant="32" id="jWB-wo-aX4"/>
                                 <constraint firstItem="hxm-FK-VNF" firstAttribute="leading" secondItem="B0z-NO-puo" secondAttribute="leading" constant="32" id="s3m-Mz-IMs"/>
                                 <constraint firstAttribute="trailing" secondItem="UFg-jZ-FU5" secondAttribute="trailing" constant="32" id="udM-k8-eE7"/>
@@ -150,7 +149,6 @@
             <viewLayoutGuide key="safeArea" id="kYN-1h-FeO"/>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="dxc-9S-e0R" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.89372" id="6Yj-9W-S8d"/>
                 <constraint firstItem="h0I-yG-8dD" firstAttribute="leading" secondItem="kYN-1h-FeO" secondAttribute="leading" id="F7d-L1-Rgy"/>
                 <constraint firstItem="h0I-yG-8dD" firstAttribute="top" secondItem="kYN-1h-FeO" secondAttribute="top" id="MPc-kE-Fd9"/>
                 <constraint firstItem="B0z-NO-puo" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" priority="250" id="OZH-Cg-wV7"/>

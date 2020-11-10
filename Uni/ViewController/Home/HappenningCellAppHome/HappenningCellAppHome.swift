@@ -12,7 +12,7 @@ class HappenningCellAppHome: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        imageCell.layer.cornerRadius = 20
+        
         // Initialization code
     }
     

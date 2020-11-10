@@ -2,7 +2,8 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -52,116 +53,148 @@
                                         <action selector="backVC:" destination="-1" eventType="touchUpInside" id="7Yn-aj-vSW"/>
                                     </connections>
                                 </button>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Detail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jTk-8f-Rq0">
-                                    <rect key="frame" x="32" y="116" width="109" height="47"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Detail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jTk-8f-Rq0">
+                                    <rect key="frame" x="32" y="116" width="101.5" height="47"/>
                                     <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="40"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Kt-yS-O7G">
+                                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="X0e-aL-nuo">
                                     <rect key="frame" x="32" y="216" width="350" height="515.5"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Origami Crane Wedding Planners." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xqm-ex-VNu">
-                                            <rect key="frame" x="35" y="13" width="281" height="70.5"/>
-                                            <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="30"/>
-                                            <color key="textColor" red="0.98039215686274506" green="0.70196078431372544" blue="0.16470588235294117" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="62F-IG-4O0">
-                                            <rect key="frame" x="35" y="121.5" width="12" height="12"/>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="12" id="GpT-l4-VbF"/>
-                                                <constraint firstAttribute="width" constant="12" id="JLx-gY-Lq9"/>
-                                            </constraints>
-                                            <color key="tintColor" red="0.98039215690000003" green="0.70196078429999997" blue="0.1647058824" alpha="1" colorSpace="calibratedRGB"/>
-                                            <state key="normal" image="person" catalog="system"/>
-                                        </button>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JVE-tn-sUq">
-                                            <rect key="frame" x="49" y="115.5" width="9.5" height="19"/>
-                                            <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="16"/>
-                                            <color key="textColor" red="0.98039215690000003" green="0.70196078429999997" blue="0.1647058824" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Overview" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pUj-95-hTa">
-                                            <rect key="frame" x="35" y="153.5" width="88" height="23.5"/>
-                                            <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="20"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+27" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aoP-X7-9qS">
-                                            <rect key="frame" x="259" y="124.5" width="55" height="43"/>
-                                            <fontDescription key="fontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="36"/>
-                                            <color key="textColor" red="0.98039215690000003" green="0.70196078429999997" blue="0.1647058824" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="tUr-tC-hZb">
-                                            <rect key="frame" x="35" y="196" width="281" height="226"/>
+                                        <view clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7Kt-yS-O7G">
+                                            <rect key="frame" x="0.0" y="0.0" width="350" height="515.5"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Origami Crane Wedding Planners." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xqm-ex-VNu">
+                                                    <rect key="frame" x="35" y="13" width="281" height="70.5"/>
+                                                    <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="30"/>
+                                                    <color key="textColor" red="0.98039215686274506" green="0.70196078431372544" blue="0.16470588235294117" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="62F-IG-4O0">
+                                                    <rect key="frame" x="35" y="121.5" width="12" height="12"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="12" id="GpT-l4-VbF"/>
+                                                        <constraint firstAttribute="width" constant="12" id="JLx-gY-Lq9"/>
+                                                    </constraints>
+                                                    <color key="tintColor" red="0.98039215690000003" green="0.70196078429999997" blue="0.1647058824" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <state key="normal" image="person" catalog="system"/>
+                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="9" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JVE-tn-sUq">
+                                                    <rect key="frame" x="49" y="115.5" width="9" height="19"/>
+                                                    <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="16"/>
+                                                    <color key="textColor" red="0.98039215690000003" green="0.70196078429999997" blue="0.1647058824" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Overview" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pUj-95-hTa">
+                                                    <rect key="frame" x="35" y="153.5" width="83" height="23.5"/>
+                                                    <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="20"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="+27" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aoP-X7-9qS">
+                                                    <rect key="frame" x="252" y="124.5" width="62" height="43"/>
+                                                    <fontDescription key="fontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="36"/>
+                                                    <color key="textColor" red="0.98039215690000003" green="0.70196078429999997" blue="0.1647058824" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="tUr-tC-hZb">
+                                                    <rect key="frame" x="35" y="196" width="281" height="226"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="226" id="6ec-S0-UUn"/>
+                                                    </constraints>
+                                                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                                    <color key="textColor" systemColor="labelColor"/>
+                                                    <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="16"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
+                                                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AfG-9w-mEi">
+                                                    <rect key="frame" x="0.0" y="430" width="350" height="85.5"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XjE-sq-k1X">
+                                                            <rect key="frame" x="26" y="19" width="92" height="42"/>
+                                                            <string key="text">15 Aug
+7PM-10PM</string>
+                                                            <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="18"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4167  Cimmaron Road" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tC1-BJ-gol">
+                                                            <rect key="frame" x="157.5" y="19" width="181.5" height="42"/>
+                                                            <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="18"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" red="0.98039215690000003" green="0.70196078429999997" blue="0.1647058824" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstItem="XjE-sq-k1X" firstAttribute="top" secondItem="AfG-9w-mEi" secondAttribute="top" constant="19" id="6vK-j9-Frr"/>
+                                                        <constraint firstAttribute="bottom" secondItem="tC1-BJ-gol" secondAttribute="bottom" constant="24" id="E6l-xz-y06"/>
+                                                        <constraint firstItem="XjE-sq-k1X" firstAttribute="leading" secondItem="AfG-9w-mEi" secondAttribute="leading" constant="26" id="MHx-9n-DUV"/>
+                                                        <constraint firstAttribute="trailing" secondItem="tC1-BJ-gol" secondAttribute="trailing" constant="11" id="MKQ-9u-Pap"/>
+                                                        <constraint firstItem="tC1-BJ-gol" firstAttribute="top" secondItem="AfG-9w-mEi" secondAttribute="top" constant="19" id="aF6-AQ-npr"/>
+                                                        <constraint firstAttribute="bottom" secondItem="XjE-sq-k1X" secondAttribute="bottom" constant="24" id="sD6-vK-huP"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="226" id="6ec-S0-UUn"/>
+                                                <constraint firstItem="Xqm-ex-VNu" firstAttribute="top" secondItem="7Kt-yS-O7G" secondAttribute="top" constant="13" id="1Qk-qk-nLP"/>
+                                                <constraint firstAttribute="trailing" secondItem="AfG-9w-mEi" secondAttribute="trailing" id="6S5-4L-Q8g"/>
+                                                <constraint firstItem="aoP-X7-9qS" firstAttribute="top" secondItem="Xqm-ex-VNu" secondAttribute="bottom" constant="41" id="9Oz-vk-t0J"/>
+                                                <constraint firstAttribute="bottom" secondItem="AfG-9w-mEi" secondAttribute="bottom" id="C1e-hh-flw"/>
+                                                <constraint firstItem="tUr-tC-hZb" firstAttribute="top" secondItem="pUj-95-hTa" secondAttribute="bottom" constant="19" id="FJb-Co-17H"/>
+                                                <constraint firstItem="JVE-tn-sUq" firstAttribute="top" secondItem="Xqm-ex-VNu" secondAttribute="bottom" constant="32" id="M89-Xn-WwM"/>
+                                                <constraint firstAttribute="trailing" secondItem="aoP-X7-9qS" secondAttribute="trailing" constant="36" id="Qy1-dP-V3D"/>
+                                                <constraint firstItem="AfG-9w-mEi" firstAttribute="top" secondItem="tUr-tC-hZb" secondAttribute="bottom" constant="8" id="USY-Kf-952"/>
+                                                <constraint firstItem="62F-IG-4O0" firstAttribute="top" secondItem="Xqm-ex-VNu" secondAttribute="bottom" constant="38" id="UmM-UL-26D"/>
+                                                <constraint firstItem="Xqm-ex-VNu" firstAttribute="leading" secondItem="7Kt-yS-O7G" secondAttribute="leading" constant="35" id="awx-VX-Hmb"/>
+                                                <constraint firstItem="JVE-tn-sUq" firstAttribute="leading" secondItem="62F-IG-4O0" secondAttribute="trailing" constant="2" id="bN5-bU-QyX"/>
+                                                <constraint firstItem="62F-IG-4O0" firstAttribute="leading" secondItem="7Kt-yS-O7G" secondAttribute="leading" constant="35" id="hSp-HD-m7d"/>
+                                                <constraint firstItem="pUj-95-hTa" firstAttribute="top" secondItem="JVE-tn-sUq" secondAttribute="bottom" constant="19" id="hpx-I8-dkz"/>
+                                                <constraint firstItem="tUr-tC-hZb" firstAttribute="leading" secondItem="7Kt-yS-O7G" secondAttribute="leading" constant="35" id="jdK-UQ-TUP"/>
+                                                <constraint firstItem="pUj-95-hTa" firstAttribute="leading" secondItem="7Kt-yS-O7G" secondAttribute="leading" constant="35" id="leI-jN-IAI"/>
+                                                <constraint firstAttribute="trailing" secondItem="tUr-tC-hZb" secondAttribute="trailing" constant="34" id="lgf-sQ-Cxm"/>
+                                                <constraint firstItem="AfG-9w-mEi" firstAttribute="leading" secondItem="7Kt-yS-O7G" secondAttribute="leading" id="wCS-G7-AL4"/>
+                                                <constraint firstAttribute="trailing" secondItem="Xqm-ex-VNu" secondAttribute="trailing" constant="34" id="xpg-Oj-UPY"/>
                                             </constraints>
-                                            <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                            <color key="textColor" systemColor="labelColor"/>
-                                            <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="16"/>
-                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                        </textView>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AfG-9w-mEi">
-                                            <rect key="frame" x="0.0" y="430" width="350" height="85.5"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XjE-sq-k1X">
-                                                    <rect key="frame" x="26" y="19" width="90" height="42.5"/>
-                                                    <string key="text">15 Aug
-7PM-10PM</string>
-                                                    <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="18"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4167  Cimmaron Road" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tC1-BJ-gol">
-                                                    <rect key="frame" x="157.5" y="19" width="181.5" height="42.5"/>
-                                                    <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="18"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" red="0.98039215690000003" green="0.70196078429999997" blue="0.1647058824" alpha="1" colorSpace="calibratedRGB"/>
-                                            <constraints>
-                                                <constraint firstItem="XjE-sq-k1X" firstAttribute="top" secondItem="AfG-9w-mEi" secondAttribute="top" constant="19" id="6vK-j9-Frr"/>
-                                                <constraint firstAttribute="bottom" secondItem="tC1-BJ-gol" secondAttribute="bottom" constant="24" id="E6l-xz-y06"/>
-                                                <constraint firstItem="XjE-sq-k1X" firstAttribute="leading" secondItem="AfG-9w-mEi" secondAttribute="leading" constant="26" id="MHx-9n-DUV"/>
-                                                <constraint firstAttribute="trailing" secondItem="tC1-BJ-gol" secondAttribute="trailing" constant="11" id="MKQ-9u-Pap"/>
-                                                <constraint firstItem="tC1-BJ-gol" firstAttribute="top" secondItem="AfG-9w-mEi" secondAttribute="top" constant="19" id="aF6-AQ-npr"/>
-                                                <constraint firstAttribute="bottom" secondItem="XjE-sq-k1X" secondAttribute="bottom" constant="24" id="sD6-vK-huP"/>
-                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                    <real key="value" value="20"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                    <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                    <real key="value" value="15"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="shadowBlur">
+                                                    <real key="value" value="15"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="shadowSpread">
+                                                    <real key="value" value="0.0"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                                    <size key="value" width="0.0" height="4"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                                    <color key="value" red="0.0" green="0.0" blue="0.0" alpha="0.14999999999999999" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
                                         </view>
                                     </subviews>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
-                                        <constraint firstItem="Xqm-ex-VNu" firstAttribute="top" secondItem="7Kt-yS-O7G" secondAttribute="top" constant="13" id="1Qk-qk-nLP"/>
-                                        <constraint firstAttribute="trailing" secondItem="AfG-9w-mEi" secondAttribute="trailing" id="6S5-4L-Q8g"/>
-                                        <constraint firstItem="aoP-X7-9qS" firstAttribute="top" secondItem="Xqm-ex-VNu" secondAttribute="bottom" constant="41" id="9Oz-vk-t0J"/>
-                                        <constraint firstAttribute="bottom" secondItem="AfG-9w-mEi" secondAttribute="bottom" id="C1e-hh-flw"/>
-                                        <constraint firstItem="tUr-tC-hZb" firstAttribute="top" secondItem="pUj-95-hTa" secondAttribute="bottom" constant="19" id="FJb-Co-17H"/>
-                                        <constraint firstItem="JVE-tn-sUq" firstAttribute="top" secondItem="Xqm-ex-VNu" secondAttribute="bottom" constant="32" id="M89-Xn-WwM"/>
-                                        <constraint firstAttribute="trailing" secondItem="aoP-X7-9qS" secondAttribute="trailing" constant="36" id="Qy1-dP-V3D"/>
-                                        <constraint firstItem="AfG-9w-mEi" firstAttribute="top" secondItem="tUr-tC-hZb" secondAttribute="bottom" constant="8" id="USY-Kf-952"/>
-                                        <constraint firstItem="62F-IG-4O0" firstAttribute="top" secondItem="Xqm-ex-VNu" secondAttribute="bottom" constant="38" id="UmM-UL-26D"/>
-                                        <constraint firstItem="Xqm-ex-VNu" firstAttribute="leading" secondItem="7Kt-yS-O7G" secondAttribute="leading" constant="35" id="awx-VX-Hmb"/>
-                                        <constraint firstItem="JVE-tn-sUq" firstAttribute="leading" secondItem="62F-IG-4O0" secondAttribute="trailing" constant="2" id="bN5-bU-QyX"/>
-                                        <constraint firstItem="62F-IG-4O0" firstAttribute="leading" secondItem="7Kt-yS-O7G" secondAttribute="leading" constant="35" id="hSp-HD-m7d"/>
-                                        <constraint firstItem="pUj-95-hTa" firstAttribute="top" secondItem="JVE-tn-sUq" secondAttribute="bottom" constant="19" id="hpx-I8-dkz"/>
-                                        <constraint firstItem="tUr-tC-hZb" firstAttribute="leading" secondItem="7Kt-yS-O7G" secondAttribute="leading" constant="35" id="jdK-UQ-TUP"/>
-                                        <constraint firstItem="pUj-95-hTa" firstAttribute="leading" secondItem="7Kt-yS-O7G" secondAttribute="leading" constant="35" id="leI-jN-IAI"/>
-                                        <constraint firstAttribute="trailing" secondItem="tUr-tC-hZb" secondAttribute="trailing" constant="34" id="lgf-sQ-Cxm"/>
-                                        <constraint firstItem="AfG-9w-mEi" firstAttribute="leading" secondItem="7Kt-yS-O7G" secondAttribute="leading" id="wCS-G7-AL4"/>
-                                        <constraint firstAttribute="trailing" secondItem="Xqm-ex-VNu" secondAttribute="trailing" constant="34" id="xpg-Oj-UPY"/>
+                                        <constraint firstItem="7Kt-yS-O7G" firstAttribute="leading" secondItem="X0e-aL-nuo" secondAttribute="leading" id="S2U-43-xkt"/>
+                                        <constraint firstAttribute="trailing" secondItem="7Kt-yS-O7G" secondAttribute="trailing" id="Y1A-xw-sRb"/>
+                                        <constraint firstItem="7Kt-yS-O7G" firstAttribute="top" secondItem="X0e-aL-nuo" secondAttribute="top" id="gfC-9s-hil"/>
+                                        <constraint firstAttribute="bottom" secondItem="7Kt-yS-O7G" secondAttribute="bottom" id="h8v-Iq-ceF"/>
                                     </constraints>
                                     <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                            <real key="value" value="20"/>
-                                        </userDefinedRuntimeAttribute>
-                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                            <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                            <color key="value" name="Color-1"/>
                                         </userDefinedRuntimeAttribute>
                                         <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
                                             <real key="value" value="15"/>
@@ -169,14 +202,11 @@
                                         <userDefinedRuntimeAttribute type="number" keyPath="shadowBlur">
                                             <real key="value" value="15"/>
                                         </userDefinedRuntimeAttribute>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="shadowSpread">
-                                            <real key="value" value="0.0"/>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <real key="value" value="20"/>
                                         </userDefinedRuntimeAttribute>
                                         <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
                                             <size key="value" width="0.0" height="4"/>
-                                        </userDefinedRuntimeAttribute>
-                                        <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
-                                            <color key="value" red="0.0" green="0.0" blue="0.0" alpha="0.14999999999999999" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                 </view>
@@ -184,17 +214,17 @@
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
                                 <constraint firstItem="tC4-sb-8p8" firstAttribute="top" secondItem="RhD-4n-4qO" secondAttribute="top" id="5TH-pR-D7k"/>
-                                <constraint firstAttribute="bottom" secondItem="7Kt-yS-O7G" secondAttribute="bottom" constant="120.5" id="5ZC-Z1-y22"/>
-                                <constraint firstAttribute="trailing" secondItem="7Kt-yS-O7G" secondAttribute="trailing" constant="32" id="7Kf-ID-GGm"/>
+                                <constraint firstItem="X0e-aL-nuo" firstAttribute="leading" secondItem="RhD-4n-4qO" secondAttribute="leading" constant="32" id="CiW-QK-Weh"/>
                                 <constraint firstAttribute="bottom" secondItem="tC4-sb-8p8" secondAttribute="bottom" constant="-44" id="HdA-6W-Nok"/>
-                                <constraint firstItem="7Kt-yS-O7G" firstAttribute="leading" secondItem="RhD-4n-4qO" secondAttribute="leading" constant="32" id="KG4-Jh-kL5"/>
                                 <constraint firstItem="jTk-8f-Rq0" firstAttribute="leading" secondItem="RhD-4n-4qO" secondAttribute="leading" constant="32" id="NFw-rf-611"/>
                                 <constraint firstAttribute="trailing" secondItem="tC4-sb-8p8" secondAttribute="trailing" id="NwF-eL-atl"/>
                                 <constraint firstItem="U2r-hg-j11" firstAttribute="top" secondItem="RhD-4n-4qO" secondAttribute="top" constant="49" id="S1F-zn-U5h"/>
-                                <constraint firstItem="7Kt-yS-O7G" firstAttribute="top" secondItem="jTk-8f-Rq0" secondAttribute="bottom" constant="53" id="aEX-Qm-l6u"/>
                                 <constraint firstItem="U2r-hg-j11" firstAttribute="leading" secondItem="RhD-4n-4qO" secondAttribute="leading" constant="32" id="ay3-ig-a5A"/>
                                 <constraint firstItem="tC4-sb-8p8" firstAttribute="leading" secondItem="RhD-4n-4qO" secondAttribute="leading" id="e7g-qC-O3X"/>
                                 <constraint firstItem="jTk-8f-Rq0" firstAttribute="top" secondItem="U2r-hg-j11" secondAttribute="bottom" constant="35" id="j31-u1-s9F"/>
+                                <constraint firstAttribute="bottom" secondItem="X0e-aL-nuo" secondAttribute="bottom" constant="120.5" id="l7m-B0-dqa"/>
+                                <constraint firstAttribute="trailing" secondItem="X0e-aL-nuo" secondAttribute="trailing" constant="32" id="pIG-eY-hiO"/>
+                                <constraint firstItem="X0e-aL-nuo" firstAttribute="top" secondItem="jTk-8f-Rq0" secondAttribute="bottom" constant="53" id="qvS-io-uGG"/>
                             </constraints>
                         </view>
                     </subviews>
@@ -223,6 +253,9 @@
         <image name="Rectangle 32" width="414" height="896"/>
         <image name="arrow.backward" catalog="system" width="128" height="98"/>
         <image name="person" catalog="system" width="128" height="117"/>
+        <namedColor name="Color-1">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.15000000596046448" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

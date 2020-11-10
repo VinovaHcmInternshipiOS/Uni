@@ -2,7 +2,7 @@
 //  UIView+Extension.swift
 //  Uni
 //
-//  Created by nguyen gia huy on 03/11/2020.
+//  Created by nguyen gia huy on 09/11/2020.
 //
 
 import Foundation
@@ -100,5 +100,20 @@ extension UIView {
              let mask = CAShapeLayer()
              mask.path = path.cgPath
              self.layer.mask = mask
+    }
+    
+    func dropShadowBlack() {
+        layer.cornerRadius = 20
+        layer.shadowOffset = CGSize(width: 0, height: 4)
+        layer.shadowColor = AppColor.BlackShadow.cgColor
+        layer.shadowRadius = 7.5
+        layer.shadowOpacity = 15
+    }
+    func dropShadowYellow() {
+        layer.cornerRadius = 20
+        layer.shadowOffset = CGSize(width: 0, height: -4)
+        layer.shadowColor = AppColor.YellowShadow.cgColor
+        layer.shadowRadius = 7.5
+        layer.shadowOpacity = 15
     }
 }

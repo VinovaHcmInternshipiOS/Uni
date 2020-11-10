@@ -1,0 +1,17 @@
+//
+//  Color.swift
+//  Uni
+//
+//  Created by nguyen gia huy on 02/11/2020.
+//
+
+import Foundation
+import UIKit
+class AppColor {
+    static let YellowFAB32A = #colorLiteral(red: 0.9803921569, green: 0.7019607843, blue: 0.1647058824, alpha: 1)
+    static let YellowFBC459 = #colorLiteral(red: 0.9843137255, green: 0.768627451, blue: 0.3490196078, alpha: 1)
+    static let Gray5B5B5B = #colorLiteral(red: 0.3568627451, green: 0.3568627451, blue: 0.3568627451, alpha: 1)
+    static let SilverC9C5C5 = #colorLiteral(red: 0.7882352941, green: 0.7725490196, blue: 0.7725490196, alpha: 1)
+    static let BlackShadow = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.15)
+    static let YellowShadow = #colorLiteral(red: 0.9843137255, green: 0.768627451, blue: 0.3490196078, alpha: 0.5)
+}

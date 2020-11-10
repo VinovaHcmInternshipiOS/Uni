@@ -46,6 +46,10 @@ class SearchAppHomeViewController: UIViewController, SearchAppHomeViewProtocol {
     
     override func viewDidAppear(_ animated: Bool) {
     }
+    @objc func gotoDetailEvent() {
+        let detailEvent = DetailEventViewController(presenter: DetailEventPresenter())
+        self.navigationController?.pushViewController(detailEvent, animated: true)
+    }
 }
 
 extension SearchAppHomeViewController: UITableViewDelegate {
@@ -88,6 +92,7 @@ extension SearchAppHomeViewController: UITableViewDataSource {
         case 1:
             if let cell = tableView.dequeueReusableCell(withIdentifier: "SearchResultCell", for: indexPath) as? SearchResultCell {
                 cell.contentView.layer.cornerRadius = 20
+                cell.btDetail.addTarget(self, action: #selector(gotoDetailEvent), for: .touchUpInside)
                 return cell
             } else {
                 return UITableViewCell()

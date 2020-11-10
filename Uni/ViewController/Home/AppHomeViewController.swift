@@ -15,11 +15,12 @@ class AppHomeViewController: UIViewController, AppHomeViewProtocol {
     @IBOutlet weak var collectionEnded: UICollectionView!
     @IBOutlet weak var collectionHappenning: UICollectionView!
     @IBOutlet weak var collectionComingSoon: UICollectionView!
-    var presenter: AppHomePresenterProtocol
     @IBOutlet weak var pageControl: UIPageControl!
-
+    var presenter: AppHomePresenterProtocol
+    let transition = SlideInTransition()
     var item = [1,2,3,4,5,6,7,8,9,10]
     var indexPageControl = 0
+    var menuState = false
 	init(presenter: AppHomePresenterProtocol) {
         self.presenter = presenter
         super.init(nibName: "AppHomeViewController", bundle: nil)
@@ -53,9 +54,10 @@ class AppHomeViewController: UIViewController, AppHomeViewProtocol {
         collectionEnded.register(UINib(nibName: "ComingSoonEndedCellAppHome", bundle: nil), forCellWithReuseIdentifier: "ComingSoonEndedCellAppHome")
         pageControl.currentPage = indexPageControl
         //
-        
-        
     }
+    
+    
+    
     func setupNav(titleNav: String){
         navigationController?.navigationBar.barStyle = .black
         navigationItem.title = titleNav
@@ -65,14 +67,49 @@ class AppHomeViewController: UIViewController, AppHomeViewProtocol {
         navigationController?.navigationBar.titleTextAttributes = attributes
         
         let createBtn = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: nil)
-        createBtn.tintColor = AppColor.darkorangeColor
+        createBtn.tintColor = AppColor.YellowFAB32A
         navigationItem.rightBarButtonItem = createBtn
-        
         let sortBtn = UIBarButtonItem(image: UIImage(systemName: "line.horizontal.3.decrease.circle"), style: .plain, target: self, action: nil)
-        sortBtn.tintColor = AppColor.darkorangeColor
+        sortBtn.tintColor = AppColor.YellowFAB32A
         navigationItem.leftBarButtonItem = sortBtn
+        sortBtn.target = self
+        sortBtn.action = #selector(action)
+
+        
         
     }
+    @objc func action (sender:UIButton) {
+        let menu = SlideMenuViewController(presenter: SlideMenuPresenter())
+        menu.didTapMenuType = { MenuType in
+            self.transitionToNewContent(MenuType)
+        }
+        menu.modalPresentationStyle = .overCurrentContext
+        menu.transitioningDelegate = self
+        self.present(menu,animated: true, completion: nil)
+    }
+    
+    func transitionToNewContent(_ menuType: MenuType) {
+        let title = String(describing: menuType).capitalized
+        print(title)
+    }
+    @IBAction func btLeaderboard(_ sender: Any) {
+        let leaderBoard = RankViewController(presenter: RankPresenter())
+        self.navigationController?.pushViewController(leaderBoard, animated: true)
+    }
+    @IBAction func btSearchEvent(_ sender: Any) {
+        let searchEvent = SearchAppHomeViewController(presenter: SearchAppHomePresenter())
+        self.navigationController?.pushViewController(searchEvent, animated: true)
+    }
+    @IBAction func btHistoryEvent(_ sender: Any) {
+        let historyEvent = HistoryEventViewController(presenter: HistoryEventPresenter())
+        self.navigationController?.pushViewController(historyEvent, animated: true)
+    }
+    @IBAction func btBarcode(_ sender: Any) {
+        let barcode = BarcodeViewController(presenter: BarcodePresenter())
+        self.navigationController?.pushViewController(barcode, animated: true)
+    }
+    
+    
 }
 
 extension AppHomeViewController: UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
@@ -147,4 +184,17 @@ extension AppHomeViewController: UICollectionViewDelegate,UICollectionViewDataSo
       }
     
     
+}
+
+extension AppHomeViewController: UIViewControllerTransitioningDelegate {
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        transition.isPresenting = true
+        return transition
+    }
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        transition.isPresenting = false
+        return transition
+    }
+    
+
 }

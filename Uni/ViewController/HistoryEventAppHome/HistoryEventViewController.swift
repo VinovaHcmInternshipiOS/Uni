@@ -100,6 +100,11 @@ extension HistoryEventViewController: UICollectionViewDataSource {
         return 2
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let semesterEvent = SemesterScoreViewController(presenter: SemesterScorePresenter())
+        self.navigationController?.pushViewController(semesterEvent, animated: true)
+    }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HistoryCell", for: indexPath) as? HistoryCell {
             if indexPath.row == 1 {

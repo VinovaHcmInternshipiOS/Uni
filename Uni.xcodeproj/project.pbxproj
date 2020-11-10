@@ -43,17 +43,14 @@
 		F582EAC3254FF1D1002BF86F /* Raleway-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F582EAAD254FF1D1002BF86F /* Raleway-VariableFont_wght.ttf */; };
 		F582EAC4254FF1D1002BF86F /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = F582EAAE254FF1D1002BF86F /* README.txt */; };
 		F582EAC9254FF4B6002BF86F /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = F582EAC8254FF4B6002BF86F /* Color.swift */; };
-		F582EACE254FF5AB002BF86F /* hexColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F582EACD254FF5AB002BF86F /* hexColor.swift */; };
 		F582EAD625503B11002BF86F /* ForgotPasswordPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F582EAD325503B10002BF86F /* ForgotPasswordPresenter.swift */; };
 		F582EAD725503B11002BF86F /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F582EAD425503B10002BF86F /* ForgotPasswordViewController.swift */; };
 		F582EAD825503B11002BF86F /* ForgotPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F582EAD525503B10002BF86F /* ForgotPasswordViewController.xib */; };
 		F582EAE025505693002BF86F /* AppHomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F582EADD25505690002BF86F /* AppHomePresenter.swift */; };
 		F582EAE125505693002BF86F /* AppHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F582EADE25505690002BF86F /* AppHomeViewController.swift */; };
 		F582EAE225505693002BF86F /* AppHomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F582EADF25505690002BF86F /* AppHomeViewController.xib */; };
-		F582EAE62550F6DB002BF86F /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F582EAE52550F6DA002BF86F /* UIView+Extension.swift */; };
 		F58527B025510B3700F888E8 /* HappenningCellAppHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58527AE25510B3700F888E8 /* HappenningCellAppHome.swift */; };
 		F58527B125510B3700F888E8 /* HappenningCellAppHome.xib in Resources */ = {isa = PBXBuildFile; fileRef = F58527AF25510B3700F888E8 /* HappenningCellAppHome.xib */; };
-		F58527B5255110AE00F888E8 /* CollectionView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58527B4255110AE00F888E8 /* CollectionView+Extension.swift */; };
 		F58527C3255157E900F888E8 /* DetailEventPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58527C0255157E900F888E8 /* DetailEventPresenter.swift */; };
 		F58527C4255157E900F888E8 /* DetailEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58527C1255157E900F888E8 /* DetailEventViewController.swift */; };
 		F58527C5255157E900F888E8 /* DetailEventViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F58527C2255157E900F888E8 /* DetailEventViewController.xib */; };
@@ -71,10 +68,29 @@
 		F5A04E3E255533B800DB396C /* HistoryEventPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A04E3B255533B800DB396C /* HistoryEventPresenter.swift */; };
 		F5A04E3F255533B800DB396C /* HistoryEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A04E3C255533B800DB396C /* HistoryEventViewController.swift */; };
 		F5A04E40255533B800DB396C /* HistoryEventViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5A04E3D255533B800DB396C /* HistoryEventViewController.xib */; };
+		F5A2AEFB255A74C400502E0F /* SlideMenuPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A2AEF8255A74C400502E0F /* SlideMenuPresenter.swift */; };
+		F5A2AEFC255A74C400502E0F /* SlideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A2AEF9255A74C400502E0F /* SlideMenuViewController.swift */; };
+		F5A2AEFD255A74C400502E0F /* SlideMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5A2AEFA255A74C400502E0F /* SlideMenuViewController.xib */; };
+		F5A2AF01255A768B00502E0F /* SlideInTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A2AF00255A768B00502E0F /* SlideInTransition.swift */; };
+		F5A2AF07255A7C7800502E0F /* SlideMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A2AF05255A7C7800502E0F /* SlideMenuCell.swift */; };
+		F5A2AF08255A7C7800502E0F /* SlideMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5A2AF06255A7C7800502E0F /* SlideMenuCell.xib */; };
+		F5A2AF0D255A7F4D00502E0F /* HeaderMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A2AF0C255A7F4D00502E0F /* HeaderMenuCell.swift */; };
+		F5A2AF19255A801100502E0F /* HeaderMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5A2AF18255A801100502E0F /* HeaderMenuCell.xib */; };
 		F5B1A69225553C9300CC0C1A /* HistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B1A69025553C9300CC0C1A /* HistoryCell.swift */; };
 		F5B1A69325553C9300CC0C1A /* HistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5B1A69125553C9300CC0C1A /* HistoryCell.xib */; };
 		F5B1A698255553F300CC0C1A /* HeaderHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B1A696255553F300CC0C1A /* HeaderHistory.swift */; };
 		F5B1A699255553F300CC0C1A /* HeaderHistory.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5B1A697255553F300CC0C1A /* HeaderHistory.xib */; };
+		F5B1A6A02559157000CC0C1A /* SemesterScorePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B1A69D2559157000CC0C1A /* SemesterScorePresenter.swift */; };
+		F5B1A6A12559157000CC0C1A /* SemesterScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B1A69E2559157000CC0C1A /* SemesterScoreViewController.swift */; };
+		F5B1A6A22559157000CC0C1A /* SemesterScoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5B1A69F2559157000CC0C1A /* SemesterScoreViewController.xib */; };
+		F5B1A6B02559224200CC0C1A /* AppIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B1A6AF2559224200CC0C1A /* AppIcon.swift */; };
+		F5B1A6B7255928FF00CC0C1A /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B1A6B6255928FF00CC0C1A /* Font.swift */; };
+		F5B1A6BD255930A900CC0C1A /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B1A6BC255930A900CC0C1A /* UIView+Extension.swift */; };
+		F5B1A6C9255939BA00CC0C1A /* SemesterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B1A6C7255939BA00CC0C1A /* SemesterCell.swift */; };
+		F5B1A6CA255939BA00CC0C1A /* SemesterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5B1A6C8255939BA00CC0C1A /* SemesterCell.xib */; };
+		F5BEFDEF255A3B6C005A1A2E /* BarcodePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5BEFDEC255A3B6C005A1A2E /* BarcodePresenter.swift */; };
+		F5BEFDF0255A3B6C005A1A2E /* BarcodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5BEFDED255A3B6C005A1A2E /* BarcodeViewController.swift */; };
+		F5BEFDF1255A3B6C005A1A2E /* BarcodeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5BEFDEE255A3B6C005A1A2E /* BarcodeViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -116,17 +132,14 @@
 		F582EAAD254FF1D1002BF86F /* Raleway-VariableFont_wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-VariableFont_wght.ttf"; sourceTree = "<group>"; };
 		F582EAAE254FF1D1002BF86F /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		F582EAC8254FF4B6002BF86F /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
-		F582EACD254FF5AB002BF86F /* hexColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hexColor.swift; sourceTree = "<group>"; };
 		F582EAD325503B10002BF86F /* ForgotPasswordPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordPresenter.swift; sourceTree = "<group>"; };
 		F582EAD425503B10002BF86F /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		F582EAD525503B10002BF86F /* ForgotPasswordViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ForgotPasswordViewController.xib; sourceTree = "<group>"; };
 		F582EADD25505690002BF86F /* AppHomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppHomePresenter.swift; sourceTree = "<group>"; };
 		F582EADE25505690002BF86F /* AppHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppHomeViewController.swift; sourceTree = "<group>"; };
 		F582EADF25505690002BF86F /* AppHomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AppHomeViewController.xib; sourceTree = "<group>"; };
-		F582EAE52550F6DA002BF86F /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		F58527AE25510B3700F888E8 /* HappenningCellAppHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HappenningCellAppHome.swift; sourceTree = "<group>"; };
 		F58527AF25510B3700F888E8 /* HappenningCellAppHome.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HappenningCellAppHome.xib; sourceTree = "<group>"; };
-		F58527B4255110AE00F888E8 /* CollectionView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CollectionView+Extension.swift"; sourceTree = "<group>"; };
 		F58527C0255157E900F888E8 /* DetailEventPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailEventPresenter.swift; sourceTree = "<group>"; };
 		F58527C1255157E900F888E8 /* DetailEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailEventViewController.swift; sourceTree = "<group>"; };
 		F58527C2255157E900F888E8 /* DetailEventViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailEventViewController.xib; sourceTree = "<group>"; };
@@ -144,10 +157,29 @@
 		F5A04E3B255533B800DB396C /* HistoryEventPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryEventPresenter.swift; sourceTree = "<group>"; };
 		F5A04E3C255533B800DB396C /* HistoryEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryEventViewController.swift; sourceTree = "<group>"; };
 		F5A04E3D255533B800DB396C /* HistoryEventViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryEventViewController.xib; sourceTree = "<group>"; };
+		F5A2AEF8255A74C400502E0F /* SlideMenuPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideMenuPresenter.swift; sourceTree = "<group>"; };
+		F5A2AEF9255A74C400502E0F /* SlideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideMenuViewController.swift; sourceTree = "<group>"; };
+		F5A2AEFA255A74C400502E0F /* SlideMenuViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SlideMenuViewController.xib; sourceTree = "<group>"; };
+		F5A2AF00255A768B00502E0F /* SlideInTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInTransition.swift; sourceTree = "<group>"; };
+		F5A2AF05255A7C7800502E0F /* SlideMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideMenuCell.swift; sourceTree = "<group>"; };
+		F5A2AF06255A7C7800502E0F /* SlideMenuCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SlideMenuCell.xib; sourceTree = "<group>"; };
+		F5A2AF0C255A7F4D00502E0F /* HeaderMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderMenuCell.swift; sourceTree = "<group>"; };
+		F5A2AF18255A801100502E0F /* HeaderMenuCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderMenuCell.xib; sourceTree = "<group>"; };
 		F5B1A69025553C9300CC0C1A /* HistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCell.swift; sourceTree = "<group>"; };
 		F5B1A69125553C9300CC0C1A /* HistoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryCell.xib; sourceTree = "<group>"; };
 		F5B1A696255553F300CC0C1A /* HeaderHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderHistory.swift; sourceTree = "<group>"; };
 		F5B1A697255553F300CC0C1A /* HeaderHistory.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderHistory.xib; sourceTree = "<group>"; };
+		F5B1A69D2559157000CC0C1A /* SemesterScorePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemesterScorePresenter.swift; sourceTree = "<group>"; };
+		F5B1A69E2559157000CC0C1A /* SemesterScoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemesterScoreViewController.swift; sourceTree = "<group>"; };
+		F5B1A69F2559157000CC0C1A /* SemesterScoreViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SemesterScoreViewController.xib; sourceTree = "<group>"; };
+		F5B1A6AF2559224200CC0C1A /* AppIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIcon.swift; sourceTree = "<group>"; };
+		F5B1A6B6255928FF00CC0C1A /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
+		F5B1A6BC255930A900CC0C1A /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		F5B1A6C7255939BA00CC0C1A /* SemesterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemesterCell.swift; sourceTree = "<group>"; };
+		F5B1A6C8255939BA00CC0C1A /* SemesterCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SemesterCell.xib; sourceTree = "<group>"; };
+		F5BEFDEC255A3B6C005A1A2E /* BarcodePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodePresenter.swift; sourceTree = "<group>"; };
+		F5BEFDED255A3B6C005A1A2E /* BarcodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeViewController.swift; sourceTree = "<group>"; };
+		F5BEFDEE255A3B6C005A1A2E /* BarcodeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BarcodeViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,8 +235,6 @@
 			isa = PBXGroup;
 			children = (
 				F582EACC254FF590002BF86F /* Extension */,
-				F582EAC7254FF4A7002BF86F /* AppColor */,
-				F582EA93254FF16C002BF86F /* Font */,
 				F582EA7F254FEE75002BF86F /* ViewController */,
 				F582EA6A254FEE58002BF86F /* AppDelegate.swift */,
 				F582EA6C254FEE58002BF86F /* SceneDelegate.swift */,
@@ -219,9 +249,10 @@
 		F582EA7F254FEE75002BF86F /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				F5A04E3A2555338B00DB396C /* HistoryEvent */,
+				F5BEFDE8255A3B12005A1A2E /* BarcodeAppHome */,
+				F5A04E3A2555338B00DB396C /* HistoryEventAppHome */,
 				F50D63A02554ED71007509D0 /* SearchAppHome */,
-				F59037EE2553E913007FE7C3 /* Rank */,
+				F59037EE2553E913007FE7C3 /* RankAppHome */,
 				F58527BF255157C500F888E8 /* DetailEvent */,
 				F582EADB2550565D002BF86F /* Home */,
 				F582EAD225503ADE002BF86F /* ForgotPassword */,
@@ -296,9 +327,10 @@
 		F582EACC254FF590002BF86F /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				F582EACD254FF5AB002BF86F /* hexColor.swift */,
-				F582EAE52550F6DA002BF86F /* UIView+Extension.swift */,
-				F58527B4255110AE00F888E8 /* CollectionView+Extension.swift */,
+				F5B1A6B5255928D800CC0C1A /* AppFont */,
+				F5B1A6B32559266600CC0C1A /* UIView */,
+				F5B1A6AE2559223700CC0C1A /* AppIcon */,
+				F582EAC7254FF4A7002BF86F /* AppColor */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -316,6 +348,8 @@
 		F582EADB2550565D002BF86F /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				F5A2AEFF255A765400502E0F /* SlideInTransition */,
+				F5A2AEF0255A73A900502E0F /* SlideMenuAppHome */,
 				F59037E72553E23F007FE7C3 /* ComingSoon+EndedCell */,
 				F58527C72551653F00F888E8 /* CustomNavigation */,
 				F58527AD25510AEE00F888E8 /* HappenningCellAppHome */,
@@ -361,7 +395,7 @@
 			path = "ComingSoon+EndedCell";
 			sourceTree = "<group>";
 		};
-		F59037EE2553E913007FE7C3 /* Rank */ = {
+		F59037EE2553E913007FE7C3 /* RankAppHome */ = {
 			isa = PBXGroup;
 			children = (
 				F50D6398255452C7007509D0 /* RankCell */,
@@ -369,7 +403,7 @@
 				F59221CC2553FD8C002F3F50 /* RankViewController.swift */,
 				F59221CD2553FD8C002F3F50 /* RankViewController.xib */,
 			);
-			path = Rank;
+			path = RankAppHome;
 			sourceTree = "<group>";
 		};
 		F5A04E22255500C700DB396C /* SearchEventLabelCell */ = {
@@ -399,16 +433,55 @@
 			path = SearchResultCell;
 			sourceTree = "<group>";
 		};
-		F5A04E3A2555338B00DB396C /* HistoryEvent */ = {
+		F5A04E3A2555338B00DB396C /* HistoryEventAppHome */ = {
 			isa = PBXGroup;
 			children = (
-				F5B1A6952555538700CC0C1A /* HeaderHistory */,
-				F5B1A68425553C3400CC0C1A /* TotalHistoryCell */,
 				F5A04E3B255533B800DB396C /* HistoryEventPresenter.swift */,
 				F5A04E3C255533B800DB396C /* HistoryEventViewController.swift */,
 				F5A04E3D255533B800DB396C /* HistoryEventViewController.xib */,
+				F5B1A6952555538700CC0C1A /* HeaderHistory */,
+				F5B1A69C2559147600CC0C1A /* SemesterScore */,
+				F5B1A68425553C3400CC0C1A /* TotalHistoryCell */,
 			);
-			path = HistoryEvent;
+			path = HistoryEventAppHome;
+			sourceTree = "<group>";
+		};
+		F5A2AEF0255A73A900502E0F /* SlideMenuAppHome */ = {
+			isa = PBXGroup;
+			children = (
+				F5A2AF0B255A7F1600502E0F /* HeaderMenuCell */,
+				F5A2AF04255A7C5F00502E0F /* SlideMenuCell */,
+				F5A2AEF8255A74C400502E0F /* SlideMenuPresenter.swift */,
+				F5A2AEF9255A74C400502E0F /* SlideMenuViewController.swift */,
+				F5A2AEFA255A74C400502E0F /* SlideMenuViewController.xib */,
+			);
+			path = SlideMenuAppHome;
+			sourceTree = "<group>";
+		};
+		F5A2AEFF255A765400502E0F /* SlideInTransition */ = {
+			isa = PBXGroup;
+			children = (
+				F5A2AF00255A768B00502E0F /* SlideInTransition.swift */,
+			);
+			path = SlideInTransition;
+			sourceTree = "<group>";
+		};
+		F5A2AF04255A7C5F00502E0F /* SlideMenuCell */ = {
+			isa = PBXGroup;
+			children = (
+				F5A2AF05255A7C7800502E0F /* SlideMenuCell.swift */,
+				F5A2AF06255A7C7800502E0F /* SlideMenuCell.xib */,
+			);
+			path = SlideMenuCell;
+			sourceTree = "<group>";
+		};
+		F5A2AF0B255A7F1600502E0F /* HeaderMenuCell */ = {
+			isa = PBXGroup;
+			children = (
+				F5A2AF0C255A7F4D00502E0F /* HeaderMenuCell.swift */,
+				F5A2AF18255A801100502E0F /* HeaderMenuCell.xib */,
+			);
+			path = HeaderMenuCell;
 			sourceTree = "<group>";
 		};
 		F5B1A68425553C3400CC0C1A /* TotalHistoryCell */ = {
@@ -427,6 +500,61 @@
 				F5B1A697255553F300CC0C1A /* HeaderHistory.xib */,
 			);
 			path = HeaderHistory;
+			sourceTree = "<group>";
+		};
+		F5B1A69C2559147600CC0C1A /* SemesterScore */ = {
+			isa = PBXGroup;
+			children = (
+				F5B1A6BF2559360500CC0C1A /* SemesterCell */,
+				F5B1A69D2559157000CC0C1A /* SemesterScorePresenter.swift */,
+				F5B1A69E2559157000CC0C1A /* SemesterScoreViewController.swift */,
+				F5B1A69F2559157000CC0C1A /* SemesterScoreViewController.xib */,
+			);
+			path = SemesterScore;
+			sourceTree = "<group>";
+		};
+		F5B1A6AE2559223700CC0C1A /* AppIcon */ = {
+			isa = PBXGroup;
+			children = (
+				F5B1A6AF2559224200CC0C1A /* AppIcon.swift */,
+			);
+			path = AppIcon;
+			sourceTree = "<group>";
+		};
+		F5B1A6B32559266600CC0C1A /* UIView */ = {
+			isa = PBXGroup;
+			children = (
+				F5B1A6BC255930A900CC0C1A /* UIView+Extension.swift */,
+			);
+			path = UIView;
+			sourceTree = "<group>";
+		};
+		F5B1A6B5255928D800CC0C1A /* AppFont */ = {
+			isa = PBXGroup;
+			children = (
+				F582EA93254FF16C002BF86F /* Font */,
+				F5B1A6B6255928FF00CC0C1A /* Font.swift */,
+			);
+			path = AppFont;
+			sourceTree = "<group>";
+		};
+		F5B1A6BF2559360500CC0C1A /* SemesterCell */ = {
+			isa = PBXGroup;
+			children = (
+				F5B1A6C7255939BA00CC0C1A /* SemesterCell.swift */,
+				F5B1A6C8255939BA00CC0C1A /* SemesterCell.xib */,
+			);
+			path = SemesterCell;
+			sourceTree = "<group>";
+		};
+		F5BEFDE8255A3B12005A1A2E /* BarcodeAppHome */ = {
+			isa = PBXGroup;
+			children = (
+				F5BEFDEC255A3B6C005A1A2E /* BarcodePresenter.swift */,
+				F5BEFDED255A3B6C005A1A2E /* BarcodeViewController.swift */,
+				F5BEFDEE255A3B6C005A1A2E /* BarcodeViewController.xib */,
+			);
+			path = BarcodeAppHome;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -488,7 +616,9 @@
 			files = (
 				F58527B125510B3700F888E8 /* HappenningCellAppHome.xib in Resources */,
 				F582EAD825503B11002BF86F /* ForgotPasswordViewController.xib in Resources */,
+				F5A2AF19255A801100502E0F /* HeaderMenuCell.xib in Resources */,
 				F582EAB7254FF1D1002BF86F /* Raleway-ExtraBoldItalic.ttf in Resources */,
+				F5B1A6CA255939BA00CC0C1A /* SemesterCell.xib in Resources */,
 				F582EAB8254FF1D1002BF86F /* Raleway-Regular.ttf in Resources */,
 				F582EABA254FF1D1002BF86F /* Raleway-SemiBoldItalic.ttf in Resources */,
 				F5A04E40255533B800DB396C /* HistoryEventViewController.xib in Resources */,
@@ -498,6 +628,7 @@
 				F582EAE225505693002BF86F /* AppHomeViewController.xib in Resources */,
 				F582EAC1254FF1D1002BF86F /* Raleway-Bold.ttf in Resources */,
 				F50D63A72554EDCC007509D0 /* SearchAppHomeViewController.xib in Resources */,
+				F5BEFDF1255A3B6C005A1A2E /* BarcodeViewController.xib in Resources */,
 				F582EAB0254FF1D1002BF86F /* Raleway-BoldItalic.ttf in Resources */,
 				F582EABD254FF1D1002BF86F /* Raleway-BlackItalic.ttf in Resources */,
 				F582EAC4254FF1D1002BF86F /* README.txt in Resources */,
@@ -512,7 +643,10 @@
 				F5A04E342555054200DB396C /* SearchResultCell.xib in Resources */,
 				F582EABC254FF1D1002BF86F /* Raleway-Black.ttf in Resources */,
 				F50D639C25545317007509D0 /* RankTableViewCell.xib in Resources */,
+				F5A2AF08255A7C7800502E0F /* SlideMenuCell.xib in Resources */,
+				F5A2AEFD255A74C400502E0F /* SlideMenuViewController.xib in Resources */,
 				F5B1A699255553F300CC0C1A /* HeaderHistory.xib in Resources */,
+				F5B1A6A22559157000CC0C1A /* SemesterScoreViewController.xib in Resources */,
 				F582EAC2254FF1D1002BF86F /* OFL.txt in Resources */,
 				F582EAB1254FF1D1002BF86F /* Raleway-MediumItalic.ttf in Resources */,
 				F582EAC3254FF1D1002BF86F /* Raleway-VariableFont_wght.ttf in Resources */,
@@ -541,27 +675,37 @@
 				F582EAE025505693002BF86F /* AppHomePresenter.swift in Sources */,
 				F5A04E3F255533B800DB396C /* HistoryEventViewController.swift in Sources */,
 				F5A04E332555054200DB396C /* SearchResultCell.swift in Sources */,
+				F5A2AF0D255A7F4D00502E0F /* HeaderMenuCell.swift in Sources */,
 				F59221CE2553FD8D002F3F50 /* RankPresenter.swift in Sources */,
 				F58527C4255157E900F888E8 /* DetailEventViewController.swift in Sources */,
 				F59221CF2553FD8D002F3F50 /* RankViewController.swift in Sources */,
 				F5A04E3E255533B800DB396C /* HistoryEventPresenter.swift in Sources */,
-				F582EACE254FF5AB002BF86F /* hexColor.swift in Sources */,
 				F59037EA2553E275007FE7C3 /* ComingSoonEndedCellAppHome.swift in Sources */,
 				F50D63A62554EDCC007509D0 /* SearchAppHomeViewController.swift in Sources */,
 				F50D639B25545317007509D0 /* RankTableViewCell.swift in Sources */,
+				F5A2AEFC255A74C400502E0F /* SlideMenuViewController.swift in Sources */,
 				F582EA6F254FEE58002BF86F /* ViewController.swift in Sources */,
 				F582EA6B254FEE58002BF86F /* AppDelegate.swift in Sources */,
+				F5BEFDF0255A3B6C005A1A2E /* BarcodeViewController.swift in Sources */,
 				F5A04E2D255502B000DB396C /* SearchEventLabelCell.swift in Sources */,
 				F582EAD625503B11002BF86F /* ForgotPasswordPresenter.swift in Sources */,
+				F5A2AF01255A768B00502E0F /* SlideInTransition.swift in Sources */,
 				F5B1A698255553F300CC0C1A /* HeaderHistory.swift in Sources */,
-				F582EAE62550F6DB002BF86F /* UIView+Extension.swift in Sources */,
-				F58527B5255110AE00F888E8 /* CollectionView+Extension.swift in Sources */,
+				F5B1A6A12559157000CC0C1A /* SemesterScoreViewController.swift in Sources */,
+				F5B1A6B02559224200CC0C1A /* AppIcon.swift in Sources */,
 				F5A04E252555015700DB396C /* SearchEventTextFieldHeader.swift in Sources */,
+				F5B1A6C9255939BA00CC0C1A /* SemesterCell.swift in Sources */,
+				F5BEFDEF255A3B6C005A1A2E /* BarcodePresenter.swift in Sources */,
+				F5A2AEFB255A74C400502E0F /* SlideMenuPresenter.swift in Sources */,
 				F582EAE125505693002BF86F /* AppHomeViewController.swift in Sources */,
 				F5B1A69225553C9300CC0C1A /* HistoryCell.swift in Sources */,
+				F5B1A6B7255928FF00CC0C1A /* Font.swift in Sources */,
+				F5A2AF07255A7C7800502E0F /* SlideMenuCell.swift in Sources */,
 				F582EAD725503B11002BF86F /* ForgotPasswordViewController.swift in Sources */,
 				F582EA8C254FEEB6002BF86F /* LoginViewController.swift in Sources */,
+				F5B1A6BD255930A900CC0C1A /* UIView+Extension.swift in Sources */,
 				F582EA6D254FEE58002BF86F /* SceneDelegate.swift in Sources */,
+				F5B1A6A02559157000CC0C1A /* SemesterScorePresenter.swift in Sources */,
 				F582EAC9254FF4B6002BF86F /* Color.swift in Sources */,
 				F50D63A52554EDCC007509D0 /* SearchAppHomePresenter.swift in Sources */,
 			);

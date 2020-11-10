@@ -104,6 +104,9 @@
                     <constraint firstItem="dRa-H0-pXh" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="tAV-K0-M6a"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="btDetail" destination="kSo-BB-YpE" id="W4F-ee-MrB"/>
+            </connections>
             <point key="canvasLocation" x="66.666666666666671" y="97.098214285714278"/>
         </tableViewCell>
     </objects>
