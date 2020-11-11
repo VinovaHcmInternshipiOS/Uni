@@ -11,7 +11,8 @@
 import UIKit
 
 class AppHomeViewController: UIViewController, AppHomeViewProtocol {
-
+    @IBOutlet weak var btRank: UIButton!
+    
     @IBOutlet weak var collectionEnded: UICollectionView!
     @IBOutlet weak var collectionHappenning: UICollectionView!
     @IBOutlet weak var collectionComingSoon: UICollectionView!
@@ -92,19 +93,23 @@ class AppHomeViewController: UIViewController, AppHomeViewProtocol {
         let title = String(describing: menuType).capitalized
         print(title)
     }
-    @IBAction func btLeaderboard(_ sender: Any) {
+    @IBAction func btLeaderboard(_ sender: UIButton) {
+        sender.animationScale()
         let leaderBoard = RankViewController(presenter: RankPresenter())
         self.navigationController?.pushViewController(leaderBoard, animated: true)
     }
-    @IBAction func btSearchEvent(_ sender: Any) {
+    @IBAction func btSearchEvent(_ sender: UIButton) {
+        sender.animationScale()
         let searchEvent = SearchAppHomeViewController(presenter: SearchAppHomePresenter())
         self.navigationController?.pushViewController(searchEvent, animated: true)
     }
-    @IBAction func btHistoryEvent(_ sender: Any) {
+    @IBAction func btHistoryEvent(_ sender: UIButton) {
+        sender.animationScale()
         let historyEvent = HistoryEventViewController(presenter: HistoryEventPresenter())
         self.navigationController?.pushViewController(historyEvent, animated: true)
     }
-    @IBAction func btBarcode(_ sender: Any) {
+    @IBAction func btBarcode(_ sender: UIButton) {
+        sender.animationScale()
         let barcode = BarcodeViewController(presenter: BarcodePresenter())
         self.navigationController?.pushViewController(barcode, animated: true)
     }

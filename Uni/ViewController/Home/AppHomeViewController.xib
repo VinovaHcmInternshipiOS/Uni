@@ -19,6 +19,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AppHomeViewController" customModule="Uni" customModuleProvider="target">
             <connections>
+                <outlet property="btRank" destination="MnW-If-RAY" id="cLS-Dj-11Y"/>
                 <outlet property="collectionComingSoon" destination="ZIx-kM-VSU" id="SpX-j5-bYg"/>
                 <outlet property="collectionEnded" destination="d3G-X6-EmU" id="ccG-JS-ZlP"/>
                 <outlet property="collectionHappenning" destination="s5J-Lb-Vi3" id="lTH-op-gKV"/>
