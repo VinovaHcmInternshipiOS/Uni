@@ -61,6 +61,7 @@
 		F59221CF2553FD8D002F3F50 /* RankViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59221CC2553FD8C002F3F50 /* RankViewController.swift */; };
 		F59221D02553FD8D002F3F50 /* RankViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F59221CD2553FD8C002F3F50 /* RankViewController.xib */; };
 		F593CBF3255BE863005D4F15 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F593CBF2255BE863005D4F15 /* UIButton+Extension.swift */; };
+		F593CBF9255BEDB1005D4F15 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F593CBF8255BEDB1005D4F15 /* GoogleService-Info.plist */; };
 		F5A04E252555015700DB396C /* SearchEventTextFieldHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A04E242555015700DB396C /* SearchEventTextFieldHeader.swift */; };
 		F5A04E292555016100DB396C /* SearchEventTextFieldHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5A04E282555016100DB396C /* SearchEventTextFieldHeader.xib */; };
 		F5A04E2D255502B000DB396C /* SearchEventLabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A04E2B255502B000DB396C /* SearchEventLabelCell.swift */; };
@@ -152,6 +153,7 @@
 		F59221CC2553FD8C002F3F50 /* RankViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankViewController.swift; sourceTree = "<group>"; };
 		F59221CD2553FD8C002F3F50 /* RankViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RankViewController.xib; sourceTree = "<group>"; };
 		F593CBF2255BE863005D4F15 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
+		F593CBF8255BEDB1005D4F15 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F5A04E242555015700DB396C /* SearchEventTextFieldHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchEventTextFieldHeader.swift; sourceTree = "<group>"; };
 		F5A04E282555016100DB396C /* SearchEventTextFieldHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchEventTextFieldHeader.xib; sourceTree = "<group>"; };
 		F5A04E2B255502B000DB396C /* SearchEventLabelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchEventLabelCell.swift; sourceTree = "<group>"; };
@@ -202,7 +204,6 @@
 				A3E45C50707B0F2D9AE5E100 /* Pods-Uni.debug.xcconfig */,
 				9C25EC89416F49B281815696 /* Pods-Uni.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -257,6 +258,7 @@
 		F582EA69254FEE58002BF86F /* Uni */ = {
 			isa = PBXGroup;
 			children = (
+				F593CBF8255BEDB1005D4F15 /* GoogleService-Info.plist */,
 				F582EACC254FF590002BF86F /* Extension */,
 				F582EA7F254FEE75002BF86F /* ViewController */,
 				F582EA6A254FEE58002BF86F /* AppDelegate.swift */,
@@ -590,6 +592,7 @@
 				F582EA63254FEE58002BF86F /* Sources */,
 				F582EA64254FEE58002BF86F /* Frameworks */,
 				F582EA65254FEE58002BF86F /* Resources */,
+				199BACE3A000E27F48581F2F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -639,6 +642,7 @@
 			files = (
 				F58527B125510B3700F888E8 /* HappenningCellAppHome.xib in Resources */,
 				F582EAD825503B11002BF86F /* ForgotPasswordViewController.xib in Resources */,
+				F593CBF9255BEDB1005D4F15 /* GoogleService-Info.plist in Resources */,
 				F582EAB7254FF1D1002BF86F /* Raleway-ExtraBoldItalic.ttf in Resources */,
 				F5B1A6CA255939BA00CC0C1A /* SemesterCell.xib in Resources */,
 				F582EAB8254FF1D1002BF86F /* Raleway-Regular.ttf in Resources */,
@@ -687,6 +691,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		199BACE3A000E27F48581F2F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Uni/Pods-Uni-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Uni/Pods-Uni-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Uni/Pods-Uni-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		1FDBDDDE026C4BD5BEEA144C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
