@@ -20,5 +20,6 @@ class AppIcon {
     static let icWreathWhite = UIImage(named: "icWreath-white")
     static let icWreathYellow = UIImage(named: "icWreathWhite-yellow")
     static let icMoon = UIImage(named: "icMoon")
+    static let icThreeLine = UIImage(named: "icThreeLine")
     
 }

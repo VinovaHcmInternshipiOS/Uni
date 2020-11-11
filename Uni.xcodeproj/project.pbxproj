@@ -74,8 +74,6 @@
 		F5A2AF01255A768B00502E0F /* SlideInTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A2AF00255A768B00502E0F /* SlideInTransition.swift */; };
 		F5A2AF07255A7C7800502E0F /* SlideMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A2AF05255A7C7800502E0F /* SlideMenuCell.swift */; };
 		F5A2AF08255A7C7800502E0F /* SlideMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5A2AF06255A7C7800502E0F /* SlideMenuCell.xib */; };
-		F5A2AF0D255A7F4D00502E0F /* HeaderMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A2AF0C255A7F4D00502E0F /* HeaderMenuCell.swift */; };
-		F5A2AF19255A801100502E0F /* HeaderMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5A2AF18255A801100502E0F /* HeaderMenuCell.xib */; };
 		F5B1A69225553C9300CC0C1A /* HistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B1A69025553C9300CC0C1A /* HistoryCell.swift */; };
 		F5B1A69325553C9300CC0C1A /* HistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5B1A69125553C9300CC0C1A /* HistoryCell.xib */; };
 		F5B1A698255553F300CC0C1A /* HeaderHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B1A696255553F300CC0C1A /* HeaderHistory.swift */; };
@@ -163,8 +161,6 @@
 		F5A2AF00255A768B00502E0F /* SlideInTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInTransition.swift; sourceTree = "<group>"; };
 		F5A2AF05255A7C7800502E0F /* SlideMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideMenuCell.swift; sourceTree = "<group>"; };
 		F5A2AF06255A7C7800502E0F /* SlideMenuCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SlideMenuCell.xib; sourceTree = "<group>"; };
-		F5A2AF0C255A7F4D00502E0F /* HeaderMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderMenuCell.swift; sourceTree = "<group>"; };
-		F5A2AF18255A801100502E0F /* HeaderMenuCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderMenuCell.xib; sourceTree = "<group>"; };
 		F5B1A69025553C9300CC0C1A /* HistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCell.swift; sourceTree = "<group>"; };
 		F5B1A69125553C9300CC0C1A /* HistoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryCell.xib; sourceTree = "<group>"; };
 		F5B1A696255553F300CC0C1A /* HeaderHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderHistory.swift; sourceTree = "<group>"; };
@@ -449,7 +445,6 @@
 		F5A2AEF0255A73A900502E0F /* SlideMenuAppHome */ = {
 			isa = PBXGroup;
 			children = (
-				F5A2AF0B255A7F1600502E0F /* HeaderMenuCell */,
 				F5A2AF04255A7C5F00502E0F /* SlideMenuCell */,
 				F5A2AEF8255A74C400502E0F /* SlideMenuPresenter.swift */,
 				F5A2AEF9255A74C400502E0F /* SlideMenuViewController.swift */,
@@ -473,15 +468,6 @@
 				F5A2AF06255A7C7800502E0F /* SlideMenuCell.xib */,
 			);
 			path = SlideMenuCell;
-			sourceTree = "<group>";
-		};
-		F5A2AF0B255A7F1600502E0F /* HeaderMenuCell */ = {
-			isa = PBXGroup;
-			children = (
-				F5A2AF0C255A7F4D00502E0F /* HeaderMenuCell.swift */,
-				F5A2AF18255A801100502E0F /* HeaderMenuCell.xib */,
-			);
-			path = HeaderMenuCell;
 			sourceTree = "<group>";
 		};
 		F5B1A68425553C3400CC0C1A /* TotalHistoryCell */ = {
@@ -616,7 +602,6 @@
 			files = (
 				F58527B125510B3700F888E8 /* HappenningCellAppHome.xib in Resources */,
 				F582EAD825503B11002BF86F /* ForgotPasswordViewController.xib in Resources */,
-				F5A2AF19255A801100502E0F /* HeaderMenuCell.xib in Resources */,
 				F582EAB7254FF1D1002BF86F /* Raleway-ExtraBoldItalic.ttf in Resources */,
 				F5B1A6CA255939BA00CC0C1A /* SemesterCell.xib in Resources */,
 				F582EAB8254FF1D1002BF86F /* Raleway-Regular.ttf in Resources */,
@@ -675,7 +660,6 @@
 				F582EAE025505693002BF86F /* AppHomePresenter.swift in Sources */,
 				F5A04E3F255533B800DB396C /* HistoryEventViewController.swift in Sources */,
 				F5A04E332555054200DB396C /* SearchResultCell.swift in Sources */,
-				F5A2AF0D255A7F4D00502E0F /* HeaderMenuCell.swift in Sources */,
 				F59221CE2553FD8D002F3F50 /* RankPresenter.swift in Sources */,
 				F58527C4255157E900F888E8 /* DetailEventViewController.swift in Sources */,
 				F59221CF2553FD8D002F3F50 /* RankViewController.swift in Sources */,

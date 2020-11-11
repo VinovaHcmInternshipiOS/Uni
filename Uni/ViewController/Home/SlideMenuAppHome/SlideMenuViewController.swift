@@ -10,10 +10,10 @@
 
 import UIKit
 enum MenuType: Int {
-    case home
-    case about
-    case setting
-    case privacy
+    case Home
+    case About
+    case Setting
+    case Privacy
 }
 class SlideMenuViewController: UIViewController, SlideMenuViewProtocol {
 
@@ -21,6 +21,7 @@ class SlideMenuViewController: UIViewController, SlideMenuViewProtocol {
     var presenter: SlideMenuPresenterProtocol
     let arrayFeature = ["Home","About","Setting","Privacy"]
     var didTapMenuType: ((MenuType) -> Void)?
+    let caseMenu = "caseMenu"
 	init(presenter: SlideMenuPresenterProtocol) {
         self.presenter = presenter
         super.init(nibName: "SlideMenuViewController", bundle: nil)
@@ -38,28 +39,19 @@ class SlideMenuViewController: UIViewController, SlideMenuViewProtocol {
         setupUI()
     }
     
+//    override func viewWillAppear(_ animated: Bool) {
+//        let color = defaults.colorForKey(key: "backgroundColor") ?? .white
+//        view.backgroundColor = color
+//    }
+    
     func setupUI() {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: "SlideMenuCell", bundle: nil), forCellReuseIdentifier: "SlideMenuCell")
-        tableView.register(UINib(nibName: "HeaderMenuCell", bundle: nil), forHeaderFooterViewReuseIdentifier: "HeaderMenuCell")
     }
-
 }
 
 extension SlideMenuViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "HeaderMenuCell") as? HeaderMenuCell {
-            headerView.contentView.backgroundColor = .white
-            return headerView
-        } else { return UIView()}
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-
-        return 150
-        
-    }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
@@ -83,9 +75,22 @@ extension SlideMenuViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let menuType = MenuType(rawValue: indexPath.row) else { return }
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "SlideMenuCell", for: indexPath) as? SlideMenuCell else { return }
+        let selectedCell = tableView.cellForRow(at: IndexPath(row: UserDefaults.standard.value(forKey: "caseMenu") as! Int, section: 0)) as! SlideMenuCell
+        selectedCell.viewChoose.backgroundColor = UIColor(white: 1, alpha: 0.0)
+        selectedCell.titleFeature.font = AppFont.Raleway_Regular_20
+        selectedCell.titleFeature.textColor = .black
+        
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = UIColor(white: 1, alpha: 0.0)
+        cell.selectedBackgroundView = backgroundView
+        
         cell.viewChoose.backgroundColor = AppColor.YellowFAB32A
-        cell.contentView.backgroundColor = AppColor.YellowFAB32A
-        tableView.deselectRow(at: indexPath, animated: true)
+        cell.titleFeature.text = "\(menuType)"
+        cell.titleFeature.textColor = .white
+        cell.titleFeature.font = AppFont.Raleway_Bold_20
+        
+        UserDefaults.standard.set(indexPath.row, forKey: "caseMenu")
+        
         dismiss(animated: true, completion: {
             print("Dismissing: \(menuType)")
             self.didTapMenuType?(menuType)
@@ -94,10 +99,18 @@ extension SlideMenuViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "SlideMenuCell", for: indexPath) as? SlideMenuCell {
-           // cell.viewChoose.roundCorners([.topRight,.bottomRight], radius: 20)
             cell.titleFeature.text = arrayFeature[indexPath.row]
-            cell.selectionStyle = .none
-            cell.contentView.roundCorners([.topRight,.bottomRight], radius: 20)
+            
+            let backgroundView = UIView()
+            backgroundView.backgroundColor = UIColor(white: 1, alpha: 0.0)
+            cell.selectedBackgroundView = backgroundView
+            
+            if indexPath.row == UserDefaults.standard.value(forKey: "caseMenu") as! Int {
+                cell.viewChoose.backgroundColor = AppColor.YellowFAB32A
+                cell.titleFeature.textColor = .white
+                cell.titleFeature.font = AppFont.Raleway_Bold_20
+            }
+            
             return cell
         } else {
             return UITableViewCell()
@@ -105,4 +118,33 @@ extension SlideMenuViewController: UITableViewDataSource {
     }
     
     
+}
+extension UserDefaults {
+    
+ func setColor(color: UIColor?, forKey key: String) {
+  var colorData: NSData?
+    if let color = color {
+        do {
+            colorData = try NSKeyedArchiver.archivedData(withRootObject: color, requiringSecureCoding: false) as NSData?
+            set(colorData, forKey: key)
+        } catch let error{
+            print("error archiving color data",error)
+            
+        }
+    }
+ }
+func colorForKey(key: String) -> UIColor? {
+        var color: UIColor?
+        if let colorData = data(forKey: "backgroundColor") {
+            do {
+                color = try NSKeyedUnarchiver.unarchivedObject(ofClass: UIColor.self, from: colorData)
+            } catch let error{
+                print("error archiving color data",error)
+                
+            }
+        }
+    return color
+    }
+    
+
 }

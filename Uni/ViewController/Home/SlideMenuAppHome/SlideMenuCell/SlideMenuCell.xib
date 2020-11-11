@@ -20,31 +20,37 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="62"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mzc-jv-KDO">
-                        <rect key="frame" x="0.0" y="11" width="287" height="40"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mzc-jv-KDO">
+                        <rect key="frame" x="-20" y="11" width="307" height="40"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pbH-AF-7BT">
-                                <rect key="frame" x="22" y="10" width="52.5" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pbH-AF-7BT">
+                                <rect key="frame" x="42" y="0.0" width="0.0" height="40"/>
                                 <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="pbH-AF-7BT" secondAttribute="bottom" constant="9" id="4Pb-86-XcM"/>
-                            <constraint firstItem="pbH-AF-7BT" firstAttribute="leading" secondItem="mzc-jv-KDO" secondAttribute="leading" constant="22" id="Ilz-lm-3rD"/>
-                            <constraint firstItem="pbH-AF-7BT" firstAttribute="top" secondItem="mzc-jv-KDO" secondAttribute="top" constant="10" id="y1W-jf-yvJ"/>
+                            <constraint firstAttribute="bottom" secondItem="pbH-AF-7BT" secondAttribute="bottom" id="4Pb-86-XcM"/>
+                            <constraint firstItem="pbH-AF-7BT" firstAttribute="leading" secondItem="mzc-jv-KDO" secondAttribute="leading" constant="42" id="Ilz-lm-3rD"/>
+                            <constraint firstItem="pbH-AF-7BT" firstAttribute="top" secondItem="mzc-jv-KDO" secondAttribute="top" id="y1W-jf-yvJ"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="20"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </view>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="mzc-jv-KDO" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="529-dz-BFO"/>
-                    <constraint firstAttribute="trailing" secondItem="mzc-jv-KDO" secondAttribute="trailing" constant="33" id="GeF-1a-gZE"/>
-                    <constraint firstItem="mzc-jv-KDO" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="IC0-XH-ryf"/>
-                    <constraint firstAttribute="bottom" secondItem="mzc-jv-KDO" secondAttribute="bottom" constant="11" id="jef-KX-VIG"/>
+                    <constraint firstAttribute="trailing" secondItem="mzc-jv-KDO" secondAttribute="trailing" constant="33" id="5ZJ-yf-6cK"/>
+                    <constraint firstItem="mzc-jv-KDO" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="HWL-W9-oXV"/>
+                    <constraint firstItem="mzc-jv-KDO" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="-20" id="RhS-1q-sqq"/>
+                    <constraint firstAttribute="bottom" secondItem="mzc-jv-KDO" secondAttribute="bottom" constant="11" id="WE2-ym-QsZ"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
             <connections>
                 <outlet property="titleFeature" destination="pbH-AF-7BT" id="ONH-jR-OoA"/>
                 <outlet property="viewChoose" destination="mzc-jv-KDO" id="UjK-nx-wmp"/>

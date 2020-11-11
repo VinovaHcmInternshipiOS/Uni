@@ -66,10 +66,10 @@ class AppHomeViewController: UIViewController, AppHomeViewProtocol {
         let attributes = [NSAttributedString.Key.foregroundColor: UIColor.white] //Text Color
         navigationController?.navigationBar.titleTextAttributes = attributes
         
-        let createBtn = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: nil)
+        let createBtn = UIBarButtonItem(image: UIImage(systemName: "bell"), style: .plain, target: self, action: nil)
         createBtn.tintColor = AppColor.YellowFAB32A
         navigationItem.rightBarButtonItem = createBtn
-        let sortBtn = UIBarButtonItem(image: UIImage(systemName: "line.horizontal.3.decrease.circle"), style: .plain, target: self, action: nil)
+        let sortBtn = UIBarButtonItem(image: AppIcon.icThreeLine, style: .plain, target: self, action: nil)
         sortBtn.tintColor = AppColor.YellowFAB32A
         navigationItem.leftBarButtonItem = sortBtn
         sortBtn.target = self
