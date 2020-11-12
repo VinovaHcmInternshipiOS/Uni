@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -15,7 +15,6 @@
 		F50D63A72554EDCC007509D0 /* SearchAppHomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F50D63A42554EDCB007509D0 /* SearchAppHomeViewController.xib */; };
 		F582EA6B254FEE58002BF86F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F582EA6A254FEE58002BF86F /* AppDelegate.swift */; };
 		F582EA6D254FEE58002BF86F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F582EA6C254FEE58002BF86F /* SceneDelegate.swift */; };
-		F582EA6F254FEE58002BF86F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F582EA6E254FEE58002BF86F /* ViewController.swift */; };
 		F582EA74254FEE5E002BF86F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F582EA73254FEE5E002BF86F /* Assets.xcassets */; };
 		F582EA8B254FEEB6002BF86F /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F582EA88254FEEB6002BF86F /* LoginPresenter.swift */; };
 		F582EA8C254FEEB6002BF86F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F582EA89254FEEB6002BF86F /* LoginViewController.swift */; };
@@ -62,6 +61,7 @@
 		F59221D02553FD8D002F3F50 /* RankViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F59221CD2553FD8C002F3F50 /* RankViewController.xib */; };
 		F593CBF3255BE863005D4F15 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F593CBF2255BE863005D4F15 /* UIButton+Extension.swift */; };
 		F593CBF9255BEDB1005D4F15 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F593CBF8255BEDB1005D4F15 /* GoogleService-Info.plist */; };
+		F593CC5F255CD437005D4F15 /* NetworkState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F593CC5E255CD437005D4F15 /* NetworkState.swift */; };
 		F5A04E252555015700DB396C /* SearchEventTextFieldHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A04E242555015700DB396C /* SearchEventTextFieldHeader.swift */; };
 		F5A04E292555016100DB396C /* SearchEventTextFieldHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5A04E282555016100DB396C /* SearchEventTextFieldHeader.xib */; };
 		F5A04E2D255502B000DB396C /* SearchEventLabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A04E2B255502B000DB396C /* SearchEventLabelCell.swift */; };
@@ -106,7 +106,6 @@
 		F582EA67254FEE58002BF86F /* Uni.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Uni.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F582EA6A254FEE58002BF86F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F582EA6C254FEE58002BF86F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		F582EA6E254FEE58002BF86F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		F582EA73254FEE5E002BF86F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F582EA78254FEE5E002BF86F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F582EA88254FEEB6002BF86F /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
@@ -154,6 +153,7 @@
 		F59221CD2553FD8C002F3F50 /* RankViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RankViewController.xib; sourceTree = "<group>"; };
 		F593CBF2255BE863005D4F15 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		F593CBF8255BEDB1005D4F15 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F593CC5E255CD437005D4F15 /* NetworkState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkState.swift; sourceTree = "<group>"; };
 		F5A04E242555015700DB396C /* SearchEventTextFieldHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchEventTextFieldHeader.swift; sourceTree = "<group>"; };
 		F5A04E282555016100DB396C /* SearchEventTextFieldHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchEventTextFieldHeader.xib; sourceTree = "<group>"; };
 		F5A04E2B255502B000DB396C /* SearchEventLabelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchEventLabelCell.swift; sourceTree = "<group>"; };
@@ -263,7 +263,6 @@
 				F582EA7F254FEE75002BF86F /* ViewController */,
 				F582EA6A254FEE58002BF86F /* AppDelegate.swift */,
 				F582EA6C254FEE58002BF86F /* SceneDelegate.swift */,
-				F582EA6E254FEE58002BF86F /* ViewController.swift */,
 				F582EA73254FEE5E002BF86F /* Assets.xcassets */,
 				F582EA90254FF088002BF86F /* LaunchScreen.storyboard */,
 				F582EA78254FEE5E002BF86F /* Info.plist */,
@@ -352,6 +351,7 @@
 		F582EACC254FF590002BF86F /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				F593CC5D255CD40B005D4F15 /* Network */,
 				F593CBF1255BE849005D4F15 /* UIButton */,
 				F5B1A6B5255928D800CC0C1A /* AppFont */,
 				F5B1A6B32559266600CC0C1A /* UIView */,
@@ -438,6 +438,14 @@
 				F593CBF2255BE863005D4F15 /* UIButton+Extension.swift */,
 			);
 			path = UIButton;
+			sourceTree = "<group>";
+		};
+		F593CC5D255CD40B005D4F15 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				F593CC5E255CD437005D4F15 /* NetworkState.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 		F5A04E22255500C700DB396C /* SearchEventLabelCell */ = {
@@ -592,7 +600,7 @@
 				F582EA63254FEE58002BF86F /* Sources */,
 				F582EA64254FEE58002BF86F /* Frameworks */,
 				F582EA65254FEE58002BF86F /* Resources */,
-				199BACE3A000E27F48581F2F /* [CP] Embed Pods Frameworks */,
+				C2D02B22453EEECF29E8944D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -691,23 +699,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		199BACE3A000E27F48581F2F /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Uni/Pods-Uni-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Uni/Pods-Uni-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Uni/Pods-Uni-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		1FDBDDDE026C4BD5BEEA144C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -730,6 +721,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		C2D02B22453EEECF29E8944D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Uni/Pods-Uni-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Uni/Pods-Uni-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Uni/Pods-Uni-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -737,6 +745,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F593CC5F255CD437005D4F15 /* NetworkState.swift in Sources */,
 				F58527B025510B3700F888E8 /* HappenningCellAppHome.swift in Sources */,
 				F582EA8B254FEEB6002BF86F /* LoginPresenter.swift in Sources */,
 				F593CBF3255BE863005D4F15 /* UIButton+Extension.swift in Sources */,
@@ -752,7 +761,6 @@
 				F50D63A62554EDCC007509D0 /* SearchAppHomeViewController.swift in Sources */,
 				F50D639B25545317007509D0 /* RankTableViewCell.swift in Sources */,
 				F5A2AEFC255A74C400502E0F /* SlideMenuViewController.swift in Sources */,
-				F582EA6F254FEE58002BF86F /* ViewController.swift in Sources */,
 				F582EA6B254FEE58002BF86F /* AppDelegate.swift in Sources */,
 				F5BEFDF0255A3B6C005A1A2E /* BarcodeViewController.swift in Sources */,
 				F5A04E2D255502B000DB396C /* SearchEventLabelCell.swift in Sources */,

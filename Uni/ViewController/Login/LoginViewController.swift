@@ -10,7 +10,8 @@
 
 import UIKit
 
-class LoginViewController: UIViewController, LoginViewProtocol {
+class LoginViewController: UIViewController {
+
 
     @IBOutlet weak var btForgotPassword: UILabel!
     
@@ -32,7 +33,6 @@ class LoginViewController: UIViewController, LoginViewProtocol {
         super.viewDidLoad()
 
         presenter.view = self
-        presenter.viewDidLoad()
         desginUI()
        
     }
@@ -53,9 +53,26 @@ class LoginViewController: UIViewController, LoginViewProtocol {
     }
     
     @IBAction func gotoAppHomeVC(_ sender: Any) {
-        let AppHomeVC = AppHomeViewController(presenter: AppHomePresenter())
-        self.navigationController?.pushViewController(AppHomeVC, animated: true)
+//        let AppHomeVC = AppHomeViewController(presenter: AppHomePresenter())
+//        self.navigationController?.pushViewController(AppHomeVC, animated: true)
+        if NetworkState.shared.isConnected {
+            print("OK")
+            presenter.siginIn()
+        }
+        else {
+            print("Not connected")
+        }
     }
     
     
+}
+
+extension LoginViewController: LoginViewProtocol {
+    func loginSuccess() {
+        print(0)
+    }
+    
+    func loginFailed() {
+        print(1)
+    }
 }

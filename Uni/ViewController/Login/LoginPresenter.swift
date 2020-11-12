@@ -9,23 +9,39 @@
 //
 
 import Foundation
-
+import FirebaseDatabase
+import FirebaseAuth
+import Firebase
+import UIKit
 // MARK: View -
 protocol LoginViewProtocol: class {
-
+    func loginSuccess()
+    func loginFailed()
 }
 
 // MARK: Presenter -
 protocol LoginPresenterProtocol: class {
 	var view: LoginViewProtocol? { get set }
-    func viewDidLoad()
+    func siginIn()
 }
 
 class LoginPresenter: LoginPresenterProtocol {
-
     weak var view: LoginViewProtocol?
-
-    func viewDidLoad() {
-
+    
+    func siginIn() {
+        Auth.auth().signIn(withEmail: "test@gmail.com", password:"123456") { [weak self] user, error in
+            guard self != nil else { return }
+            if user != nil {
+                let user = Auth.auth().currentUser
+                print("User loggin in with data: \(user!.uid)")
+            }
+            else
+            {
+                print(error?.localizedDescription ?? "")
+            }
+            
+            
+        }
     }
+    
 }
