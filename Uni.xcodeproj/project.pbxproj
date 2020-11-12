@@ -62,6 +62,8 @@
 		F593CBF3255BE863005D4F15 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F593CBF2255BE863005D4F15 /* UIButton+Extension.swift */; };
 		F593CBF9255BEDB1005D4F15 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F593CBF8255BEDB1005D4F15 /* GoogleService-Info.plist */; };
 		F593CC5F255CD437005D4F15 /* NetworkState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F593CC5E255CD437005D4F15 /* NetworkState.swift */; };
+		F593CC98255CE1C7005D4F15 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F593CC97255CE1C7005D4F15 /* UIViewController+Extension.swift */; };
+		F593CC9C255D36DB005D4F15 /* UIAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F593CC9B255D36DB005D4F15 /* UIAlertController.swift */; };
 		F5A04E252555015700DB396C /* SearchEventTextFieldHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A04E242555015700DB396C /* SearchEventTextFieldHeader.swift */; };
 		F5A04E292555016100DB396C /* SearchEventTextFieldHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5A04E282555016100DB396C /* SearchEventTextFieldHeader.xib */; };
 		F5A04E2D255502B000DB396C /* SearchEventLabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A04E2B255502B000DB396C /* SearchEventLabelCell.swift */; };
@@ -154,6 +156,8 @@
 		F593CBF2255BE863005D4F15 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		F593CBF8255BEDB1005D4F15 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F593CC5E255CD437005D4F15 /* NetworkState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkState.swift; sourceTree = "<group>"; };
+		F593CC97255CE1C7005D4F15 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		F593CC9B255D36DB005D4F15 /* UIAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertController.swift; sourceTree = "<group>"; };
 		F5A04E242555015700DB396C /* SearchEventTextFieldHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchEventTextFieldHeader.swift; sourceTree = "<group>"; };
 		F5A04E282555016100DB396C /* SearchEventTextFieldHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchEventTextFieldHeader.xib; sourceTree = "<group>"; };
 		F5A04E2B255502B000DB396C /* SearchEventLabelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchEventLabelCell.swift; sourceTree = "<group>"; };
@@ -351,6 +355,8 @@
 		F582EACC254FF590002BF86F /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				F593CC9A255D36BE005D4F15 /* UIAlertController */,
+				F593CC96255CE1B1005D4F15 /* UIViewController */,
 				F593CC5D255CD40B005D4F15 /* Network */,
 				F593CBF1255BE849005D4F15 /* UIButton */,
 				F5B1A6B5255928D800CC0C1A /* AppFont */,
@@ -446,6 +452,22 @@
 				F593CC5E255CD437005D4F15 /* NetworkState.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		F593CC96255CE1B1005D4F15 /* UIViewController */ = {
+			isa = PBXGroup;
+			children = (
+				F593CC97255CE1C7005D4F15 /* UIViewController+Extension.swift */,
+			);
+			path = UIViewController;
+			sourceTree = "<group>";
+		};
+		F593CC9A255D36BE005D4F15 /* UIAlertController */ = {
+			isa = PBXGroup;
+			children = (
+				F593CC9B255D36DB005D4F15 /* UIAlertController.swift */,
+			);
+			path = UIAlertController;
 			sourceTree = "<group>";
 		};
 		F5A04E22255500C700DB396C /* SearchEventLabelCell */ = {
@@ -753,6 +775,7 @@
 				F582EAE025505693002BF86F /* AppHomePresenter.swift in Sources */,
 				F5A04E3F255533B800DB396C /* HistoryEventViewController.swift in Sources */,
 				F5A04E332555054200DB396C /* SearchResultCell.swift in Sources */,
+				F593CC98255CE1C7005D4F15 /* UIViewController+Extension.swift in Sources */,
 				F59221CE2553FD8D002F3F50 /* RankPresenter.swift in Sources */,
 				F58527C4255157E900F888E8 /* DetailEventViewController.swift in Sources */,
 				F59221CF2553FD8D002F3F50 /* RankViewController.swift in Sources */,
@@ -770,6 +793,7 @@
 				F5B1A6A12559157000CC0C1A /* SemesterScoreViewController.swift in Sources */,
 				F5B1A6B02559224200CC0C1A /* AppIcon.swift in Sources */,
 				F5A04E252555015700DB396C /* SearchEventTextFieldHeader.swift in Sources */,
+				F593CC9C255D36DB005D4F15 /* UIAlertController.swift in Sources */,
 				F5B1A6C9255939BA00CC0C1A /* SemesterCell.swift in Sources */,
 				F5BEFDEF255A3B6C005A1A2E /* BarcodePresenter.swift in Sources */,
 				F5A2AEFB255A74C400502E0F /* SlideMenuPresenter.swift in Sources */,

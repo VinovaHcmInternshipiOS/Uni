@@ -15,8 +15,9 @@ enum MenuType: Int {
     case Setting
     case Privacy
 }
-class SlideMenuViewController: UIViewController, SlideMenuViewProtocol {
+class SlideMenuViewController: UIViewController {
 
+    @IBOutlet weak var btLogout: UIButton!
     @IBOutlet weak var tableView: UITableView!
     var presenter: SlideMenuPresenterProtocol
     let arrayFeature = ["Home","About","Setting","Privacy"]
@@ -34,8 +35,7 @@ class SlideMenuViewController: UIViewController, SlideMenuViewProtocol {
 	override func viewDidLoad() {
         super.viewDidLoad()
 
-        presenter.view = self
-        presenter.viewDidLoad()
+        //presenter.view = self
         setupUI()
     }
     
@@ -48,6 +48,13 @@ class SlideMenuViewController: UIViewController, SlideMenuViewProtocol {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: "SlideMenuCell", bundle: nil), forCellReuseIdentifier: "SlideMenuCell")
+    }
+    @IBAction func btLogout(_ sender: Any) {
+        self.dismiss(animated: true, completion: { [self] in
+            presenter.signOut()
+        })
+        
+        
     }
 }
 
@@ -118,33 +125,4 @@ extension SlideMenuViewController: UITableViewDataSource {
     }
     
     
-}
-extension UserDefaults {
-    
- func setColor(color: UIColor?, forKey key: String) {
-  var colorData: NSData?
-    if let color = color {
-        do {
-            colorData = try NSKeyedArchiver.archivedData(withRootObject: color, requiringSecureCoding: false) as NSData?
-            set(colorData, forKey: key)
-        } catch let error{
-            print("error archiving color data",error)
-            
-        }
-    }
- }
-func colorForKey(key: String) -> UIColor? {
-        var color: UIColor?
-        if let colorData = data(forKey: "backgroundColor") {
-            do {
-                color = try NSKeyedUnarchiver.unarchivedObject(ofClass: UIColor.self, from: colorData)
-            } catch let error{
-                print("error archiving color data",error)
-                
-            }
-        }
-    return color
-    }
-    
-
 }

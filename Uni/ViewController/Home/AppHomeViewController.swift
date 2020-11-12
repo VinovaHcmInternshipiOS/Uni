@@ -35,8 +35,7 @@ class AppHomeViewController: UIViewController, AppHomeViewProtocol {
         super.viewDidLoad()
         
         presenter.view = self
-        presenter.viewDidLoad()
-        navigationController?.navigationBar.isHidden = false
+        //navigationController?.navigationBar.isHidden = false
         setupXIB()
         setupNav(titleNav: "Home")
     }
@@ -80,7 +79,11 @@ class AppHomeViewController: UIViewController, AppHomeViewProtocol {
         
     }
     @objc func action (sender:UIButton) {
+        
         let menu = SlideMenuViewController(presenter: SlideMenuPresenter())
+        
+        menu.presenter.view = self // Auth Delegate
+        
         menu.didTapMenuType = { MenuType in
             self.transitionToNewContent(MenuType)
         }
@@ -202,4 +205,20 @@ extension AppHomeViewController: UIViewControllerTransitioningDelegate {
     }
     
 
+}
+
+extension AppHomeViewController: SlideMenuViewProtocol {
+    func signOutSuccess() {
+        print("OK")
+        UserDefaults.standard.set(true, forKey: "status")
+        Switcher.updateRootVC()
+        self.navigationController?.popToRootViewController(animated: true)
+        
+    }
+    
+    func signOutFailed() {
+        print("OK")
+    }
+    
+    
 }

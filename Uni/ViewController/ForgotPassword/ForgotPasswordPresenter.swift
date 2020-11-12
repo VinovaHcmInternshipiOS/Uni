@@ -9,23 +9,36 @@
 //
 
 import Foundation
+import FirebaseDatabase
+import FirebaseAuth
+import Firebase
 
 // MARK: View -
 protocol ForgotPasswordViewProtocol: class {
-
+    func sendSuccess()
+    func sendFailed(error: Error!)
 }
 
 // MARK: Presenter -
 protocol ForgotPasswordPresenterProtocol: class {
 	var view: ForgotPasswordViewProtocol? { get set }
-    func viewDidLoad()
+    func sendEmailResetPassword(email: String)
 }
 
 class ForgotPasswordPresenter: ForgotPasswordPresenterProtocol {
-
     weak var view: ForgotPasswordViewProtocol?
-
-    func viewDidLoad() {
-
+    
+    func sendEmailResetPassword(email: String) {
+        Auth.auth().sendPasswordReset(withEmail: email) { [self] error in
+            if(error != nil)
+            {
+                view?.sendFailed(error: error)
+            }
+            else
+            {
+                view?.sendSuccess()
+            }
+        }
     }
+
 }

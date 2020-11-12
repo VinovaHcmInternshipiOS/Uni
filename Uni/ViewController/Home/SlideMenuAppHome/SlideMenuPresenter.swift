@@ -9,23 +9,33 @@
 //
 
 import Foundation
-
+import FirebaseDatabase
+import FirebaseAuth
+import Firebase
+import UIKit
 // MARK: View -
 protocol SlideMenuViewProtocol: class {
-
+    func signOutSuccess()
+    func signOutFailed()
 }
 
 // MARK: Presenter -
 protocol SlideMenuPresenterProtocol: class {
 	var view: SlideMenuViewProtocol? { get set }
-    func viewDidLoad()
+    func signOut()
 }
 
 class SlideMenuPresenter: SlideMenuPresenterProtocol {
 
     weak var view: SlideMenuViewProtocol?
 
-    func viewDidLoad() {
-
+    func signOut() {
+        do {
+            try Auth.auth().signOut()
+            view?.signOutSuccess()
+            
+        } catch _ {
+            view?.signOutFailed()
+        }
     }
 }

@@ -16,6 +16,8 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var btForgotPassword: UILabel!
     
     @IBOutlet weak var btSignup: UILabel!
+    @IBOutlet weak var txtEmail: UITextField!
+    @IBOutlet weak var txtPassword: UITextField!
     
     var presenter: LoginPresenterProtocol
     var tapGesture = UITapGestureRecognizer()
@@ -38,7 +40,6 @@ class LoginViewController: UIViewController {
     }
     
     func desginUI(){
-        navigationController?.navigationBar.isHidden = true
         
         // Go to ForgotPaswordVC
         let rightTap = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.gotoForgotPasswordVC(_:)))
@@ -53,26 +54,33 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func gotoAppHomeVC(_ sender: Any) {
-//        let AppHomeVC = AppHomeViewController(presenter: AppHomePresenter())
-//        self.navigationController?.pushViewController(AppHomeVC, animated: true)
-        if NetworkState.shared.isConnected {
-            print("OK")
-            presenter.siginIn()
-        }
-        else {
-            print("Not connected")
-        }
+        self.showSpinner()
+        presenter.siginIn(email: txtEmail.text!, password: txtPassword.text!)
+        
     }
-    
+    let okActionHandler: ((UIAlertAction) -> Void) = {(action) in
+        print("OK")
+    }
+
+    let cancelActionHandler: ((UIAlertAction) -> Void) = {(action) in
+        print("Error")
+    }
     
 }
 
 extension LoginViewController: LoginViewProtocol {
     func loginSuccess() {
-        print(0)
+        removeSpinner()
+        UserDefaults.standard.set(false, forKey: "status")
+        Switcher.updateRootVC()
+        let AppHomeVC = AppHomeViewController(presenter: AppHomePresenter())
+        self.navigationController?.pushViewController(AppHomeVC, animated: true)
+        
+        
     }
     
     func loginFailed() {
-        print(1)
+        removeSpinner()
+        showAlert(title: "An Error", message: "Check", actionTitles: ["OK","Cancel"], style: [.default,.cancel], actions: [okActionHandler,cancelActionHandler])
     }
 }

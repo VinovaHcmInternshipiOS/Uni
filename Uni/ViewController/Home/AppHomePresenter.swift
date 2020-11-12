@@ -12,20 +12,13 @@ import Foundation
 
 // MARK: View -
 protocol AppHomeViewProtocol: class {
-
 }
 
 // MARK: Presenter -
 protocol AppHomePresenterProtocol: class {
 	var view: AppHomeViewProtocol? { get set }
-    func viewDidLoad()
 }
 
 class AppHomePresenter: AppHomePresenterProtocol {
-
     weak var view: AppHomeViewProtocol?
-
-    func viewDidLoad() {
-
-    }
 }

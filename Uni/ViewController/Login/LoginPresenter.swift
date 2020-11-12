@@ -22,26 +22,33 @@ protocol LoginViewProtocol: class {
 // MARK: Presenter -
 protocol LoginPresenterProtocol: class {
 	var view: LoginViewProtocol? { get set }
-    func siginIn()
+    func siginIn(email:String, password: String)
 }
 
 class LoginPresenter: LoginPresenterProtocol {
+
+    
     weak var view: LoginViewProtocol?
     
-    func siginIn() {
-        Auth.auth().signIn(withEmail: "test@gmail.com", password:"123456") { [weak self] user, error in
-            guard self != nil else { return }
-            if user != nil {
-                let user = Auth.auth().currentUser
-                print("User loggin in with data: \(user!.uid)")
+    func siginIn(email:String, password: String) {
+        if NetworkState.shared.isConnected {
+            Auth.auth().signIn(withEmail: email, password: password) { [weak self] user, error in
+                guard self != nil else { return }
+                if user != nil {
+                    let user = Auth.auth().currentUser
+                    print("User loggin in with data: \(user!.uid)")
+                    self?.view?.loginSuccess()
+                }
+                else
+                {
+                    print(error?.localizedDescription)
+                    self?.view?.loginFailed()
+                }
             }
-            else
-            {
-                print(error?.localizedDescription ?? "")
-            }
-            
-            
+        } else {
+            print("Not connected")
         }
+      
     }
     
 }

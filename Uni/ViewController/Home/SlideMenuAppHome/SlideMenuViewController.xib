@@ -15,6 +15,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SlideMenuViewController" customModule="Uni" customModuleProvider="target">
             <connections>
+                <outlet property="btLogout" destination="6oA-Wo-7C1" id="Gpf-iY-7VA"/>
                 <outlet property="tableView" destination="PDK-hP-XaD" id="jhp-Zc-Xey"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -33,6 +34,9 @@
                             <state key="normal" title="Logout">
                                 <color key="titleColor" name="FAB32A"/>
                             </state>
+                            <connections>
+                                <action selector="btLogout:" destination="-1" eventType="touchUpInside" id="Xnx-EV-RGP"/>
+                            </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="the uni" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8IM-s8-6OY">
                             <rect key="frame" x="32" y="65" width="162.5" height="56"/>

@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         NetworkState.shared.startMonitoring()
         FirebaseApp.configure()
         IQKeyboardManager.shared.enable = true
+        Switcher.updateRootVC()
         return true
     }
 
