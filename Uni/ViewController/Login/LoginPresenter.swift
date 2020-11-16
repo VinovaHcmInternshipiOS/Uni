@@ -16,7 +16,7 @@ import UIKit
 // MARK: View -
 protocol LoginViewProtocol: class {
     func loginSuccess()
-    func loginFailed()
+    func loginFailed(error: Error)
 }
 
 // MARK: Presenter -
@@ -31,23 +31,22 @@ class LoginPresenter: LoginPresenterProtocol {
     weak var view: LoginViewProtocol?
     
     func siginIn(email:String, password: String) {
-        if NetworkState.shared.isConnected {
+        //if NetworkState.shared.isConnected {
             Auth.auth().signIn(withEmail: email, password: password) { [weak self] user, error in
                 guard self != nil else { return }
-                if user != nil {
+                if error != nil {
+                    self?.view?.loginFailed(error: error!)
+                }
+                else
+                {
                     let user = Auth.auth().currentUser
                     print("User loggin in with data: \(user!.uid)")
                     self?.view?.loginSuccess()
                 }
-                else
-                {
-                    print(error?.localizedDescription)
-                    self?.view?.loginFailed()
-                }
             }
-        } else {
-            print("Not connected")
-        }
+       // } else {
+        //    print("Not connected")
+        //}
       
     }
     

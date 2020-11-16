@@ -8,6 +8,7 @@ target 'Uni' do
   pod 'IQKeyboardManagerSwift'
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
+  pod 'Firebase/Storage'
   # Pods for Uni
 post_install do |installer|
      installer.pods_project.targets.each do |target|

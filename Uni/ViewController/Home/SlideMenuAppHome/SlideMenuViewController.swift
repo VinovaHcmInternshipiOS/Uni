@@ -39,16 +39,12 @@ class SlideMenuViewController: UIViewController {
         setupUI()
     }
     
-//    override func viewWillAppear(_ animated: Bool) {
-//        let color = defaults.colorForKey(key: "backgroundColor") ?? .white
-//        view.backgroundColor = color
-//    }
-    
     func setupUI() {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: "SlideMenuCell", bundle: nil), forCellReuseIdentifier: "SlideMenuCell")
     }
+    
     @IBAction func btLogout(_ sender: Any) {
         self.dismiss(animated: true, completion: { [self] in
             presenter.signOut()

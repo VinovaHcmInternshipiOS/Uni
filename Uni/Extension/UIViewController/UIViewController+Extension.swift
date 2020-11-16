@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import FirebaseAuth
 import UIKit
 var vSpinner : UIView?
 var childView = UIView()
@@ -57,7 +58,7 @@ extension UIViewController {
         }
     }
     
-    public func showAlert(title: String?,
+    func showAlert(title: String?,
                           message: String?,
                           actionTitles: [String?],
                           style: [UIAlertAction.Style],
@@ -70,6 +71,19 @@ extension UIViewController {
         }
         if let preferredActionIndex = preferredActionIndex { alert.preferredAction = alert.actions[preferredActionIndex] }
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    func handleError(_ error: Error) {
+        if let errorCode = AuthErrorCode(rawValue: error._code) {
+            let alert = UIAlertController(title: "Error", message: errorCode.errorMessage, preferredStyle: .alert)
+
+            let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+
+            alert.addAction(okAction)
+
+            self.present(alert, animated: true, completion: nil)
+
+        }
     }
     
 }
@@ -95,4 +109,6 @@ class Switcher {
     }
     
 }
+
+
 

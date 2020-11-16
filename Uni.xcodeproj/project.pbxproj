@@ -13,6 +13,7 @@
 		F50D63A52554EDCC007509D0 /* SearchAppHomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50D63A22554EDCB007509D0 /* SearchAppHomePresenter.swift */; };
 		F50D63A62554EDCC007509D0 /* SearchAppHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50D63A32554EDCB007509D0 /* SearchAppHomeViewController.swift */; };
 		F50D63A72554EDCC007509D0 /* SearchAppHomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F50D63A42554EDCB007509D0 /* SearchAppHomeViewController.xib */; };
+		F57821CA255E857000222FCA /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57821C9255E857000222FCA /* Event.swift */; };
 		F582EA6B254FEE58002BF86F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F582EA6A254FEE58002BF86F /* AppDelegate.swift */; };
 		F582EA6D254FEE58002BF86F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F582EA6C254FEE58002BF86F /* SceneDelegate.swift */; };
 		F582EA74254FEE5E002BF86F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F582EA73254FEE5E002BF86F /* Assets.xcassets */; };
@@ -64,6 +65,8 @@
 		F593CC5F255CD437005D4F15 /* NetworkState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F593CC5E255CD437005D4F15 /* NetworkState.swift */; };
 		F593CC98255CE1C7005D4F15 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F593CC97255CE1C7005D4F15 /* UIViewController+Extension.swift */; };
 		F593CC9C255D36DB005D4F15 /* UIAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F593CC9B255D36DB005D4F15 /* UIAlertController.swift */; };
+		F593CCA7255E2328005D4F15 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F593CCA6255E2328005D4F15 /* BaseViewController.swift */; };
+		F593CCB1255E5E94005D4F15 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = F593CCB0255E5E94005D4F15 /* Home.swift */; };
 		F5A04E252555015700DB396C /* SearchEventTextFieldHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A04E242555015700DB396C /* SearchEventTextFieldHeader.swift */; };
 		F5A04E292555016100DB396C /* SearchEventTextFieldHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5A04E282555016100DB396C /* SearchEventTextFieldHeader.xib */; };
 		F5A04E2D255502B000DB396C /* SearchEventLabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A04E2B255502B000DB396C /* SearchEventLabelCell.swift */; };
@@ -94,6 +97,8 @@
 		F5BEFDEF255A3B6C005A1A2E /* BarcodePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5BEFDEC255A3B6C005A1A2E /* BarcodePresenter.swift */; };
 		F5BEFDF0255A3B6C005A1A2E /* BarcodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5BEFDED255A3B6C005A1A2E /* BarcodeViewController.swift */; };
 		F5BEFDF1255A3B6C005A1A2E /* BarcodeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5BEFDEE255A3B6C005A1A2E /* BarcodeViewController.xib */; };
+		F5FAAF4625621AA50036EA95 /* HandleError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5FAAF4525621AA50036EA95 /* HandleError.swift */; };
+		F5FAAF4B256254AB0036EA95 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5FAAF4A256254AB0036EA95 /* UIImageView+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -105,6 +110,7 @@
 		F50D63A22554EDCB007509D0 /* SearchAppHomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAppHomePresenter.swift; sourceTree = "<group>"; };
 		F50D63A32554EDCB007509D0 /* SearchAppHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAppHomeViewController.swift; sourceTree = "<group>"; };
 		F50D63A42554EDCB007509D0 /* SearchAppHomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchAppHomeViewController.xib; sourceTree = "<group>"; };
+		F57821C9255E857000222FCA /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		F582EA67254FEE58002BF86F /* Uni.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Uni.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F582EA6A254FEE58002BF86F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F582EA6C254FEE58002BF86F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -158,6 +164,8 @@
 		F593CC5E255CD437005D4F15 /* NetworkState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkState.swift; sourceTree = "<group>"; };
 		F593CC97255CE1C7005D4F15 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		F593CC9B255D36DB005D4F15 /* UIAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertController.swift; sourceTree = "<group>"; };
+		F593CCA6255E2328005D4F15 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		F593CCB0255E5E94005D4F15 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		F5A04E242555015700DB396C /* SearchEventTextFieldHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchEventTextFieldHeader.swift; sourceTree = "<group>"; };
 		F5A04E282555016100DB396C /* SearchEventTextFieldHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchEventTextFieldHeader.xib; sourceTree = "<group>"; };
 		F5A04E2B255502B000DB396C /* SearchEventLabelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchEventLabelCell.swift; sourceTree = "<group>"; };
@@ -188,6 +196,8 @@
 		F5BEFDEC255A3B6C005A1A2E /* BarcodePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodePresenter.swift; sourceTree = "<group>"; };
 		F5BEFDED255A3B6C005A1A2E /* BarcodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeViewController.swift; sourceTree = "<group>"; };
 		F5BEFDEE255A3B6C005A1A2E /* BarcodeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BarcodeViewController.xib; sourceTree = "<group>"; };
+		F5FAAF4525621AA50036EA95 /* HandleError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandleError.swift; sourceTree = "<group>"; };
+		F5FAAF4A256254AB0036EA95 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -262,6 +272,8 @@
 		F582EA69254FEE58002BF86F /* Uni */ = {
 			isa = PBXGroup;
 			children = (
+				F593CCAA255E401F005D4F15 /* Model */,
+				F593CCA5255E2306005D4F15 /* Base */,
 				F593CBF8255BEDB1005D4F15 /* GoogleService-Info.plist */,
 				F582EACC254FF590002BF86F /* Extension */,
 				F582EA7F254FEE75002BF86F /* ViewController */,
@@ -355,6 +367,8 @@
 		F582EACC254FF590002BF86F /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				F5FAAF492562546E0036EA95 /* UIImageView */,
+				F5FAAF4425621A830036EA95 /* HandleErrorViewController */,
 				F593CC9A255D36BE005D4F15 /* UIAlertController */,
 				F593CC96255CE1B1005D4F15 /* UIViewController */,
 				F593CC5D255CD40B005D4F15 /* Network */,
@@ -468,6 +482,31 @@
 				F593CC9B255D36DB005D4F15 /* UIAlertController.swift */,
 			);
 			path = UIAlertController;
+			sourceTree = "<group>";
+		};
+		F593CCA5255E2306005D4F15 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				F593CCA6255E2328005D4F15 /* BaseViewController.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		F593CCAA255E401F005D4F15 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F593CCAF255E5E82005D4F15 /* HomeApp */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		F593CCAF255E5E82005D4F15 /* HomeApp */ = {
+			isa = PBXGroup;
+			children = (
+				F593CCB0255E5E94005D4F15 /* Home.swift */,
+				F57821C9255E857000222FCA /* Event.swift */,
+			);
+			path = HomeApp;
 			sourceTree = "<group>";
 		};
 		F5A04E22255500C700DB396C /* SearchEventLabelCell */ = {
@@ -609,6 +648,22 @@
 				F5BEFDEE255A3B6C005A1A2E /* BarcodeViewController.xib */,
 			);
 			path = BarcodeAppHome;
+			sourceTree = "<group>";
+		};
+		F5FAAF4425621A830036EA95 /* HandleErrorViewController */ = {
+			isa = PBXGroup;
+			children = (
+				F5FAAF4525621AA50036EA95 /* HandleError.swift */,
+			);
+			path = HandleErrorViewController;
+			sourceTree = "<group>";
+		};
+		F5FAAF492562546E0036EA95 /* UIImageView */ = {
+			isa = PBXGroup;
+			children = (
+				F5FAAF4A256254AB0036EA95 /* UIImageView+Extension.swift */,
+			);
+			path = UIImageView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -771,15 +826,20 @@
 				F58527B025510B3700F888E8 /* HappenningCellAppHome.swift in Sources */,
 				F582EA8B254FEEB6002BF86F /* LoginPresenter.swift in Sources */,
 				F593CBF3255BE863005D4F15 /* UIButton+Extension.swift in Sources */,
+				F5FAAF4B256254AB0036EA95 /* UIImageView+Extension.swift in Sources */,
 				F58527C3255157E900F888E8 /* DetailEventPresenter.swift in Sources */,
+				F593CCA7255E2328005D4F15 /* BaseViewController.swift in Sources */,
 				F582EAE025505693002BF86F /* AppHomePresenter.swift in Sources */,
 				F5A04E3F255533B800DB396C /* HistoryEventViewController.swift in Sources */,
 				F5A04E332555054200DB396C /* SearchResultCell.swift in Sources */,
+				F5FAAF4625621AA50036EA95 /* HandleError.swift in Sources */,
 				F593CC98255CE1C7005D4F15 /* UIViewController+Extension.swift in Sources */,
 				F59221CE2553FD8D002F3F50 /* RankPresenter.swift in Sources */,
 				F58527C4255157E900F888E8 /* DetailEventViewController.swift in Sources */,
+				F57821CA255E857000222FCA /* Event.swift in Sources */,
 				F59221CF2553FD8D002F3F50 /* RankViewController.swift in Sources */,
 				F5A04E3E255533B800DB396C /* HistoryEventPresenter.swift in Sources */,
+				F593CCB1255E5E94005D4F15 /* Home.swift in Sources */,
 				F59037EA2553E275007FE7C3 /* ComingSoonEndedCellAppHome.swift in Sources */,
 				F50D63A62554EDCC007509D0 /* SearchAppHomeViewController.swift in Sources */,
 				F50D639B25545317007509D0 /* RankTableViewCell.swift in Sources */,

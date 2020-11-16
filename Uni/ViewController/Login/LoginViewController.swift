@@ -10,11 +10,10 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: BaseViewController {
 
 
     @IBOutlet weak var btForgotPassword: UILabel!
-    
     @IBOutlet weak var btSignup: UILabel!
     @IBOutlet weak var txtEmail: UITextField!
     @IBOutlet weak var txtPassword: UITextField!
@@ -33,9 +32,9 @@ class LoginViewController: UIViewController {
 
 	override func viewDidLoad() {
         super.viewDidLoad()
-
         presenter.view = self
         desginUI()
+        showNavigation(bottomLine: false)
        
     }
     
@@ -45,7 +44,6 @@ class LoginViewController: UIViewController {
         let rightTap = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.gotoForgotPasswordVC(_:)))
         btForgotPassword.isUserInteractionEnabled = true
         btForgotPassword.addGestureRecognizer(rightTap)
-        //
     }
     
     @objc func gotoForgotPasswordVC(_ recognizer: UIGestureRecognizer) {
@@ -69,6 +67,7 @@ class LoginViewController: UIViewController {
 }
 
 extension LoginViewController: LoginViewProtocol {
+    
     func loginSuccess() {
         removeSpinner()
         UserDefaults.standard.set(false, forKey: "status")
@@ -79,8 +78,9 @@ extension LoginViewController: LoginViewProtocol {
         
     }
     
-    func loginFailed() {
+    func loginFailed(error: Error) {
         removeSpinner()
-        showAlert(title: "An Error", message: "Check", actionTitles: ["OK","Cancel"], style: [.default,.cancel], actions: [okActionHandler,cancelActionHandler])
+        handleError(error)
+        
     }
 }

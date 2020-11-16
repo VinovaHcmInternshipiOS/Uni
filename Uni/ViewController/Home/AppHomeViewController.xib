@@ -23,6 +23,10 @@
                 <outlet property="collectionComingSoon" destination="ZIx-kM-VSU" id="SpX-j5-bYg"/>
                 <outlet property="collectionEnded" destination="d3G-X6-EmU" id="ccG-JS-ZlP"/>
                 <outlet property="collectionHappenning" destination="s5J-Lb-Vi3" id="lTH-op-gKV"/>
+                <outlet property="imgUser" destination="rdt-OV-IMR" id="576-LO-X1N"/>
+                <outlet property="lbFaculty" destination="AZp-jT-1Cb" id="tSc-gR-4Ct"/>
+                <outlet property="lbID" destination="WBk-dh-cPD" id="pmx-mH-f1b"/>
+                <outlet property="lbName" destination="rxZ-TC-v6j" id="hY3-ar-KjY"/>
                 <outlet property="pageControl" destination="SI5-hK-jyF" id="ebZ-Ch-Y16"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -47,9 +51,9 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gVG-Og-EVU">
                                     <rect key="frame" x="32" y="173.5" width="350" height="97"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Rectangle 2" translatesAutoresizingMaskIntoConstraints="NO" id="rdt-OV-IMR">
-                                            <rect key="frame" x="35" y="14" width="66" height="66"/>
-                                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="rdt-OV-IMR">
+                                            <rect key="frame" x="35" y="14.5" width="66" height="65"/>
+                                            <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="66" id="q9v-Q8-CF0"/>
                                                 <constraint firstAttribute="width" constant="66" id="tUt-SE-cdS"/>
@@ -60,20 +64,20 @@
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nguyễn Gia Huy" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rxZ-TC-v6j">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rxZ-TC-v6j">
                                             <rect key="frame" x="121" y="16" width="186" height="21"/>
                                             <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="18"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="175050032" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WBk-dh-cPD">
-                                            <rect key="frame" x="121" y="37" width="80.5" height="19"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WBk-dh-cPD">
+                                            <rect key="frame" x="121" y="37" width="4.5" height="19"/>
                                             <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="16"/>
                                             <color key="textColor" name="FAB32A"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Computer Science" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AZp-jT-1Cb">
-                                            <rect key="frame" x="121" y="56" width="133.5" height="19"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AZp-jT-1Cb">
+                                            <rect key="frame" x="121" y="56" width="4.5" height="19"/>
                                             <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="16"/>
                                             <color key="textColor" name="FAB32A"/>
                                             <nil key="highlightedColor"/>
@@ -366,8 +370,6 @@
                         <constraint firstItem="Mwb-sB-UJJ" firstAttribute="top" secondItem="gg5-jh-tLP" secondAttribute="top" id="gVn-Ik-OLf"/>
                         <constraint firstAttribute="trailing" secondItem="Mwb-sB-UJJ" secondAttribute="trailing" id="mK3-PW-hrK"/>
                     </constraints>
-                    <viewLayoutGuide key="contentLayoutGuide" id="UJi-jN-lW2"/>
-                    <viewLayoutGuide key="frameLayoutGuide" id="Din-dW-nd5"/>
                 </scrollView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fQM-vV-Tmw"/>
@@ -385,12 +387,12 @@
         </view>
     </objects>
     <resources>
-        <image name="Rectangle 2" width="163" height="169"/>
         <image name="icBookmark" width="15" height="27"/>
         <image name="icHomeBarcode" width="28" height="28"/>
         <image name="icHomeHistory" width="28" height="28"/>
         <image name="icHomeLeaderBoard" width="28" height="28"/>
         <image name="icHomeSearch" width="28" height="28"/>
+        <image name="person.circle" catalog="system" width="128" height="121"/>
         <namedColor name="Color-1">
             <color red="0.0" green="0.0" blue="0.0" alpha="0.15000000596046448" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

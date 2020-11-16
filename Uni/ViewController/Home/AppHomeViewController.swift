@@ -10,7 +10,11 @@
 
 import UIKit
 
-class AppHomeViewController: UIViewController, AppHomeViewProtocol {
+class AppHomeViewController:BaseViewController{
+    @IBOutlet weak var imgUser: UIImageView!
+    @IBOutlet weak var lbName: UILabel!
+    @IBOutlet weak var lbID: UILabel!
+    @IBOutlet weak var lbFaculty: UILabel!
     @IBOutlet weak var btRank: UIButton!
     
     @IBOutlet weak var collectionEnded: UICollectionView!
@@ -18,26 +22,28 @@ class AppHomeViewController: UIViewController, AppHomeViewProtocol {
     @IBOutlet weak var collectionComingSoon: UICollectionView!
     @IBOutlet weak var pageControl: UIPageControl!
     var presenter: AppHomePresenterProtocol
-    let transition = SlideInTransition()
     var item = [1,2,3,4,5,6,7,8,9,10]
     var indexPageControl = 0
     var menuState = false
-	init(presenter: AppHomePresenterProtocol) {
+    var ListEvent = [Event?]()
+    
+    init(presenter: AppHomePresenterProtocol) {
         self.presenter = presenter
         super.init(nibName: "AppHomeViewController", bundle: nil)
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
-	override func viewDidLoad() {
+    
+    override func viewDidLoad() {
         super.viewDidLoad()
-        
         presenter.view = self
-        //navigationController?.navigationBar.isHidden = false
+        addNav()
         setupXIB()
-        setupNav(titleNav: "Home")
+        presenter.loadProfile()
+        presenter.getInfoEvent()
+        
     }
     
     func setupXIB() {
@@ -55,47 +61,12 @@ class AppHomeViewController: UIViewController, AppHomeViewProtocol {
         pageControl.currentPage = indexPageControl
         //
     }
-    
-    
-    
-    func setupNav(titleNav: String){
-        navigationController?.navigationBar.barStyle = .black
-        navigationItem.title = titleNav
-   
-        navigationController?.navigationBar.barTintColor = .white //Background
-        let attributes = [NSAttributedString.Key.foregroundColor: UIColor.white] //Text Color
-        navigationController?.navigationBar.titleTextAttributes = attributes
-        
-        let createBtn = UIBarButtonItem(image: UIImage(systemName: "bell"), style: .plain, target: self, action: nil)
-        createBtn.tintColor = AppColor.YellowFAB32A
-        navigationItem.rightBarButtonItem = createBtn
-        let sortBtn = UIBarButtonItem(image: AppIcon.icThreeLine, style: .plain, target: self, action: nil)
-        sortBtn.tintColor = AppColor.YellowFAB32A
-        navigationItem.leftBarButtonItem = sortBtn
-        sortBtn.target = self
-        sortBtn.action = #selector(action)
-
-        
-        
-    }
-    @objc func action (sender:UIButton) {
-        
-        let menu = SlideMenuViewController(presenter: SlideMenuPresenter())
-        
-        menu.presenter.view = self // Auth Delegate
-        
-        menu.didTapMenuType = { MenuType in
-            self.transitionToNewContent(MenuType)
-        }
-        menu.modalPresentationStyle = .overCurrentContext
-        menu.transitioningDelegate = self
-        self.present(menu,animated: true, completion: nil)
+    func addNav() {
+        addMenuButton()
+        addButtonImageToNavigation(image: AppIcon.icBellYellow!, style: .right, action: nil)
+        self.navigationController?.hideShadowLine()
     }
     
-    func transitionToNewContent(_ menuType: MenuType) {
-        let title = String(describing: menuType).capitalized
-        print(title)
-    }
     @IBAction func btLeaderboard(_ sender: UIButton) {
         sender.animationScale()
         let leaderBoard = RankViewController(presenter: RankPresenter())
@@ -130,8 +101,8 @@ extension AppHomeViewController: UICollectionViewDelegate,UICollectionViewDataSo
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        pageControl.numberOfPages = item.count
-        return item.count
+        pageControl.numberOfPages = ListEvent.count
+        return ListEvent.count
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -140,21 +111,37 @@ extension AppHomeViewController: UICollectionViewDelegate,UICollectionViewDataSo
     }
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         for cell in collectionHappenning.visibleCells {
-          if let indexPath = collectionHappenning.indexPath(for: cell) {
-            indexPageControl = indexPath.row
-            pageControl.currentPage = indexPageControl
-          }
+            if let indexPath = collectionHappenning.indexPath(for: cell) {
+                indexPageControl = indexPath.row
+                pageControl.currentPage = indexPageControl
+            }
         }
-      }
+    }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == collectionHappenning {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HappenningCellAppHome", for: indexPath) as? HappenningCellAppHome else {return UICollectionViewCell()}
+            
             return cell
         }
         else if collectionView == collectionComingSoon {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ComingSoonEndedCellAppHome", for: indexPath) as? ComingSoonEndedCellAppHome else {return UICollectionViewCell()}
-            cell.titleEvent.text = "Origami CraneOrigami CraneOrigami CraneOrigami Crane"
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd-MM-yyyy"
+            let dateTime = dateFormatter.date(from: (ListEvent[indexPath.row]?.date)!)
+            dateFormatter.dateFormat = "dd MMM"
+            cell.timeEvent.text = "\(dateFormatter.string(from: dateTime!))\n\(ListEvent[indexPath.row]?.checkin ?? "")-\(ListEvent[indexPath.row]?.checkout ?? "")"
+            cell.titleEvent.text = ListEvent[indexPath.row]?.title
+            if let profileURL = ListEvent[indexPath.row]?.urlImage {
+                cell.imageView.loadImage(urlString: profileURL)
+            }
+            
+//            DispatchQueue.main.async { [self] in
+//                presenter.getImageEvent(url: (ListEvent[indexPath.row]?.urlImage)!) { (imageEvent) in
+//                    cell.imageView.image = imageEvent
+//                }
+//            }
+            
             return cell
         }
         else {
@@ -175,9 +162,9 @@ extension AppHomeViewController: UICollectionViewDelegate,UICollectionViewDataSo
         default:
             return 0
         }
-       
         
-      }
+        
+    }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         switch collectionView {
@@ -189,36 +176,50 @@ extension AppHomeViewController: UICollectionViewDelegate,UICollectionViewDataSo
             return 0
         }
         
-      }
+    }
     
     
 }
 
-extension AppHomeViewController: UIViewControllerTransitioningDelegate {
-    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        transition.isPresenting = true
-        return transition
-    }
-    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        transition.isPresenting = false
-        return transition
+extension AppHomeViewController: AppHomeViewProtocol {
+    func fetchInfoEventSuccess() {
+        ListEvent = presenter.infoEvent
+        collectionComingSoon.reloadData()
     }
     
-
-}
-
-extension AppHomeViewController: SlideMenuViewProtocol {
-    func signOutSuccess() {
-        print("OK")
-        UserDefaults.standard.set(true, forKey: "status")
-        Switcher.updateRootVC()
-        self.navigationController?.popToRootViewController(animated: true)
+    func fetchInfoEventFailed() {
+        print("Fetch info event error")
+    }
+    
+    func fetchImageProfileSuccess(image: UIImage) {
+        imgUser.image = image
+    }
+    
+    func fetchImageProfileFailed() {
+        print("load image profile error")
+    }
+    
+    func fetchProfileSuccess() {
+        let profile = presenter.profileUser
+        // let globalQueue = DispatchQueue.global()
+        if let profile = profile {
+            lbName.text = profile.name
+            lbID.text = profile.code
+            lbFaculty.text = profile.faculty
+            presenter.getImageProfile(url: profile.urlImage ?? "")
+            //            globalQueue.async { [self] in
+            //
+            //            }
+            
+        } else { return }
+        
         
     }
     
-    func signOutFailed() {
-        print("OK")
+    func fetchProfileFailed() {
+        print("Fetch profile user error")
     }
     
     
 }
+

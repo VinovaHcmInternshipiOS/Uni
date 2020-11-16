@@ -9,16 +9,125 @@
 //
 
 import Foundation
-
+import FirebaseAuth
+import FirebaseDatabase
+import Firebase
+import FirebaseStorage
+import UIKit
 // MARK: View -
 protocol AppHomeViewProtocol: class {
+    func fetchProfileSuccess()
+    func fetchProfileFailed()
+    func fetchImageProfileSuccess(image: UIImage)
+    func fetchImageProfileFailed()
+    func fetchInfoEventSuccess()
+    func fetchInfoEventFailed()
 }
 
 // MARK: Presenter -
 protocol AppHomePresenterProtocol: class {
-	var view: AppHomeViewProtocol? { get set }
+    
+    var view: AppHomeViewProtocol? { get set }
+    var profileUser: Home? {get set}
+    var infoEvent: [Event?] {get set}
+    func loadProfile()
+    func getImageProfile(url: String)
+    func getInfoEvent()
+    
 }
 
 class AppHomePresenter: AppHomePresenterProtocol {
+
     weak var view: AppHomeViewProtocol?
+    
+    var ref = Database.database().reference()
+    var databaseHandle = DatabaseHandle()
+    var user = Auth.auth().currentUser
+    var profileUser: Home?
+    var infoEvent: [Event?] = []
+    let storageRef = Storage.storage().reference()
+    
+    func loadProfile(){
+        guard let user = user else { return }
+        let placeRef = self.ref.child("Users").child("\(user.uid)")
+        placeRef.observe(.value, with: { [self] snapshot in
+            if(snapshot.exists())
+            {
+                let placeDict = snapshot.value as! [String: Any]
+                let code = placeDict["Code"] as! String
+                let placeRef = self.ref.child("Data").child("\(code)")
+                placeRef.observe(.value, with: { [self] snapshot in
+                    if(snapshot.exists())
+                    {
+                        let placeDict = snapshot.value as! [String: Any]
+                        let name = placeDict["Name"] as! String
+                        let faculty = placeDict["Faculty"] as! String
+                        let urlImage = placeDict["Image"] as! String
+                        
+                        let request = Home(code: code, name: name,faculty: faculty, urlImage: urlImage)
+                        profileUser = request
+                        view?.fetchProfileSuccess()
+
+                    }
+                    else
+                    {
+                        view?.fetchProfileFailed()
+                    }
+                })
+                
+                
+            }
+            else
+            {
+                view?.fetchProfileFailed()
+            }
+        })
+    }
+    
+    func getImageProfile(url: String){
+        let ref = storageRef.child("\(url)")
+        print(ref)
+        // Download in memory with a maximum allowed size of 1MB (1 * 1024 * 1024 bytes)
+        _ = ref.getData(maxSize: 1 * 2048 * 2048, completion:  { [self] data, error in
+            if error != nil{
+                view?.fetchImageProfileFailed()
+
+            } else {
+                guard let data = data else { return }
+                view?.fetchImageProfileSuccess(image: UIImage(data: data) ?? AppIcon.icDefaultImageCircle!)
+            }
+        })
+        
+    }
+    func getInfoEvent(){
+            self.ref.child("Event").observe(.childAdded, with: {(DataSnapshot) in
+                let actualPost =  DataSnapshot.key
+                let placeRef = self.ref.child("Event/\(actualPost)")
+                placeRef.observeSingleEvent(of:.value, with: { [self] snapshot in
+                    if snapshot.exists()
+                    {
+                        let dict = snapshot.value as! [String: Any]
+                        let title = dict["Title"] as! String
+                        let date = dict["Date"] as! String
+                        let checkin = dict["Checkin"] as! String
+                        let checkout = dict["Checkout"] as! String
+                        let key = dict["Key"] as! String
+                        let type = dict["Type"] as! String
+                        let urrlImage = dict["Image"] as! String
+                        let request = Event(title: title, key: key, date: date, checkout: checkout, checkin: checkin, type: type, urlImage: urrlImage)
+                        infoEvent.append(request)
+                        
+                        DispatchQueue.main.async {
+                            view?.fetchInfoEventSuccess()
+                        }
+                    }
+                    else
+                    {
+                        view?.fetchInfoEventFailed()
+                    }
+                })
+            })
+            
+        }
 }
+
