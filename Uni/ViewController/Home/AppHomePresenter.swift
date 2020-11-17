@@ -18,34 +18,151 @@ import UIKit
 protocol AppHomeViewProtocol: class {
     func fetchProfileSuccess()
     func fetchProfileFailed()
-    func fetchImageProfileSuccess(image: UIImage)
-    func fetchImageProfileFailed()
-    func fetchInfoEventSuccess()
-    func fetchInfoEventFailed()
+    func fetchInfoEventHappeningSuccess()
+    func fetchInfoEventHappeningFailed()
+    func fetchInfoEventComingSoonSuccess()
+    func fetchInfoEventComingSoonFailed()
+    func fetchInfoEventEndedSuccess()
+    func fetchInfoEventEndedFailed()
+    
 }
 
 // MARK: Presenter -
 protocol AppHomePresenterProtocol: class {
     
     var view: AppHomeViewProtocol? { get set }
+
     var profileUser: Home? {get set}
-    var infoEvent: [Event?] {get set}
+    var happeningEvent: [Event?] {get set}
+    var comingsoonEvent: [Event?] {get set}
+    var endedEvent: [Event?] {get set}
     func loadProfile()
-    func getImageProfile(url: String)
-    func getInfoEvent()
+    func getInfoEventHappening()
+    func getInfoEventComingSoon()
+    func getInfoEventEnded()
+    
     
 }
 
 class AppHomePresenter: AppHomePresenterProtocol {
 
-    weak var view: AppHomeViewProtocol?
     
+    
+    weak var view: AppHomeViewProtocol?
     var ref = Database.database().reference()
     var databaseHandle = DatabaseHandle()
     var user = Auth.auth().currentUser
     var profileUser: Home?
-    var infoEvent: [Event?] = []
     let storageRef = Storage.storage().reference()
+    var happeningEvent: [Event?] = []
+    var comingsoonEvent: [Event?] = []
+    var endedEvent: [Event?] = []
+
+    func getInfoEventHappening() {
+        ref.child("Event").queryOrdered(byChild: "Type").queryEqual(toValue:"Happening" ).observeSingleEvent(of: .value) { (snapshot) in
+            if(snapshot.exists()) {
+                for keyEvent in snapshot.children.allObjects as! [DataSnapshot] {
+                    let placeRef = self.ref.child("Event/\(keyEvent.key)")
+                    placeRef.observeSingleEvent(of:.value, with: { [self] snapshot in
+                        if snapshot.exists()
+                        {
+                            let dict = snapshot.value as! [String: Any]
+                            let title = dict["Title"] as! String
+                            let date = dict["Date"] as! String
+                            let checkin = dict["Checkin"] as! String
+                            let checkout = dict["Checkout"] as! String
+                            let key = dict["Key"] as! String
+                            let type = dict["Type"] as! String
+                            let urrlImage = dict["Image"] as! String
+                            let request = Event(title: title, key: key, date: date, checkout: checkout, checkin: checkin, type: type, urlImage: urrlImage)
+                            
+                            happeningEvent.append(request)
+                            DispatchQueue.main.async {
+                                view?.fetchInfoEventHappeningSuccess()
+                            }
+                        }
+                        else
+                        {
+                                view?.fetchInfoEventHappeningFailed()
+                        }
+                    })
+
+                }
+                //print(snapshot.childrenCount)
+               
+
+            }
+        }
+    }
+    
+    func getInfoEventComingSoon() {
+        ref.child("Event").queryOrdered(byChild: "Type").queryEqual(toValue:"ComingSoon" ).observeSingleEvent(of: .value) { (snapshot) in
+            if(snapshot.exists()) {
+                for keyEvent in snapshot.children.allObjects as! [DataSnapshot] {
+                    let placeRef = self.ref.child("Event/\(keyEvent.key)")
+                    placeRef.observeSingleEvent(of:.value, with: { [self] snapshot in
+                        if snapshot.exists()
+                        {
+                            let dict = snapshot.value as! [String: Any]
+                            let title = dict["Title"] as! String
+                            let date = dict["Date"] as! String
+                            let checkin = dict["Checkin"] as! String
+                            let checkout = dict["Checkout"] as! String
+                            let key = dict["Key"] as! String
+                            let type = dict["Type"] as! String
+                            let urrlImage = dict["Image"] as! String
+                            let request = Event(title: title, key: key, date: date, checkout: checkout, checkin: checkin, type: type, urlImage: urrlImage)
+                            
+                            comingsoonEvent.append(request)
+                            DispatchQueue.main.async {
+                                view?.fetchInfoEventComingSoonSuccess()
+                            }
+                        }
+                        else
+                        {
+                                view?.fetchInfoEventComingSoonFailed()
+                        }
+                    })
+
+                }
+
+            }
+        }
+    }
+    
+    func getInfoEventEnded() {
+        ref.child("Event").queryOrdered(byChild: "Type").queryEqual(toValue:"Ended" ).observeSingleEvent(of: .value) { (snapshot) in
+            if(snapshot.exists()) {
+                for keyEvent in snapshot.children.allObjects as! [DataSnapshot] {
+                    let placeRef = self.ref.child("Event/\(keyEvent.key)")
+                    placeRef.observeSingleEvent(of:.value, with: { [self] snapshot in
+                        if snapshot.exists()
+                        {
+                            let dict = snapshot.value as! [String: Any]
+                            let title = dict["Title"] as! String
+                            let date = dict["Date"] as! String
+                            let checkin = dict["Checkin"] as! String
+                            let checkout = dict["Checkout"] as! String
+                            let key = dict["Key"] as! String
+                            let type = dict["Type"] as! String
+                            let urrlImage = dict["Image"] as! String
+                            let request = Event(title: title, key: key, date: date, checkout: checkout, checkin: checkin, type: type, urlImage: urrlImage)
+                            
+                            endedEvent.append(request)
+                            DispatchQueue.main.async {
+                                view?.fetchInfoEventEndedSuccess()
+                            }
+                        }
+                        else
+                        {
+                                view?.fetchInfoEventEndedFailed()
+                        }
+                    })
+
+                }
+            }
+        }
+    }
     
     func loadProfile(){
         guard let user = user else { return }
@@ -63,9 +180,8 @@ class AppHomePresenter: AppHomePresenterProtocol {
                         let name = placeDict["Name"] as! String
                         let faculty = placeDict["Faculty"] as! String
                         let urlImage = placeDict["Image"] as! String
-                        
-                        let request = Home(code: code, name: name,faculty: faculty, urlImage: urlImage)
-                        profileUser = request
+                    
+                        profileUser = Home(code: code, name: name,faculty: faculty, urlImage: urlImage)
                         view?.fetchProfileSuccess()
 
                     }
@@ -84,50 +200,5 @@ class AppHomePresenter: AppHomePresenterProtocol {
         })
     }
     
-    func getImageProfile(url: String){
-        let ref = storageRef.child("\(url)")
-        print(ref)
-        // Download in memory with a maximum allowed size of 1MB (1 * 1024 * 1024 bytes)
-        _ = ref.getData(maxSize: 1 * 2048 * 2048, completion:  { [self] data, error in
-            if error != nil{
-                view?.fetchImageProfileFailed()
-
-            } else {
-                guard let data = data else { return }
-                view?.fetchImageProfileSuccess(image: UIImage(data: data) ?? AppIcon.icDefaultImageCircle!)
-            }
-        })
-        
-    }
-    func getInfoEvent(){
-            self.ref.child("Event").observe(.childAdded, with: {(DataSnapshot) in
-                let actualPost =  DataSnapshot.key
-                let placeRef = self.ref.child("Event/\(actualPost)")
-                placeRef.observeSingleEvent(of:.value, with: { [self] snapshot in
-                    if snapshot.exists()
-                    {
-                        let dict = snapshot.value as! [String: Any]
-                        let title = dict["Title"] as! String
-                        let date = dict["Date"] as! String
-                        let checkin = dict["Checkin"] as! String
-                        let checkout = dict["Checkout"] as! String
-                        let key = dict["Key"] as! String
-                        let type = dict["Type"] as! String
-                        let urrlImage = dict["Image"] as! String
-                        let request = Event(title: title, key: key, date: date, checkout: checkout, checkin: checkin, type: type, urlImage: urrlImage)
-                        infoEvent.append(request)
-                        
-                        DispatchQueue.main.async {
-                            view?.fetchInfoEventSuccess()
-                        }
-                    }
-                    else
-                    {
-                        view?.fetchInfoEventFailed()
-                    }
-                })
-            })
-            
-        }
 }
 

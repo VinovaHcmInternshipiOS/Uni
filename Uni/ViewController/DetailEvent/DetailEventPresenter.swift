@@ -9,23 +9,61 @@
 //
 
 import Foundation
-
+import FirebaseAuth
+import FirebaseDatabase
+import Firebase
+import FirebaseStorage
+import UIKit
 // MARK: View -
 protocol DetailEventViewProtocol: class {
-
+    func fetchDetailSuccess()
+    func fetchDetailFailed()
 }
 
 // MARK: Presenter -
 protocol DetailEventPresenterProtocol: class {
 	var view: DetailEventViewProtocol? { get set }
-    func viewDidLoad()
+    var detailEvent: DetailEvent? {get set}
+    func getDetailEvent(keyEvent: String)
 }
 
 class DetailEventPresenter: DetailEventPresenterProtocol {
-
+   
     weak var view: DetailEventViewProtocol?
+    var ref = Database.database().reference()
+    var databaseHandle = DatabaseHandle()
+    var detailEvent: DetailEvent?
+    let storageRef = Storage.storage().reference()
+    
+    func getDetailEvent(keyEvent: String) {
+        let placeRef = self.ref.child("Event/\(keyEvent)")
+        placeRef.observe(.value, with: { [self] snapshot in
+            if snapshot.exists()
+            {
+                let dict = snapshot.value as! [String: Any]
+                let title = dict["Title"] as! String
+                let content = dict["Content"] as! String
+                let address = dict["Address"] as! String
+                let score = dict["Score"] as! Int
+                
+                let date = dict["Date"] as! String
+                let checkin = dict["Checkin"] as! String
+                let checkout = dict["Checkout"] as! String
+                let urrlImage = dict["Image"] as! String
+                
+                detailEvent = DetailEvent(title: title, content: content, address: address, score: score, date: date, checkin: checkin, checkout: checkout, urlImage: urrlImage)
 
-    func viewDidLoad() {
-
+                
+                DispatchQueue.main.async {
+                    view?.fetchDetailSuccess()
+                }
+            }
+            else
+            {
+                    view?.fetchDetailFailed()
+            }
+        })
     }
+    
+
 }

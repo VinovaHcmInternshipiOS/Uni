@@ -34,9 +34,15 @@ class SlideMenuViewController: UIViewController {
 
 	override func viewDidLoad() {
         super.viewDidLoad()
-
         //presenter.view = self
         setupUI()
+        defaultCaseMenu()
+    }
+    
+    func defaultCaseMenu(){
+        if UserDefaults.standard.value(forKey: "caseMenu") == nil {
+            UserDefaults.standard.setValue(0, forKey: "caseMenu")
+        }
     }
     
     func setupUI() {
@@ -78,7 +84,9 @@ extension SlideMenuViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let menuType = MenuType(rawValue: indexPath.row) else { return }
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "SlideMenuCell", for: indexPath) as? SlideMenuCell else { return }
+        
         let selectedCell = tableView.cellForRow(at: IndexPath(row: UserDefaults.standard.value(forKey: "caseMenu") as! Int, section: 0)) as! SlideMenuCell
+        
         selectedCell.viewChoose.backgroundColor = UIColor(white: 1, alpha: 0.0)
         selectedCell.titleFeature.font = AppFont.Raleway_Regular_20
         selectedCell.titleFeature.textColor = .black
@@ -91,8 +99,8 @@ extension SlideMenuViewController: UITableViewDataSource {
         cell.titleFeature.text = "\(menuType)"
         cell.titleFeature.textColor = .white
         cell.titleFeature.font = AppFont.Raleway_Bold_20
-        
         UserDefaults.standard.set(indexPath.row, forKey: "caseMenu")
+        
         
         dismiss(animated: true, completion: {
             print("Dismissing: \(menuType)")
@@ -108,7 +116,7 @@ extension SlideMenuViewController: UITableViewDataSource {
             backgroundView.backgroundColor = UIColor(white: 1, alpha: 0.0)
             cell.selectedBackgroundView = backgroundView
             
-            if indexPath.row == UserDefaults.standard.value(forKey: "caseMenu") as! Int {
+             if indexPath.row == UserDefaults.standard.value(forKey: "caseMenu") as! Int {
                 cell.viewChoose.backgroundColor = AppColor.YellowFAB32A
                 cell.titleFeature.textColor = .white
                 cell.titleFeature.font = AppFont.Raleway_Bold_20

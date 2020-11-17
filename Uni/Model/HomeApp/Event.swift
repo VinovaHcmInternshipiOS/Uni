@@ -11,9 +11,9 @@ class Event {
     var checkin: String?
     var checkout: String?
     var date: String?
-    var key: String
-    var type: String
-    var title: String
+    var key: String?
+    var type: String?
+    var title: String?
     var urlImage: String?
     
     init(title: String,key: String, date:String,checkout:String, checkin:String, type: String, urlImage: String) {

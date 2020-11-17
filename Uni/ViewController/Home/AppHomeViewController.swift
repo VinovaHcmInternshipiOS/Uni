@@ -27,6 +27,10 @@ class AppHomeViewController:BaseViewController{
     var menuState = false
     var ListEvent = [Event?]()
     
+    var listEventHappening = [Event?]()
+    var listEventComingSoon = [Event?]()
+    var listEventEnded = [Event?]()
+    
     init(presenter: AppHomePresenterProtocol) {
         self.presenter = presenter
         super.init(nibName: "AppHomeViewController", bundle: nil)
@@ -42,7 +46,13 @@ class AppHomeViewController:BaseViewController{
         addNav()
         setupXIB()
         presenter.loadProfile()
-        presenter.getInfoEvent()
+
+        presenter.getInfoEventHappening()
+        presenter.getInfoEventComingSoon()
+        presenter.getInfoEventEnded()
+        
+        
+        
         
     }
     
@@ -101,13 +111,34 @@ extension AppHomeViewController: UICollectionViewDelegate,UICollectionViewDataSo
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        pageControl.numberOfPages = ListEvent.count
-        return ListEvent.count
+        pageControl.numberOfPages = listEventHappening.count
+        switch collectionView {
+        case collectionHappenning:
+            return listEventHappening.count
+        case collectionComingSoon:
+            return listEventComingSoon.count
+        case collectionEnded:
+            return listEventEnded.count
+        default:
+            break
+        }
+        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let detailEvent = DetailEventViewController(presenter: DetailEventPresenter())
+        if collectionView == collectionHappenning {
+            detailEvent.keyDetailEvent = (listEventHappening[indexPath.row]?.key)!
+           
+        } else if collectionView == collectionComingSoon {
+            detailEvent.keyDetailEvent = (listEventComingSoon[indexPath.row]?.key)!
+            
+        } else {
+            detailEvent.keyDetailEvent = (listEventEnded[indexPath.row]?.key)!
+           
+        }
         self.navigationController?.pushViewController(detailEvent, animated: true)
+        
     }
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         for cell in collectionHappenning.visibleCells {
@@ -121,33 +152,37 @@ extension AppHomeViewController: UICollectionViewDelegate,UICollectionViewDataSo
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == collectionHappenning {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HappenningCellAppHome", for: indexPath) as? HappenningCellAppHome else {return UICollectionViewCell()}
-            
+                if let profileURL = listEventHappening[indexPath.row]?.urlImage {
+                    cell.imageCell.loadImage(urlString: profileURL)
+                }
             return cell
         }
         else if collectionView == collectionComingSoon {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ComingSoonEndedCellAppHome", for: indexPath) as? ComingSoonEndedCellAppHome else {return UICollectionViewCell()}
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "dd-MM-yyyy"
-            let dateTime = dateFormatter.date(from: (ListEvent[indexPath.row]?.date)!)
-            dateFormatter.dateFormat = "dd MMM"
-            cell.timeEvent.text = "\(dateFormatter.string(from: dateTime!))\n\(ListEvent[indexPath.row]?.checkin ?? "")-\(ListEvent[indexPath.row]?.checkout ?? "")"
-            cell.titleEvent.text = ListEvent[indexPath.row]?.title
-            if let profileURL = ListEvent[indexPath.row]?.urlImage {
-                cell.imageView.loadImage(urlString: profileURL)
-            }
-            
-//            DispatchQueue.main.async { [self] in
-//                presenter.getImageEvent(url: (ListEvent[indexPath.row]?.urlImage)!) { (imageEvent) in
-//                    cell.imageView.image = imageEvent
-//                }
-//            }
-            
-            return cell
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "dd-MM-yyyy"
+                let dateTime = dateFormatter.date(from: (listEventComingSoon[indexPath.row]?.date)!)
+                dateFormatter.dateFormat = "dd MMM"
+                cell.timeEvent.text = "\(dateFormatter.string(from: dateTime!))\n\(listEventComingSoon[indexPath.row]?.checkin ?? "")-\(listEventComingSoon[indexPath.row]?.checkout ?? "")"
+                cell.titleEvent.text = listEventComingSoon[indexPath.row]?.title
+                if let profileURL = listEventComingSoon[indexPath.row]?.urlImage {
+                    cell.imageView.loadImage(urlString: profileURL)
+                }
+                return cell
         }
         else {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ComingSoonEndedCellAppHome", for: indexPath) as? ComingSoonEndedCellAppHome else {return UICollectionViewCell()}
-            cell.titleEvent.text = "Origami CraneOrigami CraneOrigami CraneOrigami Crane"
-            return cell
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "dd-MM-yyyy"
+                let dateTime = dateFormatter.date(from: (listEventEnded[indexPath.row]?.date)!)
+                dateFormatter.dateFormat = "dd MMM"
+                cell.timeEvent.text = "\(dateFormatter.string(from: dateTime!))\n\(listEventEnded[indexPath.row]?.checkin ?? "")-\(listEventEnded[indexPath.row]?.checkout ?? "")"
+                cell.titleEvent.text = listEventEnded[indexPath.row]?.title
+                if let profileURL = listEventEnded[indexPath.row]?.urlImage {
+                    cell.imageView.loadImage(urlString: profileURL)
+                }
+                return cell
+            
         }
         
         
@@ -158,6 +193,8 @@ extension AppHomeViewController: UICollectionViewDelegate,UICollectionViewDataSo
         case collectionHappenning:
             return 0.00000000000000001
         case collectionComingSoon:
+            return 0.00000000000000001
+        case collectionEnded:
             return 0.00000000000000001
         default:
             return 0
@@ -172,6 +209,8 @@ extension AppHomeViewController: UICollectionViewDelegate,UICollectionViewDataSo
             return 0.00000000000000001
         case collectionComingSoon:
             return 0.00000000000000001
+        case collectionEnded:
+            return 0.00000000000000001
         default:
             return 0
         }
@@ -182,35 +221,42 @@ extension AppHomeViewController: UICollectionViewDelegate,UICollectionViewDataSo
 }
 
 extension AppHomeViewController: AppHomeViewProtocol {
-    func fetchInfoEventSuccess() {
-        ListEvent = presenter.infoEvent
+    func fetchInfoEventHappeningSuccess() {
+        listEventHappening = presenter.happeningEvent
+        collectionHappenning.reloadData()
+    }
+    
+    func fetchInfoEventHappeningFailed() {
+        print("Fetch info event happening error")
+    }
+    
+    func fetchInfoEventComingSoonSuccess() {
+        listEventComingSoon = presenter.comingsoonEvent
         collectionComingSoon.reloadData()
     }
     
-    func fetchInfoEventFailed() {
-        print("Fetch info event error")
+    func fetchInfoEventComingSoonFailed() {
+        print("Fetch info event comingsoon error")
     }
     
-    func fetchImageProfileSuccess(image: UIImage) {
-        imgUser.image = image
+    func fetchInfoEventEndedSuccess() {
+        listEventEnded = presenter.endedEvent
+        collectionEnded.reloadData()
     }
     
-    func fetchImageProfileFailed() {
-        print("load image profile error")
+    func fetchInfoEventEndedFailed() {
+        print("Fetch info event ended error")
     }
+    
+    
     
     func fetchProfileSuccess() {
         let profile = presenter.profileUser
-        // let globalQueue = DispatchQueue.global()
         if let profile = profile {
             lbName.text = profile.name
             lbID.text = profile.code
             lbFaculty.text = profile.faculty
-            presenter.getImageProfile(url: profile.urlImage ?? "")
-            //            globalQueue.async { [self] in
-            //
-            //            }
-            
+            imgUser.loadImage(urlString: profile.urlImage!)
         } else { return }
         
         

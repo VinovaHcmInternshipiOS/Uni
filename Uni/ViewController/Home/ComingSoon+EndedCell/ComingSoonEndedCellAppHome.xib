@@ -31,8 +31,9 @@
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hrT-m8-npY">
                                         <rect key="frame" x="0.0" y="0.0" width="140" height="250"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icImageDefault" translatesAutoresizingMaskIntoConstraints="NO" id="z0X-ld-dvh">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icImageDefault" translatesAutoresizingMaskIntoConstraints="NO" id="z0X-ld-dvh">
                                                 <rect key="frame" x="0.0" y="0.0" width="140" height="147.5"/>
+                                                <color key="tintColor" name="5B5B5B"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="z0X-ld-dvh" secondAttribute="height" multiplier="75:79" id="Yt3-Tf-faO"/>
                                                 </constraints>
@@ -143,6 +144,9 @@
     </objects>
     <resources>
         <image name="icImageDefault" width="512" height="512"/>
+        <namedColor name="5B5B5B">
+            <color red="0.35699999332427979" green="0.35699999332427979" blue="0.35699999332427979" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="Color-1">
             <color red="0.0" green="0.0" blue="0.0" alpha="0.15000000596046448" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

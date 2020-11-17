@@ -10,10 +10,17 @@
 
 import UIKit
 
-class DetailEventViewController: UIViewController, DetailEventViewProtocol {
+class DetailEventViewController: UIViewController {
 
 	var presenter: DetailEventPresenterProtocol
-
+    @IBOutlet weak var joinEvent: UILabel!
+    @IBOutlet weak var imageEvent: UIImageView!
+    @IBOutlet weak var titleEvent: UILabel!
+    @IBOutlet weak var scoreEvent: UILabel!
+    @IBOutlet weak var contentEvent: UITextView!
+    @IBOutlet weak var dateEvent: UILabel!
+    @IBOutlet weak var addressEvent: UILabel!
+    var keyDetailEvent = ""
 	init(presenter: DetailEventPresenterProtocol) {
         self.presenter = presenter
         super.init(nibName: "DetailEventViewController", bundle: nil)
@@ -27,10 +34,30 @@ class DetailEventViewController: UIViewController, DetailEventViewProtocol {
         super.viewDidLoad()
 
         presenter.view = self
-        presenter.viewDidLoad()
+        presenter.getDetailEvent(keyEvent: keyDetailEvent)
+        
     }
-    @IBAction func backVC(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
+    
+}
+
+extension DetailEventViewController: DetailEventViewProtocol {
+    func fetchDetailSuccess() {
+        let detail = presenter.detailEvent
+        if let detail = detail {
+            titleEvent.text = detail.title
+            contentEvent.text = detail.content
+            scoreEvent.text = "+\(detail.score ?? 0)"
+            dateEvent.text = "\(detail.date ?? "") \n \(detail.checkin ?? "")-\(detail.checkout ?? "")"
+            addressEvent.text = detail.address
+            //joinEvent.text = detail.joinEvent
+            imageEvent.loadImage(urlString: detail.urlImage!)
+        } else { return }
     }
+    
+    func fetchDetailFailed() {
+        print("Fetch Detail Event Failed")
+    }
+    
+    
     
 }

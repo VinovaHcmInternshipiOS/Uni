@@ -15,7 +15,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="366" height="269"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Friday Bar" translatesAutoresizingMaskIntoConstraints="NO" id="KbR-be-Jwy">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icImageDefault" translatesAutoresizingMaskIntoConstraints="NO" id="KbR-be-Jwy">
                         <rect key="frame" x="2" y="0.0" width="362" height="269"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -39,6 +39,6 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="Friday Bar" width="700" height="700"/>
+        <image name="icImageDefault" width="512" height="512"/>
     </resources>
 </document>

@@ -25,5 +25,6 @@ class AppIcon {
     static let icBellYellow = UIImage(named: "icBell-yellow")
     static let icDefaultImageCircle = UIImage(systemName: "person.circle")
     static let icDefaultImageSquare = UIImage(named: "icImageDefault")
+    static let icDefaultEvent = UIImage(named: "icDefaultEvent")
     
 }
