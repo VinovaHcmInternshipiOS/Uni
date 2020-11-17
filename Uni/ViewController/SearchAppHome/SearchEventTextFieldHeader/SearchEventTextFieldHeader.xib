@@ -49,9 +49,9 @@
                         <constraint firstItem="h29-sP-3j9" firstAttribute="top" secondItem="5dF-qs-dg2" secondAttribute="top" id="FdV-PI-zy2"/>
                         <constraint firstAttribute="bottom" secondItem="h29-sP-3j9" secondAttribute="bottom" id="RKu-es-H4o"/>
                         <constraint firstItem="2Cm-zS-dBp" firstAttribute="bottom" secondItem="h29-sP-3j9" secondAttribute="bottom" id="Vl0-Jr-ZIo"/>
+                        <constraint firstItem="2Cm-zS-dBp" firstAttribute="width" secondItem="h29-sP-3j9" secondAttribute="width" multiplier="0.5" id="WfJ-FU-RgJ"/>
                         <constraint firstItem="jcW-WN-pmd" firstAttribute="top" secondItem="2Cm-zS-dBp" secondAttribute="top" id="dpq-0U-Chq"/>
                         <constraint firstItem="jcW-WN-pmd" firstAttribute="leading" secondItem="5dF-qs-dg2" secondAttribute="leading" constant="20" id="h5D-9b-uaw"/>
-                        <constraint firstItem="2Cm-zS-dBp" firstAttribute="width" secondItem="h29-sP-3j9" secondAttribute="width" multiplier="0.5" id="irP-XP-J25"/>
                         <constraint firstItem="2Cm-zS-dBp" firstAttribute="top" secondItem="h29-sP-3j9" secondAttribute="top" id="p2p-Vi-M6f"/>
                         <constraint firstItem="h29-sP-3j9" firstAttribute="leading" secondItem="jcW-WN-pmd" secondAttribute="trailing" id="s9t-9j-Vea"/>
                         <constraint firstItem="h29-sP-3j9" firstAttribute="width" secondItem="5dF-qs-dg2" secondAttribute="width" multiplier="0.142857" id="tJZ-qi-jVN"/>
@@ -89,6 +89,7 @@
                 <outlet property="btSearch" destination="h29-sP-3j9" id="DHc-lk-bPf"/>
                 <outlet property="mainView" destination="5dF-qs-dg2" id="gLr-tj-eId"/>
                 <outlet property="txtSearch" destination="jcW-WN-pmd" id="JY9-Pl-GJX"/>
+                <outlet property="viewButton" destination="2Cm-zS-dBp" id="lKJ-V7-amC"/>
             </connections>
             <point key="canvasLocation" x="28.985507246376812" y="39.84375"/>
         </view>

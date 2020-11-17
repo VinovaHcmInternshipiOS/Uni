@@ -165,6 +165,7 @@ extension AppHomeViewController: UICollectionViewDelegate,UICollectionViewDataSo
                 dateFormatter.dateFormat = "dd MMM"
                 cell.timeEvent.text = "\(dateFormatter.string(from: dateTime!))\n\(listEventComingSoon[indexPath.row]?.checkin ?? "")-\(listEventComingSoon[indexPath.row]?.checkout ?? "")"
                 cell.titleEvent.text = listEventComingSoon[indexPath.row]?.title
+                //cell.setData(event: listEventComingSoon[indexPath.row])
                 if let profileURL = listEventComingSoon[indexPath.row]?.urlImage {
                     cell.imageView.loadImage(urlString: profileURL)
                 }
@@ -178,6 +179,7 @@ extension AppHomeViewController: UICollectionViewDelegate,UICollectionViewDataSo
                 dateFormatter.dateFormat = "dd MMM"
                 cell.timeEvent.text = "\(dateFormatter.string(from: dateTime!))\n\(listEventEnded[indexPath.row]?.checkin ?? "")-\(listEventEnded[indexPath.row]?.checkout ?? "")"
                 cell.titleEvent.text = listEventEnded[indexPath.row]?.title
+                //cell.setData(event: listEventEnded[indexPath.row])
                 if let profileURL = listEventEnded[indexPath.row]?.urlImage {
                     cell.imageView.loadImage(urlString: profileURL)
                 }

@@ -9,23 +9,68 @@
 //
 
 import Foundation
+import FirebaseAuth
+import FirebaseDatabase
+import Firebase
+import FirebaseStorage
+import UIKit
 
 // MARK: View -
 protocol SearchAppHomeViewProtocol: class {
-
+    func fetchEventSuccess()
+    func fetchEventFailed()
 }
 
 // MARK: Presenter -
 protocol SearchAppHomePresenterProtocol: class {
-	var view: SearchAppHomeViewProtocol? { get set }
-    func viewDidLoad()
+    var view: SearchAppHomeViewProtocol? { get set }
+    var resultsEvent: [Event?] {get set}
+    func fetchEvent(keyEvent: String)
 }
 
 class SearchAppHomePresenter: SearchAppHomePresenterProtocol {
-
     weak var view: SearchAppHomeViewProtocol?
+    var ref = Database.database().reference()
+    var databaseHandle = DatabaseHandle()
+    let storageRef = Storage.storage().reference()
+    var resultsEvent: [Event?] = []
+    
+    func fetchEvent(keyEvent: String) {
+       resultsEvent.removeAll()
+        self.ref.child("Event").queryOrdered(byChild: "Title").queryStarting(atValue: "\(keyEvent)").queryEnding(atValue: "\(keyEvent)" + "\u{f8ff}").observe(.value) { [self] snapshot in
+            if (snapshot.exists()) {
+                for keyEvent in snapshot.children.allObjects as! [DataSnapshot] {
+                    let placeRef = self.ref.child("Event/\(keyEvent.key)")
+                    placeRef.observeSingleEvent(of:.value, with: { [self] snapshot in
+                        if snapshot.exists()
+                        {
+                            let dict = snapshot.value as! [String: Any]
+                            let title = dict["Title"] as! String
+                            let date = dict["Date"] as! String
+                            let checkin = dict["Checkin"] as! String
+                            let checkout = dict["Checkout"] as! String
+                            let key = dict["Key"] as! String
+                            let type = dict["Type"] as! String
+                            let urrlImage = dict["Image"] as! String
+                            
+                            let request = Event(title: title, key: key, date: date, checkout: checkout, checkin: checkin, type: type, urlImage: urrlImage)
+                            
+                            resultsEvent.append(request)
+                            DispatchQueue.main.async {
+                                view?.fetchEventSuccess()
+                            }
+                        }
+                        else
+                        {
+                            view?.fetchEventFailed()
+                        }
+                    })
+                }
+            } else {
+                view?.fetchEventFailed()
+            }
 
-    func viewDidLoad() {
-
+        }
     }
+    
 }

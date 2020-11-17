@@ -16,5 +16,14 @@ class ComingSoonEndedCellAppHome: UICollectionViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-
+    var model: Event?
+    func setData(event: Event?) {
+        guard let model = model else { return }
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd-MM-yyyy"
+        let dateTime = dateFormatter.date(from: (model.date)!)
+        dateFormatter.dateFormat = "dd MMM"
+        titleEvent.text = model.title
+        timeEvent.text = "\(dateFormatter.string(from: dateTime!))\n\(model.checkin ?? "")-\(model.checkout ?? "")"
+    }
 }

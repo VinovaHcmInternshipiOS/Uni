@@ -16,6 +16,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BarcodeViewController" customModule="Uni" customModuleProvider="target">
             <connections>
+                <outlet property="barcodeView" destination="EQ5-qH-mMp" id="F9I-bO-V8X"/>
+                <outlet property="lbBarcode" destination="F3b-ds-SLu" id="ZuV-uo-K7f"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -42,13 +44,13 @@
                                     <color key="textColor" name="FAB32A"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="barcode-306926_1280" translatesAutoresizingMaskIntoConstraints="NO" id="EQ5-qH-mMp">
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icImageDefault" translatesAutoresizingMaskIntoConstraints="NO" id="EQ5-qH-mMp">
                                     <rect key="frame" x="32" y="309.5" width="350" height="150"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="150" id="gTK-6k-tTp"/>
                                     </constraints>
                                 </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="175050032" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F3b-ds-SLu">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F3b-ds-SLu">
                                     <rect key="frame" x="32" y="459.5" width="350" height="31"/>
                                     <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="26"/>
                                     <nil key="textColor"/>
@@ -94,7 +96,7 @@
         </view>
     </objects>
     <resources>
-        <image name="barcode-306926_1280" width="1280" height="704"/>
+        <image name="icImageDefault" width="512" height="512"/>
         <namedColor name="FAB32A">
             <color red="0.98000001907348633" green="0.70200002193450928" blue="0.16500000655651093" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

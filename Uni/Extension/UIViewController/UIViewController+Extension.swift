@@ -86,6 +86,25 @@ extension UIViewController {
         }
     }
     
+       func getFormattedDate(date: String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd-MM-yyyy"
+        let dateTime = dateFormatter.date(from: date)
+        dateFormatter.dateFormat = "dd MMM"
+        return dateFormatter.string(from: dateTime!)
+      }
+
+    
+       func formatterTime(time: String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+        let date = dateFormatter.date(from: time)
+
+        dateFormatter.dateFormat = "h:mm a"
+        return dateFormatter.string(from: date!)
+    }
+
+    
 }
 class Switcher {
     

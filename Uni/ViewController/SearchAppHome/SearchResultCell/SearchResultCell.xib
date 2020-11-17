@@ -10,11 +10,14 @@
         <array key="Raleway-Medium.ttf">
             <string>Raleway-Medium</string>
         </array>
+        <array key="Raleway-Regular.ttf">
+            <string>Raleway-Regular</string>
+        </array>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchResultCell" customModule="Uni" customModuleProvider="target"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="123" id="KGk-i7-Jjw" customClass="SearchResultCell" customModule="Uni" customModuleProvider="target">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="123" id="KGk-i7-Jjw" customClass="SearchResultCell" customModule="Uni" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="370" height="120"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
@@ -45,46 +48,34 @@
                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dRa-H0-pXh">
                         <rect key="frame" x="10" y="10" width="350" height="100"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Rectangle 32" translatesAutoresizingMaskIntoConstraints="NO" id="sDX-WX-W6r">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icImageDefault" translatesAutoresizingMaskIntoConstraints="NO" id="sDX-WX-W6r">
                                 <rect key="frame" x="0.0" y="0.0" width="73" height="100"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ButterCup  Event" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rSo-4i-4YG">
-                                <rect key="frame" x="101" y="12" width="169" height="47"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rSo-4i-4YG">
+                                <rect key="frame" x="101" y="18.5" width="214" height="23.5"/>
                                 <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="15 Aug 7PM-10PM" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RFk-WO-Qad">
-                                <rect key="frame" x="101" y="59" width="169" height="16.5"/>
-                                <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="14"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RFk-WO-Qad">
+                                <rect key="frame" x="101" y="52" width="214" height="16.5"/>
+                                <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kSo-BB-YpE">
-                                <rect key="frame" x="290" y="52" width="39" height="29"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="39" id="vD9-un-GVG"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="14"/>
-                                <state key="normal" title="Detail">
-                                    <color key="titleColor" red="0.98039215690000003" green="0.70196078429999997" blue="0.1647058824" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="kSo-BB-YpE" secondAttribute="bottom" constant="19" id="17r-uE-CGz"/>
                             <constraint firstAttribute="bottom" secondItem="sDX-WX-W6r" secondAttribute="bottom" id="9qC-1O-8Cs"/>
                             <constraint firstItem="sDX-WX-W6r" firstAttribute="leading" secondItem="dRa-H0-pXh" secondAttribute="leading" id="C4M-6q-ktQ"/>
+                            <constraint firstItem="rSo-4i-4YG" firstAttribute="centerY" secondItem="sDX-WX-W6r" secondAttribute="centerY" constant="-20" id="Dl7-ry-RxJ"/>
                             <constraint firstItem="sDX-WX-W6r" firstAttribute="top" secondItem="dRa-H0-pXh" secondAttribute="top" id="H8e-T5-Wv3"/>
                             <constraint firstItem="rSo-4i-4YG" firstAttribute="leading" secondItem="sDX-WX-W6r" secondAttribute="trailing" constant="28" id="PDZ-P7-HIZ"/>
-                            <constraint firstAttribute="trailing" secondItem="kSo-BB-YpE" secondAttribute="trailing" constant="21" id="UmO-qf-ORk"/>
+                            <constraint firstAttribute="trailing" secondItem="RFk-WO-Qad" secondAttribute="trailing" constant="35" id="Qsu-So-N6O"/>
                             <constraint firstItem="sDX-WX-W6r" firstAttribute="width" secondItem="dRa-H0-pXh" secondAttribute="height" multiplier="73:100" id="Y91-40-huQ"/>
-                            <constraint firstItem="rSo-4i-4YG" firstAttribute="top" secondItem="dRa-H0-pXh" secondAttribute="top" constant="12" id="YFo-YJ-8YE"/>
-                            <constraint firstItem="kSo-BB-YpE" firstAttribute="leading" secondItem="RFk-WO-Qad" secondAttribute="trailing" constant="20" id="e9c-s2-8Nw"/>
-                            <constraint firstItem="RFk-WO-Qad" firstAttribute="top" secondItem="rSo-4i-4YG" secondAttribute="bottom" id="eQy-C6-6OJ"/>
+                            <constraint firstItem="RFk-WO-Qad" firstAttribute="top" secondItem="rSo-4i-4YG" secondAttribute="bottom" constant="10" id="eQy-C6-6OJ"/>
                             <constraint firstItem="RFk-WO-Qad" firstAttribute="leading" secondItem="sDX-WX-W6r" secondAttribute="trailing" constant="28" id="jx2-J8-z9W"/>
-                            <constraint firstItem="kSo-BB-YpE" firstAttribute="leading" secondItem="rSo-4i-4YG" secondAttribute="trailing" constant="20" id="kQG-he-GHF"/>
+                            <constraint firstAttribute="trailing" secondItem="rSo-4i-4YG" secondAttribute="trailing" constant="35" id="wnI-Q9-zvR"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -93,6 +84,7 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                 </subviews>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="7Dc-MD-XlZ" secondAttribute="bottom" constant="10" id="CMz-vm-kT4"/>
                     <constraint firstItem="dRa-H0-pXh" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="Uwx-Kd-f8N"/>
@@ -105,13 +97,15 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="btDetail" destination="kSo-BB-YpE" id="W4F-ee-MrB"/>
+                <outlet property="dateEvent" destination="RFk-WO-Qad" id="jxq-EK-8gC"/>
+                <outlet property="imgEvent" destination="sDX-WX-W6r" id="nZI-xb-fpJ"/>
+                <outlet property="titleEvent" destination="rSo-4i-4YG" id="z0f-m1-hL4"/>
             </connections>
             <point key="canvasLocation" x="66.666666666666671" y="97.098214285714278"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="Rectangle 32" width="414" height="896"/>
+        <image name="icImageDefault" width="512" height="512"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

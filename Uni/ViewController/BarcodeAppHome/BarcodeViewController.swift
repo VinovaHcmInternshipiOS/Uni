@@ -9,12 +9,13 @@
 //
 
 import UIKit
-
-class BarcodeViewController: UIViewController, BarcodeViewProtocol {
+class BarcodeViewController: UIViewController {
 
 	var presenter: BarcodePresenterProtocol
 
-	init(presenter: BarcodePresenterProtocol) {
+    @IBOutlet weak var lbBarcode: UILabel!
+    @IBOutlet weak var barcodeView: UIImageView!
+    init(presenter: BarcodePresenterProtocol) {
         self.presenter = presenter
         super.init(nibName: "BarcodeViewController", bundle: nil)
     }
@@ -25,9 +26,58 @@ class BarcodeViewController: UIViewController, BarcodeViewProtocol {
 
 	override func viewDidLoad() {
         super.viewDidLoad()
-
         presenter.view = self
-        presenter.viewDidLoad()
+        presenter.fetchProfile()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+           UIScreen.main.brightness = CGFloat(0.5)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+           UIScreen.main.brightness = CGFloat(1)
+    }
+    
+    func generateBarcode(from string: String) -> UIImage? {
+        let data = string.data(using: String.Encoding.ascii)
+        
+        if let filter = CIFilter(name: "CICode128BarcodeGenerator") {
+            filter.setValue(data, forKey: "inputMessage")
+            guard let colorFilter = CIFilter(name: "CIFalseColor") else { return nil}
+            colorFilter.setValue(filter.outputImage, forKey: "inputImage")
+            colorFilter.setValue(CIColor(red: 255/255, green: 255/255, blue: 255/255), forKey: "inputColor1") //background color
+            colorFilter.setValue(CIColor(red: 0, green: 0, blue: 0), forKey: "inputColor0") //tint color
+            
+            guard colorFilter.outputImage != nil
+            else
+            {
+                return nil
+            }
+            let transform = CGAffineTransform(scaleX: 30, y: 30)
+            
+            if let output = colorFilter.outputImage?.transformed(by: transform) {
+                
+                return UIImage(ciImage: output)
+            }
+        }
+        
+        return nil
     }
 
+}
+
+extension BarcodeViewController: BarcodeViewProtocol {
+    func fetchProfileSuccess() {
+        let profile = presenter.profileUser
+        if let profile = profile {
+            lbBarcode.text = profile.code
+            barcodeView.image = generateBarcode(from: profile.code ?? "")
+        } else { return }
+    }
+    
+    func fetchProfileFailed() {
+        print("create barcode failed")
+    }
+    
+    
 }

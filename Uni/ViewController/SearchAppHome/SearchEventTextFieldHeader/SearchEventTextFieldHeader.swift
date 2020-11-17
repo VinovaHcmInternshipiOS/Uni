@@ -11,6 +11,7 @@ class SearchEventTextFieldHeader: UITableViewHeaderFooterView {
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var txtSearch: UITextField!
     @IBOutlet weak var btSearch: UIButton!
+    @IBOutlet weak var viewButton: UIView!
     /*
     // Only override draw() if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.

@@ -10,12 +10,12 @@
 
 import UIKit
 
-class SearchAppHomeViewController: UIViewController, SearchAppHomeViewProtocol {
+class SearchAppHomeViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
-
+    var getkeySearch: (()->Void)? = nil
     var presenter: SearchAppHomePresenterProtocol
-
+    var listResultsEvent = [Event?]()
 	init(presenter: SearchAppHomePresenterProtocol) {
         self.presenter = presenter
         super.init(nibName: "SearchAppHomeViewController", bundle: nil)
@@ -29,7 +29,6 @@ class SearchAppHomeViewController: UIViewController, SearchAppHomeViewProtocol {
         super.viewDidLoad()
 
         presenter.view = self
-        presenter.viewDidLoad()
         setupUI()
     }
     
@@ -50,6 +49,11 @@ class SearchAppHomeViewController: UIViewController, SearchAppHomeViewProtocol {
         let detailEvent = DetailEventViewController(presenter: DetailEventPresenter())
         self.navigationController?.pushViewController(detailEvent, animated: true)
     }
+    
+    @objc func actionSearch(sender: UIButton) {
+        getkeySearch?()
+    }
+
 }
 
 extension SearchAppHomeViewController: UITableViewDelegate {
@@ -57,6 +61,10 @@ extension SearchAppHomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "SearchEventTextFieldHeader") as? SearchEventTextFieldHeader {
             headerView.contentView.backgroundColor = .white
+            getkeySearch = { [self] in
+                presenter.fetchEvent(keyEvent: headerView.txtSearch.text!)
+            }
+            headerView.btSearch.addTarget(self, action: #selector(actionSearch(sender:)), for: .touchUpInside)
             return headerView
         } else { return UIView()}
     }
@@ -74,11 +82,17 @@ extension SearchAppHomeViewController: UITableViewDelegate {
 
 extension SearchAppHomeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return section == 0 ? 1 : 10
+        return section == 0 ? 1 : listResultsEvent.count
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(indexPath.row)
+        let detailEvent = DetailEventViewController(presenter: DetailEventPresenter())
+        detailEvent.keyDetailEvent = (listResultsEvent[indexPath.row]?.key)!
+        self.navigationController?.pushViewController(detailEvent, animated: true)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -92,7 +106,12 @@ extension SearchAppHomeViewController: UITableViewDataSource {
         case 1:
             if let cell = tableView.dequeueReusableCell(withIdentifier: "SearchResultCell", for: indexPath) as? SearchResultCell {
                 cell.contentView.layer.cornerRadius = 20
-                cell.btDetail.addTarget(self, action: #selector(gotoDetailEvent), for: .touchUpInside)
+                
+                cell.titleEvent.text = listResultsEvent[indexPath.row]?.title ?? ""
+                cell.dateEvent.text = "\(getFormattedDate(date: listResultsEvent[indexPath.row]?.date ?? "")) \n \(formatterTime(time: listResultsEvent[indexPath.row]?.checkin ?? "")) - \(formatterTime(time: listResultsEvent[indexPath.row]?.checkout ?? ""))"
+                if let eventURL = listResultsEvent[indexPath.row]?.urlImage {
+                    cell.imgEvent.loadImage(urlString: eventURL)
+                }
                 return cell
             } else {
                 return UITableViewCell()
@@ -103,6 +122,21 @@ extension SearchAppHomeViewController: UITableViewDataSource {
         
     }
     
+    
+    
+}
+
+extension SearchAppHomeViewController: SearchAppHomeViewProtocol{
+    func fetchEventSuccess() {
+        listResultsEvent = presenter.resultsEvent
+        tableView.reloadData()
+    }
+    
+    func fetchEventFailed() {
+        showAlert(title: "An Error", message: "Event not found", actionTitles: ["OK"], style: [.default], actions: [.none])
+        listResultsEvent.removeAll()
+        tableView.reloadData()
+    }
     
     
 }

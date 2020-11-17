@@ -10,6 +10,9 @@ import UIKit
 class SearchResultCell: UITableViewCell {
 
 
+    @IBOutlet weak var imgEvent: UIImageView!
+    @IBOutlet weak var titleEvent: UILabel!
+    @IBOutlet weak var dateEvent: UILabel!
     @IBOutlet weak var btDetail: UIButton!
     override func awakeFromNib() {
         super.awakeFromNib()

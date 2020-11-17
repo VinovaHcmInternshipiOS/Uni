@@ -9,23 +9,53 @@
 //
 
 import Foundation
+import FirebaseAuth
+import FirebaseDatabase
+import Firebase
+import FirebaseStorage
+import UIKit
 
 // MARK: View -
 protocol BarcodeViewProtocol: class {
-
+    func fetchProfileSuccess()
+    func fetchProfileFailed()
 }
 
 // MARK: Presenter -
 protocol BarcodePresenterProtocol: class {
 	var view: BarcodeViewProtocol? { get set }
-    func viewDidLoad()
+    var profileUser: Home? {get set}
+    func fetchProfile()
+
 }
 
 class BarcodePresenter: BarcodePresenterProtocol {
 
+    
+
     weak var view: BarcodeViewProtocol?
-
-    func viewDidLoad() {
-
+    var ref = Database.database().reference()
+    var databaseHandle = DatabaseHandle()
+    var user = Auth.auth().currentUser
+    var profileUser: Home?
+    
+    func fetchProfile() {
+        guard let user = user else { return }
+        let placeRef = self.ref.child("Users").child("\(user.uid)")
+        placeRef.observe(.value, with: { [self] snapshot in
+            if(snapshot.exists())
+            {
+                let placeDict = snapshot.value as! [String: Any]
+                let code = placeDict["Code"] as! String
+                
+                profileUser = Home(code: code, name: "",faculty: "", urlImage: "")
+                view?.fetchProfileSuccess()
+                
+            }
+            else
+            {
+                view?.fetchProfileFailed()
+            }
+        })
     }
 }

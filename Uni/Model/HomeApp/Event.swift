@@ -29,15 +29,7 @@ class Event {
 
     
 }
-    extension Date {
-       func getFormattedDate(date: String) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd-MM-yyyy"
-        let dateTime = dateFormatter.date(from: date)
-        dateFormatter.dateFormat = "dd MMM"
-        return dateFormatter.string(from: dateTime!)
-      }
-    }
+
 //extension Date {
 //  func postDetailPresenter() -> String {
 //    let formatter = DateFormatter()

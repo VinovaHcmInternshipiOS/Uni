@@ -16,5 +16,6 @@ class HappenningCellAppHome: UICollectionViewCell {
         // Initialization code
     }
     
+    
 
 }

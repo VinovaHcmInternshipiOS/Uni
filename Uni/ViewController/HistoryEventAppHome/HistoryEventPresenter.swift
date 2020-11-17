@@ -9,23 +9,48 @@
 //
 
 import Foundation
+import FirebaseAuth
+import FirebaseDatabase
+import Firebase
+import FirebaseStorage
+import UIKit
 
 // MARK: View -
 protocol HistoryEventViewProtocol: class {
-
+    func fetchHistoryScoreSuccess()
+    func fetchHistoryScoreFailed()
+    func fetchHistoryEventSuccess()
+    func fetchHistoryEventFailed()
 }
 
 // MARK: Presenter -
 protocol HistoryEventPresenterProtocol: class {
 	var view: HistoryEventViewProtocol? { get set }
-    func viewDidLoad()
+    var totaScore: Int? { get set}
+    var totalEvent: Int? { get set}
+    func fetchHistoryScore()
+    func fetchHistoryEvent()
 }
 
 class HistoryEventPresenter: HistoryEventPresenterProtocol {
 
+    
+
+    
+
     weak var view: HistoryEventViewProtocol?
-
-    func viewDidLoad() {
-
+    var ref = Database.database().reference()
+    var databaseHandle = DatabaseHandle()
+    var user = Auth.auth().currentUser
+    var totaScore: Int?
+    var totalEvent: Int?
+    
+    func fetchHistoryScore() {
+        <#code#>
     }
+    
+    func fetchHistoryEvent() {
+        <#code#>
+    }
+
 }
