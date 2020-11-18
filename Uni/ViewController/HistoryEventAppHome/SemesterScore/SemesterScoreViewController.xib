@@ -17,7 +17,11 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SemesterScoreViewController" customModule="Uni" customModuleProvider="target">
             <connections>
                 <outlet property="heightTableView" destination="Ppo-Tp-n6G" id="T5q-fI-9Ur"/>
+                <outlet property="lbSemester" destination="lrN-AN-4Wg" id="z8x-Sb-seb"/>
+                <outlet property="lbYear" destination="pmk-o4-VzM" id="qyG-XX-lh8"/>
                 <outlet property="tableView" destination="qDe-if-nH3" id="zXi-11-aNC"/>
+                <outlet property="totalEvent" destination="JKh-bH-d2V" id="DQT-4U-OUh"/>
+                <outlet property="totalScore" destination="9Sv-MQ-WFs" id="w7v-JI-rYo"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="viewUser" destination="UVo-QI-3ub" id="KIs-bV-BoM"/>
             </connections>
@@ -33,19 +37,19 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fCI-9Z-NOx">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="906"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Semester 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lrN-AN-4Wg">
-                                    <rect key="frame" x="32" y="82" width="204" height="47"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Semester -" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lrN-AN-4Wg">
+                                    <rect key="frame" x="32" y="82" width="197.5" height="47"/>
                                     <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="40"/>
                                     <color key="textColor" name="5B5B5B"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2020" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pmk-o4-VzM">
-                                    <rect key="frame" x="32" y="35" width="89" height="47"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="----" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pmk-o4-VzM">
+                                    <rect key="frame" x="32" y="35" width="62.5" height="47"/>
                                     <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="40"/>
                                     <color key="textColor" name="5B5B5B"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qDe-if-nH3">
+                                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qDe-if-nH3">
                                     <rect key="frame" x="22" y="139" width="370" height="747"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
@@ -76,13 +80,13 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UVo-QI-3ub">
                     <rect key="frame" x="32" y="772.5" width="350" height="89.5"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Event: 4" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JKh-bH-d2V">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Event: --" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JKh-bH-d2V">
                             <rect key="frame" x="22" y="13" width="306" height="21"/>
                             <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="18"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Score: 10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Sv-MQ-WFs">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Score: --" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Sv-MQ-WFs">
                             <rect key="frame" x="22" y="42" width="306" height="21"/>
                             <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="18"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

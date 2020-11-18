@@ -14,10 +14,9 @@ class DetailEventViewController: UIViewController {
 
 	var presenter: DetailEventPresenterProtocol
     @IBOutlet weak var joinEvent: UILabel!
-    @IBOutlet weak var imageEvent: UIImageView!
+    @IBOutlet weak var contentEvent: UILabel!
     @IBOutlet weak var titleEvent: UILabel!
     @IBOutlet weak var scoreEvent: UILabel!
-    @IBOutlet weak var contentEvent: UITextView!
     @IBOutlet weak var dateEvent: UILabel!
     @IBOutlet weak var addressEvent: UILabel!
     var keyDetailEvent = ""
@@ -50,7 +49,7 @@ extension DetailEventViewController: DetailEventViewProtocol {
             dateEvent.text = "\(detail.date ?? "") \n \(detail.checkin ?? "")-\(detail.checkout ?? "")"
             addressEvent.text = detail.address
             //joinEvent.text = detail.joinEvent
-            imageEvent.loadImage(urlString: detail.urlImage!)
+           
         } else { return }
     }
     

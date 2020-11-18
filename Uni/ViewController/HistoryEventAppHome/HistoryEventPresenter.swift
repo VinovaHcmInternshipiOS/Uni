@@ -21,20 +21,23 @@ protocol HistoryEventViewProtocol: class {
     func fetchHistoryScoreFailed()
     func fetchHistoryEventSuccess()
     func fetchHistoryEventFailed()
+    func fetchSemesterSuccess()
+    func fetchSemesterFailed()
 }
 
 // MARK: Presenter -
 protocol HistoryEventPresenterProtocol: class {
 	var view: HistoryEventViewProtocol? { get set }
-    var totaScore: Int? { get set}
+    var totalScore: Int? { get set}
     var totalEvent: Int? { get set}
+    var infoEvent: [History]? { get set}
+    var totalYear: [String]? {get set}
     func fetchHistoryScore()
     func fetchHistoryEvent()
+    func fetchSemester()
 }
 
 class HistoryEventPresenter: HistoryEventPresenterProtocol {
-
-    
 
     
 
@@ -42,15 +45,118 @@ class HistoryEventPresenter: HistoryEventPresenterProtocol {
     var ref = Database.database().reference()
     var databaseHandle = DatabaseHandle()
     var user = Auth.auth().currentUser
-    var totaScore: Int?
-    var totalEvent: Int?
+    var totalScore: Int? = 0
+    var totalEvent: Int? = 0
+    var totalYear: [String]? = []
+    var infoEvent: [History]? = []
     
     func fetchHistoryScore() {
-        <#code#>
+        let placeRef = self.ref.child("Users").child("\(user!.uid)")
+        placeRef.observe(.value, with: { [self] snapshot in
+            if(snapshot.exists())
+            {
+                let placeDict = snapshot.value as! [String: Any]
+                let code = placeDict["Code"] as! String
+                let placeRef = self.ref.child("Data").child("\(code)")
+                placeRef.observe(.value, with: { [self] snapshot in
+                    if(snapshot.exists())
+                    {
+                        let placeDict = snapshot.value as! [String: Any]
+                        let score = placeDict["Score"] as! Int
+                        totalScore = score
+                        view?.fetchHistoryScoreSuccess()
+                    }
+                    else {
+                        view?.fetchHistoryScoreFailed()
+                    }
+                })
+            } else {
+                view?.fetchHistoryScoreFailed()
+            }
+        })
     }
     
     func fetchHistoryEvent() {
-        <#code#>
+        let placeRef = self.ref.child("Users").child("\(user!.uid)")
+        placeRef.observe(.value, with: { [self] snapshot in
+            if(snapshot.exists())
+            {
+                let placeDict = snapshot.value as! [String: Any]
+                let code = placeDict["Code"] as! String
+                let placeRef = self.ref.child("Data").child("\(code)").child("List")
+                placeRef.observe(.value, with: { [self] snapshot in
+                    if(snapshot.exists())
+                    {
+                        totalEvent = Int(snapshot.childrenCount)
+                        view?.fetchHistoryEventSuccess()
+                    }
+                    else {
+                        view?.fetchHistoryEventFailed()
+                    }
+                })
+            } else {
+                view?.fetchHistoryEventFailed()
+            }
+        })
+    }
+    func fetchSemester() {
+        let placeRef = self.ref.child("Users").child("\(user!.uid)")
+        placeRef.observe(.value, with: { [self] snapshot in
+            if(snapshot.exists())
+            {
+                let placeDict = snapshot.value as! [String: Any]
+                let code = placeDict["Code"] as! String
+                let placeRef = self.ref.child("Data").child("\(code)").child("List")
+                placeRef.observe(.childAdded, with: { [self] snapshot in
+                    if(snapshot.exists())
+                    {
+                        print(snapshot.key)
+                        let placeRef = self.ref.child("Data").child("\(code)/List").child("\(snapshot.key)")
+                        placeRef.observeSingleEvent(of:.value, with: { [self] snapshot in
+                            if(snapshot.exists())
+                            {
+                                let placeDict = snapshot.value as! [String: Any]
+                                let date = placeDict["Date"] as! String
+                                let score = placeDict["Score"] as! Int
+                                let dateFormatterYear = DateFormatter()
+                                dateFormatterYear.dateFormat = "dd-MM-yyyy"
+                                
+                                let dateFormatterMonth = DateFormatter()
+                                dateFormatterMonth.dateFormat = "dd-MM-yyyy"
+                                
+                                let formatYear = dateFormatterYear.date(from: date)
+                                dateFormatterYear.dateFormat = "yyyy"
+                                
+                                let formatMonth = dateFormatterMonth.date(from: date)
+                                dateFormatterMonth.dateFormat = "MM"
+                                
+                                let request = History(Year: dateFormatterYear.string(from: formatYear!), Month: dateFormatterMonth.string(from: formatMonth!), Score: score,Key: snapshot.key)
+                                infoEvent?.append(request)
+                                
+                                let dateFormatter = DateFormatter()
+                                dateFormatter.dateFormat = "dd-MM-yyyy"
+                                let dateTime = dateFormatter.date(from: date)
+                                dateFormatter.dateFormat = "yyyy"
+                                if(!totalYear!.contains(dateFormatter.string(from: dateTime!)))
+                                {
+                                    totalYear?.append(dateFormatter.string(from: dateTime!))
+                                    totalYear!.sort { dateFormatter.date(from: $0)! > dateFormatter.date(from: $1)! }
+                                    view?.fetchSemesterSuccess()
+                                }
+                            }
+                            else {
+                                view?.fetchSemesterFailed()
+                            }
+                        })
+                    }
+                    else {
+                        view?.fetchSemesterFailed()
+                    }
+                })
+            } else {
+                view?.fetchSemesterFailed()
+            }
+        })
     }
 
 }

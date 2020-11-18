@@ -10,26 +10,33 @@
 
 import UIKit
 
-class HistoryEventViewController: UIViewController, HistoryEventViewProtocol {
-
+class HistoryEventViewController: UIViewController {
+    
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var heightCollectionView: NSLayoutConstraint!
+    @IBOutlet weak var totalEvent: UILabel!
+    @IBOutlet weak var totalScore: UILabel!
+    var totalSemester = [String]()
+    var infoEvents = [History?]()
+    var dataEvent = [History?]()
     var presenter: HistoryEventPresenterProtocol
-
-	init(presenter: HistoryEventPresenterProtocol) {
+    
+    init(presenter: HistoryEventPresenterProtocol) {
         self.presenter = presenter
         super.init(nibName: "HistoryEventViewController", bundle: nil)
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
-	override func viewDidLoad() {
+    
+    override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         presenter.view = self
-        presenter.viewDidLoad()
+        presenter.fetchHistoryScore()
+        presenter.fetchHistoryEvent()
+        presenter.fetchSemester()
         setupUI()
     }
     
@@ -40,9 +47,9 @@ class HistoryEventViewController: UIViewController, HistoryEventViewProtocol {
         collectionView.register(UINib(nibName: "HeaderHistory", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "HeaderHistory")
         
         collectionView.register(UINib(nibName: "HeaderHistory", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "HeaderHistory")
-
+        
     }
-
+    
 }
 
 extension HistoryEventViewController: UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
@@ -53,12 +60,12 @@ extension HistoryEventViewController: UICollectionViewDelegate,UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         switch kind {
-
+        
         case UICollectionView.elementKindSectionHeader:
-
+            
             if let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "HeaderHistory", for: indexPath) as? HeaderHistory {
                 headerView.backgroundColor = .none
-                headerView.lbYear.text = "\(2020+indexPath.section)"
+                headerView.lbYear.text = "\(totalSemester[indexPath.section])"
                 
                 return headerView
             } else {
@@ -67,20 +74,20 @@ extension HistoryEventViewController: UICollectionViewDelegate,UICollectionViewD
             
         case UICollectionView.elementKindSectionFooter:
             let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "HeaderHistory", for: indexPath)
-
+            
             return headerView
             
         default:
-
+            
             assert(false, "Unexpected element kind")
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-            return CGSize(width: collectionView.frame.width, height: 45)
+        return CGSize(width: collectionView.frame.width, height: 45)
     }
-        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
-            return CGSize(width: 0, height: 0)
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        return CGSize(width: 0, height: 0)
     }
     
 }
@@ -91,9 +98,9 @@ extension HistoryEventViewController: UICollectionViewDataSource {
         self.collectionView.layoutIfNeeded()
         self.heightCollectionView.constant = self.collectionView.contentSize.height
     }
-
+    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 4
+        return totalSemester.count
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -101,20 +108,91 @@ extension HistoryEventViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        dataEvent.removeAll()
+        switch indexPath.row {
+        case 0:
+            for i in 0..<totalSemester.count {
+                if (infoEvents[i]?.Year == totalSemester[indexPath.section]) {
+                    if (infoEvents[i]?.Month == "01" || infoEvents[i]?.Month == "02" || infoEvents[i]?.Month == "03" || infoEvents[i]?.Month == "04" || infoEvents[i]?.Month == "05" || infoEvents[i]?.Month == "06") {
+                        dataEvent.append(History(Year: infoEvents[i]!.Year, Month: infoEvents[i]!.Month, Score: infoEvents[i]!.Score, Key: infoEvents[i]!.Key))
+                    }
+                    
+                }
+            }
+        case 1:
+            for i in 0..<infoEvents.count {
+                if (infoEvents[i]?.Year == totalSemester[indexPath.section]) {
+                    if (infoEvents[i]?.Month == "07" || infoEvents[i]?.Month == "08" || infoEvents[i]?.Month == "09" || infoEvents[i]?.Month == "10" || infoEvents[i]?.Month == "11" || infoEvents[i]?.Month == "12") {
+                        dataEvent.append(History(Year: infoEvents[i]!.Year, Month: infoEvents[i]!.Month, Score: infoEvents[i]!.Score, Key: infoEvents[i]!.Key))
+                        
+                    }
+                    
+                }
+            }
+        default:
+            break
+        }
         let semesterEvent = SemesterScoreViewController(presenter: SemesterScorePresenter())
+        semesterEvent.dataSemester = dataEvent
+        semesterEvent.dataLabelYear = totalSemester[indexPath.section]
+        semesterEvent.dataLabelSemester = "Semester \(indexPath.row + 1)"
         self.navigationController?.pushViewController(semesterEvent, animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HistoryCell", for: indexPath) as? HistoryCell {
-            if indexPath.row == 1 {
+            switch indexPath.row {
+            case 0:
+                cell.lbSemester.text = "1"
+                return cell
+            case 1:
                 cell.lbSemester.text = "2"
+                return cell
+            default:
+                break
             }
             return cell
         }
         else {
             return UICollectionViewCell()
         }
+    }
+    
+    
+}
+
+extension HistoryEventViewController: HistoryEventViewProtocol {
+    func fetchSemesterSuccess() {
+        totalSemester = presenter.totalYear!
+        infoEvents = presenter.infoEvent!
+        collectionView.reloadData()
+        
+    }
+    
+    func fetchSemesterFailed() {
+        print("fetch semester failed")
+    }
+    
+    func fetchHistoryScoreSuccess() {
+        let score = presenter.totalScore
+        if let score = score {
+            totalScore.text = "Total Score: \(score)"
+        } else { return }
+    }
+    
+    func fetchHistoryScoreFailed() {
+        print("fetch history score failed")
+    }
+    
+    func fetchHistoryEventSuccess() {
+        let event = presenter.totalEvent
+        if let event = event {
+            totalEvent.text = "Total Event: \(event)"
+        } else { return }
+    }
+    
+    func fetchHistoryEventFailed() {
+        print("fetch history event failed")
     }
     
     

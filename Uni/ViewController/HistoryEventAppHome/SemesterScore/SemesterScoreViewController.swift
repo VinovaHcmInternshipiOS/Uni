@@ -10,13 +10,20 @@
 
 import UIKit
 
-class SemesterScoreViewController: UIViewController, SemesterScoreViewProtocol {
+class SemesterScoreViewController: UIViewController {
 
+    @IBOutlet weak var totalScore: UILabel!
+    @IBOutlet weak var totalEvent: UILabel!
     @IBOutlet weak var viewUser: UIView!
     @IBOutlet weak var heightTableView: NSLayoutConstraint!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var lbYear: UILabel!
+    @IBOutlet weak var lbSemester: UILabel!
     var presenter: SemesterScorePresenterProtocol
-
+    var dataSemester = [History?]()
+    var detailHistory = [DetailHistory?]()
+    var dataLabelYear = "--"
+    var dataLabelSemester = "Semester-"
 	init(presenter: SemesterScorePresenterProtocol) {
         self.presenter = presenter
         super.init(nibName: "SemesterScoreViewController", bundle: nil)
@@ -28,10 +35,18 @@ class SemesterScoreViewController: UIViewController, SemesterScoreViewProtocol {
 
 	override func viewDidLoad() {
         super.viewDidLoad()
-
         presenter.view = self
-        presenter.viewDidLoad()
+        for i in 0..<dataSemester.count {
+            print((dataSemester[i]?.Key)!)
+           presenter.fetchHistoryEvent(keyEvent: (dataSemester[i]?.Key)!)
+        }
+        
+        loadLabel()
         setupUI()
+    }
+    func loadLabel() {
+        lbYear.text = dataLabelYear
+        lbSemester.text = dataLabelSemester
     }
 
     func setupUI(){
@@ -56,20 +71,46 @@ extension SemesterScoreViewController: UITableViewDelegate {
 
 extension SemesterScoreViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return detailHistory.count
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath.row)
         let detailEvent = DetailEventViewController(presenter: DetailEventPresenter())
+        detailEvent.keyDetailEvent = (detailHistory[indexPath.row]?.key)!
         self.navigationController?.pushViewController(detailEvent, animated: true)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "SemesterCell", for: indexPath) as? SemesterCell {
+            cell.lbTitle.text = detailHistory[indexPath.row]?.title ?? ""
+            cell.lbDate.text = getFormattedDate(date: detailHistory[indexPath.row]?.date ?? "")
+            cell.lbTime.text = formatterTime(time: detailHistory[indexPath.row]?.checkin ?? "")
+            cell.lbScore.text = "+\(detailHistory[indexPath.row]?.score ?? 0)"
+            if let eventURL = detailHistory[indexPath.row]?.urlImage {
+                cell.imgView.loadImage(urlString: eventURL)
+            }
             return cell
         } else { return UITableViewCell()}
     }
     
+    
+    
+}
+
+extension SemesterScoreViewController: SemesterScoreViewProtocol {
+    func fetchHistoryEventSuccess() {
+        var score = 0
+        detailHistory = presenter.detailHistory
+        totalEvent.text = "Total Event: \(detailHistory.count)"
+        for i in 0..<dataSemester.count {
+            score += (detailHistory[i]?.score)!
+            totalScore.text = "Total Score: \(score)"
+        }
+        tableView.reloadData()
+    }
+    
+    func fetchHistoryEventFailed() {
+        print("fetch history failed")
+    }
     
     
 }

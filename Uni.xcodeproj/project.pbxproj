@@ -97,6 +97,8 @@
 		F5BEFDEF255A3B6C005A1A2E /* BarcodePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5BEFDEC255A3B6C005A1A2E /* BarcodePresenter.swift */; };
 		F5BEFDF0255A3B6C005A1A2E /* BarcodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5BEFDED255A3B6C005A1A2E /* BarcodeViewController.swift */; };
 		F5BEFDF1255A3B6C005A1A2E /* BarcodeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5BEFDEE255A3B6C005A1A2E /* BarcodeViewController.xib */; };
+		F5CC24F22563D028003EF2F1 /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CC24F12563D028003EF2F1 /* History.swift */; };
+		F5CC24F5256415DA003EF2F1 /* DetailHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CC24F4256415DA003EF2F1 /* DetailHistory.swift */; };
 		F5FAAF4625621AA50036EA95 /* HandleError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5FAAF4525621AA50036EA95 /* HandleError.swift */; };
 		F5FAAF4B256254AB0036EA95 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5FAAF4A256254AB0036EA95 /* UIImageView+Extension.swift */; };
 		F5FAAF4F256287BA0036EA95 /* DetailEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5FAAF4E256287BA0036EA95 /* DetailEvent.swift */; };
@@ -197,6 +199,8 @@
 		F5BEFDEC255A3B6C005A1A2E /* BarcodePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodePresenter.swift; sourceTree = "<group>"; };
 		F5BEFDED255A3B6C005A1A2E /* BarcodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeViewController.swift; sourceTree = "<group>"; };
 		F5BEFDEE255A3B6C005A1A2E /* BarcodeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BarcodeViewController.xib; sourceTree = "<group>"; };
+		F5CC24F12563D028003EF2F1 /* History.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
+		F5CC24F4256415DA003EF2F1 /* DetailHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailHistory.swift; sourceTree = "<group>"; };
 		F5FAAF4525621AA50036EA95 /* HandleError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandleError.swift; sourceTree = "<group>"; };
 		F5FAAF4A256254AB0036EA95 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		F5FAAF4E256287BA0036EA95 /* DetailEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailEvent.swift; sourceTree = "<group>"; };
@@ -497,6 +501,7 @@
 		F593CCAA255E401F005D4F15 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				F5CC24F02563D012003EF2F1 /* HistoryEvent */,
 				F5FAAF4D256287480036EA95 /* DetailEvent */,
 				F593CCAF255E5E82005D4F15 /* HomeApp */,
 			);
@@ -651,6 +656,15 @@
 				F5BEFDEE255A3B6C005A1A2E /* BarcodeViewController.xib */,
 			);
 			path = BarcodeAppHome;
+			sourceTree = "<group>";
+		};
+		F5CC24F02563D012003EF2F1 /* HistoryEvent */ = {
+			isa = PBXGroup;
+			children = (
+				F5CC24F12563D028003EF2F1 /* History.swift */,
+				F5CC24F4256415DA003EF2F1 /* DetailHistory.swift */,
+			);
+			path = HistoryEvent;
 			sourceTree = "<group>";
 		};
 		F5FAAF4425621A830036EA95 /* HandleErrorViewController */ = {
@@ -840,6 +854,7 @@
 				F593CBF3255BE863005D4F15 /* UIButton+Extension.swift in Sources */,
 				F5FAAF4B256254AB0036EA95 /* UIImageView+Extension.swift in Sources */,
 				F58527C3255157E900F888E8 /* DetailEventPresenter.swift in Sources */,
+				F5CC24F5256415DA003EF2F1 /* DetailHistory.swift in Sources */,
 				F593CCA7255E2328005D4F15 /* BaseViewController.swift in Sources */,
 				F582EAE025505693002BF86F /* AppHomePresenter.swift in Sources */,
 				F5A04E3F255533B800DB396C /* HistoryEventViewController.swift in Sources */,
@@ -875,6 +890,7 @@
 				F5A2AF07255A7C7800502E0F /* SlideMenuCell.swift in Sources */,
 				F582EAD725503B11002BF86F /* ForgotPasswordViewController.swift in Sources */,
 				F582EA8C254FEEB6002BF86F /* LoginViewController.swift in Sources */,
+				F5CC24F22563D028003EF2F1 /* History.swift in Sources */,
 				F5B1A6BD255930A900CC0C1A /* UIView+Extension.swift in Sources */,
 				F582EA6D254FEE58002BF86F /* SceneDelegate.swift in Sources */,
 				F5B1A6A02559157000CC0C1A /* SemesterScorePresenter.swift in Sources */,

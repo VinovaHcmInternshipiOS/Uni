@@ -52,9 +52,24 @@ class AppHomeViewController:BaseViewController{
         presenter.getInfoEventEnded()
         
         
-        
+        _ = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(moveToNextPage), userInfo: nil, repeats: true)
         
     }
+    @objc func moveToNextPage (){
+            
+            let pageWidth:CGFloat = self.collectionHappenning.frame.width
+            let maxWidth:CGFloat = pageWidth * CGFloat(listEventHappening.count)
+            let contentOffset:CGFloat = self.collectionHappenning.contentOffset.x
+            
+            var slideToX = contentOffset + pageWidth
+            indexPageControl = indexPageControl + 1
+            if  contentOffset + pageWidth == maxWidth {
+                    slideToX = 0
+                indexPageControl = 0
+            }
+            pageControl.currentPage = indexPageControl
+            self.collectionHappenning.scrollRectToVisible(CGRect(x:slideToX, y:0, width:pageWidth, height:self.collectionHappenning.frame.height), animated: true)
+        }
     
     func setupXIB() {
         collectionHappenning.delegate = self

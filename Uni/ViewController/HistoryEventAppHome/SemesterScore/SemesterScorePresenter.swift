@@ -9,23 +9,85 @@
 //
 
 import Foundation
+import FirebaseAuth
+import FirebaseDatabase
+import Firebase
+import FirebaseStorage
+import UIKit
 
 // MARK: View -
 protocol SemesterScoreViewProtocol: class {
-
+    func fetchHistoryEventSuccess()
+    func fetchHistoryEventFailed()
 }
 
 // MARK: Presenter -
 protocol SemesterScorePresenterProtocol: class {
-	var view: SemesterScoreViewProtocol? { get set }
-    func viewDidLoad()
+    var view: SemesterScoreViewProtocol? { get set }
+    var detailHistory: [DetailHistory?] {get set}
+    func fetchHistoryEvent(keyEvent: String)
+    
 }
 
 class SemesterScorePresenter: SemesterScorePresenterProtocol {
-
     weak var view: SemesterScoreViewProtocol?
-
-    func viewDidLoad() {
-
+    var ref = Database.database().reference()
+    var databaseHandle = DatabaseHandle()
+    var user = Auth.auth().currentUser
+    var detailHistory: [DetailHistory?] = []
+    func fetchHistoryEvent(keyEvent: String) {
+        guard let user = user else { return }
+        let placeRef = self.ref.child("Users").child("\(user.uid)")
+        placeRef.observe(.value, with: { [self] snapshot in
+            if(snapshot.exists())
+            {
+                let placeDict = snapshot.value as! [String: Any]
+                let code = placeDict["Code"] as! String
+                
+                
+                let placeRef = ref.child("Event/\(keyEvent)")
+                placeRef.observeSingleEvent(of:.value, with: { [self] (snapshot) in
+                    if(snapshot.exists()) {
+                        let dict = snapshot.value as! [String: Any]
+                        let title = dict["Title"] as! String
+                        let score = dict["Score"] as! Int
+                        let urrlImage = dict["Image"] as! String
+                        
+                        let placeRef = ref.child("Event/\(keyEvent)/Joiner/\(code)")
+                        placeRef.observeSingleEvent(of:.value, with: { [self] snapshot in
+                            if snapshot.exists()
+                            {
+                                let dict = snapshot.value as! [String: Any]
+                                let date = dict["Date"] as! String
+                                let checkin = dict["Checkin"] as! String
+                                
+                                detailHistory.append(DetailHistory(title: title, date: date, checkin: checkin, score: score, key: keyEvent, urlImage: urrlImage))
+                                DispatchQueue.main.async {
+                                    view?.fetchHistoryEventSuccess()
+                                }
+                            }
+                            else
+                            {
+                                view?.fetchHistoryEventFailed()
+                            }
+                        })
+                    } else {
+                        view?.fetchHistoryEventFailed()
+                    }
+                })
+                
+                
+            }
+            else
+            {
+                view?.fetchHistoryEventFailed()
+            }
+        })
+        
+        
     }
+    
+    
+    
+    
 }

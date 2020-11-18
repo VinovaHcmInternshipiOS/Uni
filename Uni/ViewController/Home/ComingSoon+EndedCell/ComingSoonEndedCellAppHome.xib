@@ -26,26 +26,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="180" height="280"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gwX-5Q-PtY">
-                                <rect key="frame" x="20" y="10" width="140" height="250"/>
+                                <rect key="frame" x="5" y="10" width="170" height="260"/>
                                 <subviews>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hrT-m8-npY">
-                                        <rect key="frame" x="0.0" y="0.0" width="140" height="250"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="170" height="260"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icImageDefault" translatesAutoresizingMaskIntoConstraints="NO" id="z0X-ld-dvh">
-                                                <rect key="frame" x="0.0" y="0.0" width="140" height="147.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="170" height="179"/>
                                                 <color key="tintColor" name="5B5B5B"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="z0X-ld-dvh" secondAttribute="height" multiplier="75:79" id="Yt3-Tf-faO"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Origami Crane Wedding Planners." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c4t-l6-QJ9">
-                                                <rect key="frame" x="13" y="160.5" width="114" height="33"/>
+                                                <rect key="frame" x="13" y="179" width="144" height="33"/>
                                                 <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="14"/>
                                                 <color key="textColor" red="0.98039215690000003" green="0.70196078429999997" blue="0.1647058824" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aVH-i4-psv">
-                                                <rect key="frame" x="13" y="200.5" width="94.5" height="28"/>
+                                                <rect key="frame" x="13" y="219" width="94.5" height="28"/>
                                                 <string key="text">15 Aug
 7:00PM-10:00PM</string>
                                                 <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="12"/>
@@ -56,13 +56,13 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="z0X-ld-dvh" firstAttribute="top" secondItem="hrT-m8-npY" secondAttribute="top" id="8aX-p0-Z1z"/>
-                                            <constraint firstItem="c4t-l6-QJ9" firstAttribute="top" secondItem="z0X-ld-dvh" secondAttribute="bottom" constant="13" id="Lkt-dx-I9C"/>
+                                            <constraint firstItem="c4t-l6-QJ9" firstAttribute="top" secondItem="z0X-ld-dvh" secondAttribute="bottom" id="Lkt-dx-I9C"/>
                                             <constraint firstItem="aVH-i4-psv" firstAttribute="top" secondItem="c4t-l6-QJ9" secondAttribute="bottom" constant="7" id="Tzz-ct-xrS"/>
                                             <constraint firstItem="z0X-ld-dvh" firstAttribute="leading" secondItem="hrT-m8-npY" secondAttribute="leading" id="XKG-zF-f1h"/>
                                             <constraint firstAttribute="trailing" secondItem="z0X-ld-dvh" secondAttribute="trailing" id="e6l-Z0-dHD"/>
                                             <constraint firstAttribute="trailing" secondItem="c4t-l6-QJ9" secondAttribute="trailing" constant="13" id="fBL-ZF-mGH"/>
                                             <constraint firstItem="c4t-l6-QJ9" firstAttribute="leading" secondItem="hrT-m8-npY" secondAttribute="leading" constant="13" id="wTB-kK-9gD"/>
-                                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="aVH-i4-psv" secondAttribute="bottom" constant="10" id="yAp-2O-8nM"/>
+                                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="aVH-i4-psv" secondAttribute="bottom" id="yAp-2O-8nM"/>
                                             <constraint firstItem="aVH-i4-psv" firstAttribute="leading" secondItem="hrT-m8-npY" secondAttribute="leading" constant="13" id="yS1-2t-oTI"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
@@ -112,10 +112,10 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="gwX-5Q-PtY" firstAttribute="leading" secondItem="4HV-Pd-cL7" secondAttribute="leading" constant="20" id="25f-4T-i3y"/>
+                            <constraint firstItem="gwX-5Q-PtY" firstAttribute="leading" secondItem="4HV-Pd-cL7" secondAttribute="leading" constant="5" id="25f-4T-i3y"/>
                             <constraint firstItem="gwX-5Q-PtY" firstAttribute="top" secondItem="4HV-Pd-cL7" secondAttribute="top" constant="10" id="8Yc-wQ-nAV"/>
-                            <constraint firstAttribute="trailing" secondItem="gwX-5Q-PtY" secondAttribute="trailing" constant="20" id="AMU-IM-GwZ"/>
-                            <constraint firstAttribute="bottom" secondItem="gwX-5Q-PtY" secondAttribute="bottom" constant="20" id="ChZ-PL-DaB"/>
+                            <constraint firstAttribute="trailing" secondItem="gwX-5Q-PtY" secondAttribute="trailing" constant="5" id="AMU-IM-GwZ"/>
+                            <constraint firstAttribute="bottom" secondItem="gwX-5Q-PtY" secondAttribute="bottom" constant="10" id="ChZ-PL-DaB"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">

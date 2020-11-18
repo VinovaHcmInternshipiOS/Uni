@@ -42,14 +42,14 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mwb-sB-UJJ">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="1492"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="App  Home" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="agw-r8-1O9">
-                                    <rect key="frame" x="32" y="35" width="107.5" height="93.5"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="App  Home" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="agw-r8-1O9">
+                                    <rect key="frame" x="32" y="35" width="107.5" height="94"/>
                                     <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="40"/>
                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gVG-Og-EVU">
-                                    <rect key="frame" x="32" y="173.5" width="350" height="97"/>
+                                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gVG-Og-EVU">
+                                    <rect key="frame" x="32" y="174" width="350" height="97"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="rdt-OV-IMR">
                                             <rect key="frame" x="35" y="14.5" width="66" height="65"/>
@@ -129,14 +129,14 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                 </view>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Features" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nnq-1v-kRU">
-                                    <rect key="frame" x="32" y="299.5" width="62" height="19"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Features" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nnq-1v-kRU">
+                                    <rect key="frame" x="32" y="300" width="62" height="19"/>
                                     <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="16"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="23" translatesAutoresizingMaskIntoConstraints="NO" id="Fu0-HR-OPE">
-                                    <rect key="frame" x="32" y="331.5" width="350" height="71"/>
+                                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" distribution="fillProportionally" spacing="23" translatesAutoresizingMaskIntoConstraints="NO" id="Fu0-HR-OPE">
+                                    <rect key="frame" x="32" y="332" width="350" height="71"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MnW-If-RAY">
                                             <rect key="frame" x="0.0" y="0.0" width="70.5" height="71"/>
@@ -266,14 +266,14 @@
                                         </button>
                                     </subviews>
                                 </stackView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Happenning" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NDO-QS-Kd5">
-                                    <rect key="frame" x="32" y="432.5" width="87.5" height="19"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Happenning" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NDO-QS-Kd5">
+                                    <rect key="frame" x="32" y="433" width="87.5" height="19"/>
                                     <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="16"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="s5J-Lb-Vi3">
-                                    <rect key="frame" x="30" y="461.5" width="354" height="234"/>
+                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="s5J-Lb-Vi3">
+                                    <rect key="frame" x="30" y="462" width="354" height="234"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="234" id="flH-L7-tLL"/>
@@ -285,17 +285,17 @@
                                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </collectionViewFlowLayout>
                                 </collectionView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coming Soon" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F2t-ME-TTa">
-                                    <rect key="frame" x="32" y="717.5" width="98.5" height="19"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Coming Soon" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F2t-ME-TTa">
+                                    <rect key="frame" x="32" y="718" width="98.5" height="19"/>
                                     <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="16"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="SI5-hK-jyF">
-                                    <rect key="frame" x="146" y="667" width="122.5" height="27.5"/>
+                                <pageControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="SI5-hK-jyF">
+                                    <rect key="frame" x="146" y="667.5" width="122.5" height="27.5"/>
                                 </pageControl>
-                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="ZIx-kM-VSU">
-                                    <rect key="frame" x="32" y="747.5" width="350" height="270"/>
+                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="ZIx-kM-VSU">
+                                    <rect key="frame" x="32" y="748" width="350" height="270"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="270" id="zWq-RO-0Y8"/>
@@ -307,14 +307,14 @@
                                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </collectionViewFlowLayout>
                                 </collectionView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ended" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W0N-8K-OqL">
-                                    <rect key="frame" x="32" y="1039.5" width="46.5" height="19"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Ended" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W0N-8K-OqL">
+                                    <rect key="frame" x="32" y="1040" width="46.5" height="19"/>
                                     <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="16"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="d3G-X6-EmU">
-                                    <rect key="frame" x="32" y="1069.5" width="350" height="270"/>
+                                    <rect key="frame" x="32" y="1172" width="350" height="270"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="270" id="jMJ-O5-kVD"/>
@@ -360,6 +360,7 @@
                                 <constraint firstAttribute="trailing" secondItem="d3G-X6-EmU" secondAttribute="trailing" constant="32" id="tdJ-6v-akd"/>
                                 <constraint firstItem="nnq-1v-kRU" firstAttribute="top" secondItem="gVG-Og-EVU" secondAttribute="bottom" constant="29" id="uYt-dt-sZF"/>
                                 <constraint firstItem="Fu0-HR-OPE" firstAttribute="top" secondItem="nnq-1v-kRU" secondAttribute="bottom" constant="13" id="v6U-Gx-VGm"/>
+                                <constraint firstAttribute="bottom" secondItem="d3G-X6-EmU" secondAttribute="bottom" constant="50" id="wWO-z4-0rC"/>
                                 <constraint firstItem="nnq-1v-kRU" firstAttribute="leading" secondItem="Mwb-sB-UJJ" secondAttribute="leading" constant="32" id="xaA-9x-bz7"/>
                             </constraints>
                         </view>
