@@ -11,6 +11,7 @@
 import UIKit
 
 class AppHomeViewController:BaseViewController{
+    @IBOutlet weak var viewProfile: UIView!
     @IBOutlet weak var imgUser: UIImageView!
     @IBOutlet weak var lbName: UILabel!
     @IBOutlet weak var lbID: UILabel!
@@ -50,10 +51,18 @@ class AppHomeViewController:BaseViewController{
         presenter.getInfoEventHappening()
         presenter.getInfoEventComingSoon()
         presenter.getInfoEventEnded()
-        
+        movetoProfile()
         
         _ = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(moveToNextPage), userInfo: nil, repeats: true)
         
+    }
+    func movetoProfile(){
+        let gesture:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(profileVC))
+        viewProfile.addGestureRecognizer(gesture)
+    }
+    @objc func profileVC(){
+        let profileUser = ProfileViewController(presenter: ProfilePresenter())
+        self.navigationController?.pushViewController(profileUser, animated: true)
     }
     @objc func moveToNextPage (){
             
@@ -121,7 +130,7 @@ extension AppHomeViewController: UICollectionViewDelegate,UICollectionViewDataSo
         if(collectionView == collectionHappenning) {
             return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
         } else {
-            return CGSize(width: collectionView.frame.width / 2 , height: collectionView.frame.height)
+            return CGSize(width: 183 , height: 297)
         }
     }
     
@@ -174,13 +183,9 @@ extension AppHomeViewController: UICollectionViewDelegate,UICollectionViewDataSo
         }
         else if collectionView == collectionComingSoon {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ComingSoonEndedCellAppHome", for: indexPath) as? ComingSoonEndedCellAppHome else {return UICollectionViewCell()}
-                let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "dd-MM-yyyy"
-                let dateTime = dateFormatter.date(from: (listEventComingSoon[indexPath.row]?.date)!)
-                dateFormatter.dateFormat = "dd MMM"
-                cell.timeEvent.text = "\(dateFormatter.string(from: dateTime!))\n\(listEventComingSoon[indexPath.row]?.checkin ?? "")-\(listEventComingSoon[indexPath.row]?.checkout ?? "")"
-                cell.titleEvent.text = listEventComingSoon[indexPath.row]?.title
-                //cell.setData(event: listEventComingSoon[indexPath.row])
+
+                cell.timeEvent.text = "\(getFormattedDate(date: listEventComingSoon[indexPath.row]!.date ?? ""))\n\(formatterTime(time: listEventComingSoon[indexPath.row]!.checkin ?? ""))-\(formatterTime(time: listEventComingSoon[indexPath.row]!.checkout ?? ""))"
+            cell.titleEvent.text = listEventComingSoon[indexPath.row]?.title
                 if let profileURL = listEventComingSoon[indexPath.row]?.urlImage {
                     cell.imageView.loadImage(urlString: profileURL)
                 }
@@ -188,11 +193,8 @@ extension AppHomeViewController: UICollectionViewDelegate,UICollectionViewDataSo
         }
         else {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ComingSoonEndedCellAppHome", for: indexPath) as? ComingSoonEndedCellAppHome else {return UICollectionViewCell()}
-                let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "dd-MM-yyyy"
-                let dateTime = dateFormatter.date(from: (listEventEnded[indexPath.row]?.date)!)
-                dateFormatter.dateFormat = "dd MMM"
-                cell.timeEvent.text = "\(dateFormatter.string(from: dateTime!))\n\(listEventEnded[indexPath.row]?.checkin ?? "")-\(listEventEnded[indexPath.row]?.checkout ?? "")"
+                cell.timeEvent.text = "\(getFormattedDate(date: listEventEnded[indexPath.row]!.date ?? ""))\n\(formatterTime(time: listEventEnded[indexPath.row]!.checkin ?? ""))-\(formatterTime(time: listEventEnded[indexPath.row]!.checkout ?? ""))"
+
                 cell.titleEvent.text = listEventEnded[indexPath.row]?.title
                 //cell.setData(event: listEventEnded[indexPath.row])
                 if let profileURL = listEventEnded[indexPath.row]?.urlImage {
@@ -273,10 +275,8 @@ extension AppHomeViewController: AppHomeViewProtocol {
             lbName.text = profile.name
             lbID.text = profile.code
             lbFaculty.text = profile.faculty
-            imgUser.loadImage(urlString: profile.urlImage!)
+            imgUser.loadImage(urlString: profile.urlImage!) 
         } else { return }
-        
-        
     }
     
     func fetchProfileFailed() {

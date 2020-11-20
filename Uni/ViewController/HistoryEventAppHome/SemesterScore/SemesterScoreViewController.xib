@@ -4,7 +4,6 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -32,10 +31,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gJU-bg-is3">
-                    <rect key="frame" x="0.0" y="44" width="414" height="718.5"/>
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="796.5"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fCI-9Z-NOx">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="906"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="979"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Semester -" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lrN-AN-4Wg">
                                     <rect key="frame" x="32" y="82" width="197.5" height="47"/>
@@ -50,7 +49,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qDe-if-nH3">
-                                    <rect key="frame" x="22" y="139" width="370" height="747"/>
+                                    <rect key="frame" x="22" y="212" width="370" height="747"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="747" id="Ppo-Tp-n6G"/>
@@ -62,7 +61,7 @@
                                 <constraint firstAttribute="trailing" secondItem="qDe-if-nH3" secondAttribute="trailing" constant="22" id="7eu-mc-HuX"/>
                                 <constraint firstItem="qDe-if-nH3" firstAttribute="leading" secondItem="fCI-9Z-NOx" secondAttribute="leading" constant="22" id="BeB-jw-QOG"/>
                                 <constraint firstItem="lrN-AN-4Wg" firstAttribute="leading" secondItem="fCI-9Z-NOx" secondAttribute="leading" constant="32" id="ItT-iD-ydO"/>
-                                <constraint firstItem="qDe-if-nH3" firstAttribute="top" secondItem="lrN-AN-4Wg" secondAttribute="bottom" constant="10" id="Mnn-Hu-M7N"/>
+                                <constraint firstItem="qDe-if-nH3" firstAttribute="top" secondItem="lrN-AN-4Wg" secondAttribute="bottom" constant="83" id="Mnn-Hu-M7N"/>
                                 <constraint firstAttribute="bottom" secondItem="qDe-if-nH3" secondAttribute="bottom" constant="20" id="fUw-p2-udq"/>
                                 <constraint firstItem="pmk-o4-VzM" firstAttribute="top" secondItem="fCI-9Z-NOx" secondAttribute="top" constant="35" id="pTi-dY-blh"/>
                                 <constraint firstItem="lrN-AN-4Wg" firstAttribute="top" secondItem="pmk-o4-VzM" secondAttribute="bottom" id="pwh-U6-ShV"/>
@@ -78,7 +77,7 @@
                     </constraints>
                 </scrollView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UVo-QI-3ub">
-                    <rect key="frame" x="32" y="772.5" width="350" height="89.5"/>
+                    <rect key="frame" x="32" y="806.5" width="350" height="89.5"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Event: --" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JKh-bH-d2V">
                             <rect key="frame" x="22" y="13" width="306" height="21"/>
@@ -118,18 +117,17 @@
                     </userDefinedRuntimeAttributes>
                 </view>
             </subviews>
-            <viewLayoutGuide key="safeArea" id="DUf-8o-0Y9"/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="DUf-8o-0Y9" firstAttribute="trailing" secondItem="UVo-QI-3ub" secondAttribute="trailing" constant="32" id="CT6-R7-dzl"/>
+                <constraint firstAttribute="trailing" secondItem="UVo-QI-3ub" secondAttribute="trailing" constant="32" id="CT6-R7-dzl"/>
                 <constraint firstItem="fCI-9Z-NOx" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="EV2-8B-Jcq"/>
-                <constraint firstItem="DUf-8o-0Y9" firstAttribute="trailing" secondItem="gJU-bg-is3" secondAttribute="trailing" id="M87-uc-52T"/>
-                <constraint firstItem="UVo-QI-3ub" firstAttribute="leading" secondItem="DUf-8o-0Y9" secondAttribute="leading" constant="32" id="T3n-CY-7m6"/>
+                <constraint firstAttribute="trailing" secondItem="gJU-bg-is3" secondAttribute="trailing" id="M87-uc-52T"/>
+                <constraint firstItem="UVo-QI-3ub" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="32" id="T3n-CY-7m6"/>
                 <constraint firstItem="UVo-QI-3ub" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="1:10" id="T7t-eR-3vs"/>
-                <constraint firstItem="gJU-bg-is3" firstAttribute="top" secondItem="DUf-8o-0Y9" secondAttribute="top" id="hQE-yb-Vk8"/>
+                <constraint firstItem="gJU-bg-is3" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="hQE-yb-Vk8"/>
                 <constraint firstItem="fCI-9Z-NOx" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" priority="250" id="hQK-d3-kfe"/>
-                <constraint firstItem="DUf-8o-0Y9" firstAttribute="bottom" secondItem="UVo-QI-3ub" secondAttribute="bottom" id="iZe-IJ-Em4"/>
-                <constraint firstItem="gJU-bg-is3" firstAttribute="leading" secondItem="DUf-8o-0Y9" secondAttribute="leading" id="q4L-At-xOA"/>
+                <constraint firstAttribute="bottom" secondItem="UVo-QI-3ub" secondAttribute="bottom" id="iZe-IJ-Em4"/>
+                <constraint firstItem="gJU-bg-is3" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="q4L-At-xOA"/>
                 <constraint firstItem="UVo-QI-3ub" firstAttribute="top" secondItem="gJU-bg-is3" secondAttribute="bottom" constant="10" id="tVl-aB-OdW"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

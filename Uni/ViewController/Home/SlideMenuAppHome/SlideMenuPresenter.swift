@@ -17,18 +17,25 @@ import UIKit
 protocol SlideMenuViewProtocol: class {
     func signOutSuccess()
     func signOutFailed()
+    func checkAuthSuccess(role:String)
+    func checkAuthFailed()
 }
 
 // MARK: Presenter -
 protocol SlideMenuPresenterProtocol: class {
 	var view: SlideMenuViewProtocol? { get set }
     func signOut()
+    func checkAuth(completion: @escaping(String)->Void)
 }
 
 class SlideMenuPresenter: SlideMenuPresenterProtocol {
 
-    weak var view: SlideMenuViewProtocol?
+    
 
+    weak var view: SlideMenuViewProtocol?
+    var ref = Database.database().reference()
+    var databaseHandle = DatabaseHandle()
+    var user = Auth.auth().currentUser
     func signOut() {
         do {
             try Auth.auth().signOut()
@@ -38,4 +45,19 @@ class SlideMenuPresenter: SlideMenuPresenterProtocol {
             view?.signOutFailed()
         }
     }
+    
+    func checkAuth(completion: @escaping (String) -> Void) {
+        let placeRef = self.ref.child("Users").child("\(user!.uid)").child("Auth")
+        placeRef.observe(.value, with: { [self] snapshot in
+            if(snapshot.exists())
+            {
+                let placeDict = snapshot.value as! [String: Any]
+                let role = placeDict["Role"] as! String
+                completion(role)
+                view?.checkAuthSuccess(role: role)
+            }
+            
+        })
+    }
+    
 }

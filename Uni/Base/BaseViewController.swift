@@ -171,6 +171,14 @@ class BaseViewController: UIViewController,UIViewControllerTransitioningDelegate
 }
 
 extension BaseViewController: SlideMenuViewProtocol {
+    func checkAuthSuccess(role: String) {
+        print(role,"Change")
+    }
+    
+    func checkAuthFailed() {
+        print("Check Auth Failed")
+    }
+    
     func signOutSuccess() {
         print("OK")
         UserDefaults.standard.set(true, forKey: "status")

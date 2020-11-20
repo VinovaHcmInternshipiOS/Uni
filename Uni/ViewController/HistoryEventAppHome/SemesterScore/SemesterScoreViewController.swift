@@ -37,7 +37,6 @@ class SemesterScoreViewController: UIViewController {
         super.viewDidLoad()
         presenter.view = self
         for i in 0..<dataSemester.count {
-            print((dataSemester[i]?.Key)!)
            presenter.fetchHistoryEvent(keyEvent: (dataSemester[i]?.Key)!)
         }
         

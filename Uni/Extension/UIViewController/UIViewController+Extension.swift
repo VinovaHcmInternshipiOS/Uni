@@ -99,7 +99,7 @@ extension UIViewController {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm"
         let date = dateFormatter.date(from: time)
-        dateFormatter.dateFormat = "h:mm a"
+        dateFormatter.dateFormat = "h:mma"
         return dateFormatter.string(from: date!)
     }
     

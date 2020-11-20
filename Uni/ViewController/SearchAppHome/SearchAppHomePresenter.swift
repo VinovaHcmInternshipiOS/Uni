@@ -51,7 +51,7 @@ class SearchAppHomePresenter: SearchAppHomePresenterProtocol {
                             let checkout = dict["Checkout"] as! String
                             let key = dict["Key"] as! String
                             let type = dict["Type"] as! String
-                            let urrlImage = dict["Image"] as! String
+                            let urrlImage = dict["ImagePortal"] as! String
                             
                             let request = Event(title: title, key: key, date: date, checkout: checkout, checkin: checkin, type: type, urlImage: urrlImage)
                             

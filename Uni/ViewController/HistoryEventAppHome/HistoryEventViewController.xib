@@ -3,7 +3,6 @@
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -31,7 +30,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B0z-NO-puo">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="886"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your History" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2ag-fV-oDM">
                                     <rect key="frame" x="32" y="35" width="119.5" height="85"/>
@@ -128,7 +127,7 @@
                                 <constraint firstItem="hxm-FK-VNF" firstAttribute="top" secondItem="2ag-fV-oDM" secondAttribute="bottom" constant="35" id="04A-eH-ugB"/>
                                 <constraint firstAttribute="trailing" secondItem="dxc-9S-e0R" secondAttribute="trailing" constant="22" id="1e4-pr-jdQ"/>
                                 <constraint firstItem="2ag-fV-oDM" firstAttribute="top" secondItem="B0z-NO-puo" secondAttribute="top" constant="35" id="35m-kt-ko7"/>
-                                <constraint firstAttribute="bottom" secondItem="dxc-9S-e0R" secondAttribute="bottom" constant="10" id="4Mk-fb-9aO"/>
+                                <constraint firstAttribute="bottom" secondItem="dxc-9S-e0R" secondAttribute="bottom" id="4Mk-fb-9aO"/>
                                 <constraint firstItem="UFg-jZ-FU5" firstAttribute="top" secondItem="hxm-FK-VNF" secondAttribute="top" id="7LE-nG-UEb"/>
                                 <constraint firstItem="dxc-9S-e0R" firstAttribute="top" secondItem="hxm-FK-VNF" secondAttribute="bottom" constant="20" id="7go-cp-img"/>
                                 <constraint firstItem="UFg-jZ-FU5" firstAttribute="leading" secondItem="hxm-FK-VNF" secondAttribute="trailing" constant="50" id="Cbn-dR-869"/>
@@ -148,15 +147,14 @@
                     </constraints>
                 </scrollView>
             </subviews>
-            <viewLayoutGuide key="safeArea" id="kYN-1h-FeO"/>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="h0I-yG-8dD" firstAttribute="leading" secondItem="kYN-1h-FeO" secondAttribute="leading" id="F7d-L1-Rgy"/>
-                <constraint firstItem="h0I-yG-8dD" firstAttribute="top" secondItem="kYN-1h-FeO" secondAttribute="top" id="MPc-kE-Fd9"/>
+                <constraint firstItem="h0I-yG-8dD" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="F7d-L1-Rgy"/>
+                <constraint firstItem="h0I-yG-8dD" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="MPc-kE-Fd9"/>
                 <constraint firstItem="B0z-NO-puo" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" priority="250" id="OZH-Cg-wV7"/>
                 <constraint firstItem="B0z-NO-puo" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="oJg-37-vDv"/>
-                <constraint firstItem="kYN-1h-FeO" firstAttribute="bottom" secondItem="h0I-yG-8dD" secondAttribute="bottom" id="r0g-Dw-BWt"/>
-                <constraint firstItem="kYN-1h-FeO" firstAttribute="trailing" secondItem="h0I-yG-8dD" secondAttribute="trailing" id="r1w-wN-1GN"/>
+                <constraint firstAttribute="bottom" secondItem="h0I-yG-8dD" secondAttribute="bottom" id="r0g-Dw-BWt"/>
+                <constraint firstAttribute="trailing" secondItem="h0I-yG-8dD" secondAttribute="trailing" id="r1w-wN-1GN"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="-46.376811594202906" y="75"/>

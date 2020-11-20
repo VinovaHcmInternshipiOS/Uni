@@ -13,6 +13,16 @@
 		F50D63A52554EDCC007509D0 /* SearchAppHomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50D63A22554EDCB007509D0 /* SearchAppHomePresenter.swift */; };
 		F50D63A62554EDCC007509D0 /* SearchAppHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50D63A32554EDCB007509D0 /* SearchAppHomeViewController.swift */; };
 		F50D63A72554EDCC007509D0 /* SearchAppHomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F50D63A42554EDCB007509D0 /* SearchAppHomeViewController.xib */; };
+		F512603C25664A6F00B517DC /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F512603925664A6F00B517DC /* ProfilePresenter.swift */; };
+		F512603D25664A6F00B517DC /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F512603A25664A6F00B517DC /* ProfileViewController.swift */; };
+		F512603E25664A6F00B517DC /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F512603B25664A6F00B517DC /* ProfileViewController.xib */; };
+		F5126042256652C200B517DC /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5126041256652C200B517DC /* Profile.swift */; };
+		F51260482566560C00B517DC /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51260462566560C00B517DC /* ProfileTableViewCell.swift */; };
+		F51260492566560C00B517DC /* ProfileTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F51260472566560C00B517DC /* ProfileTableViewCell.xib */; };
+		F51260672566783100B517DC /* CreateEventPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51260642566783000B517DC /* CreateEventPresenter.swift */; };
+		F51260682566783100B517DC /* CreateEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51260652566783000B517DC /* CreateEventViewController.swift */; };
+		F51260692566783100B517DC /* CreateEventViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F51260662566783000B517DC /* CreateEventViewController.xib */; };
+		F56DFE8B25676EE20080A31F /* ADEEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F56DFE8A25676EE20080A31F /* ADEEvent.swift */; };
 		F57821CA255E857000222FCA /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57821C9255E857000222FCA /* Event.swift */; };
 		F582EA6B254FEE58002BF86F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F582EA6A254FEE58002BF86F /* AppDelegate.swift */; };
 		F582EA6D254FEE58002BF86F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F582EA6C254FEE58002BF86F /* SceneDelegate.swift */; };
@@ -99,6 +109,7 @@
 		F5BEFDF1255A3B6C005A1A2E /* BarcodeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5BEFDEE255A3B6C005A1A2E /* BarcodeViewController.xib */; };
 		F5CC24F22563D028003EF2F1 /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CC24F12563D028003EF2F1 /* History.swift */; };
 		F5CC24F5256415DA003EF2F1 /* DetailHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CC24F4256415DA003EF2F1 /* DetailHistory.swift */; };
+		F5CC24F92565044D003EF2F1 /* RankEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CC24F82565044D003EF2F1 /* RankEvent.swift */; };
 		F5FAAF4625621AA50036EA95 /* HandleError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5FAAF4525621AA50036EA95 /* HandleError.swift */; };
 		F5FAAF4B256254AB0036EA95 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5FAAF4A256254AB0036EA95 /* UIImageView+Extension.swift */; };
 		F5FAAF4F256287BA0036EA95 /* DetailEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5FAAF4E256287BA0036EA95 /* DetailEvent.swift */; };
@@ -113,6 +124,16 @@
 		F50D63A22554EDCB007509D0 /* SearchAppHomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAppHomePresenter.swift; sourceTree = "<group>"; };
 		F50D63A32554EDCB007509D0 /* SearchAppHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAppHomeViewController.swift; sourceTree = "<group>"; };
 		F50D63A42554EDCB007509D0 /* SearchAppHomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchAppHomeViewController.xib; sourceTree = "<group>"; };
+		F512603925664A6F00B517DC /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
+		F512603A25664A6F00B517DC /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		F512603B25664A6F00B517DC /* ProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
+		F5126041256652C200B517DC /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		F51260462566560C00B517DC /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
+		F51260472566560C00B517DC /* ProfileTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileTableViewCell.xib; sourceTree = "<group>"; };
+		F51260642566783000B517DC /* CreateEventPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventPresenter.swift; sourceTree = "<group>"; };
+		F51260652566783000B517DC /* CreateEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventViewController.swift; sourceTree = "<group>"; };
+		F51260662566783000B517DC /* CreateEventViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateEventViewController.xib; sourceTree = "<group>"; };
+		F56DFE8A25676EE20080A31F /* ADEEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ADEEvent.swift; sourceTree = "<group>"; };
 		F57821C9255E857000222FCA /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		F582EA67254FEE58002BF86F /* Uni.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Uni.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F582EA6A254FEE58002BF86F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -201,6 +222,7 @@
 		F5BEFDEE255A3B6C005A1A2E /* BarcodeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BarcodeViewController.xib; sourceTree = "<group>"; };
 		F5CC24F12563D028003EF2F1 /* History.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
 		F5CC24F4256415DA003EF2F1 /* DetailHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailHistory.swift; sourceTree = "<group>"; };
+		F5CC24F82565044D003EF2F1 /* RankEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankEvent.swift; sourceTree = "<group>"; };
 		F5FAAF4525621AA50036EA95 /* HandleError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandleError.swift; sourceTree = "<group>"; };
 		F5FAAF4A256254AB0036EA95 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		F5FAAF4E256287BA0036EA95 /* DetailEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailEvent.swift; sourceTree = "<group>"; };
@@ -252,9 +274,62 @@
 				F5A04E22255500C700DB396C /* SearchEventLabelCell */,
 				F50D63A22554EDCB007509D0 /* SearchAppHomePresenter.swift */,
 				F50D63A32554EDCB007509D0 /* SearchAppHomeViewController.swift */,
-				F50D63A42554EDCB007509D0 /* SearchAppHomeViewController.xib */,
 			);
 			path = SearchAppHome;
+			sourceTree = "<group>";
+		};
+		F512603825664A3C00B517DC /* ProfileAppHome */ = {
+			isa = PBXGroup;
+			children = (
+				F5126045256655E600B517DC /* ProfileCell */,
+				F512603925664A6F00B517DC /* ProfilePresenter.swift */,
+				F512603A25664A6F00B517DC /* ProfileViewController.swift */,
+				F512603B25664A6F00B517DC /* ProfileViewController.xib */,
+			);
+			path = ProfileAppHome;
+			sourceTree = "<group>";
+		};
+		F5126040256652B600B517DC /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				F5126041256652C200B517DC /* Profile.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		F5126045256655E600B517DC /* ProfileCell */ = {
+			isa = PBXGroup;
+			children = (
+				F51260462566560C00B517DC /* ProfileTableViewCell.swift */,
+				F51260472566560C00B517DC /* ProfileTableViewCell.xib */,
+			);
+			path = ProfileCell;
+			sourceTree = "<group>";
+		};
+		F5126062256677FF00B517DC /* ADEEvent */ = {
+			isa = PBXGroup;
+			children = (
+				F51260632566781E00B517DC /* CreateEvent */,
+			);
+			path = ADEEvent;
+			sourceTree = "<group>";
+		};
+		F51260632566781E00B517DC /* CreateEvent */ = {
+			isa = PBXGroup;
+			children = (
+				F51260642566783000B517DC /* CreateEventPresenter.swift */,
+				F51260652566783000B517DC /* CreateEventViewController.swift */,
+				F51260662566783000B517DC /* CreateEventViewController.xib */,
+			);
+			path = CreateEvent;
+			sourceTree = "<group>";
+		};
+		F56DFE8925676EC70080A31F /* ADEEvent */ = {
+			isa = PBXGroup;
+			children = (
+				F56DFE8A25676EE20080A31F /* ADEEvent.swift */,
+			);
+			path = ADEEvent;
 			sourceTree = "<group>";
 		};
 		F582EA5E254FEE58002BF86F = {
@@ -295,6 +370,8 @@
 		F582EA7F254FEE75002BF86F /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				F5126062256677FF00B517DC /* ADEEvent */,
+				F512603825664A3C00B517DC /* ProfileAppHome */,
 				F5BEFDE8255A3B12005A1A2E /* BarcodeAppHome */,
 				F5A04E3A2555338B00DB396C /* HistoryEventAppHome */,
 				F50D63A02554ED71007509D0 /* SearchAppHome */,
@@ -450,6 +527,7 @@
 		F59037EE2553E913007FE7C3 /* RankAppHome */ = {
 			isa = PBXGroup;
 			children = (
+				F50D63A42554EDCB007509D0 /* SearchAppHomeViewController.xib */,
 				F50D6398255452C7007509D0 /* RankCell */,
 				F59221CB2553FD8C002F3F50 /* RankPresenter.swift */,
 				F59221CC2553FD8C002F3F50 /* RankViewController.swift */,
@@ -501,6 +579,9 @@
 		F593CCAA255E401F005D4F15 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				F56DFE8925676EC70080A31F /* ADEEvent */,
+				F5126040256652B600B517DC /* Profile */,
+				F5CC24F72565043D003EF2F1 /* RankEvent */,
 				F5CC24F02563D012003EF2F1 /* HistoryEvent */,
 				F5FAAF4D256287480036EA95 /* DetailEvent */,
 				F593CCAF255E5E82005D4F15 /* HomeApp */,
@@ -667,6 +748,14 @@
 			path = HistoryEvent;
 			sourceTree = "<group>";
 		};
+		F5CC24F72565043D003EF2F1 /* RankEvent */ = {
+			isa = PBXGroup;
+			children = (
+				F5CC24F82565044D003EF2F1 /* RankEvent.swift */,
+			);
+			path = RankEvent;
+			sourceTree = "<group>";
+		};
 		F5FAAF4425621A830036EA95 /* HandleErrorViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -753,6 +842,7 @@
 				F58527B125510B3700F888E8 /* HappenningCellAppHome.xib in Resources */,
 				F582EAD825503B11002BF86F /* ForgotPasswordViewController.xib in Resources */,
 				F593CBF9255BEDB1005D4F15 /* GoogleService-Info.plist in Resources */,
+				F51260492566560C00B517DC /* ProfileTableViewCell.xib in Resources */,
 				F582EAB7254FF1D1002BF86F /* Raleway-ExtraBoldItalic.ttf in Resources */,
 				F5B1A6CA255939BA00CC0C1A /* SemesterCell.xib in Resources */,
 				F582EAB8254FF1D1002BF86F /* Raleway-Regular.ttf in Resources */,
@@ -764,9 +854,11 @@
 				F582EAE225505693002BF86F /* AppHomeViewController.xib in Resources */,
 				F582EAC1254FF1D1002BF86F /* Raleway-Bold.ttf in Resources */,
 				F50D63A72554EDCC007509D0 /* SearchAppHomeViewController.xib in Resources */,
+				F512603E25664A6F00B517DC /* ProfileViewController.xib in Resources */,
 				F5BEFDF1255A3B6C005A1A2E /* BarcodeViewController.xib in Resources */,
 				F582EAB0254FF1D1002BF86F /* Raleway-BoldItalic.ttf in Resources */,
 				F582EABD254FF1D1002BF86F /* Raleway-BlackItalic.ttf in Resources */,
+				F51260692566783100B517DC /* CreateEventViewController.xib in Resources */,
 				F582EAC4254FF1D1002BF86F /* README.txt in Resources */,
 				F582EAB6254FF1D1002BF86F /* Raleway-ExtraBold.ttf in Resources */,
 				F582EA74254FEE5E002BF86F /* Assets.xcassets in Resources */,
@@ -848,8 +940,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				F593CC5F255CD437005D4F15 /* NetworkState.swift in Sources */,
+				F56DFE8B25676EE20080A31F /* ADEEvent.swift in Sources */,
 				F58527B025510B3700F888E8 /* HappenningCellAppHome.swift in Sources */,
 				F582EA8B254FEEB6002BF86F /* LoginPresenter.swift in Sources */,
+				F51260482566560C00B517DC /* ProfileTableViewCell.swift in Sources */,
 				F5FAAF4F256287BA0036EA95 /* DetailEvent.swift in Sources */,
 				F593CBF3255BE863005D4F15 /* UIButton+Extension.swift in Sources */,
 				F5FAAF4B256254AB0036EA95 /* UIImageView+Extension.swift in Sources */,
@@ -857,6 +951,7 @@
 				F5CC24F5256415DA003EF2F1 /* DetailHistory.swift in Sources */,
 				F593CCA7255E2328005D4F15 /* BaseViewController.swift in Sources */,
 				F582EAE025505693002BF86F /* AppHomePresenter.swift in Sources */,
+				F512603D25664A6F00B517DC /* ProfileViewController.swift in Sources */,
 				F5A04E3F255533B800DB396C /* HistoryEventViewController.swift in Sources */,
 				F5A04E332555054200DB396C /* SearchResultCell.swift in Sources */,
 				F5FAAF4625621AA50036EA95 /* HandleError.swift in Sources */,
@@ -876,6 +971,8 @@
 				F5A04E2D255502B000DB396C /* SearchEventLabelCell.swift in Sources */,
 				F582EAD625503B11002BF86F /* ForgotPasswordPresenter.swift in Sources */,
 				F5A2AF01255A768B00502E0F /* SlideInTransition.swift in Sources */,
+				F51260682566783100B517DC /* CreateEventViewController.swift in Sources */,
+				F5126042256652C200B517DC /* Profile.swift in Sources */,
 				F5B1A698255553F300CC0C1A /* HeaderHistory.swift in Sources */,
 				F5B1A6A12559157000CC0C1A /* SemesterScoreViewController.swift in Sources */,
 				F5B1A6B02559224200CC0C1A /* AppIcon.swift in Sources */,
@@ -883,6 +980,7 @@
 				F593CC9C255D36DB005D4F15 /* UIAlertController.swift in Sources */,
 				F5B1A6C9255939BA00CC0C1A /* SemesterCell.swift in Sources */,
 				F5BEFDEF255A3B6C005A1A2E /* BarcodePresenter.swift in Sources */,
+				F5CC24F92565044D003EF2F1 /* RankEvent.swift in Sources */,
 				F5A2AEFB255A74C400502E0F /* SlideMenuPresenter.swift in Sources */,
 				F582EAE125505693002BF86F /* AppHomeViewController.swift in Sources */,
 				F5B1A69225553C9300CC0C1A /* HistoryCell.swift in Sources */,
@@ -890,7 +988,9 @@
 				F5A2AF07255A7C7800502E0F /* SlideMenuCell.swift in Sources */,
 				F582EAD725503B11002BF86F /* ForgotPasswordViewController.swift in Sources */,
 				F582EA8C254FEEB6002BF86F /* LoginViewController.swift in Sources */,
+				F512603C25664A6F00B517DC /* ProfilePresenter.swift in Sources */,
 				F5CC24F22563D028003EF2F1 /* History.swift in Sources */,
+				F51260672566783100B517DC /* CreateEventPresenter.swift in Sources */,
 				F5B1A6BD255930A900CC0C1A /* UIView+Extension.swift in Sources */,
 				F582EA6D254FEE58002BF86F /* SceneDelegate.swift in Sources */,
 				F5B1A6A02559157000CC0C1A /* SemesterScorePresenter.swift in Sources */,
@@ -953,7 +1053,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1008,7 +1108,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -1027,6 +1127,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D85ZD7VL82;
 				INFOPLIST_FILE = Uni/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1047,6 +1148,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D85ZD7VL82;
 				INFOPLIST_FILE = Uni/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

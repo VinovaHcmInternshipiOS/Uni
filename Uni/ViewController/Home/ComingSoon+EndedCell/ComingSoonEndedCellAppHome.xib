@@ -16,81 +16,18 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="ComingSoonEndedCellAppHome" customModule="Uni" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="180" height="280"/>
+            <rect key="frame" x="0.0" y="0.0" width="183" height="321"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="180" height="280"/>
+                <rect key="frame" x="0.0" y="0.0" width="183" height="321"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4HV-Pd-cL7">
-                        <rect key="frame" x="0.0" y="0.0" width="180" height="280"/>
+                        <rect key="frame" x="0.0" y="0.0" width="183" height="321"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gwX-5Q-PtY">
-                                <rect key="frame" x="5" y="10" width="170" height="260"/>
-                                <subviews>
-                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hrT-m8-npY">
-                                        <rect key="frame" x="0.0" y="0.0" width="170" height="260"/>
-                                        <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icImageDefault" translatesAutoresizingMaskIntoConstraints="NO" id="z0X-ld-dvh">
-                                                <rect key="frame" x="0.0" y="0.0" width="170" height="179"/>
-                                                <color key="tintColor" name="5B5B5B"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" secondItem="z0X-ld-dvh" secondAttribute="height" multiplier="75:79" id="Yt3-Tf-faO"/>
-                                                </constraints>
-                                            </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Origami Crane Wedding Planners." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c4t-l6-QJ9">
-                                                <rect key="frame" x="13" y="179" width="144" height="33"/>
-                                                <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="14"/>
-                                                <color key="textColor" red="0.98039215690000003" green="0.70196078429999997" blue="0.1647058824" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aVH-i4-psv">
-                                                <rect key="frame" x="13" y="219" width="94.5" height="28"/>
-                                                <string key="text">15 Aug
-7:00PM-10:00PM</string>
-                                                <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="12"/>
-                                                <color key="textColor" red="0.78823529410000004" green="0.7725490196" blue="0.7725490196" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstItem="z0X-ld-dvh" firstAttribute="top" secondItem="hrT-m8-npY" secondAttribute="top" id="8aX-p0-Z1z"/>
-                                            <constraint firstItem="c4t-l6-QJ9" firstAttribute="top" secondItem="z0X-ld-dvh" secondAttribute="bottom" id="Lkt-dx-I9C"/>
-                                            <constraint firstItem="aVH-i4-psv" firstAttribute="top" secondItem="c4t-l6-QJ9" secondAttribute="bottom" constant="7" id="Tzz-ct-xrS"/>
-                                            <constraint firstItem="z0X-ld-dvh" firstAttribute="leading" secondItem="hrT-m8-npY" secondAttribute="leading" id="XKG-zF-f1h"/>
-                                            <constraint firstAttribute="trailing" secondItem="z0X-ld-dvh" secondAttribute="trailing" id="e6l-Z0-dHD"/>
-                                            <constraint firstAttribute="trailing" secondItem="c4t-l6-QJ9" secondAttribute="trailing" constant="13" id="fBL-ZF-mGH"/>
-                                            <constraint firstItem="c4t-l6-QJ9" firstAttribute="leading" secondItem="hrT-m8-npY" secondAttribute="leading" constant="13" id="wTB-kK-9gD"/>
-                                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="aVH-i4-psv" secondAttribute="bottom" id="yAp-2O-8nM"/>
-                                            <constraint firstItem="aVH-i4-psv" firstAttribute="leading" secondItem="hrT-m8-npY" secondAttribute="leading" constant="13" id="yS1-2t-oTI"/>
-                                        </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="20"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
-                                                <color key="value" red="0.0" green="0.0" blue="0.0" alpha="0.14999999999999999" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowBlur">
-                                                <real key="value" value="15"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
-                                                <real key="value" value="15"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
-                                                <size key="value" width="0.0" height="4"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </view>
-                                </subviews>
+                                <rect key="frame" x="10" y="10" width="163" height="291"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstItem="hrT-m8-npY" firstAttribute="top" secondItem="gwX-5Q-PtY" secondAttribute="top" id="EMJ-5A-cI0"/>
-                                    <constraint firstAttribute="trailing" secondItem="hrT-m8-npY" secondAttribute="trailing" id="Yeq-Pu-wpe"/>
-                                    <constraint firstAttribute="bottom" secondItem="hrT-m8-npY" secondAttribute="bottom" id="ugK-eX-Blp"/>
-                                    <constraint firstItem="hrT-m8-npY" firstAttribute="leading" secondItem="gwX-5Q-PtY" secondAttribute="leading" id="y3W-WX-k3F"/>
-                                </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                         <real key="value" value="20"/>
@@ -109,13 +46,65 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hrT-m8-npY">
+                                <rect key="frame" x="10" y="10" width="163" height="291"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icImageDefault" translatesAutoresizingMaskIntoConstraints="NO" id="z0X-ld-dvh">
+                                        <rect key="frame" x="0.0" y="0.0" width="163" height="169"/>
+                                        <color key="tintColor" name="5B5B5B"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="163" id="eoC-TM-nUi"/>
+                                            <constraint firstAttribute="height" constant="169" id="q9e-re-K9A"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Origami Crane Wedding Planners." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c4t-l6-QJ9">
+                                        <rect key="frame" x="13" y="182" width="137" height="56"/>
+                                        <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="14"/>
+                                        <color key="textColor" red="0.98039215690000003" green="0.70196078429999997" blue="0.1647058824" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aVH-i4-psv">
+                                        <rect key="frame" x="13" y="245" width="137" height="28"/>
+                                        <string key="text">15 Aug
+7:00PM-10:00PM</string>
+                                        <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="12"/>
+                                        <color key="textColor" red="0.78823529410000004" green="0.7725490196" blue="0.7725490196" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="z0X-ld-dvh" firstAttribute="top" secondItem="hrT-m8-npY" secondAttribute="top" id="8aX-p0-Z1z"/>
+                                    <constraint firstAttribute="bottom" secondItem="aVH-i4-psv" secondAttribute="bottom" constant="18" id="8sh-LL-JSw"/>
+                                    <constraint firstAttribute="trailing" secondItem="c4t-l6-QJ9" secondAttribute="trailing" constant="13" id="Lpg-Ma-KXu"/>
+                                    <constraint firstItem="c4t-l6-QJ9" firstAttribute="leading" secondItem="hrT-m8-npY" secondAttribute="leading" constant="13" id="RuY-gU-atj"/>
+                                    <constraint firstAttribute="trailing" secondItem="aVH-i4-psv" secondAttribute="trailing" constant="13" id="Swf-cm-eOz"/>
+                                    <constraint firstItem="z0X-ld-dvh" firstAttribute="leading" secondItem="hrT-m8-npY" secondAttribute="leading" id="UcO-YO-aRx"/>
+                                    <constraint firstItem="z0X-ld-dvh" firstAttribute="leading" secondItem="hrT-m8-npY" secondAttribute="leading" id="XKG-zF-f1h"/>
+                                    <constraint firstAttribute="trailing" secondItem="z0X-ld-dvh" secondAttribute="trailing" id="e6l-Z0-dHD"/>
+                                    <constraint firstItem="aVH-i4-psv" firstAttribute="top" secondItem="c4t-l6-QJ9" secondAttribute="bottom" constant="7" id="eLn-zd-nNA"/>
+                                    <constraint firstItem="c4t-l6-QJ9" firstAttribute="top" secondItem="z0X-ld-dvh" secondAttribute="bottom" constant="13" id="jYg-or-JdF"/>
+                                    <constraint firstItem="aVH-i4-psv" firstAttribute="leading" secondItem="hrT-m8-npY" secondAttribute="leading" constant="13" id="oHM-08-S3J"/>
+                                    <constraint firstAttribute="trailing" secondItem="z0X-ld-dvh" secondAttribute="trailing" id="tzj-ne-QWb"/>
+                                    <constraint firstItem="z0X-ld-dvh" firstAttribute="top" secondItem="hrT-m8-npY" secondAttribute="top" id="vgC-sA-iUo"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="gwX-5Q-PtY" firstAttribute="leading" secondItem="4HV-Pd-cL7" secondAttribute="leading" constant="5" id="25f-4T-i3y"/>
+                            <constraint firstItem="gwX-5Q-PtY" firstAttribute="leading" secondItem="4HV-Pd-cL7" secondAttribute="leading" constant="10" id="25f-4T-i3y"/>
                             <constraint firstItem="gwX-5Q-PtY" firstAttribute="top" secondItem="4HV-Pd-cL7" secondAttribute="top" constant="10" id="8Yc-wQ-nAV"/>
-                            <constraint firstAttribute="trailing" secondItem="gwX-5Q-PtY" secondAttribute="trailing" constant="5" id="AMU-IM-GwZ"/>
-                            <constraint firstAttribute="bottom" secondItem="gwX-5Q-PtY" secondAttribute="bottom" constant="10" id="ChZ-PL-DaB"/>
+                            <constraint firstAttribute="bottom" secondItem="hrT-m8-npY" secondAttribute="bottom" constant="20" id="98d-sF-ID1"/>
+                            <constraint firstAttribute="trailing" secondItem="gwX-5Q-PtY" secondAttribute="trailing" constant="10" id="AMU-IM-GwZ"/>
+                            <constraint firstAttribute="bottom" secondItem="gwX-5Q-PtY" secondAttribute="bottom" constant="20" id="ChZ-PL-DaB"/>
+                            <constraint firstItem="hrT-m8-npY" firstAttribute="leading" secondItem="4HV-Pd-cL7" secondAttribute="leading" constant="10" id="QGX-3C-see"/>
+                            <constraint firstAttribute="trailing" secondItem="hrT-m8-npY" secondAttribute="trailing" constant="10" id="fab-lJ-kMu"/>
+                            <constraint firstItem="hrT-m8-npY" firstAttribute="top" secondItem="4HV-Pd-cL7" secondAttribute="top" constant="10" id="plM-ie-5lV"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
@@ -134,12 +123,13 @@
                 <constraint firstItem="4HV-Pd-cL7" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="oWp-sX-2J1"/>
                 <constraint firstAttribute="bottom" secondItem="4HV-Pd-cL7" secondAttribute="bottom" id="rfh-lw-E7L"/>
             </constraints>
+            <size key="customSize" width="167" height="321"/>
             <connections>
                 <outlet property="imageView" destination="z0X-ld-dvh" id="Uaa-Oz-2sc"/>
                 <outlet property="timeEvent" destination="aVH-i4-psv" id="dHA-Mf-mXf"/>
                 <outlet property="titleEvent" destination="c4t-l6-QJ9" id="xRY-5D-m8l"/>
             </connections>
-            <point key="canvasLocation" x="50.724637681159422" y="54.910714285714285"/>
+            <point key="canvasLocation" x="41.304347826086961" y="67.96875"/>
         </collectionViewCell>
     </objects>
     <resources>

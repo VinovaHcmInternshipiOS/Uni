@@ -26,5 +26,7 @@ class AppIcon {
     static let icDefaultImageCircle = UIImage(systemName: "person.circle")
     static let icDefaultImageSquare = UIImage(named: "icImageDefault")
     static let icDefaultEvent = UIImage(named: "icDefaultEvent")
+    static let icEditImage = UIImage(named: "icEditImage")
+    static let icPlus = UIImage(named: "icPlus")
     
 }

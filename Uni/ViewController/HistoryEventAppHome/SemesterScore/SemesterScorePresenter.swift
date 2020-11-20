@@ -51,7 +51,7 @@ class SemesterScorePresenter: SemesterScorePresenterProtocol {
                         let dict = snapshot.value as! [String: Any]
                         let title = dict["Title"] as! String
                         let score = dict["Score"] as! Int
-                        let urrlImage = dict["Image"] as! String
+                        let urrlImage = dict["ImagePortal"] as! String
                         
                         let placeRef = ref.child("Event/\(keyEvent)/Joiner/\(code)")
                         placeRef.observeSingleEvent(of:.value, with: { [self] snapshot in

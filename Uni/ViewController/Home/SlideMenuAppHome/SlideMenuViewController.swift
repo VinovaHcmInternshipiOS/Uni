@@ -13,6 +13,7 @@ enum MenuType: Int {
     case Home
     case About
     case Setting
+    case Manage
     case Privacy
 }
 class SlideMenuViewController: UIViewController {
@@ -20,7 +21,7 @@ class SlideMenuViewController: UIViewController {
     @IBOutlet weak var btLogout: UIButton!
     @IBOutlet weak var tableView: UITableView!
     var presenter: SlideMenuPresenterProtocol
-    let arrayFeature = ["Home","About","Setting","Privacy"]
+    var arrayFeature = [String]()
     var didTapMenuType: ((MenuType) -> Void)?
     let caseMenu = "caseMenu"
 	init(presenter: SlideMenuPresenterProtocol) {
@@ -37,6 +38,16 @@ class SlideMenuViewController: UIViewController {
         //presenter.view = self
         setupUI()
         defaultCaseMenu()
+        presenter.checkAuth { [self] (role) in
+            if role == "Admin" {
+                arrayFeature = ["Home","About","Setting","Manage","Privacy"]
+                
+            } else {
+                arrayFeature = ["Home","About","Setting","Privacy"]
+            }
+            tableView.reloadData()
+            
+        }
     }
     
     func defaultCaseMenu(){

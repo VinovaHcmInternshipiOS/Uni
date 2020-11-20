@@ -9,23 +9,59 @@
 //
 
 import Foundation
+import FirebaseAuth
+import FirebaseDatabase
+import Firebase
+import FirebaseStorage
+import UIKit
 
 // MARK: View -
 protocol RankViewProtocol: class {
-
+    func fetchRankSuccess()
+    func fetchRanhFailed()
 }
 
 // MARK: Presenter -
 protocol RankPresenterProtocol: class {
 	var view: RankViewProtocol? { get set }
-    func viewDidLoad()
+    var rankEvent: [RankEvent?] { get set}
+    func fetchRank()
+    
 }
 
 class RankPresenter: RankPresenterProtocol {
 
     weak var view: RankViewProtocol?
-
-    func viewDidLoad() {
-
+    var ref = Database.database().reference()
+    var databaseHandle = DatabaseHandle()
+    let storageRef = Storage.storage().reference()
+    var rankEvent: [RankEvent?] = []
+    func fetchRank() {
+        databaseHandle = ref.child("Data").observe(.childAdded, with: {(DataSnapshot) in
+            let actualPost =  DataSnapshot.key
+            print(DataSnapshot.key)
+            let placeRef = self.ref.child("Data/\(actualPost)")
+            placeRef.observeSingleEvent(of: .value, with: { [self] snapshot in
+                if snapshot.exists()
+                {
+                    let placeDict = snapshot.value as! [String: Any]
+                    let name = placeDict["Name"] as! String
+                    let score = placeDict["Score"] as! Int
+                    let imgURL = placeDict["Image"] as? String ?? ""
+                    if score != 0 {
+                        rankEvent.append(RankEvent(name: name, score: score,imgURL: imgURL))
+                        //print(name,score)
+                        DispatchQueue.main.async {
+                            view?.fetchRankSuccess()
+                        }
+                    }
+                    
+                }
+                else {
+                    view?.fetchRanhFailed()
+                }
+                
+            })
+        })
     }
 }

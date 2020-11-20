@@ -71,7 +71,7 @@ extension SearchAppHomeViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
 
-        return section == 1 ? 80 : 0
+        return section == 1 ? 153 : 0
         
     }
     
@@ -89,10 +89,14 @@ extension SearchAppHomeViewController: UITableViewDataSource {
         return 2
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath.row)
-        let detailEvent = DetailEventViewController(presenter: DetailEventPresenter())
-        detailEvent.keyDetailEvent = (listResultsEvent[indexPath.row]?.key)!
-        self.navigationController?.pushViewController(detailEvent, animated: true)
+        if indexPath.section != 0 {
+            let detailEvent = DetailEventViewController(presenter: DetailEventPresenter())
+            detailEvent.keyDetailEvent = (listResultsEvent[indexPath.row]?.key)!
+            self.navigationController?.pushViewController(detailEvent, animated: true)
+        }
+            
+        
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -108,7 +112,7 @@ extension SearchAppHomeViewController: UITableViewDataSource {
                 cell.contentView.layer.cornerRadius = 20
                 
                 cell.titleEvent.text = listResultsEvent[indexPath.row]?.title ?? ""
-                cell.dateEvent.text = "\(getFormattedDate(date: listResultsEvent[indexPath.row]?.date ?? "")) \n \(formatterTime(time: listResultsEvent[indexPath.row]?.checkin ?? "")) - \(formatterTime(time: listResultsEvent[indexPath.row]?.checkout ?? ""))"
+                cell.dateEvent.text = "\(getFormattedDate(date: listResultsEvent[indexPath.row]?.date ?? "")) \(formatterTime(time: listResultsEvent[indexPath.row]?.checkin ?? ""))-\(formatterTime(time: listResultsEvent[indexPath.row]?.checkout ?? ""))"
                 if let eventURL = listResultsEvent[indexPath.row]?.urlImage {
                     cell.imgEvent.loadImage(urlString: eventURL)
                 }
