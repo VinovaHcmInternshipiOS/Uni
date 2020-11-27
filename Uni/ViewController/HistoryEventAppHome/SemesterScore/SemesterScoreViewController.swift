@@ -10,8 +10,9 @@
 
 import UIKit
 
-class SemesterScoreViewController: UIViewController {
+class SemesterScoreViewController: BaseViewController {
 
+    @IBOutlet weak var viewScore: UIView!
     @IBOutlet weak var totalScore: UILabel!
     @IBOutlet weak var totalEvent: UILabel!
     @IBOutlet weak var viewUser: UIView!
@@ -53,6 +54,7 @@ class SemesterScoreViewController: UIViewController {
         tableView.delegate = self
         tableView.register(UINib(nibName: "SemesterCell", bundle: nil), forCellReuseIdentifier: "SemesterCell")
         viewUser.roundCorners([.topLeft,.topRight], radius: 20)
+        viewScore.backgroundColor = AppColor.YellowFAB32A
     }
 }
 
@@ -101,7 +103,7 @@ extension SemesterScoreViewController: SemesterScoreViewProtocol {
         detailHistory = presenter.detailHistory
         totalEvent.text = "Total Event: \(detailHistory.count)"
         for i in 0..<dataSemester.count {
-            score += (detailHistory[i]?.score)!
+            score += (dataSemester[i]?.Score)!
             totalScore.text = "Total Score: \(score)"
         }
         tableView.reloadData()

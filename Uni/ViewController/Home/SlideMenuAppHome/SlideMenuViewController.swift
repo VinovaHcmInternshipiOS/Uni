@@ -16,8 +16,9 @@ enum MenuType: Int {
     case Manage
     case Privacy
 }
-class SlideMenuViewController: UIViewController {
+class SlideMenuViewController: BaseViewController {
 
+    @IBOutlet weak var lbNameApp: UILabel!
     @IBOutlet weak var btLogout: UIButton!
     @IBOutlet weak var tableView: UITableView!
     var presenter: SlideMenuPresenterProtocol
@@ -38,6 +39,8 @@ class SlideMenuViewController: UIViewController {
         //presenter.view = self
         setupUI()
         defaultCaseMenu()
+        lbNameApp.textColor = AppColor.YellowFAB32A
+        btLogout.setTitleColor(AppColor.YellowFAB32A, for: .normal)
         presenter.checkAuth { [self] (role) in
             if role == "Admin" {
                 arrayFeature = ["Home","About","Setting","Manage","Privacy"]

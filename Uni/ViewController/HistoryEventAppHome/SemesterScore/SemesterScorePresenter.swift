@@ -19,6 +19,7 @@ import UIKit
 protocol SemesterScoreViewProtocol: class {
     func fetchHistoryEventSuccess()
     func fetchHistoryEventFailed()
+   
 }
 
 // MARK: Presenter -
@@ -53,7 +54,8 @@ class SemesterScorePresenter: SemesterScorePresenterProtocol {
                         let score = dict["Score"] as! Int
                         let urrlImage = dict["ImagePortal"] as! String
                         
-                        let placeRef = ref.child("Event/\(keyEvent)/Joiner/\(code)")
+                        //let placeRef = ref.child("Event/\(keyEvent)/Joiner/\(code)")
+                        let placeRef = ref.child("Joiner/\(keyEvent)/\(code)")
                         placeRef.observeSingleEvent(of:.value, with: { [self] snapshot in
                             if snapshot.exists()
                             {

@@ -10,7 +10,7 @@
 
 import UIKit
 
-class RankViewController: UIViewController {
+class RankViewController: BaseViewController {
 
     @IBOutlet weak var lbScoreRank3: UILabel!
     @IBOutlet weak var lbNameRank3: UILabel!

@@ -10,7 +10,7 @@
 
 import UIKit
 
-class LoginViewController: BaseViewController {
+class LoginViewController: UIViewController {
 
 
     @IBOutlet weak var btForgotPassword: UILabel!
@@ -34,8 +34,15 @@ class LoginViewController: BaseViewController {
         super.viewDidLoad()
         presenter.view = self
         desginUI()
-        showNavigation(bottomLine: false)
+        customNav()
+        
        
+    }
+    
+    func customNav() {
+        self.navigationController?.navigationBar.isHidden = false
+        self.navigationController?.navigationBar.barTintColor = UIColor.white
+          self.navigationController?.hideShadowLine()
     }
     
     func desginUI(){
@@ -68,12 +75,36 @@ class LoginViewController: BaseViewController {
 
 extension LoginViewController: LoginViewProtocol {
     
-    func loginSuccess() {
-        removeSpinner()
+    func checkAuthSuccess(role: String) {
+        print(role,"Change")
+        AppColor.YellowFAB32A = role == "Admin" ? AppColor.RedFF7C75 : AppColor.DefaultYellowFAB32A
+        AppColor.YellowFBC459 = role == "Admin" ? AppColor.RedFF6961 : AppColor.DefaultYellowFBC459
+        AppColor.YellowShadow = role == "Admin" ? AppColor.RedShadow : AppColor.DefaultYellowShadow
+        AppIcon.icPlusYellow = role == "Admin" ? AppIcon.icPlusRed : AppIcon.DefaulticPlusYellow
+        AppIcon.icBarcodeYellow = role == "Admin" ? AppIcon.icBarcodeRed : AppIcon.DefaulticBarcodeYellow
+        AppIcon.icEditImageYellow = role == "Admin" ? AppIcon.icEditImageRed : AppIcon.DefaulticEditImageYellow
+        AppIcon.icBellYellow = role == "Admin" ? AppIcon.icBellRed : AppIcon.DefaulticBellYellow
+        AppIcon.icArrowLeftYellow = role == "Admin" ? AppIcon.icArrowLeftRed : AppIcon.DefaulticArrowLeftYellow
+        
         UserDefaults.standard.set(false, forKey: "status")
         Switcher.updateRootVC()
         let AppHomeVC = AppHomeViewController(presenter: AppHomePresenter())
         self.navigationController?.pushViewController(AppHomeVC, animated: true)
+
+    }
+    
+    func checkAuthFailed() {
+        print("Check Auth Failed")
+    }
+    
+    
+    func loginSuccess() {
+        removeSpinner()
+        presenter.checkAuth { (role) in
+            
+        }
+
+
         
         
     }

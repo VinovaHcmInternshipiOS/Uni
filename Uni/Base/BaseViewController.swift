@@ -43,12 +43,18 @@ class BaseViewController: UIViewController,UIViewControllerTransitioningDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
+        overrideUserInterfaceStyle = .light
+        addBackToNavigation()
         //navigationItem.titleView = lbTitleVC
       }
-
+    
+    
+    
     func addBackToNavigation(icon: UIImage = AppIcon.icArrowLeftYellow!) {
         addButtonImageToNavigation(image: icon, style: .left, action: #selector(btnBackTapped))
     }
+    
+    
     
     func addButtonImageToNavigation(image: UIImage, style: StyleNavigation, action: Selector?) {
         showNavigation(bottomLine: false)
@@ -150,6 +156,13 @@ class BaseViewController: UIViewController,UIViewControllerTransitioningDelegate
         print(title)
     }
     
+    func transprentNav(){
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.isTranslucent = true
+        navigationController?.view.backgroundColor = .clear
+    }
+    
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         transition.isPresenting = true
         return transition
@@ -173,6 +186,7 @@ class BaseViewController: UIViewController,UIViewControllerTransitioningDelegate
 extension BaseViewController: SlideMenuViewProtocol {
     func checkAuthSuccess(role: String) {
         print(role,"Change")
+//        AppColor.YellowFAB32A = role == "Admin" ? #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1) : #colorLiteral(red: 0.9803921569, green: 0.7019607843, blue: 0.1647058824, alpha: 1)
     }
     
     func checkAuthFailed() {

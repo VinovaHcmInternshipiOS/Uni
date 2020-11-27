@@ -57,6 +57,15 @@ extension UIViewController {
             vSpinner = nil
         }
     }
+    func presentAlertWithTitle(title: String, message: String, options: String..., completion: @escaping (Int) -> Void) {
+            let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            for (index, option) in options.enumerated() {
+                alertController.addAction(UIAlertAction.init(title: option, style: .default, handler: { (action) in
+                    completion(index)
+                }))
+            }
+            self.present(alertController, animated: true, completion: nil)
+    }
     
     func showAlert(title: String?,
                           message: String?,
@@ -99,7 +108,8 @@ extension UIViewController {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm"
         let date = dateFormatter.date(from: time)
-        dateFormatter.dateFormat = "h:mma"
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.dateFormat = "hh:mma"
         return dateFormatter.string(from: date!)
     }
     
@@ -110,8 +120,36 @@ extension UIViewController {
         dateFormatter.dateFormat = "yyyy"
         return dateFormatter.string(from: dateTime!)
     }
+    
+    func currentPickerDate(pickerDate: UIDatePicker) ->String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle =
+            DateFormatter.Style.long
+        dateFormatter.dateFormat = "dd-MM-yyyy"
+        return dateFormatter.string(from: pickerDate.date)
+    }
+    
+    func currentPickerTime(pickerTime: UIDatePicker) ->String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.dateFormat = "hh:mma"
+        return dateFormatter.string(from: pickerTime.date)
 
-
+    }
+    
+    func getCurrentTime() -> String{
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "hh:mm"
+        return formatter.string(from: date)
+    }
+    
+    func getCurrentDate() -> String{
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd-MM-yyyy"
+        return formatter.string(from: date)
+    }
     
 }
 class Switcher {

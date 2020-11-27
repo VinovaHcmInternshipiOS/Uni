@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -21,17 +23,38 @@
                 <rect key="frame" x="0.0" y="0.0" width="170" height="170"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4qJ-iu-6KW">
+                        <rect key="frame" x="15" y="15" width="140" height="140"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="20"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                <color key="value" name="Color-1"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                <size key="value" width="0.0" height="4"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                <real key="value" value="15"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="shadowBlur">
+                                <real key="value" value="15"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KMt-tE-KjF">
                         <rect key="frame" x="10" y="10" width="150" height="150"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SEMESTER" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CsC-jg-W28">
-                                <rect key="frame" x="28" y="36" width="94" height="21.5"/>
+                                <rect key="frame" x="28" y="36" width="94" height="42"/>
                                 <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="18"/>
                                 <color key="textColor" red="0.98039215686274506" green="0.70196078431372544" blue="0.16470588235294117" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5hv-vB-lP8">
-                                <rect key="frame" x="28" y="57.5" width="22" height="57"/>
+                                <rect key="frame" x="28" y="78" width="27" height="56"/>
                                 <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="48"/>
                                 <color key="textColor" red="0.98039215690000003" green="0.70196078429999997" blue="0.1647058824" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -49,18 +72,6 @@
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                 <real key="value" value="20"/>
                             </userDefinedRuntimeAttribute>
-                            <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
-                                <size key="value" width="0.0" height="4"/>
-                            </userDefinedRuntimeAttribute>
-                            <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
-                                <color key="value" red="0.0" green="0.0" blue="0.0" alpha="0.14999999999999999" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                            </userDefinedRuntimeAttribute>
-                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
-                                <real key="value" value="15"/>
-                            </userDefinedRuntimeAttribute>
-                            <userDefinedRuntimeAttribute type="number" keyPath="shadowBlur">
-                                <real key="value" value="15"/>
-                            </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
                 </subviews>
@@ -68,17 +79,25 @@
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="KMt-tE-KjF" secondAttribute="trailing" constant="10" id="3G5-IS-W0D"/>
                 <constraint firstItem="KMt-tE-KjF" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="6F4-Mo-IwL"/>
+                <constraint firstAttribute="bottom" secondItem="4qJ-iu-6KW" secondAttribute="bottom" constant="15" id="Dgb-ue-ofe"/>
+                <constraint firstAttribute="trailing" secondItem="4qJ-iu-6KW" secondAttribute="trailing" constant="15" id="Icd-ik-XLT"/>
+                <constraint firstItem="4qJ-iu-6KW" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="15" id="Vkv-9D-UIY"/>
                 <constraint firstAttribute="bottom" secondItem="KMt-tE-KjF" secondAttribute="bottom" constant="10" id="b2k-fE-bbS"/>
+                <constraint firstItem="4qJ-iu-6KW" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="gmt-Po-9cO"/>
                 <constraint firstItem="KMt-tE-KjF" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="mmo-He-CbW"/>
             </constraints>
             <size key="customSize" width="147" height="144"/>
             <connections>
-                <outlet property="lbSemester" destination="5hv-vB-lP8" id="AGw-4B-QU4"/>
+                <outlet property="lbNumberSemester" destination="5hv-vB-lP8" id="X6w-9e-Zaw"/>
+                <outlet property="lbSemester" destination="CsC-jg-W28" id="OoU-ff-YlI"/>
             </connections>
             <point key="canvasLocation" x="114.49275362318842" y="101.78571428571428"/>
         </collectionViewCell>
     </objects>
     <resources>
+        <namedColor name="Color-1">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.15000000596046448" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

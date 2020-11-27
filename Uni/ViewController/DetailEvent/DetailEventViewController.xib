@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -19,10 +20,12 @@
                 <outlet property="addressEvent" destination="tC1-BJ-gol" id="Hga-Sb-xW6"/>
                 <outlet property="contentEvent" destination="Yly-1T-qH9" id="08z-UW-9Sj"/>
                 <outlet property="dateEvent" destination="XjE-sq-k1X" id="OnP-aG-OsM"/>
+                <outlet property="iconPerson" destination="62F-IG-4O0" id="QLQ-gp-s2C"/>
                 <outlet property="joinEvent" destination="JVE-tn-sUq" id="ziQ-td-ci6"/>
                 <outlet property="scoreEvent" destination="aoP-X7-9qS" id="IDq-08-pDz"/>
                 <outlet property="titleEvent" destination="Xqm-ex-VNu" id="C0p-f3-wat"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="viewTimeLocation" destination="AfG-9w-mEi" id="cgV-co-4SX"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -119,7 +122,7 @@ Time</string>
                                                         <constraint firstAttribute="height" constant="12" id="GpT-l4-VbF"/>
                                                         <constraint firstAttribute="width" constant="12" id="JLx-gY-Lq9"/>
                                                     </constraints>
-                                                    <color key="tintColor" red="0.98039215690000003" green="0.70196078429999997" blue="0.1647058824" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="tintColor" red="0.98039215686274506" green="0.70196078431372544" blue="0.16470588235294117" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <state key="normal" image="person" catalog="system"/>
                                                 </button>
                                             </subviews>

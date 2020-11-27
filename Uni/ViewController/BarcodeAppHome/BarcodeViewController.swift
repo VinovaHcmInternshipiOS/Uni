@@ -9,10 +9,11 @@
 //
 
 import UIKit
-class BarcodeViewController: UIViewController {
+class BarcodeViewController: BaseViewController {
 
 	var presenter: BarcodePresenterProtocol
 
+    @IBOutlet weak var lbAttention: UILabel!
     @IBOutlet weak var lbBarcode: UILabel!
     @IBOutlet weak var barcodeView: UIImageView!
     init(presenter: BarcodePresenterProtocol) {
@@ -28,7 +29,9 @@ class BarcodeViewController: UIViewController {
         super.viewDidLoad()
         presenter.view = self
         presenter.fetchProfile()
+        lbAttention.textColor = AppColor.YellowFAB32A
     }
+    
     
     override func viewDidDisappear(_ animated: Bool) {
            UIScreen.main.brightness = CGFloat(0.5)

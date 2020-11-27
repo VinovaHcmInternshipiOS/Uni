@@ -10,6 +10,7 @@ target 'Uni' do
   pod 'Firebase/Database'
   pod 'Firebase/Storage'
   pod 'ShimmerSwift'
+  pod 'BarcodeScanner'
   # Pods for Uni
 post_install do |installer|
      installer.pods_project.targets.each do |target|

@@ -15,6 +15,7 @@ class ComingSoonEndedCellAppHome: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        titleEvent.textColor = AppColor.YellowFAB32A
     }
     var model: Event?
     func setData(event: Event?) {

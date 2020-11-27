@@ -54,9 +54,10 @@ class DetailEventPresenter: DetailEventPresenterProtocol {
                 let date = dict["Date"] as! String
                 let checkin = dict["Checkin"] as! String
                 let checkout = dict["Checkout"] as! String
-                let urrlImage = dict["ImagePortal"] as! String
+                let urlImagePortal = dict["ImagePortal"] as! String
+                let urlImageLandscape = dict["ImageLandscape"] as! String
                 
-                detailEvent = DetailEvent(title: title, content: content, address: address, score: score, date: date, checkin: checkin, checkout: checkout, urlImage: urrlImage)
+                detailEvent = DetailEvent(title: title, content: content, address: address, score: score, date: date, checkin: checkin, checkout: checkout, urlImageLandscape:urlImageLandscape,urlImagePortal: urlImagePortal)
 
                 view?.fetchDetailSuccess()
             }
@@ -68,7 +69,8 @@ class DetailEventPresenter: DetailEventPresenterProtocol {
     }
     
     func getJoinerEvent(keyEvent: String) {
-        let placeRef = self.ref.child("Event/\(keyEvent)/Joiner")
+        //let placeRef = self.ref.child("Event/\(keyEvent)/Joiner")
+        let placeRef = self.ref.child("Joiner/\(keyEvent)")
         placeRef.observe(.value, with: { [self] snapshot in
             if snapshot.exists()
             {

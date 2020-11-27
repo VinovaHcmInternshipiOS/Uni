@@ -11,21 +11,29 @@
 import UIKit
 
 class CreateEventViewController: BaseViewController {
+    @IBOutlet weak var lbTitle: UILabel!
+    @IBOutlet weak var lbOverview: UILabel!
+    @IBOutlet weak var lbLocation: UILabel!
+    @IBOutlet weak var lbDate: UILabel!
+    @IBOutlet weak var lbTime: UILabel!
+    @IBOutlet weak var lbScore: UILabel!
     @IBOutlet weak var imgLandscape: UIImageView!
     @IBOutlet weak var imgPortal: UIImageView!
     @IBOutlet weak var btImgLandscape: UIButton!
     @IBOutlet weak var btImgPortal: UIButton!
-    @IBOutlet weak var contentTitle: UIView!
-    @IBOutlet weak var contentOverview: UIView!
-    @IBOutlet weak var contentLocation: UIView!
+    @IBOutlet weak var contentTitle: UITextField!
+    @IBOutlet weak var contentOverview: UITextView!
+    @IBOutlet weak var contentLocation: UITextField!
     @IBOutlet weak var btChooseDate: UIButton!
     @IBOutlet weak var btCheckin: UIButton!
     @IBOutlet weak var btCheckout: UIButton!
     @IBOutlet weak var btScore: UIButton!
     @IBOutlet weak var btDone: UIButton!
+    @IBOutlet weak var tableViewScore: UITableView!
     var pickerDate: UIDatePicker?
 	var presenter: CreateEventPresenterProtocol
     var imagePicker: ImagePicker!
+    var scoreEvent = 0
 	init(presenter: CreateEventPresenterProtocol) {
         self.presenter = presenter
         super.init(nibName: "CreateEventViewController", bundle: nil)
@@ -55,7 +63,21 @@ class CreateEventViewController: BaseViewController {
     }
     
     func setupUI(){
+        tableViewScore.delegate = self
+        tableViewScore.dataSource = self
+        tableViewScore.register(UINib(nibName: "TableViewScoreCell", bundle: nil), forCellReuseIdentifier: "TableViewScoreCell")
+        
         self.imagePicker = ImagePicker(presentationController: self, delegate: self)
+        lbTitle.textColor = AppColor.YellowFAB32A
+        lbOverview.textColor = AppColor.YellowFAB32A
+        lbLocation.textColor = AppColor.YellowFAB32A
+        lbDate.textColor = AppColor.YellowFAB32A
+        lbTime.textColor = AppColor.YellowFAB32A
+        lbScore.textColor = AppColor.YellowFAB32A
+        btDone.backgroundColor = AppColor.YellowFAB32A
+        imgPortal.borderColor = AppColor.YellowFBC459
+        btDone.shadowColor = AppColor.YellowShadow
+        
     }
     
     @IBAction func btImgPortal(_ sender: UIButton) {
@@ -68,21 +90,48 @@ class CreateEventViewController: BaseViewController {
         imagePicker.present(from: sender,type: .Landscape)
     }
     
-    @IBAction func btChooseDate(_ sender: Any) {
+    @IBAction func btChooseDate(_ sender: UIButton) {
+        let datePicker = DatePickerViewViewController(presenter: DatePickerViewPresenter())
+        datePicker.dataDatePicker = { [self] in
+            btChooseDate.setTitle(datePicker.dataPicker, for: .normal)
+        }
+        datePicker.dataPicker = (btChooseDate.titleLabel?.text)!
+        datePicker.modalPresentationStyle = .overCurrentContext
+        present(datePicker, animated: false, completion: nil)
     }
-
     
     @IBAction func btCheckin(_ sender: Any) {
-        
+        getTime()
     }
     
     @IBAction func btCheckout(_ sender: Any) {
+        getTime()
+    }
+    
+    func getTime() {
+        let timePicker = TimePickerViewController(presenter: TimePickerPresenter())
+        timePicker.dataTimePicker = { [self] in
+            btCheckin.setTitle(timePicker.dateCheckin, for: .normal)
+            btCheckout.setTitle(timePicker.dateCheckout, for: .normal)
+        }
+        timePicker.modalPresentationStyle = .overCurrentContext
+        timePicker.dateCheckin = (btCheckin.titleLabel?.text)!
+        timePicker.dateCheckout = (btCheckout.titleLabel?.text)!
         
+        present(timePicker, animated: false, completion: nil)
     }
     
     @IBAction func btDone(_ sender: Any) {
-        showSpinner()
-        presenter.createEvent(urlImgLanscape: "", urlImgPortal: "", title: "test", overview: "test", location: "test", date: "20-11-2020", checkin: "11:00", checkout: "15:00", score: 0)
+        if (btCheckin.titleLabel?.text)! != "Check-in" && (btCheckout.titleLabel?.text)! != "Check-out" && contentTitle.text?.isEmpty == false && contentOverview.text?.isEmpty == false && contentLocation.text?.isEmpty == false {
+            if let title = contentTitle.text, let overview = contentOverview.text, let location = contentLocation.text, let date = btChooseDate.titleLabel?.text,let checkin = btCheckin.titleLabel?.text,let checkout = btCheckout.titleLabel?.text {
+                showSpinner()
+                presenter.createEvent(urlImgLanscape: "", urlImgPortal: "", title: title, overview: overview, location: location, date: date, checkin: checkin.formatDateCreate(), checkout: checkout.formatDateCreate(), score: scoreEvent)
+                
+            } else {return}
+            
+        } else {
+            showAlert(title: "Opps", message: "Please complete all information", actionTitles: ["OK"], style: [.default], actions: [.none])
+        }
     }
     
 }
@@ -123,6 +172,8 @@ extension CreateEventViewController: CreateEventViewProtocol {
     }
     
     func createEventSuccess(path: String) {
+        showAlert(title: "Success", message: "Create event success", actionTitles: ["OK"], style: [.default], actions: [.none])
+        removeSpinner()
         if let imageLanscape = imgLandscape.image, let imagePortal = imgPortal.image{
             presenter.uploadImage(images: [imageLanscape,imagePortal],path: path)
         } else {return}
@@ -134,5 +185,35 @@ extension CreateEventViewController: CreateEventViewProtocol {
         removeSpinner()
     }
     
+    
+}
+
+extension CreateEventViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return btScore.frame.height
+    }
+}
+
+extension CreateEventViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 21
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "TableViewScoreCell", for: indexPath) as? TableViewScoreCell {
+            cell.lbScore.text = "\(indexPath.row)"
+            print(indexPath.row)
+            return cell
+        } else {
+            return UITableViewCell()
+        }
+        
+    }
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        scoreEvent = indexPath.row
+    }
     
 }

@@ -12,7 +12,6 @@
 		F50D639C25545317007509D0 /* RankTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F50D639A25545317007509D0 /* RankTableViewCell.xib */; };
 		F50D63A52554EDCC007509D0 /* SearchAppHomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50D63A22554EDCB007509D0 /* SearchAppHomePresenter.swift */; };
 		F50D63A62554EDCC007509D0 /* SearchAppHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50D63A32554EDCB007509D0 /* SearchAppHomeViewController.swift */; };
-		F50D63A72554EDCC007509D0 /* SearchAppHomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F50D63A42554EDCB007509D0 /* SearchAppHomeViewController.xib */; };
 		F512603C25664A6F00B517DC /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F512603925664A6F00B517DC /* ProfilePresenter.swift */; };
 		F512603D25664A6F00B517DC /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F512603A25664A6F00B517DC /* ProfileViewController.swift */; };
 		F512603E25664A6F00B517DC /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F512603B25664A6F00B517DC /* ProfileViewController.xib */; };
@@ -22,7 +21,20 @@
 		F51260672566783100B517DC /* CreateEventPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51260642566783000B517DC /* CreateEventPresenter.swift */; };
 		F51260682566783100B517DC /* CreateEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51260652566783000B517DC /* CreateEventViewController.swift */; };
 		F51260692566783100B517DC /* CreateEventViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F51260662566783000B517DC /* CreateEventViewController.xib */; };
+		F52E42C1256BC1000044A03C /* AttendanceEventPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52E42BE256BC1000044A03C /* AttendanceEventPresenter.swift */; };
+		F52E42C2256BC1000044A03C /* AttendanceEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52E42BF256BC1000044A03C /* AttendanceEventViewController.swift */; };
+		F52E42C3256BC1000044A03C /* AttendanceEventViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F52E42C0256BC1000044A03C /* AttendanceEventViewController.xib */; };
+		F52E42C8256BC27E0044A03C /* AttendanceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52E42C6256BC27E0044A03C /* AttendanceCell.swift */; };
+		F52E42C9256BC27E0044A03C /* AttendanceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F52E42C7256BC27E0044A03C /* AttendanceCell.xib */; };
+		F53481A025709850001C3FAC /* UINavigation+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F534819F25709850001C3FAC /* UINavigation+Extension.swift */; };
+		F53481A62570DBE5001C3FAC /* SearchAppHomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F53481A52570DBE5001C3FAC /* SearchAppHomeViewController.xib */; };
 		F56DFE8B25676EE20080A31F /* ADEEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F56DFE8A25676EE20080A31F /* ADEEvent.swift */; };
+		F56DFF62256909820080A31F /* DatePickerViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F56DFF5F256909820080A31F /* DatePickerViewPresenter.swift */; };
+		F56DFF63256909820080A31F /* DatePickerViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F56DFF60256909820080A31F /* DatePickerViewViewController.swift */; };
+		F56DFF64256909820080A31F /* DatePickerViewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F56DFF61256909820080A31F /* DatePickerViewViewController.xib */; };
+		F56E7B05256D084E00F8EC23 /* UpdateEventPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F56E7B02256D084E00F8EC23 /* UpdateEventPresenter.swift */; };
+		F56E7B06256D084E00F8EC23 /* UpdateEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F56E7B03256D084E00F8EC23 /* UpdateEventViewController.swift */; };
+		F56E7B07256D084E00F8EC23 /* UpdateEventViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F56E7B04256D084E00F8EC23 /* UpdateEventViewController.xib */; };
 		F57821CA255E857000222FCA /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57821C9255E857000222FCA /* Event.swift */; };
 		F582EA6B254FEE58002BF86F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F582EA6A254FEE58002BF86F /* AppDelegate.swift */; };
 		F582EA6D254FEE58002BF86F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F582EA6C254FEE58002BF86F /* SceneDelegate.swift */; };
@@ -107,9 +119,23 @@
 		F5BEFDEF255A3B6C005A1A2E /* BarcodePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5BEFDEC255A3B6C005A1A2E /* BarcodePresenter.swift */; };
 		F5BEFDF0255A3B6C005A1A2E /* BarcodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5BEFDED255A3B6C005A1A2E /* BarcodeViewController.swift */; };
 		F5BEFDF1255A3B6C005A1A2E /* BarcodeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5BEFDEE255A3B6C005A1A2E /* BarcodeViewController.xib */; };
+		F5C17C18256CC2FA00A467E2 /* AttendanceEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C17C17256CC2FA00A467E2 /* AttendanceEvent.swift */; };
+		F5C26FD8256B77C40015576A /* TableViewScoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C26FD6256B77C40015576A /* TableViewScoreCell.swift */; };
+		F5C26FD9256B77C40015576A /* TableViewScoreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5C26FD7256B77C40015576A /* TableViewScoreCell.xib */; };
+		F5C26FE1256B9D440015576A /* ListEventPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C26FDE256B9D440015576A /* ListEventPresenter.swift */; };
+		F5C26FE2256B9D440015576A /* ListEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C26FDF256B9D440015576A /* ListEventViewController.swift */; };
+		F5C26FE3256B9D440015576A /* ListEventViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5C26FE0256B9D440015576A /* ListEventViewController.xib */; };
+		F5C26FF0256BA8370015576A /* ListEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C26FEE256BA8370015576A /* ListEventCell.swift */; };
+		F5C26FF1256BA8370015576A /* ListEventCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5C26FEF256BA8370015576A /* ListEventCell.xib */; };
+		F5C26FF6256BB2AB0015576A /* HeaderSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C26FF4256BB2AB0015576A /* HeaderSearch.swift */; };
+		F5C26FF7256BB2AB0015576A /* HeaderSearch.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5C26FF5256BB2AB0015576A /* HeaderSearch.xib */; };
 		F5CC24F22563D028003EF2F1 /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CC24F12563D028003EF2F1 /* History.swift */; };
 		F5CC24F5256415DA003EF2F1 /* DetailHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CC24F4256415DA003EF2F1 /* DetailHistory.swift */; };
 		F5CC24F92565044D003EF2F1 /* RankEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CC24F82565044D003EF2F1 /* RankEvent.swift */; };
+		F5DF01F2256B56CE00B5E444 /* TimePickerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DF01EF256B56CE00B5E444 /* TimePickerPresenter.swift */; };
+		F5DF01F3256B56CE00B5E444 /* TimePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DF01F0256B56CE00B5E444 /* TimePickerViewController.swift */; };
+		F5DF01F4256B56CE00B5E444 /* TimePickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5DF01F1256B56CE00B5E444 /* TimePickerViewController.xib */; };
+		F5DF01F8256B702700B5E444 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DF01F7256B702700B5E444 /* String+Extension.swift */; };
 		F5FAAF4625621AA50036EA95 /* HandleError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5FAAF4525621AA50036EA95 /* HandleError.swift */; };
 		F5FAAF4B256254AB0036EA95 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5FAAF4A256254AB0036EA95 /* UIImageView+Extension.swift */; };
 		F5FAAF4F256287BA0036EA95 /* DetailEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5FAAF4E256287BA0036EA95 /* DetailEvent.swift */; };
@@ -123,7 +149,6 @@
 		F50D639A25545317007509D0 /* RankTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RankTableViewCell.xib; sourceTree = "<group>"; };
 		F50D63A22554EDCB007509D0 /* SearchAppHomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAppHomePresenter.swift; sourceTree = "<group>"; };
 		F50D63A32554EDCB007509D0 /* SearchAppHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAppHomeViewController.swift; sourceTree = "<group>"; };
-		F50D63A42554EDCB007509D0 /* SearchAppHomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchAppHomeViewController.xib; sourceTree = "<group>"; };
 		F512603925664A6F00B517DC /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
 		F512603A25664A6F00B517DC /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		F512603B25664A6F00B517DC /* ProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
@@ -133,7 +158,20 @@
 		F51260642566783000B517DC /* CreateEventPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventPresenter.swift; sourceTree = "<group>"; };
 		F51260652566783000B517DC /* CreateEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventViewController.swift; sourceTree = "<group>"; };
 		F51260662566783000B517DC /* CreateEventViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateEventViewController.xib; sourceTree = "<group>"; };
+		F52E42BE256BC1000044A03C /* AttendanceEventPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceEventPresenter.swift; sourceTree = "<group>"; };
+		F52E42BF256BC1000044A03C /* AttendanceEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceEventViewController.swift; sourceTree = "<group>"; };
+		F52E42C0256BC1000044A03C /* AttendanceEventViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AttendanceEventViewController.xib; sourceTree = "<group>"; };
+		F52E42C6256BC27E0044A03C /* AttendanceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceCell.swift; sourceTree = "<group>"; };
+		F52E42C7256BC27E0044A03C /* AttendanceCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AttendanceCell.xib; sourceTree = "<group>"; };
+		F534819F25709850001C3FAC /* UINavigation+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigation+Extension.swift"; sourceTree = "<group>"; };
+		F53481A52570DBE5001C3FAC /* SearchAppHomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchAppHomeViewController.xib; sourceTree = "<group>"; };
 		F56DFE8A25676EE20080A31F /* ADEEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ADEEvent.swift; sourceTree = "<group>"; };
+		F56DFF5F256909820080A31F /* DatePickerViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewPresenter.swift; sourceTree = "<group>"; };
+		F56DFF60256909820080A31F /* DatePickerViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewViewController.swift; sourceTree = "<group>"; };
+		F56DFF61256909820080A31F /* DatePickerViewViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DatePickerViewViewController.xib; sourceTree = "<group>"; };
+		F56E7B02256D084E00F8EC23 /* UpdateEventPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateEventPresenter.swift; sourceTree = "<group>"; };
+		F56E7B03256D084E00F8EC23 /* UpdateEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateEventViewController.swift; sourceTree = "<group>"; };
+		F56E7B04256D084E00F8EC23 /* UpdateEventViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UpdateEventViewController.xib; sourceTree = "<group>"; };
 		F57821C9255E857000222FCA /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		F582EA67254FEE58002BF86F /* Uni.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Uni.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F582EA6A254FEE58002BF86F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -220,9 +258,23 @@
 		F5BEFDEC255A3B6C005A1A2E /* BarcodePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodePresenter.swift; sourceTree = "<group>"; };
 		F5BEFDED255A3B6C005A1A2E /* BarcodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeViewController.swift; sourceTree = "<group>"; };
 		F5BEFDEE255A3B6C005A1A2E /* BarcodeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BarcodeViewController.xib; sourceTree = "<group>"; };
+		F5C17C17256CC2FA00A467E2 /* AttendanceEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceEvent.swift; sourceTree = "<group>"; };
+		F5C26FD6256B77C40015576A /* TableViewScoreCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewScoreCell.swift; sourceTree = "<group>"; };
+		F5C26FD7256B77C40015576A /* TableViewScoreCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewScoreCell.xib; sourceTree = "<group>"; };
+		F5C26FDE256B9D440015576A /* ListEventPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListEventPresenter.swift; sourceTree = "<group>"; };
+		F5C26FDF256B9D440015576A /* ListEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListEventViewController.swift; sourceTree = "<group>"; };
+		F5C26FE0256B9D440015576A /* ListEventViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListEventViewController.xib; sourceTree = "<group>"; };
+		F5C26FEE256BA8370015576A /* ListEventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListEventCell.swift; sourceTree = "<group>"; };
+		F5C26FEF256BA8370015576A /* ListEventCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListEventCell.xib; sourceTree = "<group>"; };
+		F5C26FF4256BB2AB0015576A /* HeaderSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderSearch.swift; sourceTree = "<group>"; };
+		F5C26FF5256BB2AB0015576A /* HeaderSearch.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderSearch.xib; sourceTree = "<group>"; };
 		F5CC24F12563D028003EF2F1 /* History.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
 		F5CC24F4256415DA003EF2F1 /* DetailHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailHistory.swift; sourceTree = "<group>"; };
 		F5CC24F82565044D003EF2F1 /* RankEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankEvent.swift; sourceTree = "<group>"; };
+		F5DF01EF256B56CE00B5E444 /* TimePickerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerPresenter.swift; sourceTree = "<group>"; };
+		F5DF01F0256B56CE00B5E444 /* TimePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerViewController.swift; sourceTree = "<group>"; };
+		F5DF01F1256B56CE00B5E444 /* TimePickerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimePickerViewController.xib; sourceTree = "<group>"; };
+		F5DF01F7256B702700B5E444 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		F5FAAF4525621AA50036EA95 /* HandleError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandleError.swift; sourceTree = "<group>"; };
 		F5FAAF4A256254AB0036EA95 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		F5FAAF4E256287BA0036EA95 /* DetailEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailEvent.swift; sourceTree = "<group>"; };
@@ -274,6 +326,7 @@
 				F5A04E22255500C700DB396C /* SearchEventLabelCell */,
 				F50D63A22554EDCB007509D0 /* SearchAppHomePresenter.swift */,
 				F50D63A32554EDCB007509D0 /* SearchAppHomeViewController.swift */,
+				F53481A52570DBE5001C3FAC /* SearchAppHomeViewController.xib */,
 			);
 			path = SearchAppHome;
 			sourceTree = "<group>";
@@ -309,6 +362,8 @@
 		F5126062256677FF00B517DC /* ADEEvent */ = {
 			isa = PBXGroup;
 			children = (
+				F56E7B01256D083800F8EC23 /* UpdateEvent */,
+				F5C26FDC256B9D230015576A /* ListEvent */,
 				F51260632566781E00B517DC /* CreateEvent */,
 			);
 			path = ADEEvent;
@@ -317,11 +372,33 @@
 		F51260632566781E00B517DC /* CreateEvent */ = {
 			isa = PBXGroup;
 			children = (
+				F5C26FD5256B779F0015576A /* TableViewScoreCell */,
+				F56DFF5D256908FF0080A31F /* AlertPicker */,
 				F51260642566783000B517DC /* CreateEventPresenter.swift */,
 				F51260652566783000B517DC /* CreateEventViewController.swift */,
 				F51260662566783000B517DC /* CreateEventViewController.xib */,
 			);
 			path = CreateEvent;
+			sourceTree = "<group>";
+		};
+		F52E42BD256BC0E90044A03C /* AttendanceEvent */ = {
+			isa = PBXGroup;
+			children = (
+				F52E42C5256BC25F0044A03C /* AttendanceCell */,
+				F52E42BE256BC1000044A03C /* AttendanceEventPresenter.swift */,
+				F52E42BF256BC1000044A03C /* AttendanceEventViewController.swift */,
+				F52E42C0256BC1000044A03C /* AttendanceEventViewController.xib */,
+			);
+			path = AttendanceEvent;
+			sourceTree = "<group>";
+		};
+		F52E42C5256BC25F0044A03C /* AttendanceCell */ = {
+			isa = PBXGroup;
+			children = (
+				F52E42C6256BC27E0044A03C /* AttendanceCell.swift */,
+				F52E42C7256BC27E0044A03C /* AttendanceCell.xib */,
+			);
+			path = AttendanceCell;
 			sourceTree = "<group>";
 		};
 		F56DFE8925676EC70080A31F /* ADEEvent */ = {
@@ -330,6 +407,35 @@
 				F56DFE8A25676EE20080A31F /* ADEEvent.swift */,
 			);
 			path = ADEEvent;
+			sourceTree = "<group>";
+		};
+		F56DFF5D256908FF0080A31F /* AlertPicker */ = {
+			isa = PBXGroup;
+			children = (
+				F5DF01EE256B56A700B5E444 /* PickerTime */,
+				F56DFF5E256909080080A31F /* PickerDate */,
+			);
+			path = AlertPicker;
+			sourceTree = "<group>";
+		};
+		F56DFF5E256909080080A31F /* PickerDate */ = {
+			isa = PBXGroup;
+			children = (
+				F56DFF5F256909820080A31F /* DatePickerViewPresenter.swift */,
+				F56DFF60256909820080A31F /* DatePickerViewViewController.swift */,
+				F56DFF61256909820080A31F /* DatePickerViewViewController.xib */,
+			);
+			path = PickerDate;
+			sourceTree = "<group>";
+		};
+		F56E7B01256D083800F8EC23 /* UpdateEvent */ = {
+			isa = PBXGroup;
+			children = (
+				F56E7B02256D084E00F8EC23 /* UpdateEventPresenter.swift */,
+				F56E7B03256D084E00F8EC23 /* UpdateEventViewController.swift */,
+				F56E7B04256D084E00F8EC23 /* UpdateEventViewController.xib */,
+			);
+			path = UpdateEvent;
 			sourceTree = "<group>";
 		};
 		F582EA5E254FEE58002BF86F = {
@@ -370,6 +476,7 @@
 		F582EA7F254FEE75002BF86F /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				F52E42BD256BC0E90044A03C /* AttendanceEvent */,
 				F5126062256677FF00B517DC /* ADEEvent */,
 				F512603825664A3C00B517DC /* ProfileAppHome */,
 				F5BEFDE8255A3B12005A1A2E /* BarcodeAppHome */,
@@ -388,8 +495,8 @@
 			isa = PBXGroup;
 			children = (
 				F582EA88254FEEB6002BF86F /* LoginPresenter.swift */,
-				F582EA89254FEEB6002BF86F /* LoginViewController.swift */,
 				F582EA8A254FEEB6002BF86F /* LoginViewController.xib */,
+				F582EA89254FEEB6002BF86F /* LoginViewController.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -460,6 +567,8 @@
 				F5B1A6B32559266600CC0C1A /* UIView */,
 				F5B1A6AE2559223700CC0C1A /* AppIcon */,
 				F582EAC7254FF4A7002BF86F /* AppColor */,
+				F5DF01F7256B702700B5E444 /* String+Extension.swift */,
+				F534819F25709850001C3FAC /* UINavigation+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -480,7 +589,6 @@
 				F5A2AEFF255A765400502E0F /* SlideInTransition */,
 				F5A2AEF0255A73A900502E0F /* SlideMenuAppHome */,
 				F59037E72553E23F007FE7C3 /* ComingSoon+EndedCell */,
-				F58527C72551653F00F888E8 /* CustomNavigation */,
 				F58527AD25510AEE00F888E8 /* HappenningCellAppHome */,
 				F582EADD25505690002BF86F /* AppHomePresenter.swift */,
 				F582EADE25505690002BF86F /* AppHomeViewController.swift */,
@@ -508,13 +616,6 @@
 			path = DetailEvent;
 			sourceTree = "<group>";
 		};
-		F58527C72551653F00F888E8 /* CustomNavigation */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = CustomNavigation;
-			sourceTree = "<group>";
-		};
 		F59037E72553E23F007FE7C3 /* ComingSoon+EndedCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -527,7 +628,6 @@
 		F59037EE2553E913007FE7C3 /* RankAppHome */ = {
 			isa = PBXGroup;
 			children = (
-				F50D63A42554EDCB007509D0 /* SearchAppHomeViewController.xib */,
 				F50D6398255452C7007509D0 /* RankCell */,
 				F59221CB2553FD8C002F3F50 /* RankPresenter.swift */,
 				F59221CC2553FD8C002F3F50 /* RankViewController.swift */,
@@ -579,6 +679,7 @@
 		F593CCAA255E401F005D4F15 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				F5C17C16256CC27900A467E2 /* AttendanceEvent */,
 				F56DFE8925676EC70080A31F /* ADEEvent */,
 				F5126040256652B600B517DC /* Profile */,
 				F5CC24F72565043D003EF2F1 /* RankEvent */,
@@ -739,6 +840,53 @@
 			path = BarcodeAppHome;
 			sourceTree = "<group>";
 		};
+		F5C17C16256CC27900A467E2 /* AttendanceEvent */ = {
+			isa = PBXGroup;
+			children = (
+				F5C17C17256CC2FA00A467E2 /* AttendanceEvent.swift */,
+			);
+			path = AttendanceEvent;
+			sourceTree = "<group>";
+		};
+		F5C26FD5256B779F0015576A /* TableViewScoreCell */ = {
+			isa = PBXGroup;
+			children = (
+				F5C26FD6256B77C40015576A /* TableViewScoreCell.swift */,
+				F5C26FD7256B77C40015576A /* TableViewScoreCell.xib */,
+			);
+			path = TableViewScoreCell;
+			sourceTree = "<group>";
+		};
+		F5C26FDC256B9D230015576A /* ListEvent */ = {
+			isa = PBXGroup;
+			children = (
+				F5C26FF3256BB2870015576A /* HeaderSearch */,
+				F5C26FE6256BA1F90015576A /* ListEvenCell */,
+				F5C26FDE256B9D440015576A /* ListEventPresenter.swift */,
+				F5C26FDF256B9D440015576A /* ListEventViewController.swift */,
+				F5C26FE0256B9D440015576A /* ListEventViewController.xib */,
+			);
+			path = ListEvent;
+			sourceTree = "<group>";
+		};
+		F5C26FE6256BA1F90015576A /* ListEvenCell */ = {
+			isa = PBXGroup;
+			children = (
+				F5C26FEE256BA8370015576A /* ListEventCell.swift */,
+				F5C26FEF256BA8370015576A /* ListEventCell.xib */,
+			);
+			path = ListEvenCell;
+			sourceTree = "<group>";
+		};
+		F5C26FF3256BB2870015576A /* HeaderSearch */ = {
+			isa = PBXGroup;
+			children = (
+				F5C26FF4256BB2AB0015576A /* HeaderSearch.swift */,
+				F5C26FF5256BB2AB0015576A /* HeaderSearch.xib */,
+			);
+			path = HeaderSearch;
+			sourceTree = "<group>";
+		};
 		F5CC24F02563D012003EF2F1 /* HistoryEvent */ = {
 			isa = PBXGroup;
 			children = (
@@ -754,6 +902,16 @@
 				F5CC24F82565044D003EF2F1 /* RankEvent.swift */,
 			);
 			path = RankEvent;
+			sourceTree = "<group>";
+		};
+		F5DF01EE256B56A700B5E444 /* PickerTime */ = {
+			isa = PBXGroup;
+			children = (
+				F5DF01EF256B56CE00B5E444 /* TimePickerPresenter.swift */,
+				F5DF01F0256B56CE00B5E444 /* TimePickerViewController.swift */,
+				F5DF01F1256B56CE00B5E444 /* TimePickerViewController.xib */,
+			);
+			path = PickerTime;
 			sourceTree = "<group>";
 		};
 		F5FAAF4425621A830036EA95 /* HandleErrorViewController */ = {
@@ -839,6 +997,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F5C26FF1256BA8370015576A /* ListEventCell.xib in Resources */,
 				F58527B125510B3700F888E8 /* HappenningCellAppHome.xib in Resources */,
 				F582EAD825503B11002BF86F /* ForgotPasswordViewController.xib in Resources */,
 				F593CBF9255BEDB1005D4F15 /* GoogleService-Info.plist in Resources */,
@@ -846,14 +1005,16 @@
 				F582EAB7254FF1D1002BF86F /* Raleway-ExtraBoldItalic.ttf in Resources */,
 				F5B1A6CA255939BA00CC0C1A /* SemesterCell.xib in Resources */,
 				F582EAB8254FF1D1002BF86F /* Raleway-Regular.ttf in Resources */,
+				F5DF01F4256B56CE00B5E444 /* TimePickerViewController.xib in Resources */,
 				F582EABA254FF1D1002BF86F /* Raleway-SemiBoldItalic.ttf in Resources */,
+				F52E42C9256BC27E0044A03C /* AttendanceCell.xib in Resources */,
+				F52E42C3256BC1000044A03C /* AttendanceEventViewController.xib in Resources */,
 				F5A04E40255533B800DB396C /* HistoryEventViewController.xib in Resources */,
 				F582EA8D254FEEB6002BF86F /* LoginViewController.xib in Resources */,
 				F582EAB3254FF1D1002BF86F /* Raleway-ExtraLight.ttf in Resources */,
 				F582EA91254FF089002BF86F /* LaunchScreen.storyboard in Resources */,
 				F582EAE225505693002BF86F /* AppHomeViewController.xib in Resources */,
 				F582EAC1254FF1D1002BF86F /* Raleway-Bold.ttf in Resources */,
-				F50D63A72554EDCC007509D0 /* SearchAppHomeViewController.xib in Resources */,
 				F512603E25664A6F00B517DC /* ProfileViewController.xib in Resources */,
 				F5BEFDF1255A3B6C005A1A2E /* BarcodeViewController.xib in Resources */,
 				F582EAB0254FF1D1002BF86F /* Raleway-BoldItalic.ttf in Resources */,
@@ -863,9 +1024,11 @@
 				F582EAB6254FF1D1002BF86F /* Raleway-ExtraBold.ttf in Resources */,
 				F582EA74254FEE5E002BF86F /* Assets.xcassets in Resources */,
 				F582EAB2254FF1D1002BF86F /* Raleway-ThinItalic.ttf in Resources */,
+				F5C26FE3256B9D440015576A /* ListEventViewController.xib in Resources */,
 				F59037EB2553E275007FE7C3 /* ComingSoonEndedCellAppHome.xib in Resources */,
 				F5A04E2E255502B000DB396C /* SearchEventLabelCell.xib in Resources */,
 				F582EAC0254FF1D1002BF86F /* Raleway-Italic.ttf in Resources */,
+				F5C26FD9256B77C40015576A /* TableViewScoreCell.xib in Resources */,
 				F58527C5255157E900F888E8 /* DetailEventViewController.xib in Resources */,
 				F59221D02553FD8D002F3F50 /* RankViewController.xib in Resources */,
 				F5A04E342555054200DB396C /* SearchResultCell.xib in Resources */,
@@ -875,11 +1038,15 @@
 				F5A2AEFD255A74C400502E0F /* SlideMenuViewController.xib in Resources */,
 				F5B1A699255553F300CC0C1A /* HeaderHistory.xib in Resources */,
 				F5B1A6A22559157000CC0C1A /* SemesterScoreViewController.xib in Resources */,
+				F56DFF64256909820080A31F /* DatePickerViewViewController.xib in Resources */,
 				F582EAC2254FF1D1002BF86F /* OFL.txt in Resources */,
 				F582EAB1254FF1D1002BF86F /* Raleway-MediumItalic.ttf in Resources */,
 				F582EAC3254FF1D1002BF86F /* Raleway-VariableFont_wght.ttf in Resources */,
+				F56E7B07256D084E00F8EC23 /* UpdateEventViewController.xib in Resources */,
+				F5C26FF7256BB2AB0015576A /* HeaderSearch.xib in Resources */,
 				F582EAB4254FF1D1002BF86F /* Raleway-Medium.ttf in Resources */,
 				F5A04E292555016100DB396C /* SearchEventTextFieldHeader.xib in Resources */,
+				F53481A62570DBE5001C3FAC /* SearchAppHomeViewController.xib in Resources */,
 				F582EAB9254FF1D1002BF86F /* Raleway-ExtraLightItalic.ttf in Resources */,
 				F582EAB5254FF1D1002BF86F /* Raleway-SemiBold.ttf in Resources */,
 				F582EABE254FF1D1002BF86F /* Raleway-LightItalic.ttf in Resources */,
@@ -943,13 +1110,17 @@
 				F56DFE8B25676EE20080A31F /* ADEEvent.swift in Sources */,
 				F58527B025510B3700F888E8 /* HappenningCellAppHome.swift in Sources */,
 				F582EA8B254FEEB6002BF86F /* LoginPresenter.swift in Sources */,
+				F56E7B06256D084E00F8EC23 /* UpdateEventViewController.swift in Sources */,
 				F51260482566560C00B517DC /* ProfileTableViewCell.swift in Sources */,
 				F5FAAF4F256287BA0036EA95 /* DetailEvent.swift in Sources */,
 				F593CBF3255BE863005D4F15 /* UIButton+Extension.swift in Sources */,
 				F5FAAF4B256254AB0036EA95 /* UIImageView+Extension.swift in Sources */,
 				F58527C3255157E900F888E8 /* DetailEventPresenter.swift in Sources */,
+				F5C26FE1256B9D440015576A /* ListEventPresenter.swift in Sources */,
+				F56E7B05256D084E00F8EC23 /* UpdateEventPresenter.swift in Sources */,
 				F5CC24F5256415DA003EF2F1 /* DetailHistory.swift in Sources */,
 				F593CCA7255E2328005D4F15 /* BaseViewController.swift in Sources */,
+				F56DFF62256909820080A31F /* DatePickerViewPresenter.swift in Sources */,
 				F582EAE025505693002BF86F /* AppHomePresenter.swift in Sources */,
 				F512603D25664A6F00B517DC /* ProfileViewController.swift in Sources */,
 				F5A04E3F255533B800DB396C /* HistoryEventViewController.swift in Sources */,
@@ -962,22 +1133,33 @@
 				F59221CF2553FD8D002F3F50 /* RankViewController.swift in Sources */,
 				F5A04E3E255533B800DB396C /* HistoryEventPresenter.swift in Sources */,
 				F593CCB1255E5E94005D4F15 /* Home.swift in Sources */,
+				F53481A025709850001C3FAC /* UINavigation+Extension.swift in Sources */,
+				F5C26FD8256B77C40015576A /* TableViewScoreCell.swift in Sources */,
+				F5C17C18256CC2FA00A467E2 /* AttendanceEvent.swift in Sources */,
 				F59037EA2553E275007FE7C3 /* ComingSoonEndedCellAppHome.swift in Sources */,
+				F56DFF63256909820080A31F /* DatePickerViewViewController.swift in Sources */,
 				F50D63A62554EDCC007509D0 /* SearchAppHomeViewController.swift in Sources */,
 				F50D639B25545317007509D0 /* RankTableViewCell.swift in Sources */,
+				F52E42C2256BC1000044A03C /* AttendanceEventViewController.swift in Sources */,
 				F5A2AEFC255A74C400502E0F /* SlideMenuViewController.swift in Sources */,
+				F52E42C8256BC27E0044A03C /* AttendanceCell.swift in Sources */,
 				F582EA6B254FEE58002BF86F /* AppDelegate.swift in Sources */,
 				F5BEFDF0255A3B6C005A1A2E /* BarcodeViewController.swift in Sources */,
 				F5A04E2D255502B000DB396C /* SearchEventLabelCell.swift in Sources */,
+				F5C26FF6256BB2AB0015576A /* HeaderSearch.swift in Sources */,
 				F582EAD625503B11002BF86F /* ForgotPasswordPresenter.swift in Sources */,
 				F5A2AF01255A768B00502E0F /* SlideInTransition.swift in Sources */,
 				F51260682566783100B517DC /* CreateEventViewController.swift in Sources */,
+				F52E42C1256BC1000044A03C /* AttendanceEventPresenter.swift in Sources */,
 				F5126042256652C200B517DC /* Profile.swift in Sources */,
 				F5B1A698255553F300CC0C1A /* HeaderHistory.swift in Sources */,
 				F5B1A6A12559157000CC0C1A /* SemesterScoreViewController.swift in Sources */,
+				F5DF01F8256B702700B5E444 /* String+Extension.swift in Sources */,
+				F5DF01F3256B56CE00B5E444 /* TimePickerViewController.swift in Sources */,
 				F5B1A6B02559224200CC0C1A /* AppIcon.swift in Sources */,
 				F5A04E252555015700DB396C /* SearchEventTextFieldHeader.swift in Sources */,
 				F593CC9C255D36DB005D4F15 /* UIAlertController.swift in Sources */,
+				F5C26FE2256B9D440015576A /* ListEventViewController.swift in Sources */,
 				F5B1A6C9255939BA00CC0C1A /* SemesterCell.swift in Sources */,
 				F5BEFDEF255A3B6C005A1A2E /* BarcodePresenter.swift in Sources */,
 				F5CC24F92565044D003EF2F1 /* RankEvent.swift in Sources */,
@@ -986,6 +1168,8 @@
 				F5B1A69225553C9300CC0C1A /* HistoryCell.swift in Sources */,
 				F5B1A6B7255928FF00CC0C1A /* Font.swift in Sources */,
 				F5A2AF07255A7C7800502E0F /* SlideMenuCell.swift in Sources */,
+				F5C26FF0256BA8370015576A /* ListEventCell.swift in Sources */,
+				F5DF01F2256B56CE00B5E444 /* TimePickerPresenter.swift in Sources */,
 				F582EAD725503B11002BF86F /* ForgotPasswordViewController.swift in Sources */,
 				F582EA8C254FEEB6002BF86F /* LoginViewController.swift in Sources */,
 				F512603C25664A6F00B517DC /* ProfilePresenter.swift in Sources */,
@@ -1053,7 +1237,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1108,7 +1292,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

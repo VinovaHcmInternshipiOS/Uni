@@ -10,8 +10,10 @@
 
 import UIKit
 
-class HistoryEventViewController: UIViewController {
+class HistoryEventViewController: BaseViewController {
     
+    @IBOutlet weak var viewTotalScore: UIView!
+    @IBOutlet weak var viewTotalEvent: UIView!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var heightCollectionView: NSLayoutConstraint!
     @IBOutlet weak var totalEvent: UILabel!
@@ -47,6 +49,8 @@ class HistoryEventViewController: UIViewController {
         collectionView.register(UINib(nibName: "HeaderHistory", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "HeaderHistory")
         
         collectionView.register(UINib(nibName: "HeaderHistory", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "HeaderHistory")
+        viewTotalEvent.backgroundColor = AppColor.YellowFBC459
+        viewTotalScore.backgroundColor = AppColor.YellowFBC459
         
     }
     
@@ -143,10 +147,10 @@ extension HistoryEventViewController: UICollectionViewDataSource {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HistoryCell", for: indexPath) as? HistoryCell {
             switch indexPath.row {
             case 0:
-                cell.lbSemester.text = "1"
+                cell.lbNumberSemester.text = "1"
                 return cell
             case 1:
-                cell.lbSemester.text = "2"
+                cell.lbNumberSemester.text = "2"
                 return cell
             default:
                 break
@@ -162,8 +166,12 @@ extension HistoryEventViewController: UICollectionViewDataSource {
 }
 
 extension HistoryEventViewController: HistoryEventViewProtocol {
-    func fetchSemesterSuccess() {
+    func fetchScoreEventOfUser() {
         totalSemester = presenter.totalYear!
+        collectionView.reloadData()
+    }
+    
+    func fetchSemesterSuccess() {
         infoEvents = presenter.infoEvent!
         collectionView.reloadData()
         

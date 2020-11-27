@@ -10,9 +10,11 @@
 
 import UIKit
 
-class DetailEventViewController: UIViewController {
+class DetailEventViewController: BaseViewController {
 
 	var presenter: DetailEventPresenterProtocol
+    @IBOutlet weak var iconPerson: UIButton!
+    @IBOutlet weak var viewTimeLocation: UIView!
     @IBOutlet weak var joinEvent: UILabel!
     @IBOutlet weak var contentEvent: UILabel!
     @IBOutlet weak var titleEvent: UILabel!
@@ -35,6 +37,17 @@ class DetailEventViewController: UIViewController {
         presenter.view = self
         presenter.getDetailEvent(keyEvent: keyDetailEvent)
         presenter.getJoinerEvent(keyEvent: keyDetailEvent)
+        setupUI()
+    }
+    
+    func setupUI(){
+        titleEvent.textColor = AppColor.YellowFAB32A
+        joinEvent.textColor = AppColor.YellowFAB32A
+        viewTimeLocation.backgroundColor = AppColor.YellowFAB32A
+        iconPerson.tintColor = AppColor.YellowFAB32A
+        scoreEvent.textColor = AppColor.YellowFAB32A
+        
+        
     }
     
 }

@@ -1,4 +1,5 @@
 PODS:
+  - BarcodeScanner (4.1.3)
   - Firebase/Analytics (6.24.0):
     - Firebase/Core
   - Firebase/Auth (6.24.0):
@@ -97,6 +98,7 @@ PODS:
   - ShimmerSwift (2.1.1)
 
 DEPENDENCIES:
+  - BarcodeScanner
   - Firebase/Analytics
   - Firebase/Auth
   - Firebase/Database
@@ -106,6 +108,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - BarcodeScanner
     - Firebase
     - FirebaseAnalytics
     - FirebaseAuth
@@ -128,6 +131,7 @@ SPEC REPOS:
     - ShimmerSwift
 
 SPEC CHECKSUMS:
+  BarcodeScanner: fce1ad2b3f28286b1ab5091fe0979789618bee27
   Firebase: b28e55c60efd98963cd9011fe2fac5a10c2ba124
   FirebaseAnalytics: 7386fc2176e3f93ad8ef34b5b1f2b33a891e4962
   FirebaseAuth: 7047aec89c0b17ecd924a550c853f0c27ac6015e
@@ -149,6 +153,6 @@ SPEC CHECKSUMS:
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
   ShimmerSwift: f7ed2daf9c246de8299dfd9e12c6ab465cba9842
 
-PODFILE CHECKSUM: 196f921c7834405115cabb44f220ca12ade82462
+PODFILE CHECKSUM: 2aa8c21c3f43f81ed3e348c51c072b7d8eba5c18
 
 COCOAPODS: 1.8.4

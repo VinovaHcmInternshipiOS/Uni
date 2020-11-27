@@ -11,7 +11,7 @@
 import Foundation
 import UIKit
 
-class ForgotPasswordViewController: UIViewController{
+class ForgotPasswordViewController: BaseViewController{
 
     @IBOutlet weak var txtEmail: UITextField!
     @IBOutlet weak var lbTime: UILabel!
@@ -32,7 +32,7 @@ class ForgotPasswordViewController: UIViewController{
         super.viewDidLoad()
 
         presenter.view = self
-    
+        addBackToNavigation()
         
     }
     

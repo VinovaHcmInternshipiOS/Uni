@@ -9,10 +9,13 @@ import UIKit
 
 class HistoryCell: UICollectionViewCell {
 
+    @IBOutlet weak var lbNumberSemester: UILabel!
     @IBOutlet weak var lbSemester: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        lbNumberSemester.textColor = AppColor.YellowFAB32A
+        lbSemester.textColor = AppColor.YellowFAB32A
     }
 
 }

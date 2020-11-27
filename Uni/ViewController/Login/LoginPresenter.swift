@@ -17,18 +17,25 @@ import UIKit
 protocol LoginViewProtocol: class {
     func loginSuccess()
     func loginFailed(error: Error)
+    func checkAuthSuccess(role:String)
+    func checkAuthFailed()
+    
 }
 
 // MARK: Presenter -
 protocol LoginPresenterProtocol: class {
 	var view: LoginViewProtocol? { get set }
     func siginIn(email:String, password: String)
+    func checkAuth(completion: @escaping(String)->Void)
 }
 
 class LoginPresenter: LoginPresenterProtocol {
 
     
     weak var view: LoginViewProtocol?
+    var ref = Database.database().reference()
+    var databaseHandle = DatabaseHandle()
+    var user = Auth.auth().currentUser
     
     func siginIn(email:String, password: String) {
         //if NetworkState.shared.isConnected {
@@ -48,6 +55,20 @@ class LoginPresenter: LoginPresenterProtocol {
         //    print("Not connected")
         //}
       
+    }
+    
+    func checkAuth(completion: @escaping (String) -> Void) {
+        let placeRef = self.ref.child("Users").child("\(user!.uid)").child("Auth")
+        placeRef.observeSingleEvent(of:.value, with: { [self] snapshot in
+            if(snapshot.exists())
+            {
+                let placeDict = snapshot.value as! [String: Any]
+                let role = placeDict["Role"] as! String
+                completion(role)
+                view?.checkAuthSuccess(role: role)
+            }
+            
+        })
     }
     
 }

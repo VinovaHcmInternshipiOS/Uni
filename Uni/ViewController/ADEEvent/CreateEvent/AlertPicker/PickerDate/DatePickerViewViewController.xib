@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Raleway-Medium.ttf">
+            <string>Raleway-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DatePickerViewViewController" customModule="Uni" customModuleProvider="target">
+            <connections>
+                <outlet property="datePicker" destination="p4E-9K-vYC" id="i7u-aP-TBT"/>
+                <outlet property="lbCurrentDate" destination="PAC-rE-Rzw" id="rPc-On-7aG"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9ae-Si-Dab">
+                    <rect key="frame" x="32" y="225.5" width="311" height="216"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="20"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                            <size key="value" width="0.0" height="4"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                            <color key="value" name="Color-1"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                            <real key="value" value="15"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="shadowBlur">
+                            <real key="value" value="15"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vSR-wp-cXn">
+                    <rect key="frame" x="32" y="225.5" width="311" height="216"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PAC-rE-Rzw">
+                            <rect key="frame" x="0.0" y="0.0" width="311" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="Enz-c1-6eP"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="18"/>
+                            <color key="textColor" name="FAB32A"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="wheels" translatesAutoresizingMaskIntoConstraints="NO" id="p4E-9K-vYC">
+                            <rect key="frame" x="0.0" y="30" width="311" height="146"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <date key="minimumDate" timeIntervalSinceReferenceDate="-978267600">
+                                <!--1970-01-01 11:00:00 AM +0000-->
+                            </date>
+                            <date key="maximumDate" timeIntervalSinceReferenceDate="1167562800">
+                                <!--2037-12-31 11:00:00 AM +0000-->
+                            </date>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="20"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="datePicker:" destination="-1" eventType="valueChanged" id="Pbq-bX-MJL"/>
+                            </connections>
+                        </datePicker>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="QGX-hu-Et6">
+                            <rect key="frame" x="0.0" y="176" width="311" height="40"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JAE-pL-RkV">
+                                    <rect key="frame" x="0.0" y="0.0" width="155" height="40"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="tintColor" systemColor="systemRedColor"/>
+                                    <state key="normal" title="Cancel"/>
+                                    <connections>
+                                        <action selector="cancelPickerDate:" destination="-1" eventType="touchUpInside" id="mV9-c9-2kR"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ofy-3B-Qxm">
+                                    <rect key="frame" x="156" y="0.0" width="155" height="40"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <state key="normal" title="OK"/>
+                                    <connections>
+                                        <action selector="okPickerDate:" destination="-1" eventType="touchUpInside" id="UW9-3G-I98"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" red="0.92968656466178456" green="0.93653160395887247" blue="0.95581077806877368" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="EKg-V2-ROd"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="15"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                    <size key="value" width="0.0" height="4"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                    <color key="value" name="Color-1"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                    <real key="value" value="15"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="shadowBlur">
+                                    <real key="value" value="15"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </stackView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="p4E-9K-vYC" firstAttribute="leading" secondItem="vSR-wp-cXn" secondAttribute="leading" id="4N6-0P-JRt"/>
+                        <constraint firstItem="PAC-rE-Rzw" firstAttribute="top" secondItem="vSR-wp-cXn" secondAttribute="top" id="6N3-cd-lro"/>
+                        <constraint firstItem="PAC-rE-Rzw" firstAttribute="leading" secondItem="vSR-wp-cXn" secondAttribute="leading" id="SaM-fP-3br"/>
+                        <constraint firstAttribute="trailing" secondItem="p4E-9K-vYC" secondAttribute="trailing" id="T3L-kz-oJg"/>
+                        <constraint firstItem="QGX-hu-Et6" firstAttribute="top" secondItem="p4E-9K-vYC" secondAttribute="bottom" id="blV-PY-4Pe"/>
+                        <constraint firstAttribute="trailing" secondItem="QGX-hu-Et6" secondAttribute="trailing" id="krh-T2-60h"/>
+                        <constraint firstItem="p4E-9K-vYC" firstAttribute="top" secondItem="PAC-rE-Rzw" secondAttribute="bottom" id="oHJ-w7-Dry"/>
+                        <constraint firstItem="QGX-hu-Et6" firstAttribute="leading" secondItem="vSR-wp-cXn" secondAttribute="leading" id="oUu-JJ-t7D"/>
+                        <constraint firstAttribute="height" constant="216" id="qXm-Zs-UFK"/>
+                        <constraint firstAttribute="bottom" secondItem="QGX-hu-Et6" secondAttribute="bottom" id="teJ-8F-zQx"/>
+                        <constraint firstAttribute="trailing" secondItem="PAC-rE-Rzw" secondAttribute="trailing" id="xdD-eu-1yF"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="20"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="vSR-wp-cXn" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="32" id="4Dd-lK-SNR"/>
+                <constraint firstItem="vSR-wp-cXn" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="4Mp-ih-PYA"/>
+                <constraint firstItem="9ae-Si-Dab" firstAttribute="height" secondItem="vSR-wp-cXn" secondAttribute="height" id="DIF-rH-PPW"/>
+                <constraint firstAttribute="trailing" secondItem="9ae-Si-Dab" secondAttribute="trailing" constant="32" id="Gey-az-cfa"/>
+                <constraint firstItem="vSR-wp-cXn" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="U3p-Rt-iMz"/>
+                <constraint firstItem="9ae-Si-Dab" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="32" id="a21-As-wm3"/>
+                <constraint firstItem="9ae-Si-Dab" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="gUX-1v-nwx"/>
+                <constraint firstAttribute="trailing" secondItem="vSR-wp-cXn" secondAttribute="trailing" constant="32" id="tOr-wN-6Mh"/>
+                <constraint firstItem="9ae-Si-Dab" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="tXe-Wp-q97"/>
+            </constraints>
+            <point key="canvasLocation" x="37.600000000000001" y="78.710644677661179"/>
+        </view>
+    </objects>
+    <resources>
+        <namedColor name="Color-1">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.15000000596046448" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="FAB32A">
+            <color red="0.98000001907348633" green="0.70200002193450928" blue="0.16500000655651093" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

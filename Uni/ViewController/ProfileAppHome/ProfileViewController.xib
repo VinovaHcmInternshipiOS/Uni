@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -33,7 +34,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q5J-QZ-VUg">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="916"/>
+                            <rect key="frame" x="0.0" y="-100" width="414" height="916"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YqQ-oL-YWt">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="326"/>
@@ -117,7 +118,7 @@
                                         <constraint firstAttribute="width" constant="25" id="A0F-CL-d75"/>
                                         <constraint firstAttribute="height" constant="25" id="u7S-tT-1WI"/>
                                     </constraints>
-                                    <state key="normal" image="icEditImage"/>
+                                    <state key="normal" image="icEditImage-yellow"/>
                                     <connections>
                                         <action selector="updateImage:" destination="-1" eventType="touchUpInside" id="wej-Kq-91X"/>
                                     </connections>
@@ -148,7 +149,7 @@
                         <constraint firstAttribute="bottom" secondItem="Q5J-QZ-VUg" secondAttribute="bottom" id="QJo-Dh-dZH"/>
                         <constraint firstItem="Q5J-QZ-VUg" firstAttribute="leading" secondItem="otq-LD-2qV" secondAttribute="leading" id="R01-Ca-5WT"/>
                         <constraint firstAttribute="trailing" secondItem="Q5J-QZ-VUg" secondAttribute="trailing" id="pEm-PE-QKc"/>
-                        <constraint firstItem="Q5J-QZ-VUg" firstAttribute="top" secondItem="otq-LD-2qV" secondAttribute="top" id="r29-vs-hTs"/>
+                        <constraint firstItem="Q5J-QZ-VUg" firstAttribute="top" secondItem="otq-LD-2qV" secondAttribute="top" constant="-100" id="r29-vs-hTs"/>
                     </constraints>
                 </scrollView>
             </subviews>
@@ -166,7 +167,7 @@
         </view>
     </objects>
     <resources>
-        <image name="icEditImage" width="25" height="25"/>
+        <image name="icEditImage-yellow" width="25" height="25"/>
         <namedColor name="Color-1">
             <color red="0.0" green="0.0" blue="0.0" alpha="0.15000000596046448" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

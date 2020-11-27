@@ -17,10 +17,13 @@ class SemesterCell: UITableViewCell {
     @IBOutlet weak var lbTitle: UILabel!
     @IBOutlet weak var lbScore: UILabel!
     @IBOutlet weak var imgView: UIImageView!
+    @IBOutlet weak var viewDate: UIView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
        // viewDateTime.roundCorners([.topRight], radius: 20)
+        lbScore.textColor = AppColor.YellowFAB32A
+        viewDate.backgroundColor = AppColor.YellowFAB32A
         imgView.roundCorners([.topLeft,.bottomLeft], radius: 20)
     }
 

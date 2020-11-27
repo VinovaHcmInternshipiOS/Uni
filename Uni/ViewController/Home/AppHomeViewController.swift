@@ -46,6 +46,7 @@ class AppHomeViewController:BaseViewController{
         presenter.view = self
         addNav()
         setupXIB()
+        setupUI()
         presenter.loadProfile()
 
         presenter.getInfoEventHappening()
@@ -56,12 +57,19 @@ class AppHomeViewController:BaseViewController{
         _ = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(moveToNextPage), userInfo: nil, repeats: true)
         
     }
+    
+    func setupUI(){
+        lbID.textColor = AppColor.YellowFAB32A
+        lbFaculty.textColor = AppColor.YellowFAB32A
+    }
+    
     func movetoProfile(){
         let gesture:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(profileVC))
         viewProfile.addGestureRecognizer(gesture)
     }
     @objc func profileVC(){
         let profileUser = ProfileViewController(presenter: ProfilePresenter())
+        profileUser.fromAppHome = true
         self.navigationController?.pushViewController(profileUser, animated: true)
     }
     @objc func moveToNextPage (){
@@ -97,10 +105,13 @@ class AppHomeViewController:BaseViewController{
     }
     func addNav() {
         addMenuButton()
-        addButtonImageToNavigation(image: AppIcon.icBellYellow!, style: .right, action: nil)
+        addButtonImageToNavigation(image: AppIcon.icBellYellow!, style: .right, action: #selector(manage))
         self.navigationController?.hideShadowLine()
     }
-    
+    @objc func manage(){
+        let lisevent = ListEventViewController(presenter: ListEventPresenter())
+        navigationController?.pushViewController(lisevent, animated: true)
+    }
     @IBAction func btLeaderboard(_ sender: UIButton) {
         sender.animationScale()
         let leaderBoard = RankViewController(presenter: RankPresenter())

@@ -23,6 +23,9 @@ class ProfileViewController: BaseViewController  {
 	var presenter: ProfilePresenterProtocol
     var dataTitle = ["Email","Gender","Class","Course","Faculty"]
     var imagePicker: ImagePicker!
+    var fromAppHome = false
+    var fromAttendance = false
+    var keyUser = ""
 	init(presenter: ProfilePresenterProtocol) {
         self.presenter = presenter
         super.init(nibName: "ProfileViewController", bundle: nil)
@@ -35,15 +38,34 @@ class ProfileViewController: BaseViewController  {
 	override func viewDidLoad() {
         super.viewDidLoad()
         presenter.view = self
-        presenter.fetchProfile()
         setupUI()
-
+        flowView()
+        //transprentNav()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.themeNavigationBar(mode: .clear)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        navigationController?.themeNavigationBar(mode: .normal)
+    }
+    
+    func flowView() {
+        if fromAppHome == true {
+            presenter.fetchProfile()
+        } else if fromAttendance == true{
+            btUpdateImage.isHidden = true
+            presenter.fetchProfileAttendance(keyUser: keyUser)
+        }
     }
     func setupUI(){
         tableView.register(UINib(nibName: "ProfileTableViewCell", bundle: nil), forCellReuseIdentifier: "ProfileTableViewCell")
         tableView.dataSource = self
         tableView.delegate = self
         self.imagePicker = ImagePicker(presentationController: self, delegate: self)
+        imgProfile.borderColor = AppColor.YellowFAB32A
+        btUpdateImage.setImage(AppIcon.icEditImageRed, for: .normal)
         
     }
     @IBAction func updateImage(_ sender: UIButton) {
@@ -102,6 +124,20 @@ extension ProfileViewController: UITableViewDataSource {
 }
 
 extension ProfileViewController: ProfileViewProtocol {
+    func fetchProfileAttendanceSuccess() {
+        profileUser = presenter.profileUser!
+        lbName.text = profileUser.name
+        if let profileURL = profileUser.urlImage {
+            imgBaner.loadImage(urlString: profileURL)
+            imgProfile.loadImage(urlString: profileURL)
+        }
+        tableView.reloadData()
+    }
+    
+    func fetchProfileAttendanceFailed() {
+        print("fetch profile attendance failed")
+    }
+    
     func updateImageSuccess() {
         removeSpinner()
         print("update image success")

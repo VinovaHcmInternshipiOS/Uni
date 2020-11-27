@@ -13,6 +13,7 @@ class ProfileTableViewCell: UITableViewCell {
     @IBOutlet weak var lbContent: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
+        lbTitle.textColor = AppColor.YellowFAB32A
         // Initialization code
     }
 

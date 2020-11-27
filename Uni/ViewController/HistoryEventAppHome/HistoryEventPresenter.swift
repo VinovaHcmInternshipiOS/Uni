@@ -23,11 +23,12 @@ protocol HistoryEventViewProtocol: class {
     func fetchHistoryEventFailed()
     func fetchSemesterSuccess()
     func fetchSemesterFailed()
+    func fetchScoreEventOfUser()
 }
 
 // MARK: Presenter -
 protocol HistoryEventPresenterProtocol: class {
-	var view: HistoryEventViewProtocol? { get set }
+    var view: HistoryEventViewProtocol? { get set }
     var totalScore: Int? { get set}
     var totalEvent: Int? { get set}
     var infoEvent: [History]? { get set}
@@ -38,9 +39,9 @@ protocol HistoryEventPresenterProtocol: class {
 }
 
 class HistoryEventPresenter: HistoryEventPresenterProtocol {
-
     
-
+    
+    
     weak var view: HistoryEventViewProtocol?
     var ref = Database.database().reference()
     var databaseHandle = DatabaseHandle()
@@ -107,47 +108,87 @@ class HistoryEventPresenter: HistoryEventPresenterProtocol {
                 let placeDict = snapshot.value as! [String: Any]
                 let code = placeDict["Code"] as! String
                 let placeRef = self.ref.child("Data").child("\(code)").child("List")
-                placeRef.observe(.childAdded, with: { [self] snapshot in
+                placeRef.observeSingleEvent(of:.value, with: { [self] snapshot in
                     if(snapshot.exists())
                     {
-                        print(snapshot.key)
-                        let placeRef = self.ref.child("Data").child("\(code)/List").child("\(snapshot.key)")
-                        placeRef.observeSingleEvent(of:.value, with: { [self] snapshot in
-                            if(snapshot.exists())
-                            {
-                                let placeDict = snapshot.value as! [String: Any]
-                                let date = placeDict["Date"] as! String
-                                let score = placeDict["Score"] as! Int
-                                let dateFormatterYear = DateFormatter()
-                                dateFormatterYear.dateFormat = "dd-MM-yyyy"
-                                
-                                let dateFormatterMonth = DateFormatter()
-                                dateFormatterMonth.dateFormat = "dd-MM-yyyy"
-                                
-                                let formatYear = dateFormatterYear.date(from: date)
-                                dateFormatterYear.dateFormat = "yyyy"
-                                
-                                let formatMonth = dateFormatterMonth.date(from: date)
-                                dateFormatterMonth.dateFormat = "MM"
-                                
-                                let request = History(Year: dateFormatterYear.string(from: formatYear!), Month: dateFormatterMonth.string(from: formatMonth!), Score: score,Key: snapshot.key)
-                                infoEvent?.append(request)
-                                
-                                let dateFormatter = DateFormatter()
-                                dateFormatter.dateFormat = "dd-MM-yyyy"
-                                let dateTime = dateFormatter.date(from: date)
-                                dateFormatter.dateFormat = "yyyy"
-                                if(!totalYear!.contains(dateFormatter.string(from: dateTime!)))
+                        for keyEvent in snapshot.children.allObjects as! [DataSnapshot] {
+                            let placeRef = self.ref.child("Data").child("\(code)/List").child("\(keyEvent.key)")
+                            placeRef.observeSingleEvent(of:.value, with: { [self] snapshot in
+                                if(snapshot.exists())
                                 {
-                                    totalYear?.append(dateFormatter.string(from: dateTime!))
-                                    totalYear!.sort { dateFormatter.date(from: $0)! > dateFormatter.date(from: $1)! }
+                                    let placeDict = snapshot.value as! [String: Any]
+                                    let date = placeDict["Date"] as! String
+                                    let score = placeDict["Score"] as! Int
+                                    let dateFormatterYear = DateFormatter()
+                                    dateFormatterYear.dateFormat = "dd-MM-yyyy"
+                                    
+                                    let dateFormatterMonth = DateFormatter()
+                                    dateFormatterMonth.dateFormat = "dd-MM-yyyy"
+                                    
+                                    let formatYear = dateFormatterYear.date(from: date)
+                                    dateFormatterYear.dateFormat = "yyyy"
+                                    
+                                    let formatMonth = dateFormatterMonth.date(from: date)
+                                    dateFormatterMonth.dateFormat = "MM"
+                                    
+                                    let request = History(Year: dateFormatterYear.string(from: formatYear!), Month: dateFormatterMonth.string(from: formatMonth!), Score: score,Key: keyEvent.key)
+                                    infoEvent?.append(request)
+                                    
+                                    let dateFormatter = DateFormatter()
+                                    dateFormatter.dateFormat = "dd-MM-yyyy"
+                                    let dateTime = dateFormatter.date(from: date)
+                                    dateFormatter.dateFormat = "yyyy"
+                                    if(!totalYear!.contains(dateFormatter.string(from: dateTime!)))
+                                    {
+                                        totalYear?.append(dateFormatter.string(from: dateTime!))
+                                        totalYear!.sort { dateFormatter.date(from: $0)! > dateFormatter.date(from: $1)! }
+                                        view?.fetchScoreEventOfUser()
+                                    }
                                     view?.fetchSemesterSuccess()
                                 }
-                            }
-                            else {
-                                view?.fetchSemesterFailed()
-                            }
-                        })
+                                else {
+                                    view?.fetchSemesterFailed()
+                                }
+                            })
+                        }
+                        //                        print(1,snapshot.key)
+                        //                        let placeRef = self.ref.child("Data").child("\(code)/List").child("\(snapshot.key)")
+                        //                        placeRef.observeSingleEvent(of:.value, with: { [self] snapshot in
+                        //                            if(snapshot.exists())
+                        //                            {
+                        //                                let placeDict = snapshot.value as! [String: Any]
+                        //                                let date = placeDict["Date"] as! String
+                        //                                let score = placeDict["Score"] as! Int
+                        //                                let dateFormatterYear = DateFormatter()
+                        //                                dateFormatterYear.dateFormat = "dd-MM-yyyy"
+                        //
+                        //                                let dateFormatterMonth = DateFormatter()
+                        //                                dateFormatterMonth.dateFormat = "dd-MM-yyyy"
+                        //
+                        //                                let formatYear = dateFormatterYear.date(from: date)
+                        //                                dateFormatterYear.dateFormat = "yyyy"
+                        //
+                        //                                let formatMonth = dateFormatterMonth.date(from: date)
+                        //                                dateFormatterMonth.dateFormat = "MM"
+                        //
+                        //                                let request = History(Year: dateFormatterYear.string(from: formatYear!), Month: dateFormatterMonth.string(from: formatMonth!), Score: score,Key: snapshot.key)
+                        //                                infoEvent?.append(request)
+                        //
+                        //                                let dateFormatter = DateFormatter()
+                        //                                dateFormatter.dateFormat = "dd-MM-yyyy"
+                        //                                let dateTime = dateFormatter.date(from: date)
+                        //                                dateFormatter.dateFormat = "yyyy"
+                        //                                if(!totalYear!.contains(dateFormatter.string(from: dateTime!)))
+                        //                                {
+                        //                                    totalYear?.append(dateFormatter.string(from: dateTime!))
+                        //                                    totalYear!.sort { dateFormatter.date(from: $0)! > dateFormatter.date(from: $1)! }
+                        //                                    view?.fetchSemesterSuccess()
+                        //                                }
+                        //                            }
+                        //                            else {
+                        //                                view?.fetchSemesterFailed()
+                        //                            }
+                        //                        })
                     }
                     else {
                         view?.fetchSemesterFailed()
@@ -158,5 +199,5 @@ class HistoryEventPresenter: HistoryEventPresenterProtocol {
             }
         })
     }
-
+    
 }

@@ -16,9 +16,10 @@ class DetailEvent {
     var date: String?
     var checkin: String?
     var checkout: String?
-    var urlImage: String?
+    var urlImageLandscape: String?
+    var urlImagePortal: String?
     
-    init(title: String,content: String, address:String,score: Int,date: String,checkin:String,checkout: String, urlImage: String) {
+    init(title: String,content: String, address:String,score: Int,date: String,checkin:String,checkout: String, urlImageLandscape: String,urlImagePortal: String) {
         self.title = title
         self.content = content
         self.address = address
@@ -26,7 +27,8 @@ class DetailEvent {
         self.date = date
         self.checkout = checkout
         self.checkin = checkin
-        self.urlImage = urlImage
+        self.urlImageLandscape = urlImageLandscape
+        self.urlImagePortal = urlImagePortal
     }
     
 

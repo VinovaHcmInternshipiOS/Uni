@@ -21,6 +21,8 @@ protocol ProfileViewProtocol: class {
     func fetchProfileFailed()
     func updateImageSuccess()
     func updateImageFailed()
+    func fetchProfileAttendanceSuccess()
+    func fetchProfileAttendanceFailed()
 }
 
 // MARK: Presenter -
@@ -29,6 +31,7 @@ protocol ProfilePresenterProtocol: class {
     var profileUser: Profile? { get set }
     func fetchProfile()
     func updateImage(image: UIImage)
+    func fetchProfileAttendance(keyUser: String)
     
     
 }
@@ -119,5 +122,30 @@ class ProfilePresenter: ProfilePresenterProtocol {
                 }
             })
         }
+    }
+    
+    func fetchProfileAttendance(keyUser: String) {
+
+                let placeRef = self.ref.child("Data").child("\(keyUser)")
+                placeRef.observe(.value, with: { [self] snapshot in
+                    if(snapshot.exists())
+                    {
+                        let placeDict = snapshot.value as! [String: Any]
+                        let name = placeDict["Name"] as! String
+                        let gender = placeDict["Gender"] as! String
+                        let classs = placeDict["Class"] as! String
+                        let course = placeDict["Course"] as! String
+                        let faculty = placeDict["Faculty"] as! String
+                        let urlImage = placeDict["Image"] as! String
+                        
+                        profileUser = Profile(code: keyUser, name: name, email: "", gender: gender, classs: classs, course: course, faculty: faculty, urlImage: urlImage)
+                        view?.fetchProfileAttendanceSuccess()
+                        
+                    }
+                    else
+                    {
+                        view?.fetchProfileAttendanceFailed()
+                    }
+                })
     }
 }
