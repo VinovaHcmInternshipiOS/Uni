@@ -13,6 +13,12 @@ import UIKit
 class LoginViewController: UIViewController {
 
 
+    @IBOutlet weak var lbSignUp: UILabel!
+    @IBOutlet weak var lbDontAccount: UILabel!
+    @IBOutlet weak var lbLogin: UILabel!
+    @IBOutlet weak var lbPassword: UILabel!
+    @IBOutlet weak var lbSignInContinue: UILabel!
+    @IBOutlet weak var lbWelcomeBack: UILabel!
     @IBOutlet weak var btForgotPassword: UILabel!
     @IBOutlet weak var btSignup: UILabel!
     @IBOutlet weak var txtEmail: UITextField!
@@ -35,8 +41,22 @@ class LoginViewController: UIViewController {
         presenter.view = self
         desginUI()
         customNav()
-        
        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        setupLanguage()
+    }
+    
+    func setupLanguage(){
+        lbWelcomeBack.text = AppLanguage.Login.lbWelcomeBack.localized
+        lbSignInContinue.text = AppLanguage.Login.lbSignInContinue.localized
+        lbPassword.text = AppLanguage.Password.localized
+        lbLogin.text = AppLanguage.Login.lbLogin.localized
+        btForgotPassword.text = AppLanguage.Login.btForgotPassword.localized
+        lbDontAccount.text =  AppLanguage.Login.lbDontAccount.localized
+        btSignup.text = AppLanguage.Login.btSignup.localized
+        
     }
     
     func customNav() {
@@ -85,10 +105,12 @@ extension LoginViewController: LoginViewProtocol {
         AppIcon.icEditImageYellow = role == "Admin" ? AppIcon.icEditImageRed : AppIcon.DefaulticEditImageYellow
         AppIcon.icBellYellow = role == "Admin" ? AppIcon.icBellRed : AppIcon.DefaulticBellYellow
         AppIcon.icArrowLeftYellow = role == "Admin" ? AppIcon.icArrowLeftRed : AppIcon.DefaulticArrowLeftYellow
+        AppIcon.icExportYellow = role == "Admin" ? AppIcon.icExportRed : AppIcon.DefaulticExportYellow 
         
         UserDefaults.standard.set(false, forKey: "status")
         Switcher.updateRootVC()
         let AppHomeVC = AppHomeViewController(presenter: AppHomePresenter())
+        UserDefaults.standard.setValue(0, forKey: "caseMenu")
         self.navigationController?.pushViewController(AppHomeVC, animated: true)
 
     }
@@ -103,10 +125,6 @@ extension LoginViewController: LoginViewProtocol {
         presenter.checkAuth { (role) in
             
         }
-
-
-        
-        
     }
     
     func loginFailed(error: Error) {

@@ -58,7 +58,8 @@ class LoginPresenter: LoginPresenterProtocol {
     }
     
     func checkAuth(completion: @escaping (String) -> Void) {
-        let placeRef = self.ref.child("Users").child("\(user!.uid)").child("Auth")
+        guard let user = user else { return }
+        let placeRef = self.ref.child("Users").child("\(user.uid)").child("Auth")
         placeRef.observeSingleEvent(of:.value, with: { [self] snapshot in
             if(snapshot.exists())
             {
