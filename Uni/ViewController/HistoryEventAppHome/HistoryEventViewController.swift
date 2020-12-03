@@ -12,6 +12,7 @@ import UIKit
 
 class HistoryEventViewController: BaseViewController {
     
+    @IBOutlet weak var lbYourHistory: UILabel!
     @IBOutlet weak var viewTotalScore: UIView!
     @IBOutlet weak var viewTotalEvent: UIView!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -34,12 +35,17 @@ class HistoryEventViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setupUI()
+        setupLanguage()
         presenter.view = self
         presenter.fetchHistoryScore()
         presenter.fetchHistoryEvent()
         presenter.fetchSemester()
-        setupUI()
+        
+    }
+    
+    func setupLanguage(){
+        lbYourHistory.text = AppLanguage.History.YourHistory.localized
     }
     
     func setupUI(){
@@ -139,7 +145,7 @@ extension HistoryEventViewController: UICollectionViewDataSource {
         let semesterEvent = SemesterScoreViewController(presenter: SemesterScorePresenter())
         semesterEvent.dataSemester = dataEvent
         semesterEvent.dataLabelYear = totalSemester[indexPath.section]
-        semesterEvent.dataLabelSemester = "Semester \(indexPath.row + 1)"
+        semesterEvent.dataLabelSemester = AppLanguage.Semester.Semester.localized + " \(indexPath.row + 1)"
         self.navigationController?.pushViewController(semesterEvent, animated: true)
     }
     
@@ -184,7 +190,7 @@ extension HistoryEventViewController: HistoryEventViewProtocol {
     func fetchHistoryScoreSuccess() {
         let score = presenter.totalScore
         if let score = score {
-            totalScore.text = "Total Score: \(score)"
+            totalScore.text = AppLanguage.History.TotalScore.localized + " \(score)"
         } else { return }
     }
     
@@ -195,7 +201,7 @@ extension HistoryEventViewController: HistoryEventViewProtocol {
     func fetchHistoryEventSuccess() {
         let event = presenter.totalEvent
         if let event = event {
-            totalEvent.text = "Total Event: \(event)"
+            totalEvent.text = AppLanguage.History.TotalEvent.localized + " \(event)"
         } else { return }
     }
     

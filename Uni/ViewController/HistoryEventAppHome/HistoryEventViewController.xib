@@ -17,6 +17,7 @@
             <connections>
                 <outlet property="collectionView" destination="dxc-9S-e0R" id="fPu-YC-T4B"/>
                 <outlet property="heightCollectionView" destination="ZEj-1m-NcH" id="5na-lj-3e3"/>
+                <outlet property="lbYourHistory" destination="2ag-fV-oDM" id="e9k-sV-nJp"/>
                 <outlet property="totalEvent" destination="is6-Ch-qbP" id="bAN-RX-9l3"/>
                 <outlet property="totalScore" destination="9bS-9n-A4B" id="lzx-Rz-zuX"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -44,7 +45,7 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hxm-FK-VNF">
                                     <rect key="frame" x="32" y="155" width="150" height="37"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Event: --" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="is6-Ch-qbP">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Event:" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="is6-Ch-qbP">
                                             <rect key="frame" x="10" y="9" width="130" height="19"/>
                                             <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="16"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -79,7 +80,7 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UFg-jZ-FU5">
                                     <rect key="frame" x="232" y="155" width="150" height="37"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Score: --" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9bS-9n-A4B">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Score:" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9bS-9n-A4B">
                                             <rect key="frame" x="10" y="9" width="130" height="19"/>
                                             <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="16"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
