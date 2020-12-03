@@ -20,6 +20,7 @@
                 <outlet property="barcodeView" destination="EQ5-qH-mMp" id="F9I-bO-V8X"/>
                 <outlet property="lbAttention" destination="vwd-Wl-cxn" id="Pbl-jQ-8LB"/>
                 <outlet property="lbBarcode" destination="F3b-ds-SLu" id="ZuV-uo-K7f"/>
+                <outlet property="lbYourBarcode" destination="BSO-ur-Sp1" id="OKa-5I-PZv"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -40,7 +41,7 @@
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please give barcode code to the event for attendance." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vwd-Wl-cxn">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please give barcode to the event for attendance." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vwd-Wl-cxn">
                                     <rect key="frame" x="32" y="163.5" width="350" height="41"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" name="FAB32A"/>
@@ -53,7 +54,7 @@
                                         <constraint firstAttribute="height" constant="150" id="gTK-6k-tTp"/>
                                     </constraints>
                                 </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F3b-ds-SLu">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F3b-ds-SLu">
                                     <rect key="frame" x="32" y="459.5" width="350" height="31"/>
                                     <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="26"/>
                                     <nil key="textColor"/>

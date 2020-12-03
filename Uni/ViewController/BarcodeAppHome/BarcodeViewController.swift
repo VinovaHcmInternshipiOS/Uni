@@ -9,10 +9,12 @@
 //
 
 import UIKit
+import SwiftOTP
 class BarcodeViewController: BaseViewController {
 
 	var presenter: BarcodePresenterProtocol
 
+    @IBOutlet weak var lbYourBarcode: UILabel!
     @IBOutlet weak var lbAttention: UILabel!
     @IBOutlet weak var lbBarcode: UILabel!
     @IBOutlet weak var barcodeView: UIImageView!
@@ -27,11 +29,33 @@ class BarcodeViewController: BaseViewController {
 
 	override func viewDidLoad() {
         super.viewDidLoad()
+        setupLanguage()
         presenter.view = self
         presenter.fetchProfile()
         lbAttention.textColor = AppColor.YellowFAB32A
+        
+        
+        //_ = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(generate), userInfo: nil, repeats: true)
+
+        
     }
     
+    func setupLanguage(){
+        lbYourBarcode.text = AppLanguage.Barcode.YourBarcode.localized
+        lbAttention.text = AppLanguage.Barcode.Pleasegive.localized
+    }
+    func generate(){
+        guard let data = base32DecodeToData("ABCDEFGHIJKLMNOP") else { return }
+//        if let hotp = TOTP(secret: data, digits: 6, timeInterval: 5, algorithm: .sha1) {
+//            print(hotp.generate(secondsPast1970: 42))
+//        }
+//        if let totp = TOTP(secret: data, digits: 6, timeInterval: 30, algorithm: .sha1) {
+//            let otpString = totp.generate(time: Date(timeIntervalSince1970: 123))
+//            print("1234111",otpString)
+//        }
+  
+        
+    }
     
     override func viewDidDisappear(_ animated: Bool) {
            UIScreen.main.brightness = CGFloat(0.5)

@@ -1,5 +1,6 @@
 PODS:
   - BarcodeScanner (4.1.3)
+  - CryptoSwift (1.3.7)
   - Firebase/Analytics (6.24.0):
     - Firebase/Core
   - Firebase/Auth (6.24.0):
@@ -96,6 +97,8 @@ PODS:
   - nanopb/encode (1.30905.0)
   - PromisesObjC (1.2.8)
   - ShimmerSwift (2.1.1)
+  - SwiftOTP (2.0.3):
+    - CryptoSwift (>= 1.0.0)
 
 DEPENDENCIES:
   - BarcodeScanner
@@ -105,10 +108,12 @@ DEPENDENCIES:
   - Firebase/Storage
   - IQKeyboardManagerSwift
   - ShimmerSwift
+  - SwiftOTP
 
 SPEC REPOS:
   trunk:
     - BarcodeScanner
+    - CryptoSwift
     - Firebase
     - FirebaseAnalytics
     - FirebaseAuth
@@ -129,9 +134,11 @@ SPEC REPOS:
     - nanopb
     - PromisesObjC
     - ShimmerSwift
+    - SwiftOTP
 
 SPEC CHECKSUMS:
   BarcodeScanner: fce1ad2b3f28286b1ab5091fe0979789618bee27
+  CryptoSwift: b6faad405e69964740422daf121918b5b1870f2b
   Firebase: b28e55c60efd98963cd9011fe2fac5a10c2ba124
   FirebaseAnalytics: 7386fc2176e3f93ad8ef34b5b1f2b33a891e4962
   FirebaseAuth: 7047aec89c0b17ecd924a550c853f0c27ac6015e
@@ -152,7 +159,8 @@ SPEC CHECKSUMS:
   nanopb: c43f40fadfe79e8b8db116583945847910cbabc9
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
   ShimmerSwift: f7ed2daf9c246de8299dfd9e12c6ab465cba9842
+  SwiftOTP: ce98ded1ab42e4e66c39228fcad6b0c07b98e494
 
-PODFILE CHECKSUM: 2aa8c21c3f43f81ed3e348c51c072b7d8eba5c18
+PODFILE CHECKSUM: 7815b8d46fe0905a9a5b1c98181ae8d5112bb44d
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.10.0
