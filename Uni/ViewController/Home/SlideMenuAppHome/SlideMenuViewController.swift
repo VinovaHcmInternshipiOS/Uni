@@ -14,10 +14,11 @@ enum MenuType: Int {
     case About
     case Setting
     case Manage
-    case Privacy
+    case PrivacyPolicy
 }
 class SlideMenuViewController: BaseViewController {
 
+    @IBOutlet var outsideSlideMenu: UIView!
     @IBOutlet weak var lbNameApp: UILabel!
     @IBOutlet weak var btLogout: UIButton!
     @IBOutlet weak var tableView: UITableView!
@@ -38,22 +39,27 @@ class SlideMenuViewController: BaseViewController {
         super.viewDidLoad()
         //presenter.view = self
         setupUI()
+        setupLanguage()
         defaultCaseMenu()
         lbNameApp.textColor = AppColor.YellowFAB32A
         btLogout.setTitleColor(AppColor.YellowFAB32A, for: .normal)
         presenter.checkAuth { [self] (role) in
             if role == "Admin" {
-                arrayFeature = ["Home","About","Setting","Manage","Privacy"]
+                arrayFeature = ["Home","About","Setting","Manage","Privacy Policy"]
                 
             } else {
-                arrayFeature = ["Home","About","Setting","Privacy"]
+                arrayFeature = ["Home","About","Setting","Privacy Policy"]
             }
             tableView.reloadData()
             
         }
     }
+    func setupLanguage(){
+        btLogout.setTitle(AppLanguage.SlideMenu.btLogout.localized, for: .normal)
+    }
     
     func defaultCaseMenu(){
+        //UserDefaults.standard.setValue(0, forKey: "caseMenu")
         if UserDefaults.standard.value(forKey: "caseMenu") == nil {
             UserDefaults.standard.setValue(0, forKey: "caseMenu")
         }
@@ -110,21 +116,23 @@ extension SlideMenuViewController: UITableViewDataSource {
         cell.selectedBackgroundView = backgroundView
         
         cell.viewChoose.backgroundColor = AppColor.YellowFAB32A
-        cell.titleFeature.text = "\(menuType)"
+        cell.titleFeature.text = arrayFeature[indexPath.row].localized
         cell.titleFeature.textColor = .white
         cell.titleFeature.font = AppFont.Raleway_Bold_20
-        UserDefaults.standard.set(indexPath.row, forKey: "caseMenu")
         
-        
-        dismiss(animated: true, completion: {
+        //UserDefaults.standard.set(menuType.rawValue, forKey: "typeMenu")
+        dismiss(animated: true, completion: nil)
+        if menuType.rawValue != UserDefaults.standard.value(forKey: "caseMenu") as! Int {
             print("Dismissing: \(menuType)")
             self.didTapMenuType?(menuType)
-        })
+        }
+        UserDefaults.standard.set(indexPath.row, forKey: "caseMenu")
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "SlideMenuCell", for: indexPath) as? SlideMenuCell {
-            cell.titleFeature.text = arrayFeature[indexPath.row]
+            cell.titleFeature.text = arrayFeature[indexPath.row].localized
             
             let backgroundView = UIView()
             backgroundView.backgroundColor = UIColor(white: 1, alpha: 0.0)

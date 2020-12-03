@@ -13,6 +13,7 @@
             <connections>
                 <outlet property="btLogout" destination="6oA-Wo-7C1" id="Gpf-iY-7VA"/>
                 <outlet property="lbNameApp" destination="8IM-s8-6OY" id="xx6-CT-uBn"/>
+                <outlet property="outsideSlideMenu" destination="i5M-Pr-FkT" id="agx-iY-9u7"/>
                 <outlet property="tableView" destination="PDK-hP-XaD" id="jhp-Zc-Xey"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
