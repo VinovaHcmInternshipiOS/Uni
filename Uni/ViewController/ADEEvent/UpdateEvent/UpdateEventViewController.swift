@@ -11,6 +11,7 @@
 import UIKit
 
 class UpdateEventViewController: UIViewController {
+    @IBOutlet weak var lbUpdateEvent: UILabel!
     @IBOutlet weak var lbTitle: UILabel!
     @IBOutlet weak var lbOverview: UILabel!
     @IBOutlet weak var lbLocation: UILabel!
@@ -56,18 +57,21 @@ class UpdateEventViewController: UIViewController {
         presenter.view = self
         presenter.getDetailEvent(keyEvent: keyDetailEvent)
         setupUI()
+        setupLanguage()
     }
-    func datePickerView()
-    {
-        
-        self.pickerDate = UIDatePicker()
-        pickerDate?.datePickerMode = .date
-        pickerDate?.addTarget(self, action: #selector(dateChanged(datePicker:)), for: .valueChanged)
-        
-    }
-    @objc func dateChanged(datePicker: UIDatePicker){//format date
-        btChooseDate.setTitle(getFormattedDate(date: "\(pickerDate!.date)"), for: .normal)
-        // view.endEditing(true)
+    
+    func setupLanguage(){
+        lbUpdateEvent.text = AppLanguage.UpdateEvent.UpdateEvent.localized
+        lbTitle.text = AppLanguage.UpdateEvent.Title.localized
+        lbOverview.text = AppLanguage.UpdateEvent.Overview.localized
+        lbLocation.text = AppLanguage.UpdateEvent.Location.localized
+        lbDate.text = AppLanguage.UpdateEvent.Date.localized
+        lbTime.text = AppLanguage.UpdateEvent.Time.localized
+        lbScore.text = AppLanguage.UpdateEvent.Score.localized
+        btDone.setTitle(AppLanguage.UpdateEvent.btDone.localized, for: .normal)
+        btChooseDate.setTitle(AppLanguage.UpdateEvent.ChooseDate.localized, for: .normal)
+        btCheckin.setTitle(AppLanguage.UpdateEvent.Checkin.localized, for: .normal)
+        btCheckout.setTitle(AppLanguage.UpdateEvent.Checkout.localized, for: .normal)
     }
     
     func setupUI(){
@@ -85,6 +89,19 @@ class UpdateEventViewController: UIViewController {
         btDone.backgroundColor = AppColor.YellowFAB32A
         imgPortal.borderColor = AppColor.YellowFBC459
         btDone.shadowColor = AppColor.YellowShadow
+    }
+    
+    func datePickerView()
+    {
+        
+        self.pickerDate = UIDatePicker()
+        pickerDate?.datePickerMode = .date
+        pickerDate?.addTarget(self, action: #selector(dateChanged(datePicker:)), for: .valueChanged)
+        
+    }
+    @objc func dateChanged(datePicker: UIDatePicker){//format date
+        btChooseDate.setTitle(getFormattedDate(date: "\(pickerDate!.date)"), for: .normal)
+        // view.endEditing(true)
     }
     
     @IBAction func btImgPortal(_ sender: UIButton) {
@@ -129,7 +146,7 @@ class UpdateEventViewController: UIViewController {
     }
     
     @IBAction func btDone(_ sender: Any) {
-        if (btCheckin.titleLabel?.text)! != "Check-in" && (btCheckout.titleLabel?.text)! != "Check-out" && contentTitle.text?.isEmpty == false && contentOverview.text?.isEmpty == false && contentLocation.text?.isEmpty == false {
+        if (btCheckin.titleLabel?.text)! != AppLanguage.UpdateEvent.Checkin.localized && (btCheckout.titleLabel?.text)! != AppLanguage.UpdateEvent.Checkout.localized && contentTitle.text?.isEmpty == false && contentOverview.text?.isEmpty == false && contentLocation.text?.isEmpty == false {
             if let title = contentTitle.text, let overview = contentOverview.text, let location = contentLocation.text, let date = btChooseDate.titleLabel?.text,let checkin = btCheckin.titleLabel?.text,let checkout = btCheckout.titleLabel?.text {
                 showSpinner()
                 presenter.updateEvent(urlImgLanscape: urlImageLandscape, urlImgPortal: urlImagePortal, title: title, overview: overview, location: location, date: date, checkin: checkin.formatDateCreate(), checkout: checkout.formatDateCreate(), score: scoreEvent,keyEvent: keyDetailEvent)
