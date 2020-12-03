@@ -22,6 +22,8 @@
                 <outlet property="dateEvent" destination="XjE-sq-k1X" id="OnP-aG-OsM"/>
                 <outlet property="iconPerson" destination="62F-IG-4O0" id="QLQ-gp-s2C"/>
                 <outlet property="joinEvent" destination="JVE-tn-sUq" id="ziQ-td-ci6"/>
+                <outlet property="lbDetail" destination="jTk-8f-Rq0" id="db4-V0-pRY"/>
+                <outlet property="lbOverview" destination="pUj-95-hTa" id="mBu-Jp-ipr"/>
                 <outlet property="scoreEvent" destination="aoP-X7-9qS" id="IDq-08-pDz"/>
                 <outlet property="titleEvent" destination="Xqm-ex-VNu" id="C0p-f3-wat"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>

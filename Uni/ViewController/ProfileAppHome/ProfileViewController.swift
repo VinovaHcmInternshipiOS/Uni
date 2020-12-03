@@ -65,7 +65,7 @@ class ProfileViewController: BaseViewController  {
         tableView.delegate = self
         self.imagePicker = ImagePicker(presentationController: self, delegate: self)
         imgProfile.borderColor = AppColor.YellowFAB32A
-        btUpdateImage.setImage(AppIcon.icEditImageRed, for: .normal)
+        btUpdateImage.setImage(AppIcon.icEditImageYellow, for: .normal)
         
     }
     @IBAction func updateImage(_ sender: UIButton) {
@@ -99,20 +99,20 @@ extension ProfileViewController: UITableViewDataSource {
             
             switch indexPath.row {
             case 0:
-                cell.lbTitle.text = dataTitle[indexPath.row]
+                cell.lbTitle.text = dataTitle[indexPath.row].localized
                 cell.lbContent.text = profileUser.email
             case 1:
-                cell.lbTitle.text = dataTitle[indexPath.row]
-                cell.lbContent.text = profileUser.gender
+                cell.lbTitle.text = dataTitle[indexPath.row].localized
+                cell.lbContent.text = profileUser.gender?.localized
             case 2:
-                cell.lbTitle.text = dataTitle[indexPath.row]
+                cell.lbTitle.text = dataTitle[indexPath.row].localized
                 cell.lbContent.text = profileUser.classs
             case 3:
-                cell.lbTitle.text = dataTitle[indexPath.row]
+                cell.lbTitle.text = dataTitle[indexPath.row].localized
                 cell.lbContent.text = profileUser.course
             case 4:
-                cell.lbTitle.text = dataTitle[indexPath.row]
-                cell.lbContent.text = profileUser.faculty
+                cell.lbTitle.text = dataTitle[indexPath.row].localized
+                cell.lbContent.text = profileUser.faculty?.localized
             default:
                 break
             }

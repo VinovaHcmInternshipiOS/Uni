@@ -9,9 +9,11 @@ import UIKit
 
 class SearchEventLabelCell: UITableViewCell {
 
+    @IBOutlet weak var lbSearch: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        lbSearch.text = AppLanguage.SearchEvent.SearchEvent.localized
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

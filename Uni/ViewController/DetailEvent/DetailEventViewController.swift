@@ -13,6 +13,8 @@ import UIKit
 class DetailEventViewController: BaseViewController {
 
 	var presenter: DetailEventPresenterProtocol
+    @IBOutlet weak var lbDetail: UILabel!
+    @IBOutlet weak var lbOverview: UILabel!
     @IBOutlet weak var iconPerson: UIButton!
     @IBOutlet weak var viewTimeLocation: UIView!
     @IBOutlet weak var joinEvent: UILabel!
@@ -33,11 +35,12 @@ class DetailEventViewController: BaseViewController {
 
 	override func viewDidLoad() {
         super.viewDidLoad()
-
+        setupUI()
+        setupLanguage()
         presenter.view = self
         presenter.getDetailEvent(keyEvent: keyDetailEvent)
         presenter.getJoinerEvent(keyEvent: keyDetailEvent)
-        setupUI()
+        
     }
     
     func setupUI(){
@@ -48,6 +51,11 @@ class DetailEventViewController: BaseViewController {
         scoreEvent.textColor = AppColor.YellowFAB32A
         
         
+    }
+    
+    func setupLanguage(){
+        lbDetail.text = AppLanguage.DetailEvent.Detail.localized
+        lbOverview.text = AppLanguage.DetailEvent.Overview.localized
     }
     
 }

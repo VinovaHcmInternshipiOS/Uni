@@ -14,6 +14,7 @@ class HistoryCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        lbSemester.text = AppLanguage.History.Semester.localized
         lbNumberSemester.textColor = AppColor.YellowFAB32A
         lbSemester.textColor = AppColor.YellowFAB32A
     }

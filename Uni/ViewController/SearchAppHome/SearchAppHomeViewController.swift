@@ -61,6 +61,7 @@ extension SearchAppHomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "SearchEventTextFieldHeader") as? SearchEventTextFieldHeader {
             headerView.contentView.backgroundColor = .white
+            headerView.txtSearch.placeholder = AppLanguage.SearchEvent.Search.localized
             headerView.btSearch.backgroundColor = AppColor.YellowFAB32A
             headerView.viewButton.backgroundColor = AppColor.YellowFAB32A
             getkeySearch = { [self] in

@@ -12,6 +12,8 @@ import UIKit
 
 class RankViewController: BaseViewController {
 
+    @IBOutlet weak var lbScore: UILabel!
+    @IBOutlet weak var lbRank: UILabel!
     @IBOutlet weak var lbScoreRank3: UILabel!
     @IBOutlet weak var lbNameRank3: UILabel!
     @IBOutlet weak var imgRank3: UIImageView!
@@ -41,9 +43,15 @@ class RankViewController: BaseViewController {
         presenter.view = self
         presenter.fetchRank()
         setupXIB()
+        setupLanguage()
     }
     override func viewDidAppear(_ animated: Bool) {
         viewScore.roundCorners([.topLeft,.topRight], radius: 20)
+    }
+    
+    func setupLanguage(){
+        lbRank.text = AppLanguage.Rank.Rank.localized
+        lbScore.text = AppLanguage.Rank.Score.localized
     }
     
     func setupXIB(){
