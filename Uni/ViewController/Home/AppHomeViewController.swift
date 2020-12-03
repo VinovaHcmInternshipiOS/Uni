@@ -11,6 +11,11 @@
 import UIKit
 
 class AppHomeViewController:BaseViewController{
+    @IBOutlet weak var lbAppHome: UILabel!
+    @IBOutlet weak var lbEnded: UILabel!
+    @IBOutlet weak var lbComingSoon: UILabel!
+    @IBOutlet weak var lbHappenning: UILabel!
+    @IBOutlet weak var lbFeatures: UILabel!
     @IBOutlet weak var viewProfile: UIView!
     @IBOutlet weak var imgUser: UIImageView!
     @IBOutlet weak var lbName: UILabel!
@@ -21,7 +26,9 @@ class AppHomeViewController:BaseViewController{
     @IBOutlet weak var collectionEnded: UICollectionView!
     @IBOutlet weak var collectionHappenning: UICollectionView!
     @IBOutlet weak var collectionComingSoon: UICollectionView!
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var pageControl: UIPageControl!
+    private var pullControl = UIRefreshControl()
     var presenter: AppHomePresenterProtocol
     var item = [1,2,3,4,5,6,7,8,9,10]
     var indexPageControl = 0
@@ -47,22 +54,59 @@ class AppHomeViewController:BaseViewController{
         addNav()
         setupXIB()
         setupUI()
-        presenter.loadProfile()
 
+        presenter.loadProfile()
         presenter.getInfoEventHappening()
         presenter.getInfoEventComingSoon()
         presenter.getInfoEventEnded()
         movetoProfile()
-        
+        pullRefreshData()
         _ = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(moveToNextPage), userInfo: nil, repeats: true)
+        
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        setupLanguage()
+    }
+    
+    func refreshListEvent(){
+        presenter.happeningEvent = []
+        presenter.comingsoonEvent = []
+        presenter.endedEvent = []
+        presenter.getInfoEventHappening()
+        presenter.getInfoEventComingSoon()
+        presenter.getInfoEventEnded()
+    }
+    
+    func setupLanguage(){
+        lbFeatures.text = AppLanguage.HomeApp.Features.localized
+        lbHappenning.text = AppLanguage.HomeApp.Happenning.localized
+        lbComingSoon.text = AppLanguage.HomeApp.ComingSoon.localized
+        lbEnded.text = AppLanguage.HomeApp.Ended.localized
+        lbAppHome.text = AppLanguage.HomeApp.AppHome.localized
+        
+
         
     }
     
     func setupUI(){
         lbID.textColor = AppColor.YellowFAB32A
         lbFaculty.textColor = AppColor.YellowFAB32A
+        imgUser.borderColor = AppColor.YellowFAB32A
+        pullControl.tintColor = AppColor.YellowFAB32A
+        scrollView.alwaysBounceVertical = true
     }
     
+    @objc func pulledRefreshControl(sender:AnyObject) {
+        pullControl.endRefreshing()
+        refreshListEvent()
+    }
+    
+    private func pullRefreshData() {
+        
+        pullControl.addTarget(self, action: #selector(pulledRefreshControl), for: UIControl.Event.valueChanged)
+        scrollView.addSubview(pullControl)
+
+    }
     func movetoProfile(){
         let gesture:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(profileVC))
         viewProfile.addGestureRecognizer(gesture)
@@ -105,12 +149,11 @@ class AppHomeViewController:BaseViewController{
     }
     func addNav() {
         addMenuButton()
-        addButtonImageToNavigation(image: AppIcon.icBellYellow!, style: .right, action: #selector(manage))
+        addButtonImageToNavigation(image: AppIcon.icBellYellow!, style: .right, action: #selector(notification))
         self.navigationController?.hideShadowLine()
     }
-    @objc func manage(){
-        let lisevent = ListEventViewController(presenter: ListEventPresenter())
-        navigationController?.pushViewController(lisevent, animated: true)
+    @objc func notification(){
+   
     }
     @IBAction func btLeaderboard(_ sender: UIButton) {
         sender.animationScale()
@@ -285,8 +328,13 @@ extension AppHomeViewController: AppHomeViewProtocol {
         if let profile = profile {
             lbName.text = profile.name
             lbID.text = profile.code
-            lbFaculty.text = profile.faculty
-            imgUser.loadImage(urlString: profile.urlImage!) 
+            lbFaculty.text = profile.faculty?.localized
+            imgUser.loadImage(urlString: profile.urlImage!)
+            if profile.urlImage! == "" {
+                imgUser.borderColor = AppColor.YellowFAB32A
+            } else {
+                imgUser.borderColor = .clear
+            }
         } else { return }
     }
     

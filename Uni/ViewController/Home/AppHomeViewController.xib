@@ -24,10 +24,16 @@
                 <outlet property="collectionEnded" destination="d3G-X6-EmU" id="ccG-JS-ZlP"/>
                 <outlet property="collectionHappenning" destination="s5J-Lb-Vi3" id="lTH-op-gKV"/>
                 <outlet property="imgUser" destination="rdt-OV-IMR" id="576-LO-X1N"/>
+                <outlet property="lbAppHome" destination="agw-r8-1O9" id="HpX-yb-DzP"/>
+                <outlet property="lbComingSoon" destination="F2t-ME-TTa" id="PIu-Qq-CTo"/>
+                <outlet property="lbEnded" destination="W0N-8K-OqL" id="voX-Hc-Nin"/>
                 <outlet property="lbFaculty" destination="AZp-jT-1Cb" id="tSc-gR-4Ct"/>
+                <outlet property="lbFeatures" destination="nnq-1v-kRU" id="X3L-Wu-1ms"/>
+                <outlet property="lbHappenning" destination="NDO-QS-Kd5" id="VUp-u9-mQF"/>
                 <outlet property="lbID" destination="WBk-dh-cPD" id="pmx-mH-f1b"/>
                 <outlet property="lbName" destination="rxZ-TC-v6j" id="hY3-ar-KjY"/>
                 <outlet property="pageControl" destination="SI5-hK-jyF" id="ebZ-Ch-Y16"/>
+                <outlet property="scrollView" destination="gg5-jh-tLP" id="apB-w3-42r"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="viewProfile" destination="gVG-Og-EVU" id="biQ-5q-HNt"/>
             </connections>
@@ -63,6 +69,12 @@
                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                     <real key="value" value="33"/>
                                                 </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                    <real key="value" value="1"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                    <color key="value" name="FBC459"/>
+                                                </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rxZ-TC-v6j">
@@ -78,7 +90,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AZp-jT-1Cb">
-                                            <rect key="frame" x="121" y="56" width="4.5" height="19"/>
+                                            <rect key="frame" x="121" y="56" width="224" height="19"/>
                                             <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="16"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -93,6 +105,7 @@
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="AZp-jT-1Cb" secondAttribute="trailing" constant="5" id="6Nf-oZ-I7k"/>
                                         <constraint firstItem="WBk-dh-cPD" firstAttribute="top" secondItem="rxZ-TC-v6j" secondAttribute="bottom" id="6ec-aQ-9aO"/>
                                         <constraint firstItem="rxZ-TC-v6j" firstAttribute="leading" secondItem="rdt-OV-IMR" secondAttribute="trailing" constant="20" id="77Q-c1-7HQ"/>
                                         <constraint firstItem="WBk-dh-cPD" firstAttribute="leading" secondItem="rdt-OV-IMR" secondAttribute="trailing" constant="20" id="7lC-5E-6Ah"/>
@@ -395,6 +408,9 @@
         <image name="person.circle" catalog="system" width="128" height="121"/>
         <namedColor name="Color-1">
             <color red="0.0" green="0.0" blue="0.0" alpha="0.15000000596046448" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="FBC459">
+            <color red="0.98400002717971802" green="0.76899999380111694" blue="0.34900000691413879" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

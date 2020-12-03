@@ -75,9 +75,9 @@ class AppHomePresenter: AppHomePresenterProtocol {
                             let request = Event(title: title, key: key, date: date, checkout: checkout, checkin: checkin, type: type, urlImage: urrlImage)
                             
                             happeningEvent.append(request)
-                            DispatchQueue.main.async {
+                          //  DispatchQueue.main.async {
                                 view?.fetchInfoEventHappeningSuccess()
-                            }
+                          //  }
                         }
                         else
                         {
@@ -112,9 +112,9 @@ class AppHomePresenter: AppHomePresenterProtocol {
                             let request = Event(title: title, key: key, date: date, checkout: checkout, checkin: checkin, type: type, urlImage: urrlImage)
                             
                             comingsoonEvent.append(request)
-                            DispatchQueue.main.async {
+                           // DispatchQueue.main.async {
                                 view?.fetchInfoEventComingSoonSuccess()
-                            }
+                           // }
                         }
                         else
                         {
@@ -147,9 +147,9 @@ class AppHomePresenter: AppHomePresenterProtocol {
                             let request = Event(title: title, key: key, date: date, checkout: checkout, checkin: checkin, type: type, urlImage: urrlImage)
                             
                             endedEvent.append(request)
-                            DispatchQueue.main.async {
+                            //DispatchQueue.main.async {
                                 view?.fetchInfoEventEndedSuccess()
-                            }
+                           // }
                         }
                         else
                         {
