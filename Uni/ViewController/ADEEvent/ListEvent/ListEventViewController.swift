@@ -12,6 +12,7 @@ import UIKit
 
 class ListEventViewController: BaseViewController {
 
+    @IBOutlet weak var lbListEvent: UILabel!
     @IBOutlet weak var btCreate: UIButton!
     @IBOutlet weak var viewButton: UIView!
     @IBOutlet weak var heightCollectionView: NSLayoutConstraint!
@@ -35,11 +36,16 @@ class ListEventViewController: BaseViewController {
 
         presenter.view = self
         setupUI()
+        setupLanguage()
         presenter.fetchEvent()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         //showSpinner()
+    }
+    
+    func setupLanguage(){
+        lbListEvent.text = AppLanguage.ListEvent.ListEvent.localized
     }
     
     func setupUI() {
@@ -105,11 +111,13 @@ extension ListEventViewController: UICollectionViewDelegateFlowLayout,UICollecti
         case UICollectionView.elementKindSectionHeader:
             
             if let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "HeaderSearch", for: indexPath) as? HeaderSearch {
+                headerView.txtSearch.placeholder = AppLanguage.SearchEvent.Search.localized
                 headerView.backgroundColor = .none
                 getkeySearch = { [self] in
                     presenter.fetchEventResult(keyEvent: headerView.txtSearch.text!)
                 }
                 headerView.btSearch.addTarget(self, action: #selector(actionSearch(sender:)), for: .touchUpInside)
+                
                 
                 return headerView
             } else {

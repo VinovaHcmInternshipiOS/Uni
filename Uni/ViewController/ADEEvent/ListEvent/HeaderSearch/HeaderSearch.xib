@@ -12,6 +12,9 @@
         <array key="Raleway-Medium.ttf">
             <string>Raleway-Medium</string>
         </array>
+        <array key="Raleway-Regular.ttf">
+            <string>Raleway-Regular</string>
+        </array>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HeaderSearch" customModule="Uni" customModuleProvider="target"/>
@@ -80,16 +83,26 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </view>
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2lD-wr-sRd">
+                    <rect key="frame" x="16" y="95" width="272" height="24"/>
+                    <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="20"/>
+                    <color key="textColor" name="FAB32A"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="VXr-Tz-HHm"/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
+                <constraint firstItem="2lD-wr-sRd" firstAttribute="leading" secondItem="VXr-Tz-HHm" secondAttribute="leading" constant="16" id="3FK-eg-mCS"/>
+                <constraint firstItem="2lD-wr-sRd" firstAttribute="top" secondItem="FaG-Ga-eNz" secondAttribute="bottom" constant="20" id="3vZ-2x-vGH"/>
                 <constraint firstItem="VXr-Tz-HHm" firstAttribute="trailing" secondItem="FaG-Ga-eNz" secondAttribute="trailing" constant="12" id="Y25-DY-Rl9"/>
                 <constraint firstItem="FaG-Ga-eNz" firstAttribute="top" secondItem="U6b-Vx-4bR" secondAttribute="top" constant="35" id="bur-vh-bup"/>
                 <constraint firstItem="FaG-Ga-eNz" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" constant="12" id="hc7-PJ-JN1"/>
+                <constraint firstItem="VXr-Tz-HHm" firstAttribute="trailing" secondItem="2lD-wr-sRd" secondAttribute="trailing" constant="32" id="vGE-m1-kir"/>
             </constraints>
             <connections>
                 <outlet property="btSearch" destination="b8s-Hc-9oj" id="H3P-Ti-sBx"/>
+                <outlet property="lbTotal" destination="2lD-wr-sRd" id="5JH-fD-0Mb"/>
                 <outlet property="txtSearch" destination="9jV-39-2T3" id="NCP-D4-EX3"/>
                 <outlet property="viewButton" destination="82G-Sz-6Pe" id="kMg-50-Jvn"/>
             </connections>
@@ -100,6 +113,9 @@
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <namedColor name="Color-1">
             <color red="0.0" green="0.0" blue="0.0" alpha="0.15000000596046448" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="FAB32A">
+            <color red="0.98000001907348633" green="0.70200002193450928" blue="0.16500000655651093" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

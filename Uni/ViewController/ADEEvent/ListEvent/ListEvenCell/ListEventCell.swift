@@ -19,6 +19,8 @@ class ListEventCell: UICollectionViewCell {
         // Initialization code
         titleEvent.textColor = AppColor.YellowFAB32A
         btUpdate.setTitleColor(AppColor.YellowFAB32A, for: .normal)
+        btUpdate.setTitle(AppLanguage.Update.localized, for: .normal)
+        btDelete.setTitle(AppLanguage.Delete.localized, for: .normal)
     }
 
 }
