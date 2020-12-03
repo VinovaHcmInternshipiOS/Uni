@@ -31,6 +31,7 @@
                 <outlet property="contentTitle" destination="7fo-Hx-fvu" id="WWX-A6-LtB"/>
                 <outlet property="imgLandscape" destination="Y6R-mQ-UbW" id="jsi-is-WDE"/>
                 <outlet property="imgPortal" destination="irh-hG-HX4" id="7HE-fL-kGa"/>
+                <outlet property="lbCreateEvent" destination="7q0-tk-6qX" id="BN1-7k-PEX"/>
                 <outlet property="lbDate" destination="uQG-xp-ibF" id="NLM-av-TXi"/>
                 <outlet property="lbLocation" destination="Jco-wg-u2E" id="wof-cE-eZB"/>
                 <outlet property="lbOverview" destination="bPJ-7p-Mgj" id="mWk-Yq-xpJ"/>

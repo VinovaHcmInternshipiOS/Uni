@@ -11,6 +11,7 @@
 import UIKit
 
 class CreateEventViewController: BaseViewController {
+    @IBOutlet weak var lbCreateEvent: UILabel!
     @IBOutlet weak var lbTitle: UILabel!
     @IBOutlet weak var lbOverview: UILabel!
     @IBOutlet weak var lbLocation: UILabel!
@@ -48,18 +49,21 @@ class CreateEventViewController: BaseViewController {
 
         presenter.view = self
         setupUI()
+        setupLanguage()
     }
-    func datePickerView()
-    {
-        
-        self.pickerDate = UIDatePicker()
-        pickerDate?.datePickerMode = .date
-        pickerDate?.addTarget(self, action: #selector(dateChanged(datePicker:)), for: .valueChanged)
-        
-    }
-    @objc func dateChanged(datePicker: UIDatePicker){//format date
-        btChooseDate.setTitle(getFormattedDate(date: "\(pickerDate!.date)"), for: .normal)
-        // view.endEditing(true)
+    
+    func setupLanguage(){
+        lbCreateEvent.text = AppLanguage.CreateEvent.CreateEvent.localized
+        lbTitle.text = AppLanguage.CreateEvent.Title.localized
+        lbOverview.text = AppLanguage.CreateEvent.Overview.localized
+        lbLocation.text = AppLanguage.CreateEvent.Location.localized
+        lbDate.text = AppLanguage.CreateEvent.Date.localized
+        lbTime.text = AppLanguage.CreateEvent.Time.localized
+        lbScore.text = AppLanguage.CreateEvent.Score.localized
+        btDone.setTitle(AppLanguage.CreateEvent.btDone.localized, for: .normal)
+        btChooseDate.setTitle(AppLanguage.CreateEvent.ChooseDate.localized, for: .normal)
+        btCheckin.setTitle(AppLanguage.CreateEvent.Checkin.localized, for: .normal)
+        btCheckout.setTitle(AppLanguage.CreateEvent.Checkout.localized, for: .normal)
     }
     
     func setupUI(){
@@ -79,6 +83,21 @@ class CreateEventViewController: BaseViewController {
         btDone.shadowColor = AppColor.YellowShadow
         
     }
+    
+    func datePickerView()
+    {
+        
+        self.pickerDate = UIDatePicker()
+        pickerDate?.datePickerMode = .date
+        pickerDate?.addTarget(self, action: #selector(dateChanged(datePicker:)), for: .valueChanged)
+        
+    }
+    @objc func dateChanged(datePicker: UIDatePicker){//format date
+        btChooseDate.setTitle(getFormattedDate(date: "\(pickerDate!.date)"), for: .normal)
+        // view.endEditing(true)
+    }
+    
+
     
     @IBAction func btImgPortal(_ sender: UIButton) {
         sender.animationScale()
@@ -114,15 +133,15 @@ class CreateEventViewController: BaseViewController {
             btCheckin.setTitle(timePicker.dateCheckin, for: .normal)
             btCheckout.setTitle(timePicker.dateCheckout, for: .normal)
         }
-        timePicker.modalPresentationStyle = .overCurrentContext
+        
         timePicker.dateCheckin = (btCheckin.titleLabel?.text)!
         timePicker.dateCheckout = (btCheckout.titleLabel?.text)!
-        
+        timePicker.modalPresentationStyle = .overCurrentContext
         present(timePicker, animated: false, completion: nil)
     }
     
     @IBAction func btDone(_ sender: Any) {
-        if (btCheckin.titleLabel?.text)! != "Check-in" && (btCheckout.titleLabel?.text)! != "Check-out" && contentTitle.text?.isEmpty == false && contentOverview.text?.isEmpty == false && contentLocation.text?.isEmpty == false {
+        if (btCheckin.titleLabel?.text)! != AppLanguage.CreateEvent.Checkin.localized && (btCheckout.titleLabel?.text)! != AppLanguage.CreateEvent.Checkout.localized && contentTitle.text?.isEmpty == false && contentOverview.text?.isEmpty == false && contentLocation.text?.isEmpty == false {
             if let title = contentTitle.text, let overview = contentOverview.text, let location = contentLocation.text, let date = btChooseDate.titleLabel?.text,let checkin = btCheckin.titleLabel?.text,let checkout = btCheckout.titleLabel?.text {
                 showSpinner()
                 presenter.createEvent(urlImgLanscape: "", urlImgPortal: "", title: title, overview: overview, location: location, date: date, checkin: checkin.formatDateCreate(), checkout: checkout.formatDateCreate(), score: scoreEvent)
