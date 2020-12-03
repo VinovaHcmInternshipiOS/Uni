@@ -1,0 +1,229 @@
+/* 
+  Localizable.strings
+  Uni
+
+  Created by nguyen gia huy on 30/11/2020.
+  
+*/
+//MARK: -- LoginViewController
+"Welcome Back" = "Welcome Back";
+"Sign in continue using our app" = "Sign in continue using our app";
+"Email" = "Email";
+"Password" = "Password";
+"Forgot password?" = "Forgot password?";
+"Login" = "Login";
+"Don't have an account?" = "Don't have an account?";
+"Sign Up" = "Sign Up";
+
+//MARK: -- ForgotPassword
+"Forgot\nPassword?" = "Forgot\nPassword?";
+"Send" = "Send";
+
+//MARK: -- HomeApp
+"Features" = "Features";
+"Happenning" = "Happenning";
+"Coming Soon" = "Coming Soon";
+"Ended" = "Ended";
+"App\nHome" = "App\nHome";
+
+//MARK: -- Slide Menu
+"Home" = "Home";
+"About" = "About";
+"Setting" = "Setting";
+"Manage" = "Manage";
+"Privacy Policy" = "Privacy Policy";
+"Logout" = "Logout";
+
+//MARK: -- Profile
+"Gender" = "Gender";
+"Class" = "Class";
+"Course" = "Course";
+"Faculty" = "Faculty";
+
+//MARK: -- Barcode
+"Your\nBarcode" = "Your\nBarcode";
+"Please give barcode to the event for attendance." = "Please give barcode to the event for attendance.";
+
+//MARK: -- SearchEvent
+"Search\nEvent" = "Search\nEvent";
+"Search" = "Search";
+
+//MARK: -- DetailEvent
+"Detail" = "Detail";
+"Overview" = "Overview";
+
+//MARK: -- History
+"Your\nHistory" = "Your\nHistory";
+"Total Event:" = "Total Event:";
+"Total Score:" = "Total Score:";
+"SEMESTER" = "SEMESTER";
+
+//MARK: -- Semester
+"Total Event:" = "Total Event:";
+"Total Score:" = "Total Score:";
+"SEMESTER" = "Semester";
+
+//MARK: -- ListEvent
+"List\nEvent" = "List\nEvent";
+"Update" = "Update";
+"Delete" = "Delete";
+
+//MARK: -- ListAttendance
+"List\nAttendance" = "List\nAttendance";
+"Attendance" = "Attendance";
+"Please Enter ID Student" = "Please Enter ID Student";
+"Title:" = "Title:";
+"Date:" = "Date:";
+"Location:" = "Location:";
+"Check-In:" = "Check-In:";
+"Check-Out:" = "Check-Out:";
+"Student ID" = "Student ID";
+"First Name" = "First Name";
+"Last Name" = "Last Name";
+"Check-In" = "Check-In";
+"Total Participants:" = "Total Participants:";
+"Report Event" = "Report Event";
+"Total:" = "Total:";
+
+//MARK: -- CreateEvent
+"Create\nEvent" = "Create\nEvent";
+"Title" = "Title";
+"Overview" = "Overview";
+"Date" = "Date";
+"Time" = "Time";
+"Score" = "Score";
+"Choose Date" = "Choose Date";
+"Check-in" = "Check-in";
+"Check-out" = "Check-out";
+"Done" = "Done";
+
+//MARK: -- UpdateEvent
+"Update\nEvent" = "Update\nEvent";
+"Title" = "Title";
+"Overview" = "Overview";
+"Date" = "Date";
+"Time" = "Time";
+"Score" = "Score";
+"Choose Date" = "Choose Date";
+"Check-in" = "Check-in";
+"Check-out" = "Check-out";
+"Done" = "Done";
+
+//MARK: -- Rank
+"Rank" = "Rank";
+"Score:" = "Score:";
+
+//MARK: -- Setting
+"Setting" = "Setting";
+"Language" = "Language";
+"Change Password" = "Change Password";
+
+//MARK: -- About
+"About\nUs" = "About\nUs";
+"Versison" = "Versison";
+"Update on" = "Update on";
+"Our Team" = "Our Team";
+"Contact Us" = "Contact Us";
+"Feedback" = "Feedback";
+"Please send your feedbback to:" = "Please send your feedbback to:";
+"Location:" = "Location:";
+"Phone:" = "Phone:";
+
+//MARK: -- Manage
+"Event\nManage" = "Event\nManage";
+"Users\nManage" = "Users\nManage";
+"Hi,\nAdmin" = "Hi,\nAdmin";
+
+//MARK: -- Privacy
+"Privacy\nPolicy" = "Privacy\nPolicy";
+
+//MARK: -- ListUser
+"List\nUser" = "List\nUser";
+"Disable" = "Disable";
+"Enable" = "Enable";
+
+//MARK: --CreateUser
+"Account" = "Account";
+"Role" = "Role";
+"State" = "State";
+"Infomation" = "Infomation";
+"Name" = "Name";
+"Gender" = "Gender";
+"Class" = "Class";
+"Course" = "Course";
+"Faculty" = "Faculty";
+"Create\nUser"="Create\nUser";
+"Done" = "Done";
+"Please enter Email" = "Please enter Email";
+"Please enter ID" = "Please enter ID";
+"Please enter Role" = "Please choose Role";
+"Please enter State" = "Please choose State";
+"Please enter Name" = "Please enter Name";
+"Please enter Gender" = "Please choose Gender";
+"Please enter Class" = "Please choose Class";
+"Please enter Course" = "Please choose Course";
+"Please enter Faculty" = "Please choose Faculty";
+"Male" = "Male";
+"Female" = "Female";
+"Business Administration" = "Business Administration";
+"Accounting Finance" = "Accounting Finance";
+"Infomation Systems Commerce" = "Infomation Systems Commerce";
+"Linguistics International Cultures" ="Linguistics International Cultures";
+"Law" = "Law";
+"Hospitality Management Tourism" = "Hospitality Management Tourism";
+"International Relations Communications" = "International Relations Communications";
+"User" = "User";
+"Admin" = "Admin";
+"true" = "true";
+"false" = "false";
+
+//MARK: -- ConfirmPassword
+"Enter your password" = "Enter your password";
+"Cancel" = "Cancel";
+"OK" = "OK";
+"Password" = "Password";
+
+//MARK: -- ChangePassword
+"Change\nPassword" = "Change\nPassword";
+"Enter your new password bellow.\nPassword has at least 6 characters."="Enter your new password bellow.\nPassword has at least 6 characters.";
+"New Password" = "New Password";
+"Confirm Password" = "Confirm Password";
+"Save" = "Save";
+
+//MARK: -- HandleError
+"An Error" = "An Error";
+"Error" = "Error";
+"The email is already in use with another account." = "The email is already in use with another account.";
+"Account not found for the specified user. Please check and try again." = "Account not found for the specified user. Please check and try again.";
+"Your account has been disabled. Please contact support." = "Your account has been disabled. Please contact support.";
+"Please enter a valid email." = "Please enter a valid email.";
+"You are not connected to the Internet." = "You are not connected to the Internet.";
+"Your password is too weak. The password must be 6 characters long or more." = "Your password is too weak. The password must be 6 characters long or more.";
+"Your password is incorrect." = "Your password is incorrect.";
+"Something went wrong." = "Something went wrong.";
+"The new password is not the same as the confirmation password." = "The new password is not the same as the confirmation password.";
+"Account status change failed." = "Account status change failed.";
+"Account created failed." = "Account created failed.";
+"ID already exists belong another account." = "ID already exists belong another account.";
+
+
+//MARK: -- HandleSuccess
+"Your Password has been changed." = "Your Password has been changed.";
+"Success" = "Success";
+"Account status changed successfully." = "Account status changed successfully.";
+"Account created successfully." = "Account created successfully.";
+
+//MARK: -- DetailAccount
+"Detail\nAccount" = "Detail\nAccount";
+"Created:" = "Created:";
+"Signed In:" = "Signed In:";
+"State:" = "State:";
+"Role:" = "Role:";
+
+//MARK: -- HandleConfirm
+"Do you want to enable account?" = "Do you want to enable account?";
+"Do you want to disable account?" = "Do you want to disable account?";
+"Confirm" = "Confirm";
+
+//MARK: -- ResetPassword
+"Please enter your Email" = "Please enter your Email";

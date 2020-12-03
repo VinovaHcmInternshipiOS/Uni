@@ -1,0 +1,229 @@
+/* 
+  Localizable.strings
+  Uni
+
+  Created by nguyen gia huy on 30/11/2020.
+  
+*/
+//MARK: -- LoginViewController
+"Welcome Back" = "Chào mừng\ntrở lại";
+"Sign in continue using our app" = "Đăng nhập tiếp tục sử dụng ứng dụng của chúng tôi";
+"Email" = "Email";
+"Password" = "Mật khẩu";
+"Forgot password?" = "Quên mật khẩu?";
+"Login" = "Đăng nhập";
+"Don't have an account?" = "Bạn không có tài khoản?";
+"Sign Up" = "Đăng kí";
+
+//MARK: -- ForgotPassword
+"Forgot\nPassword?" = "Quên mật khẩu?";
+"Send" = "Gửi";
+
+//MARK: -- HomeApp
+"Features" = "Tính năng";
+"Happenning" = "Đang diễn ra";
+"Coming Soon" = "Sắp diễn ra";
+"Ended" = "Đã kết thúc";
+"App\nHome" = "Trang\nChủ";
+
+//MARK: -- Slide Menu
+"Home" = "Trang chủ";
+"About" = "Về chúng tôi";
+"Setting" = "Cài đặt";
+"Manage" = "Quản lý";
+"Privacy Policy" = "Chính sách bảo mật";
+"Logout" = "Đăng xuất";
+
+//MARK: -- Profile
+"Gender" = "Giới tính";
+"Class" = "Lớp";
+"Course" = "Niên khoá";
+"Faculty" = "Khoa";
+
+//MARK: -- Barcode
+"Your\nBarcode" = "Quét\nMã Vạch";
+"Please give barcode to the event for attendance." = "Vui lòng cung cấp mã vạch cho sự kiện để tham dự.";
+
+//MARK: -- SearchEvent
+"Search\nEvent" = "Tìm kiếm\nSự kiện";
+"Search" = "Tìm kiếm";
+
+//MARK: -- DetailEvent
+"Detail" = "Chi tiết";
+"Overview" = "Mô tả";
+
+//MARK: -- History
+"Your\nHistory" = "Lịch sử";
+"Total Event:" = "Tổng sự kiện:";
+"Total Score:" = "Tổng điểm:";
+"SEMESTER" = "HỌC KÌ";
+
+//MARK: -- Semester
+"Total Event:" = "Tổng sự kiện:";
+"Total Score:" = "Tổng điểm:";
+"Semester" = "Học kì";
+
+//MARK: -- ListEvent
+"List\nEvent" = "Danh sách\nSự kiện";
+"Update" = "Cập nhật";
+"Delete" = "Xoá";
+
+//MARK: -- ListAttendance
+"List\nAttendance" = "Danh sách\nĐiểm danh";
+"Attendance" = "Điểm danh";
+"Please Enter ID Student" = "Vui lòng nhập vào mã số sinh viên";
+"Title:" = "Tiêu đề:";
+"Date:" = "Ngày:";
+"Location:" = "Địa điểm:";
+"Check-In:" = "Thời gian bắt đầu:";
+"Check-Out:" = "Thời gian kết thúc:";
+"Student ID" = "Mã số ID";
+"First Name" = "Họ";
+"Last Name" = "Tên";
+"Check-In" = "Giờ vào";
+"Total Participants:" = "Tổng người tham gia:";
+"Report Event" = "Báo cáo sự kiện";
+"Total:" = "Tổng cộng:";
+
+//MARK: -- CreateEvent
+"Create\nEvent" = "Tạo\nSự kiện";
+"Title" = "Tiêu đề";
+"Overview" = "Mô tả";
+"Date" = "Ngày";
+"Time" = "Thời gian";
+"Score" = "Điểm";
+"Choose Date" = "Chọn ngày";
+"Check-in" = "Giờ bắt đầu";
+"Check-out" = "Giờ kết thúc";
+"Done" = "Xong";
+
+//MARK: -- UpdateEvent
+"Update\nEvent" = "Cập nhật\nSự kiện";
+"Title" = "Tiêu đề";
+"Overview" = "Mô tả";
+"Date" = "Ngày";
+"Time" = "Thời gian";
+"Score" = "Điểm";
+"Choose Date" = "Chọn ngày";
+"Check-in" = "Giờ bắt đầu";
+"Check-out" = "Giờ kết thúc";
+
+//MARK: -- Rank
+"Rank" = "Bảng xếp hạng";
+"Score:" = "Điểm:";
+
+//MARK: -- Setting
+"Setting" = "Cài đặt";
+"Language" = "Ngôn ngữ";
+"Change Password" = "Thay đổi mật khẩu";
+
+//MARK: -- About
+"About\nUs" = "Về\nChúng tôi";
+"Versison" = "Phiên bản";
+"Update on" = "Cập nhật lúc";
+"Our Team" = "Đội ngũ";
+"Contact Us" = "Liên hệ";
+"Feedback" = "Phản hồi";
+"Please send your feedbback to:" = "Vui lòng gửi phản hồi đến email:";
+"Location:" = "Địa chỉ:";
+"Phone:" = "Số điện thoại:";
+
+//MARK: -- Manage
+"Event\nManage" = "Quản lý\nSự kiện";
+"Users\nManage" = "Quản lý\nNgười dùng";
+"Hi,\nAdmin" = "Xin chào,\nQuản trị viên";
+
+//MARK: -- Privacy
+"Privacy\nPolicy" = "Chính sách\nBảo mật";
+
+//MARK: -- ListUser
+"List\nUser" = "Danh sách\nNgười dùng";
+"Disable" = "Khoá";
+"Enable" = "Mở khoá";
+
+//MARK: -- CreateUser
+"Account" = "Tài khoản";
+"Role" = "Quyền";
+"State" = "Trạng thái";
+"Infomation" = "Thông tin";
+"Name" = "Tên";
+"Gender" = "Giới tính";
+"Class" = "Lớp";
+"Course" = "Khoá";
+"Faculty" = "Khoa";
+"Create\nUser" = "Tạo\nNgười dùng";
+"Done" = "Xong";
+"Please enter Email" = "Vui lòng nhập Email";
+"Please enter ID" = "Vui lòng nhập Mã số";
+"Please choose Role" = "Vui lòng chọn Quyền";
+"Please choose State" = "Vui lòng chọn Trang thái";
+"Please enter Name" = "Vui lòng nhập Họ và Tên";
+"Please choose Gender" = "Vui lòng chọn Giới tính";
+"Please choose Class" = "Vui lòng chọn Lớp";
+"Please choose Course" = "Vui lòng chọn Niên khoá";
+"Please choose Faculty" = "Vui lòng chọn Khoa";
+"Male" = "Nam";
+"Female" = "Nữ";
+"Business Administration" = "Quản trị kinh doanh";
+"Accounting Finance" = "Kế toán Tài chính";
+"Infomation Systems Commerce" = "Thương mại điện tử";
+"Linguistics International Cultures" ="Văn hóa quốc tế";
+"Law" = "Luật";
+"Hospitality Management Tourism" = "Du lịch Khách Sạn";
+"International Relations Communications" = "Truyền thông Quan hệ Quốc tế";
+"User" = "Người dùng";
+"Admin" = "Quản trị viên";
+"true" = "Kích hoạt";
+"false" = "Không kích hoạt";
+
+//MARK: -- ConfirmPassword
+"Enter your password" = "Vui lòng nhập mật khẩu";
+"Cancel" = "Huỷ bỏ";
+"OK" = "OK";
+"Password" = "Mật khẩu";
+
+//MARK: -- ChangePassword
+"Change\nPassword" = "Thay đổi\nMật khẩu";
+"Enter your new password bellow.\nPassword has at least 6 characters."= "Nhập mật khẩu mới của bạn vào bên dưới.\nMật khẩu có ít nhất 6 ký tự.";
+"New Password" = "Mật khẩu mới";
+"Confirm Password" = "Xác nhận mật khẩu";
+"Save" = "Lưu";
+
+//MARK: -- HandleError
+"An Error" = "Lỗi";
+"Error" = "Lỗi";
+"The email is already in use with another account." = "Email đã được sử dụng với một tài khoản khác.";
+"Account not found for the specified user. Please check and try again." = "Account not found for the specified user. Please check and try again.";
+"Your account has been disabled. Please contact support." =
+"Không tìm thấy tài khoản cho người dùng được chỉ định. Vui lòng kiểm tra và thử lại.";
+"Please enter a valid email." = "Vui lòng nhập email hợp lệ.";
+"You are not connected to the Internet." = "Không có kết nối với Internet.";
+"Your password is too weak. The password must be 6 characters long or more." = "Mật khẩu của bạn quá yếu. Mật khẩu phải dài từ 6 ký tự trở lên.";
+"Your password is incorrect." = "Mật khẩu của bạn không chính xác.";
+"Something went wrong." = "Đã xảy ra lỗi.";
+"The new password is not the same as the confirmation password." = "Mật khẩu mới không giống với mật khẩu xác nhận.";
+"Account created failed." = "Đã tạo tài khoản thất bại.";
+"ID already exists belong another account." = "ID đã tồn tại thuộc về một tài khoản khác.";
+
+//MARK: -- HandleSuccess
+"Your Password has been changed." = "Mật khẩu của bạn đã được thay đổi.";
+"Success" = "Thành công";
+"Account status changed successfully." = "Thay đổi trạng thái tài khoản thành công.";
+"Account status change failed." = "Thay đổi trạng thái tài khoản thất bại.";
+"Account created successfully." = "Đã tạo tài khoản thành công.";
+
+//MARK: -- DetailAccount
+"Detail\nAccount" = "Chi tiết\nTài khoản";
+"Created:" = "Tạo lúc:";
+"Signed In:" = "Đăng nhập gần nhất:";
+"State:" = "Trạng thái:";
+"Role:" = "Quyền:";
+
+//MARK: -- HandleConfirm
+"Do you want to enable account?" = "Bạn có muốn kích hoạt tài khoản không?";
+"Do you want to disable account?" = "Bạn có muốn vô hiệu hóa tài khoản?";
+"Confirm" = "Xác nhận";
+
+//MARK: -- ResetPassword
+"Please enter your Email" = "Vui lòng nhập email";
+
