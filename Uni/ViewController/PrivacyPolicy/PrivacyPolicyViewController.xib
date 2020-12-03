@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Raleway-Light.ttf">
+            <string>Raleway-Light</string>
+        </array>
+        <array key="Raleway-Regular.ttf">
+            <string>Raleway-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PrivacyPolicyViewController" customModule="Uni" customModuleProvider="target">
+            <connections>
+                <outlet property="privacypolicy" destination="Nha-uQ-eG4" id="5ra-zX-Tu3"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="en0-9W-hxB">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lcr-yg-cWU">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="856.5"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Privacy Policy" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nha-uQ-eG4" userLabel="List Attendance">
+                                    <rect key="frame" x="32" y="35" width="131" height="94"/>
+                                    <fontDescription key="fontDescription" name="Raleway-Light" family="Raleway" pointSize="40"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6nO-mC-N4j">
+                                    <rect key="frame" x="32" y="164" width="350" height="542.5"/>
+                                    <mutableString key="text">Your privacy is important to us. It is The Uni Company's policy to respect your privacy regarding any information we may collect from you through our app, The Uni.
+We only ask for personal information when we truly need it to provide a service to you. We collect it by fair and lawful means, with your knowledge and consent. We also let you know why we’re collecting it and how it will be used.
+We only retain collected information for as long as necessary to provide you with your requested service. What data we store, we’ll protect within commercially acceptable means to prevent loss and theft, as well as unauthorized access, disclosure, copying, use or modification.
+We don’t share any personally identifying information publicly or with third-parties, except when required to by law.
+Our app may link to external sites that are not operated by us. Please be aware that we have no control over the content and practices of these sites, and cannot accept responsibility or liability for their respective privacy policies.
+You are free to refuse our request for your personal information, with the understanding that we may be unable to provide you with some of your desired services.
+Your continued use of our app will be regarded as acceptance of our practices around privacy and personal information. If you have any questions about how we handle user data and personal information, feel free to contact us.
+This policy is effective as of 30 October 2020.</mutableString>
+                                    <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="14"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstItem="Nha-uQ-eG4" firstAttribute="top" secondItem="lcr-yg-cWU" secondAttribute="top" constant="35" id="dgE-BF-1KQ"/>
+                                <constraint firstAttribute="trailing" secondItem="6nO-mC-N4j" secondAttribute="trailing" constant="32" id="ljG-1P-8QN"/>
+                                <constraint firstItem="6nO-mC-N4j" firstAttribute="top" secondItem="Nha-uQ-eG4" secondAttribute="bottom" constant="35" id="lpe-F3-Z7S"/>
+                                <constraint firstAttribute="bottom" secondItem="6nO-mC-N4j" secondAttribute="bottom" constant="150" id="rMl-6L-biv"/>
+                                <constraint firstItem="6nO-mC-N4j" firstAttribute="leading" secondItem="lcr-yg-cWU" secondAttribute="leading" constant="32" id="xMW-eb-AdT"/>
+                                <constraint firstItem="Nha-uQ-eG4" firstAttribute="leading" secondItem="lcr-yg-cWU" secondAttribute="leading" constant="32" id="xuM-zW-wSk"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="lcr-yg-cWU" firstAttribute="leading" secondItem="en0-9W-hxB" secondAttribute="leading" id="DyE-Oz-P4q"/>
+                        <constraint firstItem="lcr-yg-cWU" firstAttribute="top" secondItem="en0-9W-hxB" secondAttribute="top" id="Jgp-A3-uWd"/>
+                        <constraint firstAttribute="bottom" secondItem="lcr-yg-cWU" secondAttribute="bottom" id="aha-Eb-ylv"/>
+                        <constraint firstAttribute="trailing" secondItem="lcr-yg-cWU" secondAttribute="trailing" id="pxQ-7o-cH2"/>
+                    </constraints>
+                </scrollView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="lcr-yg-cWU" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="2i3-pt-x4I"/>
+                <constraint firstItem="en0-9W-hxB" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="4hC-PF-C5T"/>
+                <constraint firstItem="lcr-yg-cWU" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" priority="250" id="JlA-pF-ZHj"/>
+                <constraint firstAttribute="trailing" secondItem="en0-9W-hxB" secondAttribute="trailing" id="fmS-lM-XGL"/>
+                <constraint firstItem="en0-9W-hxB" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="urY-UX-nDu"/>
+                <constraint firstAttribute="bottom" secondItem="en0-9W-hxB" secondAttribute="bottom" id="yVl-s5-e2e"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="86.956521739130437" y="96.428571428571431"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
