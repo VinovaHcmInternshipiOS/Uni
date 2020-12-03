@@ -24,7 +24,7 @@ class SemesterScoreViewController: BaseViewController {
     var dataSemester = [History?]()
     var detailHistory = [DetailHistory?]()
     var dataLabelYear = "--"
-    var dataLabelSemester = "Semester-"
+    var dataLabelSemester = "Semester"
 	init(presenter: SemesterScorePresenterProtocol) {
         self.presenter = presenter
         super.init(nibName: "SemesterScoreViewController", bundle: nil)
@@ -37,16 +37,23 @@ class SemesterScoreViewController: BaseViewController {
 	override func viewDidLoad() {
         super.viewDidLoad()
         presenter.view = self
+        setupUI()
+        setupLanguage()
+        loadLabel()
         for i in 0..<dataSemester.count {
            presenter.fetchHistoryEvent(keyEvent: (dataSemester[i]?.Key)!)
         }
         
-        loadLabel()
-        setupUI()
+
     }
     func loadLabel() {
         lbYear.text = dataLabelYear
         lbSemester.text = dataLabelSemester
+    }
+    
+    func setupLanguage(){
+        totalEvent.text = AppLanguage.Semester.TotalEvent.localized
+        totalScore.text = AppLanguage.Semester.TotalScore.localized
     }
 
     func setupUI(){
@@ -101,10 +108,10 @@ extension SemesterScoreViewController: SemesterScoreViewProtocol {
     func fetchHistoryEventSuccess() {
         var score = 0
         detailHistory = presenter.detailHistory
-        totalEvent.text = "Total Event: \(detailHistory.count)"
+        totalEvent.text = AppLanguage.Semester.TotalEvent.localized + " \(detailHistory.count)"
         for i in 0..<dataSemester.count {
             score += (dataSemester[i]?.Score)!
-            totalScore.text = "Total Score: \(score)"
+            totalScore.text = AppLanguage.Semester.TotalScore.localized + " \(score)"
         }
         tableView.reloadData()
     }
