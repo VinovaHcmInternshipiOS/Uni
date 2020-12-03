@@ -11,7 +11,13 @@
 import UIKit
 import BarcodeScanner
 import AVFoundation
-class AttendanceEventViewController: BaseViewController,AVCaptureMetadataOutputObjectsDelegate {
+import MessageUI
+class AttendanceEventViewController: BaseViewController,AVCaptureMetadataOutputObjectsDelegate,MFMailComposeViewControllerDelegate {
+    @IBOutlet weak var btPlus: UIButton!
+    @IBOutlet weak var viewPlus: UIView!
+    @IBOutlet weak var viewBtExport: UIView!
+    @IBOutlet weak var btExport: UIButton!
+    @IBOutlet weak var lbListAttendance: UILabel!
     @IBOutlet weak var btScan: UIButton!
     @IBOutlet weak var viewButton: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
@@ -23,23 +29,29 @@ class AttendanceEventViewController: BaseViewController,AVCaptureMetadataOutputO
     var keyDetailEvent = ""
     var getkeySearch: (()->Void)? = nil
     var viewController = BarcodeScannerViewController()
-	init(presenter: AttendanceEventPresenterProtocol) {
+    var dataCSV: Data?
+    init(presenter: AttendanceEventPresenterProtocol) {
         self.presenter = presenter
         super.init(nibName: "AttendanceEventViewController", bundle: nil)
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
-	override func viewDidLoad() {
+    
+    override func viewDidLoad() {
         super.viewDidLoad()
- 
+        
         presenter.view = self
         presenter.fetchAttendance(keyEvent: keyDetailEvent)
         setupUI()
+        setupLanguage()
         pullRefreshData()
         addNav()
+    }
+    
+    func setupLanguage(){
+        lbListAttendance.text = AppLanguage.ListAttendance.ListAttendance.localized
     }
     
     func setupUI() {
@@ -51,323 +63,450 @@ class AttendanceEventViewController: BaseViewController,AVCaptureMetadataOutputO
         collectionView.register(UINib(nibName: "HeaderSearch", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "HeaderSearch")
         viewButton.shadowColor = AppColor.YellowShadow
         btScan.setImage(AppIcon.icBarcodeYellow, for: .normal)
+        
+        viewBtExport.shadowColor = AppColor.YellowShadow
+        btExport.setImage(AppIcon.icExportYellow, for: .normal)
+        
+        viewPlus.shadowColor = AppColor.YellowShadow
+        btPlus.setImage(AppIcon.icPlusYellow, for: .normal)
     }
     
     func addNav() {
-        addButtonImageToNavigation(image: AppIcon.icPlusYellow!, style: .right, action: #selector(addAttendance))
         self.navigationController?.hideShadowLine()
     }
     
-    @objc func addAttendance(){
-        let alert = UIAlertController(title: "", message: "Attendance", preferredStyle: .alert)
-        alert.addTextField(configurationHandler: { (TextField) in
-            TextField.placeholder = "Please Enter ID Student"
-            TextField.keyboardType = UIKeyboardType.numberPad
-        })
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [self] (updateAction) in
-            let studentID = alert.textFields!.first!.text!
-            let charactersetTextView = CharacterSet(charactersIn: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ,[]:;<>,+=-_|!@%^&?$/.{()*&^%#`~'} ")
-            if (studentID.rangeOfCharacter(from: charactersetTextView.intersection(charactersetTextView)) != nil){
-                
-                self.presentAlertWithTitle(title: "Invalid ID", message: "Please try again!", options: "OK") { (Int) in}
-            }
-            else
-            {
-                presenter.checkExistUser(keyEvent:keyDetailEvent,code: studentID,type: .keyboard)
-
-            }
-        }))
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
-            alert.dismiss(animated: true, completion: nil)
-        }))
-        self.present(alert, animated: true, completion: nil)
+    @IBAction func btExport(_ sender: Any) {
+        presenter.getDetailEvent(keyEvent: keyDetailEvent)
     }
     
-    @objc func pulledRefreshControl(sender:AnyObject) {
-        pullControl.endRefreshing()
-        presenter.infoAttendance = []
-        presenter.fetchAttendance(keyEvent: keyDetailEvent)
-      }
-    
-      private func pullRefreshData() {
-        pullControl.attributedTitle = NSAttributedString(string: "Pull To Refresh")
-        pullControl.addTarget(self, action: #selector(pulledRefreshControl), for: UIControl.Event.valueChanged)
-        scrollView.addSubview(pullControl)
-      }
-    
-    @IBAction func scanBarcode(_ sender: Any) {
-        let viewController = makeBarcodeScannerViewController()
-        viewController.dismissalDelegate = self
-        viewController.cameraViewController.showsCameraButton = true
-        viewController.messageViewController.messages.notFoundText = "Invalid ID"
-        viewController.messageViewController.messages.processingText = "Checking..."
-        present(viewController, animated: false, completion: nil)
-    }
-    
-    
-    func vibrate()
+    func showMailComposer()
     {
-        let feedbackGenerator = UIImpactFeedbackGenerator(style: .heavy)
-        feedbackGenerator.impactOccurred()
-    }
-    
-    func makeBarcodeScannerViewController() -> BarcodeScannerViewController {
-        viewController.codeDelegate = self
-        viewController.errorDelegate = self
-        viewController.dismissalDelegate = self
-        viewController.headerViewController.closeButton.tintColor = .red
-        return viewController
-    }
-    
-    @objc func actionSearch(sender: UIButton) {
-        getkeySearch?()
-    }
-
-}
-
-extension AttendanceEventViewController: UICollectionViewDelegateFlowLayout,UICollectionViewDelegate {
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width / 2 , height: 170 )
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        switch kind {
-        
-        case UICollectionView.elementKindSectionHeader:
-            
-            if let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "HeaderSearch", for: indexPath) as? HeaderSearch {
-                headerView.btSearch.addTarget(self, action: #selector(actionSearch(sender:)), for: .touchUpInside)
-                getkeySearch = { [self] in
-                    if let keysearch = headerView.txtSearch.text {
-                        presenter.infoAttendance = []
-                        if(keysearch.isEmpty == true) {
-                            presenter.fetchAttendance(keyEvent: keyDetailEvent)
-                        } else {
-                            presenter.fetchEventResult(keyEvent: keyDetailEvent, keyJoiner: keysearch)
-                        }
-                        
-                    } else {return}
-                    
-                }
-                return headerView
-            } else {
-                return UICollectionReusableView()
-            }
-            
-        case UICollectionView.elementKindSectionFooter:
-            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "HeaderSearch", for: indexPath)
-            
-            return headerView
-            
-        default:
-            
-            assert(false, "Unexpected element kind")
+        let mailComposeViewController = configureMailController()
+        if MFMailComposeViewController.canSendMail() {
+            self.present(mailComposeViewController, animated: true, completion: nil)
+        } else {
+            showMailError()
         }
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 0.0000000
-      }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 0.0000000
+    func createfileCSV(title:String,date:String,location:String,checkin:String,checkout:String,score:Int,Array: [AttendanceEvent?],total:Int,mailString: NSMutableString)
+    {
+        
+        
+        mailString.append("\n")
+        mailString.append(AppLanguage.ListAttendance.Title.localized + " \(title)\n")
+        mailString.append(AppLanguage.ListAttendance.Date.localized + " \(date)\n")
+        mailString.append(AppLanguage.ListAttendance.Location.localized + " \(location)\n")
+        mailString.append(AppLanguage.ListAttendance.CheckIn.localized + " \(checkin)\n")
+        mailString.append(AppLanguage.ListAttendance.CheckOut.localized + " \(checkout)\n")
+        mailString.append("\n")
+        mailString.append(AppLanguage.CreateEvent.Score.localized + " \(score)\n")
+        mailString.append(AppLanguage.ListAttendance.TotalJoiner.localized + " \(Array.count)\n")
+        mailString.append("\n")
+        mailString.append("No, \(AppLanguage.ListAttendance.StudentID.localized),\(AppLanguage.ListAttendance.FirstName.localized),\(AppLanguage.ListAttendance.LastName.localized),\(AppLanguage.ListAttendance.Checkin.localized), \(AppLanguage.CreateEvent.Date.localized)\n")
+        for n in 0..<total{
+            let i = listAttendance.firstIndex(where: { $0!.code == Array[n]!.code })
+            if let fullName = listAttendance[i!]?.name {
+                var components = fullName.components(separatedBy: " ")
+                if components.count > 0 {
+                    //let lastName = components.removeFirst()
+                    let lastName = components.removeLast()
+                    let firstName = components.joined(separator: " ")
+                    debugPrint(lastName, "",firstName)
+                    if let code = Array[n]?.code, let checkin = Array[n]?.checkin, let date = Array[n]?.date {
+                        mailString.append("\(n+1),\(code),\(firstName),\(lastName),\(formatterTime(time: checkin)),\(date)\n")
+                    } else { return }
+                    
+                }
+                
+            } else { return}
+            
+            self.dataCSV = mailString.data(using: String.Encoding.utf8.rawValue, allowLossyConversion: false)
+            
+        }
     }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: collectionView.frame.width, height: 118 )
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
-        return CGSize(width: 0, height: 0)
-    }
-}
+        
+        func configureMailController() -> MFMailComposeViewController {
+            let mailComposerVC = MFMailComposeViewController()
+            mailComposerVC.mailComposeDelegate = self
 
-extension AttendanceEventViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        self.collectionView.layoutIfNeeded()
-        self.heightCollectionView.constant = self.collectionView.contentSize.height
+            let systemVersion = UIDevice.current.systemVersion //version IOS
+            //iPhone or iPad
+            let model = UIDevice.current.model
+            mailComposerVC.setSubject(AppLanguage.ListAttendance.RerportEvent.localized)
+            mailComposerVC.setToRecipients(["hanhuy308@gmail.com"])
+            mailComposerVC.addAttachmentData(dataCSV!, mimeType: "text/csv", fileName: "UniAttendace.csv")
+            mailComposerVC.setMessageBody("\n\n\n\n\nIOS: \(systemVersion) \nDevice: \(model)", isHTML: false)
+            return mailComposerVC
+        }
+    
+        func showMailError() {
+            let sendMailErrorAlert = UIAlertController(title: "Could not send email", message: "Your device could not send email", preferredStyle: .alert)
+            let dismiss = UIAlertAction(title: "Ok", style: .default, handler: nil)
+            sendMailErrorAlert.addAction(dismiss)
+            self.present(sendMailErrorAlert, animated: true, completion: nil)
+        }
+        
+        func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+            if let _ = error
+            {
+                //show alert
+                controller.dismiss(animated: true)
+            }
+            switch result {
+            case .cancelled:
+                print("Cancel")
+            case .failed:
+                let alertViewController = UIAlertController(title: "Sent Mail Failed", message: "Please check your email again", preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel, handler: nil)
+                alertViewController.addAction(okAction)
+                self.present(alertViewController, animated:  true, completion:  nil)
+            case .saved:
+                let alertViewController = UIAlertController(title: "Save Mail", message: "Your mail has been saved to the draft folder", preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel, handler: nil)
+                alertViewController.addAction(okAction)
+                self.present(alertViewController, animated:  true, completion:  nil)
+            case .sent:
+                let alertViewController = UIAlertController(title: "Sent Mail Success", message: "Thank you for your  mail", preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel, handler: nil)
+                alertViewController.addAction(okAction)
+                self.present(alertViewController, animated:  true, completion:  nil)
+            @unknown default:
+                fatalError()
+            }
+            controller.dismiss(animated: true, completion: nil)
+        }
+        
+        @IBAction func addAttendance(_ sender: Any) {
+            let alert = UIAlertController(title: "", message: AppLanguage.ListAttendance.Attendance.localized, preferredStyle: .alert)
+            alert.addTextField(configurationHandler: { (TextField) in
+                TextField.placeholder = AppLanguage.ListAttendance.EnterIDStudent.localized
+                TextField.keyboardType = UIKeyboardType.numberPad
+            })
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [self] (updateAction) in
+                let studentID = alert.textFields!.first!.text!
+                let charactersetTextView = CharacterSet(charactersIn: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ,[]:;<>,+=-_|!@%^&?$/.{()*&^%#`~'} ")
+                if (studentID.rangeOfCharacter(from: charactersetTextView.intersection(charactersetTextView)) != nil){
+                    
+                    self.presentAlertWithTitle(title: "Invalid ID", message: "Please try again!", options: "OK") { (Int) in}
+                }
+                else
+                {
+                    presenter.checkExistUser(keyEvent:keyDetailEvent,code: studentID,type: .keyboard)
+                    
+                }
+            }))
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
+                alert.dismiss(animated: true, completion: nil)
+            }))
+            self.present(alert, animated: true, completion: nil)
+        }
+        
+        
+        
+        @objc func pulledRefreshControl(sender:AnyObject) {
+            pullControl.endRefreshing()
+            presenter.infoAttendance = []
+            presenter.fetchAttendance(keyEvent: keyDetailEvent)
+        }
+        
+        private func pullRefreshData() {
+            pullControl.attributedTitle = NSAttributedString(string: "Pull To Refresh")
+            pullControl.addTarget(self, action: #selector(pulledRefreshControl), for: UIControl.Event.valueChanged)
+            scrollView.addSubview(pullControl)
+        }
+        
+        @IBAction func scanBarcode(_ sender: Any) {
+            let viewController = makeBarcodeScannerViewController()
+            viewController.dismissalDelegate = self
+            viewController.cameraViewController.showsCameraButton = true
+            viewController.messageViewController.messages.notFoundText = "Invalid ID"
+            viewController.messageViewController.messages.processingText = "Checking..."
+            present(viewController, animated: false, completion: nil)
+        }
+        
+        
+        func vibrate()
+        {
+            let feedbackGenerator = UIImpactFeedbackGenerator(style: .heavy)
+            feedbackGenerator.impactOccurred()
+        }
+        
+        func makeBarcodeScannerViewController() -> BarcodeScannerViewController {
+            viewController.codeDelegate = self
+            viewController.errorDelegate = self
+            viewController.dismissalDelegate = self
+            viewController.headerViewController.closeButton.tintColor = .red
+            return viewController
+        }
+        
+        @objc func actionSearch(sender: UIButton) {
+            getkeySearch?()
+        }
+        
     }
     
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+    extension AttendanceEventViewController: UICollectionViewDelegateFlowLayout,UICollectionViewDelegate {
+        
+        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+            return CGSize(width: collectionView.frame.width / 2 , height: 170 )
+        }
+        
+        func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+            switch kind {
+            
+            case UICollectionView.elementKindSectionHeader:
+                
+                if let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "HeaderSearch", for: indexPath) as? HeaderSearch {
+                    headerView.lbTotal.text = AppLanguage.ListAttendance.Total.localized + " \(listAttendance.count)"
+                    headerView.lbTotal.isHidden = false
+                    headerView.txtSearch.placeholder = AppLanguage.SearchEvent.Search.localized
+                    headerView.btSearch.addTarget(self, action: #selector(actionSearch(sender:)), for: .touchUpInside)
+                    getkeySearch = { [self] in
+                        if let keysearch = headerView.txtSearch.text {
+                            presenter.infoAttendance = []
+                            if(keysearch.isEmpty == true) {
+                                presenter.fetchAttendance(keyEvent: keyDetailEvent)
+                            } else {
+                                presenter.fetchEventResult(keyEvent: keyDetailEvent, keyJoiner: keysearch)
+                            }
+                            
+                        } else {return}
+                        
+                    }
+                    return headerView
+                } else {
+                    return UICollectionReusableView()
+                }
+                
+            case UICollectionView.elementKindSectionFooter:
+                let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "HeaderSearch", for: indexPath)
+                
+                return headerView
+                
+            default:
+                
+                assert(false, "Unexpected element kind")
+            }
+        }
+        
+        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+            return 0.0000000
+        }
+        
+        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+            return 0.0000000
+        }
+        
+        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+            return CGSize(width: collectionView.frame.width, height: 128 )
+        }
+        
+        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+            return CGSize(width: 0, height: 0)
+        }
     }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return listAttendance.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let profileUser = ProfileViewController(presenter: ProfilePresenter())
-        profileUser.fromAttendance = true
-        profileUser.keyUser = (listAttendance[indexPath.row]?.code)!
-        self.navigationController?.pushViewController(profileUser, animated: true)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AttendanceCell", for: indexPath) as? AttendanceCell {
-            cell.dateCheckin.text = "\(getFormattedDate(date: listAttendance[indexPath.row]!.date ?? ""))-\(formatterTime(time: listAttendance[indexPath.row]!.checkin ?? ""))"
-            cell.codeUser.text = listAttendance[indexPath.row]?.code
-            cell.nameUser.text = listAttendance[indexPath.row]?.name
-          //  DispatchQueue.main.async { [self] in
+    extension AttendanceEventViewController: UICollectionViewDataSource {
+        func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+            self.collectionView.layoutIfNeeded()
+            self.heightCollectionView.constant = self.collectionView.contentSize.height
+        }
+        
+        func numberOfSections(in collectionView: UICollectionView) -> Int {
+            return 1
+        }
+        
+        func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+            return listAttendance.count
+        }
+        
+        func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+            let profileUser = ProfileViewController(presenter: ProfilePresenter())
+            profileUser.fromAttendance = true
+            profileUser.keyUser = (listAttendance[indexPath.row]?.code)!
+            self.navigationController?.pushViewController(profileUser, animated: true)
+        }
+        
+        func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+            if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AttendanceCell", for: indexPath) as? AttendanceCell {
+                cell.dateCheckin.text = "\(getFormattedDate(date: listAttendance[indexPath.row]!.date ?? ""))-\(formatterTime(time: listAttendance[indexPath.row]!.checkin ?? ""))"
+                cell.codeUser.text = listAttendance[indexPath.row]?.code
+                cell.nameUser.text = listAttendance[indexPath.row]?.name
+
                 if let profileURL = listAttendance[indexPath.row]?.urlImage {
                     cell.imageUser.loadImage(urlString: profileURL)
                 }
-           // }
-    
-            return cell
-        }
-        else {
-            return UICollectionViewCell()
-        }
-    }
-    
-    
-}
-
-extension AttendanceEventViewController: BarcodeScannerCodeDelegate {
-    func scanner(_ controller: BarcodeScannerViewController, didCaptureCode code: String, type: String) {
-         print("Barcode Data: \(code)")
-         print("Symbology Type: \(type)")
-        let charactersetTextView = CharacterSet(charactersIn: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ,[]:;<>,+=-_|!@%^&?$/.{()*&^%#`~'} ")
-        if (code.rangeOfCharacter(from: charactersetTextView.intersection(charactersetTextView)) != nil){
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                controller.messageViewController.errorTintColor = UIColor.systemRed
-                controller.resetWithError(message: "Invalid ID")
+                
+                return cell
             }
-            
+            else {
+                return UICollectionViewCell()
+            }
         }
-        else
-        {
-            presenter.checkExistUser(keyEvent:keyDetailEvent,code: code,type: .scan)
-
+        
+        
+    }
+    
+    extension AttendanceEventViewController: BarcodeScannerCodeDelegate {
+        func scanner(_ controller: BarcodeScannerViewController, didCaptureCode code: String, type: String) {
+            print("Barcode Data: \(code)")
+            print("Symbology Type: \(type)")
+            let charactersetTextView = CharacterSet(charactersIn: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ,[]:;<>,+=-_|!@%^&?$/.{()*&^%#`~'} ")
+            if (code.rangeOfCharacter(from: charactersetTextView.intersection(charactersetTextView)) != nil){
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                    controller.messageViewController.errorTintColor = UIColor.systemRed
+                    controller.resetWithError(message: "Invalid ID")
+                }
+                
+            }
+            else
+            {
+                presenter.checkExistUser(keyEvent:keyDetailEvent,code: code,type: .scan)
+                
+            }
         }
     }
-}
-// MARK: - BarcodeScannerErrorDelegate
-extension AttendanceEventViewController: BarcodeScannerErrorDelegate {
-    func scanner(_ controller: BarcodeScannerViewController, didReceiveError error: Error) {
-        print(error)
+    // MARK: - BarcodeScannerErrorDelegate
+    extension AttendanceEventViewController: BarcodeScannerErrorDelegate {
+        func scanner(_ controller: BarcodeScannerViewController, didReceiveError error: Error) {
+            print(error)
+        }
     }
-}
-
-// MARK: - BarcodeScannerDismissalDelegate
-extension AttendanceEventViewController: BarcodeScannerDismissalDelegate {
-    func scannerDidDismiss(_ controller: BarcodeScannerViewController) {
-        controller.dismiss(animated: true, completion: nil)
+    
+    // MARK: - BarcodeScannerDismissalDelegate
+    extension AttendanceEventViewController: BarcodeScannerDismissalDelegate {
+        func scannerDidDismiss(_ controller: BarcodeScannerViewController) {
+            controller.dismiss(animated: true, completion: nil)
+        }
     }
-}
-
+    
 extension AttendanceEventViewController: AttendanceEventViewProtocol {
-    func updateListEventOfUserSuccess() {
-        print("update list event of user success")
+    func fetchDetailSuccess() {
+        let mailString = NSMutableString()
+        let detail = presenter.detailEvent
+        if let detail = detail {
+            createfileCSV(title: detail.title ?? "", date: detail.date ?? "",location: detail.address ?? "", checkin: formatterTime(time: detail.checkin ?? "") , checkout: formatterTime(time: detail.checkout ?? ""), score: detail.score ?? 0, Array: listAttendance, total: listAttendance.count, mailString: mailString)
+            //joinEvent.text = detail.joinEvent
+           
+        } else { return }
+        showMailComposer()
+        
     }
     
-    func updateListEventOfUserFailed() {
-        print("update list event of user failed")
+    func fetchDetailFailed() {
+        print("fetch detail event failed")
     }
     
-
-    func updateListUserFailed() {
-        print("update list user success")
-    }
-    
-    func getScoreEventSuccess(score: Int,code:String) {
-        presenter.getScoreUser(code: code, scoreEvent: score)
-    }
-    
-    func getScoreEventFailed() {
-        print("get score event failed")
-    }
-    
-    func updateScoreSuccess(scoreEvent:Int,code:String) {
-        print("get update score success")
-        presenter.updateListEventOfUser(code: code, keyEvent: keyDetailEvent, score: scoreEvent, date: getCurrentDate(), checkin: getCurrentTime())
-    }
-    
-    func updateScoreFailed() {
-        print("update score failed")
-    }
-    
-    func getScoreUserSuccess(scoreUser: Int, scoreEvent: Int,code:String) {
-        presenter.updateScore(keyEvent: keyDetailEvent, code: code, scoreEvent: scoreEvent, scoreUser: scoreUser)
-    }
-    
-    func getScoreUserFailed() {
-        print("get score user failed")
-    }
-    
-    
-    func checkExistUserSuccess(code: String,type: typeInput) {
-        switch type {
-        case .scan:
-            DispatchQueue.main.asyncAfter(deadline: .now()) { [self] in
-                viewController.messageViewController.errorTintColor = UIColor.systemRed
-                viewController.resetWithError(message: "\(code)\rAlready exists in event list.")
-            }
-        case .keyboard:
-            presentAlertWithTitle(title: "Opps", message: "\(code)\rAlready exists in event list.", options: "OK") { (Int) in
+        func updateListEventOfUserSuccess() {
+            print("update list event of user success")
+        }
+        
+        func updateListEventOfUserFailed() {
+            print("update list event of user failed")
+        }
+        
+        
+        func updateListUserFailed() {
+            print("update list user success")
+        }
+        
+        func getScoreEventSuccess(score: Int,code:String) {
+            presenter.getScoreUser(code: code, scoreEvent: score)
+        }
+        
+        func getScoreEventFailed() {
+            print("get score event failed")
+        }
+        
+        func updateScoreSuccess(scoreEvent:Int,code:String) {
+            print("get update score success")
+            presenter.updateListEventOfUser(code: code, keyEvent: keyDetailEvent, score: scoreEvent, date: getCurrentDate(), checkin: getCurrentTime())
+        }
+        
+        func updateScoreFailed() {
+            print("update score failed")
+        }
+        
+        func getScoreUserSuccess(scoreUser: Int, scoreEvent: Int,code:String) {
+            presenter.updateScore(keyEvent: keyDetailEvent, code: code, scoreEvent: scoreEvent, scoreUser: scoreUser)
+        }
+        
+        func getScoreUserFailed() {
+            print("get score user failed")
+        }
+        
+        
+        func checkExistUserSuccess(code: String,type: typeInput) {
+            switch type {
+            case .scan:
+                DispatchQueue.main.asyncAfter(deadline: .now()) { [self] in
+                    viewController.messageViewController.errorTintColor = UIColor.systemRed
+                    viewController.resetWithError(message: "\(code)\rAlready exists in event list.")
+                }
+            case .keyboard:
+                presentAlertWithTitle(title: "Opps", message: "\(code)\rAlready exists in event list.", options: "OK") { (Int) in
+                }
             }
         }
-    }
-    
-    func checkExistUserFailed(code: String,type:typeInput) {
-        presenter.userAttendance(keyUser: code, keyEvent: keyDetailEvent, date: getCurrentDate(), checkin: getCurrentTime(), type: type)
-    }
-    
-    func createUserSuccess(code:String) {
-        presenter.getScoreEvent(keyEvent: keyDetailEvent, code: code)
-    }
-    
-    func createUserFailed() {
-        print("Create user failed")
-    }
-    
-    func checkUserAttendanceSuccess(code: String,type:typeInput) {
-        switch type {
-        case .scan:
-            DispatchQueue.main.asyncAfter(deadline: .now()) {  [self] in
-                viewController.messageViewController.errorTintColor = UIColor.systemGreen
-                viewController.resetWithError(message: "Success \rID: \(code)")
-            }
-        case .keyboard:
-            presentAlertWithTitle(title: "Success", message: "Attendance success for ID \(code)", options: "OK") { (Int) in
-            }
+        
+        func checkExistUserFailed(code: String,type:typeInput) {
+            presenter.userAttendance(keyUser: code, keyEvent: keyDetailEvent, date: getCurrentDate(), checkin: getCurrentTime(), type: type)
         }
-        presenter.getScoreEvent(keyEvent: keyDetailEvent, code: code)
-    }
-    
-    func checkUserAttendanceFailed(code: String,type:typeInput) {
-        switch type {
-        case .scan:
-            DispatchQueue.main.asyncAfter(deadline: .now()) { [self] in
-                viewController.messageViewController.errorTintColor = UIColor.systemGreen
-                viewController.resetWithError(message: "Success \rID: \(code)\rPlease update Infomation of the ID")
-            }
-        case .keyboard:
-            presentAlertWithTitle(title: "Success", message: "Please update Infomation of the ID", options: "OK") { (Int) in
-            }
+        
+        func createUserSuccess(code:String) {
+            presenter.getScoreEvent(keyEvent: keyDetailEvent, code: code)
         }
-        presenter.createUser(code: code)
+        
+        func createUserFailed() {
+            print("Create user failed")
+        }
+        
+        func checkUserAttendanceSuccess(code: String,type:typeInput) {
+            switch type {
+            case .scan:
+                DispatchQueue.main.asyncAfter(deadline: .now()) {  [self] in
+                    viewController.messageViewController.errorTintColor = UIColor.systemGreen
+                    viewController.resetWithError(message: "Success \rID: \(code)")
+                }
+            case .keyboard:
+                presentAlertWithTitle(title: "Success", message: "Attendance success for ID \(code)", options: "OK") { (Int) in
+                }
+            }
+            presenter.getScoreEvent(keyEvent: keyDetailEvent, code: code)
+        }
+        
+        func checkUserAttendanceFailed(code: String,type:typeInput) {
+            switch type {
+            case .scan:
+                DispatchQueue.main.asyncAfter(deadline: .now()) { [self] in
+                    viewController.messageViewController.errorTintColor = UIColor.systemGreen
+                    viewController.resetWithError(message: "Success \rID: \(code)\rPlease update Infomation of the ID")
+                }
+            case .keyboard:
+                presentAlertWithTitle(title: "Success", message: "Please update Infomation of the ID", options: "OK") { (Int) in
+                }
+            }
+            presenter.createUser(code: code)
+        }
+        
+        func userAttendanceSuccess(code: String,type:typeInput) {
+            presenter.checkUserAttendance(keyUser: code,type: type)
+            presenter.infoAttendance = []
+            presenter.fetchAttendance(keyEvent: keyDetailEvent)
+            collectionView.reloadData()
+        }
+        
+        func userAttendanceFailed() {
+            print("Failed")
+        }
+        
+        func fetchAttendanceSuccess() {
+            listAttendance = presenter.infoAttendance
+            collectionView.reloadData()
+        }
+        
+        func fetchAttendanceFailed() {
+            print("fetch attendance failed")
+        }
     }
-    
-    func userAttendanceSuccess(code: String,type:typeInput) {
-        presenter.checkUserAttendance(keyUser: code,type: type)
-        presenter.infoAttendance = []
-        presenter.fetchAttendance(keyEvent: keyDetailEvent)
-        collectionView.reloadData()
-    }
-    
-    func userAttendanceFailed() {
-        print("Failed")
-    }
-    
-    func fetchAttendanceSuccess() {
-        listAttendance = presenter.infoAttendance
-        collectionView.reloadData()
-    }
-    
-    func fetchAttendanceFailed() {
-        print("fetch attendance failed")
-    }
-}

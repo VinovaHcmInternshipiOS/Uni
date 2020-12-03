@@ -37,6 +37,8 @@ protocol AttendanceEventViewProtocol: class {
     func getScoreUserFailed()
     func updateListEventOfUserSuccess()
     func updateListEventOfUserFailed()
+    func fetchDetailSuccess()
+    func fetchDetailFailed()
 }
 
 // MARK: Presenter -
@@ -44,6 +46,7 @@ protocol AttendanceEventPresenterProtocol: class {
     var view: AttendanceEventViewProtocol? { get set }
     var infoAttendance: [AttendanceEvent?] {get set}
     var scanUser: AttendanceEvent? {get set}
+    var detailEvent: DetailEvent? {get set}
     func fetchAttendance(keyEvent:String)
     func userAttendance(keyUser: String, keyEvent: String,date:String,checkin:String,type:typeInput)
     func checkUserAttendance(keyUser: String,type:typeInput)
@@ -54,9 +57,12 @@ protocol AttendanceEventPresenterProtocol: class {
     func updateScore(keyEvent:String,code:String,scoreEvent:Int,scoreUser:Int)
     func getScoreUser(code:String,scoreEvent:Int)
     func updateListEventOfUser(code: String,keyEvent:String,score:Int,date:String,checkin:String)
+    func getDetailEvent(keyEvent: String)
 }
 
 class AttendanceEventPresenter: AttendanceEventPresenterProtocol {
+ 
+    
 
     weak var view: AttendanceEventViewProtocol?
     var ref = Database.database().reference()
@@ -65,6 +71,35 @@ class AttendanceEventPresenter: AttendanceEventPresenterProtocol {
     let storageRef = Storage.storage().reference()
     var infoAttendance: [AttendanceEvent?] = []
     var scanUser: AttendanceEvent?
+    var detailEvent: DetailEvent?
+    
+    func getDetailEvent(keyEvent: String) {
+        let placeRef = self.ref.child("Event/\(keyEvent)")
+        placeRef.observe(.value, with: { [self] snapshot in
+            if snapshot.exists()
+            {
+                let dict = snapshot.value as! [String: Any]
+                let title = dict["Title"] as! String
+                let content = dict["Overview"] as! String
+                let address = dict["Location"] as! String
+                let score = dict["Score"] as! Int
+                
+                let date = dict["Date"] as! String
+                let checkin = dict["Checkin"] as! String
+                let checkout = dict["Checkout"] as! String
+                let urlImagePortal = dict["ImagePortal"] as! String
+                let urlImageLandscape = dict["ImageLandscape"] as! String
+                
+                detailEvent = DetailEvent(title: title, content: content, address: address, score: score, date: date, checkin: checkin, checkout: checkout, urlImageLandscape:urlImageLandscape,urlImagePortal: urlImagePortal)
+
+                view?.fetchDetailSuccess()
+            }
+            else
+            {
+                view?.fetchDetailFailed()
+            }
+        })
+    }
     
     func updateListEventOfUser(code: String,keyEvent:String,score:Int,date:String,checkin:String) {
         let path = self.ref.child("Data/\(code)/List").child(keyEvent)
