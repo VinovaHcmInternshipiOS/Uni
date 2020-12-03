@@ -7,25 +7,26 @@
 
 import Foundation
 import Firebase
+import FirebaseAuth
 extension AuthErrorCode {
     var errorMessage: String {
         switch self {
         case .emailAlreadyInUse:
-            return "The email is already in use with another account"
+            return AppLanguage.HandleError.emailAlreadyInUse.localized
         case .userNotFound:
-            return "Account not found for the specified user. Please check and try again"
+            return AppLanguage.HandleError.userNotFound.localized
         case .userDisabled:
-            return "Your account has been disabled. Please contact support."
+            return AppLanguage.HandleError.userDisabled.localized
         case .invalidEmail, .invalidSender, .invalidRecipientEmail:
-            return "Please enter a valid email"
+            return AppLanguage.HandleError.invalidEmail.localized
         case .networkError:
-            return "You are not connected to the Internet"
+            return AppLanguage.HandleError.networkError.localized
         case .weakPassword:
-            return "Your password is too weak. The password must be 6 characters long or more."
+            return AppLanguage.HandleError.weakPassword.localized
         case .wrongPassword:
-            return "Your password is incorrect"
+            return AppLanguage.HandleError.wrongPassword.localized
         default:
-            return "Something went wrong"
+            return AppLanguage.HandleError.anotherError.localized
         }
     }
 }
