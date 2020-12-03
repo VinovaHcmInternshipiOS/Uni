@@ -19,6 +19,7 @@
                 <outlet property="btCreate" destination="V2p-Ue-rx1" id="Myw-q3-KLi"/>
                 <outlet property="collectionView" destination="uk0-u1-EMp" id="snb-LL-KTR"/>
                 <outlet property="heightCollectionView" destination="9eX-UH-mAm" id="vBx-1p-CDs"/>
+                <outlet property="lbListEvent" destination="4gS-PT-NzB" id="SCm-a4-w5P"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="viewButton" destination="8ct-83-g5h" id="QRb-DS-0pp"/>
             </connections>
@@ -131,7 +132,7 @@
     <resources>
         <image name="icPlus-yellow" width="24" height="24"/>
         <namedColor name="Color-2">
-            <color red="0.98431372549019602" green="0.76862745098039209" blue="0.34901960784313724" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.98400002717971802" green="0.76899999380111694" blue="0.34900000691413879" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
