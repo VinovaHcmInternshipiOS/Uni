@@ -13,6 +13,8 @@ import UIKit
 
 class ForgotPasswordViewController: BaseViewController{
 
+    @IBOutlet weak var lbSend: UILabel!
+    @IBOutlet weak var lbForgotPassword: UILabel!
     @IBOutlet weak var txtEmail: UITextField!
     @IBOutlet weak var lbTime: UILabel!
     @IBOutlet weak var btSend: UIButton!
@@ -34,6 +36,16 @@ class ForgotPasswordViewController: BaseViewController{
         presenter.view = self
         addBackToNavigation()
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        setupLanguage()
+    }
+    
+    func setupLanguage(){
+        lbForgotPassword.text = AppLanguage.ForgotPassword.lbForgotPassword.localized
+        lbSend.text = AppLanguage.ForgotPassword.lbSent.localized
+        txtEmail.placeholder = AppLanguage.ResetPassword.EnterYourEmail.localized
     }
     
     @IBAction func btSend(_ sender: Any) {
@@ -63,16 +75,15 @@ class ForgotPasswordViewController: BaseViewController{
 
 extension ForgotPasswordViewController: ForgotPasswordViewProtocol {
     func sendSuccess() {
-        print("Send Success")
         counter = 15
         resendTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateCounter), userInfo: nil, repeats: true)
         btSend.isEnabled = false
         lbTime.isHidden = false
-        //navigationController?.popToRootViewController(animated: true)
+        navigationController?.popToRootViewController(animated: true)
     }
     
     func sendFailed(error: Error!) {
-        print(error.localizedDescription)
+        handleError(error)
     }
     
     
