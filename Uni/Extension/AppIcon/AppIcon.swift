@@ -41,5 +41,8 @@ class AppIcon {
     static var icBarcodeYellow = UIImage(named: "icBarcode-yellow")
     static let DefaulticBarcodeYellow = UIImage(named: "icBarcode-yellow")
     static let icBarcodeRed = UIImage(named: "icBarcode-red")
+    static var icExportYellow = UIImage(named: "icExport-yellow")
+    static let DefaulticExportYellow = UIImage(named: "icExport-yellow")
+    static let icExportRed = UIImage(named: "icExport-red")
     
 }
