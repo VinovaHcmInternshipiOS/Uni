@@ -3,11 +3,13 @@
 <plist version="1.0">
 <dict>
 	<key>SchemeUserState</key>
+	<dict/>
+	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>Uni.xcscheme_^#shared#^_</key>
+		<key>F582EA66254FEE58002BF86F</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>26</integer>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

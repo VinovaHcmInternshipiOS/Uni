@@ -11,7 +11,7 @@ target 'Uni' do
   pod 'Firebase/Storage'
   pod 'ShimmerSwift'
   pod 'BarcodeScanner'
-  pod 'SwiftOTP'
+  pod 'SkeletonView'
   # Pods for Uni
 post_install do |installer|
      installer.pods_project.targets.each do |target|
@@ -24,4 +24,3 @@ post_install do |installer|
   end
 
 end
-
