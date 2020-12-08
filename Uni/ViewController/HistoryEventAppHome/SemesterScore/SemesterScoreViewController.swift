@@ -9,9 +9,11 @@
 //
 
 import UIKit
+import SkeletonView
 
 class SemesterScoreViewController: BaseViewController {
 
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var viewScore: UIView!
     @IBOutlet weak var totalScore: UILabel!
     @IBOutlet weak var totalEvent: UILabel!
@@ -20,6 +22,7 @@ class SemesterScoreViewController: BaseViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var lbYear: UILabel!
     @IBOutlet weak var lbSemester: UILabel!
+    private var pullControl = UIRefreshControl()
     var presenter: SemesterScorePresenterProtocol
     var dataSemester = [History?]()
     var detailHistory = [DetailHistory?]()
@@ -40,6 +43,7 @@ class SemesterScoreViewController: BaseViewController {
         setupUI()
         setupLanguage()
         loadLabel()
+     
         for i in 0..<dataSemester.count {
            presenter.fetchHistoryEvent(keyEvent: (dataSemester[i]?.Key)!)
         }
@@ -62,6 +66,63 @@ class SemesterScoreViewController: BaseViewController {
         tableView.register(UINib(nibName: "SemesterCell", bundle: nil), forCellReuseIdentifier: "SemesterCell")
         viewUser.roundCorners([.topLeft,.topRight], radius: 20)
         viewScore.backgroundColor = AppColor.YellowFAB32A
+        pullControl.tintColor = AppColor.YellowFAB32A
+        skeletonView()
+        pullRefreshData()
+    }
+    
+    func skeletonView(){
+        
+        totalScore.isSkeletonable = true
+        totalScore.showAnimatedSkeleton(usingColor: UIColor.clouds, animation: nil, transition:.crossDissolve(0.25))
+        
+        totalEvent.isSkeletonable = true
+        totalEvent.showAnimatedSkeleton(usingColor: UIColor.clouds, animation: nil, transition:.crossDissolve(0.25))
+        
+        tableView.isSkeletonable = true
+        tableView.showAnimatedSkeleton(usingColor: UIColor.clouds, animation: nil, transition:.crossDissolve(0.25))
+    }
+    
+    func refreshListSemester() {
+        skeletonView()
+        presenter.detailHistory = []
+        for i in 0..<dataSemester.count {
+           presenter.fetchHistoryEvent(keyEvent: (dataSemester[i]?.Key)!)
+        }
+    }
+    
+    @objc func pulledRefreshControl(sender:AnyObject) {
+        refreshListSemester()
+        
+    }
+    
+    private func pullRefreshData() {
+        pullControl.addTarget(self, action: #selector(pulledRefreshControl), for: UIControl.Event.valueChanged)
+        scrollView.alwaysBounceVertical = true
+        scrollView.addSubview(pullControl)
+
+    }
+    
+    func hideSkeletonView(){
+        pullControl.endRefreshing()
+        tableView.hideSkeleton()
+        totalScore.hideSkeleton()
+        totalEvent.hideSkeleton()
+        tableView.reloadData()
+    }
+}
+
+extension SemesterScoreViewController: SkeletonTableViewDataSource {
+    func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
+        return "SemesterCell"
+        
+    }
+    func collectionSkeletonView(_ skeletonView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 6
+    }
+    
+    func numSections(in collectionSkeletonView: UITableView) -> Int {
+        return 1
     }
 }
 
@@ -113,11 +174,11 @@ extension SemesterScoreViewController: SemesterScoreViewProtocol {
             score += (dataSemester[i]?.Score)!
             totalScore.text = AppLanguage.Semester.TotalScore.localized + " \(score)"
         }
-        tableView.reloadData()
+        hideSkeletonView()
     }
     
     func fetchHistoryEventFailed() {
-        print("fetch history failed")
+        hideSkeletonView()
     }
     
     

@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import SkeletonView
 
 enum StyleNavigation {
     case left
@@ -45,7 +46,7 @@ class BaseViewController: UIViewController,UIViewControllerTransitioningDelegate
         self.view.backgroundColor = .white
         overrideUserInterfaceStyle = .light
         addBackToNavigation()
-        navigationController?.interactivePopGestureRecognizer?.delegate = self
+        //navigationController?.interactivePopGestureRecognizer?.delegate = self
         //navigationItem.titleView = lbTitleVC
     }
     

@@ -35,17 +35,23 @@ class ForgotPasswordViewController: BaseViewController{
 
         presenter.view = self
         addBackToNavigation()
+        setupUI()
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         setupLanguage()
+       
     }
     
     func setupLanguage(){
         lbForgotPassword.text = AppLanguage.ForgotPassword.lbForgotPassword.localized
         lbSend.text = AppLanguage.ForgotPassword.lbSent.localized
         txtEmail.placeholder = AppLanguage.ResetPassword.EnterYourEmail.localized
+    }
+    
+    func setupUI(){
+ 
     }
     
     @IBAction func btSend(_ sender: Any) {

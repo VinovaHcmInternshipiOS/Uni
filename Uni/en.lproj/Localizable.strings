@@ -205,6 +205,9 @@
 "Account status change failed." = "Account status change failed.";
 "Account created failed." = "Account created failed.";
 "ID already exists belong another account." = "ID already exists belong another account.";
+"The event created failed."  = "The event created failed.";
+"The event update failed." = "The event update failed.";
+"Please fill in all information." = "Please fill in all information.";
 
 
 //MARK: -- HandleSuccess
@@ -212,6 +215,8 @@
 "Success" = "Success";
 "Account status changed successfully." = "Account status changed successfully.";
 "Account created successfully." = "Account created successfully.";
+"The event has been successfully updated." = "The event has been successfully updated.";
+"The event has been successfully updated." = "The event has been successfully updated.";
 
 //MARK: -- DetailAccount
 "Detail\nAccount" = "Detail\nAccount";
@@ -227,3 +232,4 @@
 
 //MARK: -- ResetPassword
 "Please enter your Email" = "Please enter your Email";
+

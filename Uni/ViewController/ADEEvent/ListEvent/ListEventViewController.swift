@@ -9,9 +9,11 @@
 //
 
 import UIKit
+import SkeletonView
 
 class ListEventViewController: BaseViewController {
 
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var lbListEvent: UILabel!
     @IBOutlet weak var btCreate: UIButton!
     @IBOutlet weak var viewButton: UIView!
@@ -22,6 +24,7 @@ class ListEventViewController: BaseViewController {
     var getkeySearch: (()->Void)? = nil
     var deleteActionHandler: ((UIAlertAction) -> Void)? = nil
     var cancelActionHandler: ((UIAlertAction) -> Void)? = nil
+    private var pullControl = UIRefreshControl()
 	init(presenter: ListEventPresenterProtocol) {
         self.presenter = presenter
         super.init(nibName: "ListEventViewController", bundle: nil)
@@ -57,16 +60,45 @@ class ListEventViewController: BaseViewController {
         collectionView.register(UINib(nibName: "HeaderSearch", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "HeaderSearch")
         viewButton.shadowColor = AppColor.YellowShadow
         btCreate.setImage(AppIcon.icPlusYellow, for: .normal)
+        pullControl.tintColor = AppColor.YellowFAB32A
+        skeletonView()
+        pullRefreshData()
         
+    }
+    
+    func skeletonView(){
+        collectionView.isSkeletonable = true
+        collectionView.showAnimatedSkeleton(usingColor: UIColor.clouds, animation: nil, transition:.crossDissolve(0.25))
+    }
+    
+    func refreshListEvent() {
+        skeletonView()
+        presenter.infoEvent = []
+        presenter.fetchEvent()
+    }
+    
+    @objc func pulledRefreshControl(sender:AnyObject) {
+        refreshListEvent()
         
+    }
+    
+    private func pullRefreshData() {
+        pullControl.addTarget(self, action: #selector(pulledRefreshControl), for: UIControl.Event.valueChanged)
+        scrollView.alwaysBounceVertical = true
+        scrollView.addSubview(pullControl)
 
     }
+    
     @IBAction func createEvent(_ sender: UIButton) {
         let createEvent = CreateEventViewController(presenter: CreateEventPresenter())
         navigationController?.pushViewController(createEvent, animated: true)
+        createEvent.refreshListEvent = { [self] in
+            refreshListEvent()
+        }
     }
     
     @objc func actionSearch(sender: UIButton) {
+        skeletonView()
         getkeySearch?()
     }
     
@@ -74,11 +106,11 @@ class ListEventViewController: BaseViewController {
         sender.animationScale()
         let updateEvent = UpdateEventViewController(presenter: UpdateEventPresenter())
         updateEvent.updateListEvent = { [self] in
-            presenter.infoEvent = []
-            presenter.fetchEvent()
+            refreshListEvent()
         }
         updateEvent.keyDetailEvent = (ListEvent[sender.tag]?.key)!
         navigationController?.pushViewController(updateEvent, animated: true)
+        
     }
     
     @objc func deleteEvent(sender: UIButton){
@@ -97,6 +129,22 @@ class ListEventViewController: BaseViewController {
     }
 
 
+}
+
+extension ListEventViewController: SkeletonCollectionViewDataSource {
+  func collectionSkeletonView(_ skeletonView: UICollectionView, cellIdentifierForItemAt indexPath: IndexPath) -> ReusableCellIdentifier {
+    return "ListEventCell"
+  }
+  func collectionSkeletonView(_ skeletonView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    return 6
+  }
+  func collectionSkeletonView(_ skeletonView: UICollectionView, supplementaryViewIdentifierOfKind: String, at indexPath: IndexPath) -> ReusableCellIdentifier? {
+    return "HeaderSearch"
+  }
+  func numSections(in collectionSkeletonView: UICollectionView) -> Int {
+    return 1
+  }
+    
 }
 
 extension ListEventViewController: UICollectionViewDelegateFlowLayout,UICollectionViewDelegate {
@@ -207,8 +255,7 @@ extension ListEventViewController: ListEventViewProtocol{
     }
     
     func removeEventSuccess() {
-        presenter.infoEvent = []
-        presenter.fetchEvent()
+        refreshListEvent()
         removeSpinner()
         print("remove event success")
     }
@@ -220,23 +267,31 @@ extension ListEventViewController: ListEventViewProtocol{
     
     func fetchEventSearchSuccess() {
         ListEvent = presenter.infoEvent
+        collectionView.hideSkeleton()
         collectionView.reloadData()
     }
     
     func fetchEventSearchFailed() {
         showAlert(title: "An Error", message: "Event not found", actionTitles: ["OK"], style: [.default], actions: [.none])
         ListEvent.removeAll()
+        collectionView.hideSkeleton()
         collectionView.reloadData()
     }
     
     func fetchEventSuccess() {
         ListEvent = presenter.infoEvent
+        pullControl.endRefreshing()
+        collectionView.hideSkeleton()
         collectionView.reloadData()
         removeSpinner()
+        
     }
     
     func fetchEventFailed() {
         print("fetch list event failed")
+        pullControl.endRefreshing()
+        collectionView.hideSkeleton()
+        collectionView.reloadData()
     }
     
     

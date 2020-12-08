@@ -55,7 +55,7 @@
                                     </constraints>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F3b-ds-SLu">
-                                    <rect key="frame" x="32" y="459.5" width="350" height="31"/>
+                                    <rect key="frame" x="203.5" y="459.5" width="7" height="31"/>
                                     <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="26"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -67,13 +67,12 @@
                                 <constraint firstAttribute="trailing" secondItem="EQ5-qH-mMp" secondAttribute="trailing" constant="32" id="B9y-gH-xWB"/>
                                 <constraint firstAttribute="trailing" secondItem="vwd-Wl-cxn" secondAttribute="trailing" constant="32" id="DP2-JI-eR3"/>
                                 <constraint firstItem="EQ5-qH-mMp" firstAttribute="top" secondItem="vwd-Wl-cxn" secondAttribute="bottom" constant="105" id="Ggf-Px-sw8"/>
-                                <constraint firstItem="F3b-ds-SLu" firstAttribute="leading" secondItem="pCa-lK-F7d" secondAttribute="leading" constant="32" id="Mv6-wj-HfS"/>
                                 <constraint firstItem="vwd-Wl-cxn" firstAttribute="top" secondItem="BSO-ur-Sp1" secondAttribute="bottom" constant="35" id="WG8-J5-XkP"/>
                                 <constraint firstItem="BSO-ur-Sp1" firstAttribute="leading" secondItem="pCa-lK-F7d" secondAttribute="leading" constant="32" id="chY-Nr-j5z"/>
                                 <constraint firstItem="EQ5-qH-mMp" firstAttribute="leading" secondItem="pCa-lK-F7d" secondAttribute="leading" constant="32" id="gfv-hO-4KN"/>
                                 <constraint firstItem="vwd-Wl-cxn" firstAttribute="leading" secondItem="pCa-lK-F7d" secondAttribute="leading" constant="32" id="hTr-2u-coB"/>
                                 <constraint firstItem="F3b-ds-SLu" firstAttribute="top" secondItem="EQ5-qH-mMp" secondAttribute="bottom" id="hYy-WQ-UvU"/>
-                                <constraint firstAttribute="trailing" secondItem="F3b-ds-SLu" secondAttribute="trailing" constant="32" id="kdK-q0-bQp"/>
+                                <constraint firstItem="F3b-ds-SLu" firstAttribute="centerX" secondItem="pCa-lK-F7d" secondAttribute="centerX" id="qUk-JV-aVg"/>
                             </constraints>
                         </view>
                     </subviews>

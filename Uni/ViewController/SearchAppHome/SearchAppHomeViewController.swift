@@ -9,29 +9,38 @@
 //
 
 import UIKit
+import SkeletonView
 
 class SearchAppHomeViewController: BaseViewController {
-
+    
+    @IBOutlet weak var lbSearchEvent: UILabel!
+    @IBOutlet weak var heightTableView: NSLayoutConstraint!
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var tableView: UITableView!
+    private var pullControl = UIRefreshControl()
     var getkeySearch: (()->Void)? = nil
     var presenter: SearchAppHomePresenterProtocol
     var listResultsEvent = [Event?]()
-	init(presenter: SearchAppHomePresenterProtocol) {
+    init(presenter: SearchAppHomePresenterProtocol) {
         self.presenter = presenter
         super.init(nibName: "SearchAppHomeViewController", bundle: nil)
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
-	override func viewDidLoad() {
+    
+    override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         presenter.view = self
         setupUI()
+        setupLanguage()
     }
     
+    func setupLanguage() {
+        lbSearchEvent.text = AppLanguage.SearchEvent.SearchEvent.localized
+    }
     func setupUI(){
         tableView.dataSource = self
         tableView.delegate = self
@@ -39,12 +48,32 @@ class SearchAppHomeViewController: BaseViewController {
         tableView.register(UINib(nibName: "SearchEventLabelCell", bundle: nil), forCellReuseIdentifier: "SearchEventLabelCell")
         
         tableView.register(UINib(nibName: "SearchEventTextFieldHeader", bundle: nil), forHeaderFooterViewReuseIdentifier: "SearchEventTextFieldHeader")
+        pullControl.tintColor = AppColor.YellowFAB32A
+        scrollView.alwaysBounceVertical = true
+        tableView.keyboardDismissMode = .onDrag
+        scrollView.keyboardDismissMode = .onDrag
         
+        pullRefreshData()
+    }
+    
+    func skeletonView() {
+        tableView.isSkeletonable = true
+        tableView.showAnimatedSkeleton(usingColor: UIColor.clouds, animation: nil, transition:.crossDissolve(0.25))
+    }
+    
+    @objc func pulledRefreshControl(sender:AnyObject) {
+        getkeySearch?()
         
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    private func pullRefreshData() {
+        pullControl.addTarget(self, action: #selector(pulledRefreshControl), for: UIControl.Event.valueChanged)
+        scrollView.addSubview(pullControl)
+        
     }
+    
+    
+    
     @objc func gotoDetailEvent() {
         let detailEvent = DetailEventViewController(presenter: DetailEventPresenter())
         self.navigationController?.pushViewController(detailEvent, animated: true)
@@ -53,7 +82,25 @@ class SearchAppHomeViewController: BaseViewController {
     @objc func actionSearch(sender: UIButton) {
         getkeySearch?()
     }
+    
+}
 
+extension SearchAppHomeViewController: SkeletonTableViewDataSource {
+    func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
+        return "SearchResultCell"
+        
+    }
+    func collectionSkeletonView(_ skeletonView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 6
+    }
+
+    func collectionSkeletonView(_ skeletonView: UITableView, identifierForHeaderInSection section: Int) -> ReusableHeaderFooterIdentifier? {
+        return "SearchEventTextFieldHeader"
+    }
+    
+    func numSections(in collectionSkeletonView: UITableView) -> Int {
+        return 1
+    }
 }
 
 extension SearchAppHomeViewController: UITableViewDelegate {
@@ -65,6 +112,7 @@ extension SearchAppHomeViewController: UITableViewDelegate {
             headerView.btSearch.backgroundColor = AppColor.YellowFAB32A
             headerView.viewButton.backgroundColor = AppColor.YellowFAB32A
             getkeySearch = { [self] in
+                skeletonView()
                 presenter.fetchEvent(keyEvent: headerView.txtSearch.text!)
             }
             headerView.btSearch.addTarget(self, action: #selector(actionSearch(sender:)), for: .touchUpInside)
@@ -72,24 +120,30 @@ extension SearchAppHomeViewController: UITableViewDelegate {
         } else { return UIView()}
     }
     
+    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-
-        return section == 1 ? 153 : 0
+        
+        return 153
         
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return indexPath.section == 1 ? 150 : 135
+        return 150
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        self.tableView.layoutIfNeeded()
+        self.heightTableView.constant = self.tableView.contentSize.height
     }
 }
 
 extension SearchAppHomeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return section == 0 ? 1 : listResultsEvent.count
+        return listResultsEvent.count
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 1
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section != 0 {
@@ -97,36 +151,22 @@ extension SearchAppHomeViewController: UITableViewDataSource {
             detailEvent.keyDetailEvent = (listResultsEvent[indexPath.row]?.key)!
             self.navigationController?.pushViewController(detailEvent, animated: true)
         }
-            
-        
-        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch indexPath.section {
-        case 0:
-            if let cell = tableView.dequeueReusableCell(withIdentifier: "SearchEventLabelCell", for: indexPath) as? SearchEventLabelCell {
-                return cell
-            } else {
-                return UITableViewCell()
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "SearchResultCell", for: indexPath) as? SearchResultCell {
+            cell.contentView.layer.cornerRadius = 20
+            
+            cell.titleEvent.text = listResultsEvent[indexPath.row]?.title ?? ""
+            cell.dateEvent.text = "\(getFormattedDate(date: listResultsEvent[indexPath.row]?.date ?? "")) \(formatterTime(time: listResultsEvent[indexPath.row]?.checkin ?? ""))-\(formatterTime(time: listResultsEvent[indexPath.row]?.checkout ?? ""))"
+            if let eventURL = listResultsEvent[indexPath.row]?.urlImage {
+                cell.imgEvent.loadImage(urlString: eventURL)
             }
-        case 1:
-            if let cell = tableView.dequeueReusableCell(withIdentifier: "SearchResultCell", for: indexPath) as? SearchResultCell {
-                cell.contentView.layer.cornerRadius = 20
-                
-                cell.titleEvent.text = listResultsEvent[indexPath.row]?.title ?? ""
-                cell.dateEvent.text = "\(getFormattedDate(date: listResultsEvent[indexPath.row]?.date ?? "")) \(formatterTime(time: listResultsEvent[indexPath.row]?.checkin ?? ""))-\(formatterTime(time: listResultsEvent[indexPath.row]?.checkout ?? ""))"
-                if let eventURL = listResultsEvent[indexPath.row]?.urlImage {
-                    cell.imgEvent.loadImage(urlString: eventURL)
-                }
-                return cell
-            } else {
-                return UITableViewCell()
-            }
-        default:
+            return cell
+        } else {
             return UITableViewCell()
+            
         }
-        
     }
     
     
@@ -136,12 +176,16 @@ extension SearchAppHomeViewController: UITableViewDataSource {
 extension SearchAppHomeViewController: SearchAppHomeViewProtocol{
     func fetchEventSuccess() {
         listResultsEvent = presenter.resultsEvent
+        pullControl.endRefreshing()
+        tableView.hideSkeleton()
         tableView.reloadData()
     }
     
     func fetchEventFailed() {
-        showAlert(title: "An Error", message: "Event not found", actionTitles: ["OK"], style: [.default], actions: [.none])
+        //        showAlert(title: "An Error", message: "Event not found", actionTitles: ["OK"], style: [.default], actions: [.none])
         listResultsEvent.removeAll()
+        pullControl.endRefreshing()
+        tableView.hideSkeleton()
         tableView.reloadData()
     }
     

@@ -39,6 +39,8 @@ protocol AttendanceEventViewProtocol: class {
     func updateListEventOfUserFailed()
     func fetchDetailSuccess()
     func fetchDetailFailed()
+    func checkFakeCodeSuccess(code:String,type:typeInput)
+    func checkFakeCodeFailed()
 }
 
 // MARK: Presenter -
@@ -58,6 +60,7 @@ protocol AttendanceEventPresenterProtocol: class {
     func getScoreUser(code:String,scoreEvent:Int)
     func updateListEventOfUser(code: String,keyEvent:String,score:Int,date:String,checkin:String)
     func getDetailEvent(keyEvent: String)
+    func checkFakeCode(fakeCode: String,type: typeInput)
 }
 
 class AttendanceEventPresenter: AttendanceEventPresenterProtocol {
@@ -297,6 +300,25 @@ class AttendanceEventPresenter: AttendanceEventPresenterProtocol {
                 view?.checkExistUserSuccess(code: code,type: type)
             } else {
                 view?.checkExistUserFailed(code: code,type: type)
+            }
+        })
+    }
+    
+    func checkFakeCode(fakeCode: String,type:typeInput) {
+        let placeRef = self.ref.child("OTP").child("\(fakeCode)")
+        placeRef.observeSingleEvent(of:.value, with: { [self] snapshot in
+            if(snapshot.exists())
+            {
+                let placeDict = snapshot.value as! [String: Any]
+                let code = placeDict["Code"] as! String
+
+                DispatchQueue.main.async {
+                    view?.checkFakeCodeSuccess(code: code,type:type)
+                }
+            }
+            else
+            {
+                view?.checkFakeCodeFailed()
             }
         })
     }

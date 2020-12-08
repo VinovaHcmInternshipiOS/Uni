@@ -38,43 +38,49 @@ class ListUserPresenter: ListUserPresenterProtocol {
     var infoUsers: [ListUser?] = []
     
     func fetchListUser() {
-        ref.child("Users").observeSingleEvent(of:.value) { (snapshot) in
+        
+        ref.child("Users").observeSingleEvent(of:.value) { [self] (snapshot) in
             if(snapshot.exists()) {
-                for keyUser in snapshot.children.allObjects as! [DataSnapshot] {
-                    let placeRef = self.ref.child("Users/\(keyUser.key)")
-                    placeRef.observeSingleEvent(of:.value, with: { [self] snapshot in
-                        if snapshot.exists()
-                        {
-                            let dict = snapshot.value as! [String: Any]
-                            let code = dict["Code"] as! String
-                            let email = dict["Email"] as! String
-                            let uid = dict["Uid"] as! String
-                            
-                            let placeRef = self.ref.child("Users/\(keyUser.key)/Auth")
-                            placeRef.observeSingleEvent(of:.value, with: { [self] snapshot in
-                                if snapshot.exists()
-                                {
-                                    let dict = snapshot.value as! [String: Any]
-                                    let role = dict["Role"] as! String
-                                    let state = dict["State"] as! Bool
-                                    
-                                    infoUsers.append(ListUser(code: code, email: email, uid: uid, role: role, state: state))
-                                    DispatchQueue.main.async {
-                                        view?.fetchUserSuccess()
+                
+                    for keyUser in snapshot.children.allObjects as! [DataSnapshot] {
+                        let placeRef = self.ref.child("Users/\(keyUser.key)")
+                        placeRef.observeSingleEvent(of:.value, with: { [self] snapshot in
+                            if snapshot.exists()
+                            {
+                                let dict = snapshot.value as! [String: Any]
+                                let code = dict["Code"] as! String
+                                let email = dict["Email"] as! String
+                                let uid = dict["Uid"] as! String
+                                
+                                let placeRef = self.ref.child("Users/\(keyUser.key)/Auth")
+                                placeRef.observeSingleEvent(of:.value, with: { [self] snapshot in
+                                    if snapshot.exists()
+                                    {
+                                        let dict = snapshot.value as! [String: Any]
+                                        let role = dict["Role"] as! String
+                                        let state = dict["State"] as! Bool
+                                        
+                                        infoUsers.append(ListUser(code: code, email: email, uid: uid, role: role, state: state))
+                                        DispatchQueue.main.async {
+                                            view?.fetchUserSuccess()
+                                        }
+                                        
+                                        
+                                       
                                     }
-                                }
-                                else {
-                                    view?.fetchUserFailed()
-                                }
-                            })
-                        }
-                        else
-                        {
-                            view?.fetchUserFailed()
-                        }
-                    })
+                                    else {
+                                        view?.fetchUserFailed()
+                                    }
+                                })
+                            }
+                            else
+                            {
+                                view?.fetchUserFailed()
+                            }
+                        })
+                    }
                     
-                }
+       
             }
         }
     }

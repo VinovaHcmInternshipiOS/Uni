@@ -9,7 +9,7 @@
 //
 
 import Foundation
-import FirebaseDatabase
+import FireBaseDatabase
 import FirebaseAuth
 import Firebase
 import UIKit

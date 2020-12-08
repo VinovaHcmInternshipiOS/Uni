@@ -62,7 +62,7 @@ class CreateUserViewController: BaseViewController {
         setupLanguage()
         setupUI()
         pickerTextfield()
-
+        
     }
     
     func setupLanguage(){
@@ -196,7 +196,7 @@ class CreateUserViewController: BaseViewController {
     }
     
     func dataFaculty() -> String {
-         if var faculty = txtFaculty.text {
+        if var faculty = txtFaculty.text {
             switch faculty {
             case AppLanguage.CreateUser.AF.localized:
                 faculty = AppLanguage.CreateUser.AF
@@ -214,7 +214,7 @@ class CreateUserViewController: BaseViewController {
                 faculty = AppLanguage.CreateUser.LIC
             }
             return faculty
-         }
+        }
         else {return ""}
     }
     
@@ -258,14 +258,14 @@ class CreateUserViewController: BaseViewController {
         showSpinner()
         if let email = txtEmail.text, let id = txtID.text, let role = txtRole.text, let state = txtState.text,let name = txtName.text, let gender = txtGender.text, let Class = txtClass.text, let course = txtCourse.text, let faculty = txtFaculty.text {
             if email == "" || id == "" || role == "" || state == "" || name == "" || gender == "" || Class == "" || course == "" || faculty == "" {
-                showAlert(title: "An error", message: "Please fill in all information to create an account.", actionTitles: ["OK"], style: [.cancel], actions: [.none])
+                showAlert(title: AppLanguage.HandleError.anError.localized, message: AppLanguage.HandleError.fillIn.localized, actionTitles: [AppLanguage.Ok.localized], style: [.default], actions: [.none])
             } else {
                 presenter.checkExistEmail(email: email)
             }
         } else {return}
-    
+        
     }
-    @objc func gotoListUserVC(){
+    func gotoListUserVC(){
         navigationController?.popViewController(animated: true)
         refreshListUser?()
     }
@@ -314,8 +314,10 @@ extension CreateUserViewController: CreateUserViewProtocol{
     
     func createInformationSuccess() {
         removeSpinner()
-        showAlert(title: AppLanguage.HandleSuccess.Success.localized, message: AppLanguage.HandleSuccess.createAccount.localized, actionTitles: [AppLanguage.Ok.localized], style: [.cancel], actions: [okActionHandler])
-        perform(#selector(gotoListUserVC), with: self, afterDelay: 1.0)
+        presentAlertWithTitle(title: AppLanguage.HandleSuccess.Success.localized, message: AppLanguage.HandleSuccess.createAccount.localized, options: AppLanguage.Ok.localized) { [self] (option) in
+            gotoListUserVC()
+        }
+        
     }
     
     func createInformationFailed() {

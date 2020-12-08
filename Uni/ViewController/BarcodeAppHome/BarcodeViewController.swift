@@ -9,7 +9,7 @@
 //
 
 import UIKit
-import SwiftOTP
+import Pulsator
 class BarcodeViewController: BaseViewController {
 
 	var presenter: BarcodePresenterProtocol
@@ -18,6 +18,9 @@ class BarcodeViewController: BaseViewController {
     @IBOutlet weak var lbAttention: UILabel!
     @IBOutlet weak var lbBarcode: UILabel!
     @IBOutlet weak var barcodeView: UIImageView!
+    var timeCount = Timer()
+    var timeEnd = Int()
+    var count = 60
     init(presenter: BarcodePresenterProtocol) {
         self.presenter = presenter
         super.init(nibName: "BarcodeViewController", bundle: nil)
@@ -35,30 +38,29 @@ class BarcodeViewController: BaseViewController {
         lbAttention.textColor = AppColor.YellowFAB32A
         
         
-        //_ = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(generate), userInfo: nil, repeats: true)
-
-        
+    }
+    override func viewDidDisappear(_ animated: Bool) {
+        UIScreen.main.brightness = CGFloat(0.5)
+        timeCount.invalidate()
+        presenter.deleteFakeCodeNoCreate()
     }
     
     func setupLanguage(){
         lbYourBarcode.text = AppLanguage.Barcode.YourBarcode.localized
         lbAttention.text = AppLanguage.Barcode.Pleasegive.localized
     }
-    func generate(){
-        guard let data = base32DecodeToData("ABCDEFGHIJKLMNOP") else { return }
-//        if let hotp = TOTP(secret: data, digits: 6, timeInterval: 5, algorithm: .sha1) {
-//            print(hotp.generate(secondsPast1970: 42))
-//        }
-//        if let totp = TOTP(secret: data, digits: 6, timeInterval: 30, algorithm: .sha1) {
-//            let otpString = totp.generate(time: Date(timeIntervalSince1970: 123))
-//            print("1234111",otpString)
-//        }
-  
-        
-    }
     
-    override func viewDidDisappear(_ animated: Bool) {
-           UIScreen.main.brightness = CGFloat(0.5)
+   
+    
+    @objc func generate(){
+        count = count - 1
+        lbBarcode.text = "\(count)s"
+        
+        if timeEnd == getTimeInveral() {
+            timeCount.invalidate()
+            presenter.deleteFakeCode()
+            count = 60
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -74,7 +76,6 @@ class BarcodeViewController: BaseViewController {
             colorFilter.setValue(filter.outputImage, forKey: "inputImage")
             colorFilter.setValue(CIColor(red: 255/255, green: 255/255, blue: 255/255), forKey: "inputColor1") //background color
             colorFilter.setValue(CIColor(red: 0, green: 0, blue: 0), forKey: "inputColor0") //tint color
-            
             guard colorFilter.outputImage != nil
             else
             {
@@ -87,19 +88,23 @@ class BarcodeViewController: BaseViewController {
                 return UIImage(ciImage: output)
             }
         }
-        
         return nil
     }
-
 }
 
 extension BarcodeViewController: BarcodeViewProtocol {
+    func createCodeSuccess(fakeCode:String,created: Int) {
+        barcodeView.image = generateBarcode(from: fakeCode)
+        timeEnd = created + 60
+        timeCount = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(generate), userInfo: nil, repeats: true)
+    }
+    
+    func createCodeFailed() {
+        print("failed")
+    }
+    
     func fetchProfileSuccess() {
-        let profile = presenter.profileUser
-        if let profile = profile {
-            lbBarcode.text = profile.code
-            barcodeView.image = generateBarcode(from: profile.code ?? "")
-        } else { return }
+        presenter.createCode(fakeCode: presenter.randomString(length:10), created: getTimeInveral())
     }
     
     func fetchProfileFailed() {

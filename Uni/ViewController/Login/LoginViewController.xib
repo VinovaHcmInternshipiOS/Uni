@@ -189,6 +189,11 @@
                 <constraint firstItem="8qT-Ug-3zq" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="Tzg-cG-fa2"/>
                 <constraint firstItem="8qT-Ug-3zq" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" priority="250" id="zaL-ao-3Kr"/>
             </constraints>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="string" keyPath="heroID" value="skyWalker"/>
+                <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabledForSubviews" value="YES"/>
+            </userDefinedRuntimeAttributes>
             <point key="canvasLocation" x="101.44927536231884" y="131.25"/>
         </view>
     </objects>

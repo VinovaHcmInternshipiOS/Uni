@@ -21,14 +21,14 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="ListEventCell" customModule="Uni" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="183" height="332"/>
+            <rect key="frame" x="0.0" y="0.0" width="183" height="330.5"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="183" height="332"/>
+                <rect key="frame" x="0.0" y="0.0" width="183" height="330.5"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YM3-Z4-Pkl">
-                        <rect key="frame" x="12" y="10" width="159" height="307"/>
+                        <rect key="frame" x="12" y="10" width="159" height="305.5"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -49,29 +49,50 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wTH-CI-0C0">
-                        <rect key="frame" x="12" y="10" width="159" height="307"/>
+                        <rect key="frame" x="12" y="10" width="159" height="305.5"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kDQ-wu-kGy">
-                                <rect key="frame" x="0.0" y="0.0" width="159" height="169"/>
+                                <rect key="frame" x="0.0" y="0.0" width="159" height="180"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="169" id="HdS-im-Uuv"/>
+                                    <constraint firstAttribute="height" constant="180" id="TNN-WF-Uvb"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R6D-nv-h6q">
-                                <rect key="frame" x="13" y="182" width="132" height="33"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R6D-nv-h6q">
+                                <rect key="frame" x="13" y="193" width="132" height="33"/>
                                 <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="14"/>
                                 <color key="textColor" name="FAB32A"/>
                                 <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="linesCornerRadius">
+                                        <integer key="value" value="6"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="lastLineFillPercent">
+                                        <integer key="value" value="70"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9rX-r7-C3i">
-                                <rect key="frame" x="13" y="222" width="133" height="28.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="  " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9rX-r7-C3i">
+                                <rect key="frame" x="13" y="231" width="133" height="29.5"/>
                                 <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="12"/>
                                 <color key="textColor" name="C9C5C5"/>
                                 <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="linesCornerRadius">
+                                        <integer key="value" value="6"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="lastLineFillPercent">
+                                        <integer key="value" value="40"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="ci5-ca-J6y">
-                                <rect key="frame" x="0.0" y="267" width="159" height="40"/>
+                                <rect key="frame" x="0.0" y="265.5" width="159" height="40"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DUt-hR-5JD">
                                         <rect key="frame" x="0.0" y="0.0" width="79.5" height="40"/>
@@ -79,6 +100,9 @@
                                         <state key="normal" title="Update">
                                             <color key="titleColor" name="FAB32A"/>
                                         </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xcL-UQ-edl">
                                         <rect key="frame" x="79.5" y="0.0" width="79.5" height="40"/>
@@ -86,6 +110,9 @@
                                         <state key="normal" title="Delete">
                                             <color key="titleColor" systemColor="systemRedColor"/>
                                         </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -105,6 +132,7 @@
                                     <userDefinedRuntimeAttribute type="number" keyPath="shadowBlur">
                                         <real key="value" value="20"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="NO"/>
                                 </userDefinedRuntimeAttributes>
                             </stackView>
                         </subviews>
@@ -113,12 +141,12 @@
                             <constraint firstAttribute="bottom" secondItem="ci5-ca-J6y" secondAttribute="bottom" id="2Vr-oC-fUn"/>
                             <constraint firstAttribute="trailing" secondItem="R6D-nv-h6q" secondAttribute="trailing" constant="14" id="9bU-WS-0jZ"/>
                             <constraint firstItem="R6D-nv-h6q" firstAttribute="leading" secondItem="wTH-CI-0C0" secondAttribute="leading" constant="13" id="CPD-Oa-t73"/>
-                            <constraint firstItem="9rX-r7-C3i" firstAttribute="top" secondItem="R6D-nv-h6q" secondAttribute="bottom" constant="7" id="DD6-2E-WDj"/>
+                            <constraint firstItem="9rX-r7-C3i" firstAttribute="top" secondItem="R6D-nv-h6q" secondAttribute="bottom" constant="5" id="DD6-2E-WDj"/>
                             <constraint firstAttribute="trailing" secondItem="ci5-ca-J6y" secondAttribute="trailing" id="FEW-6x-cvd"/>
                             <constraint firstItem="kDQ-wu-kGy" firstAttribute="leading" secondItem="wTH-CI-0C0" secondAttribute="leading" id="H9W-PF-el6"/>
-                            <constraint firstItem="ci5-ca-J6y" firstAttribute="top" secondItem="9rX-r7-C3i" secondAttribute="bottom" constant="15" id="Wt9-UX-91u"/>
                             <constraint firstAttribute="trailing" secondItem="kDQ-wu-kGy" secondAttribute="trailing" id="bEQ-x4-A8N"/>
                             <constraint firstItem="R6D-nv-h6q" firstAttribute="top" secondItem="kDQ-wu-kGy" secondAttribute="bottom" constant="13" id="eD8-vo-x7H"/>
+                            <constraint firstItem="ci5-ca-J6y" firstAttribute="top" secondItem="9rX-r7-C3i" secondAttribute="bottom" constant="5" id="eeS-oo-TeO"/>
                             <constraint firstItem="kDQ-wu-kGy" firstAttribute="leading" secondItem="wTH-CI-0C0" secondAttribute="leading" id="kpV-Ll-8Ww"/>
                             <constraint firstItem="kDQ-wu-kGy" firstAttribute="top" secondItem="wTH-CI-0C0" secondAttribute="top" id="kyv-0c-orl"/>
                             <constraint firstItem="ci5-ca-J6y" firstAttribute="leading" secondItem="wTH-CI-0C0" secondAttribute="leading" id="u9z-VS-Kcw"/>
@@ -129,6 +157,7 @@
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                 <real key="value" value="20"/>
                             </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                         </userDefinedRuntimeAttributes>
                     </view>
                 </subviews>
@@ -146,6 +175,9 @@
                 <constraint firstAttribute="trailing" secondItem="YM3-Z4-Pkl" secondAttribute="trailing" constant="12" id="xkK-Kj-qoz"/>
             </constraints>
             <size key="customSize" width="310" height="293"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+            </userDefinedRuntimeAttributes>
             <connections>
                 <outlet property="btDelete" destination="xcL-UQ-edl" id="qd1-7G-KGj"/>
                 <outlet property="btUpdate" destination="DUt-hR-5JD" id="Fy9-4t-Ngp"/>
@@ -153,7 +185,7 @@
                 <outlet property="imgEvent" destination="kDQ-wu-kGy" id="6ud-9m-U6E"/>
                 <outlet property="titleEvent" destination="R6D-nv-h6q" id="7bG-dC-GVL"/>
             </connections>
-            <point key="canvasLocation" x="-66.666666666666671" y="146.98660714285714"/>
+            <point key="canvasLocation" x="-67.391304347826093" y="146.31696428571428"/>
         </collectionViewCell>
     </objects>
     <resources>

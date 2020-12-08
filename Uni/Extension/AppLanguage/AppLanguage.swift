@@ -40,6 +40,9 @@ class AppLanguage {
         static let changeStateAccount = "Account status change failed."
         static let createAccount = "Account created failed."
         static let idAlreadyInUse = "ID already exists belong another account."
+        static let createEvent  = "The event created failed."
+        static let updateEvent = "The event update failed."
+        static let fillIn = "Please fill in all information."
         
     }
     //MARK: -- HandleSuccess
@@ -48,6 +51,8 @@ class AppLanguage {
         static let changePassword = "Your Password has been changed."
         static let changeStateAccount = "Account status changed successfully."
         static let createAccount = "Account created successfully."
+        static let createEvent = "The event has been successfully created."
+        static let updateEvent = "The event has been successfully updated."
     }
     
     //MARK: -- HandleConfirm

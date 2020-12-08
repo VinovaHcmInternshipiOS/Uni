@@ -154,7 +154,7 @@ class UpdateEventViewController: UIViewController {
             } else {return}
 
         } else {
-            showAlert(title: "Opps", message: "Please complete all information", actionTitles: ["OK"], style: [.default], actions: [.none])
+            showAlert(title: AppLanguage.HandleError.anError.localized, message: AppLanguage.HandleError.fillIn.localized, actionTitles: [AppLanguage.Ok.localized], style: [.default], actions: [.none])
         }
     }
     
@@ -254,14 +254,12 @@ extension UpdateEventViewController: UpdateEventViewProtocol {
     }
     
     func updateEventSuccess() {
-        presentAlertWithTitle(title: "Success", message: "Update event success", options: "OK") { [self] (option) in
+        presentAlertWithTitle(title: AppLanguage.HandleSuccess.Success.localized, message: AppLanguage.HandleSuccess.updateEvent.localized, options: AppLanguage.Ok.localized) { [self] (option) in
             if imagePortalIsChanged == false {
                 updateListEvent?()
             }
-
             self.navigationController?.popViewController(animated: true)
     }
-
         removeSpinner()
             if imageLandscapeIsChanged == true {
                 if let imageLanscape = imgLandscape.image {
@@ -278,7 +276,9 @@ extension UpdateEventViewController: UpdateEventViewProtocol {
     }
     
     func updateEventFailed() {
-        print("Update event failed")
+        removeSpinner()
+        presentAlertWithTitle(title: AppLanguage.HandleError.anError.localized, message: AppLanguage.HandleError.updateEvent.localized, options: AppLanguage.Ok.localized) { [self] (option) in
+        }
     }
     
 

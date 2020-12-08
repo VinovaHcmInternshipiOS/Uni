@@ -35,6 +35,7 @@ class CreateEventViewController: BaseViewController {
 	var presenter: CreateEventPresenterProtocol
     var imagePicker: ImagePicker!
     var scoreEvent = 0
+    var refreshListEvent: (()->Void)? = nil
 	init(presenter: CreateEventPresenterProtocol) {
         self.presenter = presenter
         super.init(nibName: "CreateEventViewController", bundle: nil)
@@ -149,7 +150,7 @@ class CreateEventViewController: BaseViewController {
             } else {return}
             
         } else {
-            showAlert(title: "Opps", message: "Please complete all information", actionTitles: ["OK"], style: [.default], actions: [.none])
+            showAlert(title: AppLanguage.HandleError.anError.localized, message: AppLanguage.HandleError.fillIn.localized, actionTitles: [AppLanguage.Ok.localized], style: [.default], actions: [.none])
         }
     }
     
@@ -191,17 +192,24 @@ extension CreateEventViewController: CreateEventViewProtocol {
     }
     
     func createEventSuccess(path: String) {
-        showAlert(title: "Success", message: "Create event success", actionTitles: ["OK"], style: [.default], actions: [.none])
         removeSpinner()
+        presentAlertWithTitle(title: AppLanguage.HandleSuccess.Success.localized, message: AppLanguage.HandleSuccess.createEvent.localized, options: AppLanguage.Ok.localized) { [self] (option) in
+            self.navigationController?.popViewController(animated: true)
+            refreshListEvent?()
+    }
+       
         if let imageLanscape = imgLandscape.image, let imagePortal = imgPortal.image{
             presenter.uploadImage(images: [imageLanscape,imagePortal],path: path)
         } else {return}
         
+        
     }
     
     func createEventFailed() {
-        print("Create event failed")
         removeSpinner()
+        presentAlertWithTitle(title: AppLanguage.HandleError.anError.localized, message: AppLanguage.HandleError.createEvent.localized, options: AppLanguage.Ok.localized) { [] (option) in
+        }
+       
     }
     
     

@@ -21,6 +21,7 @@
                 <outlet property="imgBaner" destination="YqQ-oL-YWt" id="in8-hl-J7W"/>
                 <outlet property="imgProfile" destination="UrU-cq-9FZ" id="hji-2I-INS"/>
                 <outlet property="lbName" destination="22O-4G-jp8" id="Gpr-FZ-qoZ"/>
+                <outlet property="scrollView" destination="otq-LD-2qV" id="51q-lZ-8ul"/>
                 <outlet property="tableView" destination="5Sn-Jc-T4r" id="2xi-TC-rdg"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>

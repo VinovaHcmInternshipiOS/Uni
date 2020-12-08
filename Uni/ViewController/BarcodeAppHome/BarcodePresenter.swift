@@ -15,29 +15,38 @@ import Firebase
 import FirebaseStorage
 import UIKit
 
-// MARK: View -
 protocol BarcodeViewProtocol: class {
     func fetchProfileSuccess()
     func fetchProfileFailed()
+    func createCodeSuccess(fakeCode:String,created: Int)
+    func createCodeFailed()
 }
 
 // MARK: Presenter -
 protocol BarcodePresenterProtocol: class {
-	var view: BarcodeViewProtocol? { get set }
+    var view: BarcodeViewProtocol? { get set }
     var profileUser: Home? {get set}
+    var code: String {get set}
     func fetchProfile()
-
+    func fetchUID() -> String
+    func createCode(fakeCode:String,created:Int)
+    func deleteFakeCode()
+    func randomString(length: Int) -> String
+    func deleteFakeCodeNoCreate()
+    
 }
 
 class BarcodePresenter: BarcodePresenterProtocol {
-
-    
-
+    var code: String
     weak var view: BarcodeViewProtocol?
     var ref = Database.database().reference()
     var databaseHandle = DatabaseHandle()
     var user = Auth.auth().currentUser
     var profileUser: Home?
+    
+    init(code: String) {
+        self.code = code
+    }
     
     func fetchProfile() {
         guard let user = user else { return }
@@ -46,11 +55,8 @@ class BarcodePresenter: BarcodePresenterProtocol {
             if(snapshot.exists())
             {
                 let placeDict = snapshot.value as! [String: Any]
-                let code = placeDict["Code"] as! String
-                
-                profileUser = Home(code: code, name: "",faculty: "", urlImage: "")
+                code = placeDict["Code"] as! String
                 view?.fetchProfileSuccess()
-                
             }
             else
             {
@@ -58,4 +64,61 @@ class BarcodePresenter: BarcodePresenterProtocol {
             }
         })
     }
+    func fetchUID() -> String {
+        guard let user = user else {return ""}
+        return user.uid
+    }
+    
+    func createCode(fakeCode:String,created:Int) {
+        let path = ref.child("OTP/\(fakeCode)")
+        let sentValue = ["Code":"\(code)","Created": "\(created)"] as [String : Any]
+        path.setValue(sentValue) { [self]
+            (error:Error?, ref:DatabaseReference) in
+            if error != nil {
+                view?.createCodeFailed()
+            }
+            else
+            {
+                view?.createCodeSuccess(fakeCode:fakeCode,created: created)
+            }
+        }
+    }
+    
+    func deleteFakeCode() {
+        ref.child("OTP").queryOrdered(byChild: "Code").queryEqual(toValue: code).observeSingleEvent(of: .value) { [self] (snapshot, error) in
+            for child in snapshot.children.allObjects as! [DataSnapshot] {
+                print(child.key)
+                ref.child("OTP").child(child.key).removeValue()
+            }
+            createCode(fakeCode: randomString(length: 10), created: getTimeInveral())
+        }
+    }
+    
+    func deleteFakeCodeNoCreate() {
+        ref.child("OTP").queryOrdered(byChild: "Code").queryEqual(toValue: code).observeSingleEvent(of: .value) { [self] (snapshot, error) in
+            for child in snapshot.children.allObjects as! [DataSnapshot] {
+                print(child.key)
+                ref.child("OTP").child(child.key).removeValue()
+            }
+        }
+    }
+    
+    func randomString(length: Int) -> String {
+        let letters : NSString = "\(fetchUID())" as NSString
+        let len = UInt32(letters.length)
+        var randomString = ""
+        for _ in 0 ..< length {
+            let rand = arc4random_uniform(len)
+            var nextChar = letters.character(at: Int(rand))
+            randomString += NSString(characters: &nextChar, length: 1) as String
+        }
+        return randomString
+    }
+    
+    func getTimeInveral() -> Int {
+        let date = Date()
+        let timeInveral = date.timeIntervalSince1970
+        return Int(timeInveral)
+    }
+    
 }

@@ -10,7 +10,7 @@
 
 import UIKit
 
-class DetailAccountViewController: UIViewController {
+class DetailAccountViewController: BaseViewController {
     @IBOutlet weak var detailAccount: UILabel!
     @IBOutlet weak var lbCreated: UILabel!
     @IBOutlet weak var lbSignedIn: UILabel!

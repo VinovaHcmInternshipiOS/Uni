@@ -9,7 +9,7 @@
 //
 
 import UIKit
-import CRRefresh
+import SkeletonView
 class ListUserViewController: BaseViewController {
     
     @IBOutlet weak var viewPlus: UIView!
@@ -41,7 +41,7 @@ class ListUserViewController: BaseViewController {
         setupLanguage()
         presenter.fetchListUser()
         pullRefreshData()
-
+        skeletonView()
         
     }
     
@@ -61,12 +61,19 @@ class ListUserViewController: BaseViewController {
         pullControl.tintColor = AppColor.YellowFAB32A
         btPlus.setImage(AppIcon.icPlusYellow, for: .normal)
     }
+    
+    func skeletonView(){
+        collectionView.isSkeletonable = true
+        collectionView.showAnimatedSkeleton(usingColor: UIColor.clouds, animation: nil, transition:.crossDissolve(0.25))
+    }
+    
     func refreshListUser(){
+        skeletonView()
         presenter.infoUsers = []
         presenter.fetchListUser()
     }
+    
     @objc func pulledRefreshControl(sender:AnyObject) {
-        pullControl.endRefreshing()
         refreshListUser()
     }
     
@@ -78,6 +85,11 @@ class ListUserViewController: BaseViewController {
     }
     
     @objc func actionSearch(sender: UIButton) {
+        skeletonView()
+        sender.isEnabled = false
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            sender.isEnabled = true
+        }
         getkeySearch?()
     }
     
@@ -90,6 +102,22 @@ class ListUserViewController: BaseViewController {
     }
     
 }
+extension ListUserViewController: SkeletonCollectionViewDataSource {
+  func collectionSkeletonView(_ skeletonView: UICollectionView, cellIdentifierForItemAt indexPath: IndexPath) -> ReusableCellIdentifier {
+    return "ListUserCell"
+  }
+  func collectionSkeletonView(_ skeletonView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    return 6
+  }
+  func collectionSkeletonView(_ skeletonView: UICollectionView, supplementaryViewIdentifierOfKind: String, at indexPath: IndexPath) -> ReusableCellIdentifier? {
+    return "HeaderSearch"
+  }
+  func numSections(in collectionSkeletonView: UICollectionView) -> Int {
+    return 1
+  }
+    
+}
+    
 extension ListUserViewController: UICollectionViewDelegateFlowLayout,UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -179,12 +207,8 @@ extension ListUserViewController: UICollectionViewDataSource {
             cell.lbID.text = listUser[indexPath.row]?.code
             if listUser[indexPath.row]?.state == true {
                 cell.viewState.backgroundColor = .systemGreen
-                cell.btState.setTitle(AppLanguage.Disable.localized, for: .normal)
-                cell.btState.setTitleColor(.systemRed, for: .normal)
             } else {
                 cell.viewState.backgroundColor = .systemRed
-                cell.btState.setTitle(AppLanguage.Enable.localized, for: .normal)
-                cell.btState.setTitleColor(.systemGreen, for: .normal)
             }
             return cell
         }
@@ -199,30 +223,32 @@ extension ListUserViewController: UICollectionViewDataSource {
 extension ListUserViewController: ListUserViewProtocol{
     func fetchUserSearchSuccess() {
         listUser = presenter.infoUsers
+        collectionView.hideSkeleton()
         collectionView.reloadData()
+  
     }
     
     func fetchUserSearchFailed() {
         print("search user failed")
+        collectionView.hideSkeleton()
+  
     }
     
-    func changeStateUserSuccess() {
-        presenter.infoUsers = []
-        presenter.fetchListUser()
-       print("Success")
-    }
-    
-    func changeStateUserFailed() {
-        print("change state user failed")
-    }
     
     func fetchUserSuccess() {
         listUser = presenter.infoUsers
+        pullControl.endRefreshing()
+        collectionView.hideSkeleton()
         collectionView.reloadData()
+ 
     }
     
     func fetchUserFailed() {
         print("fetch list user failed")
+        pullControl.endRefreshing()
+        collectionView.hideSkeleton()
+        collectionView.reloadData()
+
     }
     
     

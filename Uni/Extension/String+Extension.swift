@@ -31,6 +31,7 @@ extension String {
         dateFormatter.dateFormat = "hh:mm"
         return dateFormatter.string(from: date ?? Date())
     }
+    
     var localized: String {
            guard let currentLanguages = UserDefaults.standard.string(forKey: "AppleLanguage"), let bundlePath = Bundle.main.path(forResource: currentLanguages, ofType: "lproj"), let bundle = Bundle(path: bundlePath) else {
                return NSLocalizedString(self, comment: "")

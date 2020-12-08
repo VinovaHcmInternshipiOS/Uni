@@ -23,7 +23,6 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var btSignup: UILabel!
     @IBOutlet weak var txtEmail: UITextField!
     @IBOutlet weak var txtPassword: UITextField!
-    
     var presenter: LoginPresenterProtocol
     var tapGesture = UITapGestureRecognizer()
 
@@ -39,7 +38,7 @@ class LoginViewController: UIViewController {
 	override func viewDidLoad() {
         super.viewDidLoad()
         presenter.view = self
-        desginUI()
+        setupUI()
         customNav()
        
     }
@@ -65,8 +64,7 @@ class LoginViewController: UIViewController {
           self.navigationController?.hideShadowLine()
     }
     
-    func desginUI(){
-        
+    func setupUI(){
         // Go to ForgotPaswordVC
         let rightTap = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.gotoForgotPasswordVC(_:)))
         btForgotPassword.isUserInteractionEnabled = true
@@ -111,8 +109,8 @@ extension LoginViewController: LoginViewProtocol {
         Switcher.updateRootVC()
         let AppHomeVC = AppHomeViewController(presenter: AppHomePresenter())
         UserDefaults.standard.setValue(0, forKey: "caseMenu")
-        self.navigationController?.pushViewController(AppHomeVC, animated: true)
-
+        navigationController?.pushViewController(AppHomeVC, animated: true)
+        
     }
     
     func checkAuthFailed() {
@@ -130,6 +128,5 @@ extension LoginViewController: LoginViewProtocol {
     func loginFailed(error: Error) {
         removeSpinner()
         handleError(error)
-        
     }
 }

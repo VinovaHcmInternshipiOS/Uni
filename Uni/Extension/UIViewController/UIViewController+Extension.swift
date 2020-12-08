@@ -151,6 +151,12 @@ extension UIViewController {
         return formatter.string(from: date)
     }
     
+    func getTimeInveral() -> Int {
+        let date = Date()
+        let timeInveral = date.timeIntervalSince1970
+        return Int(timeInveral)
+    }
+    
 }
 class Switcher {
     

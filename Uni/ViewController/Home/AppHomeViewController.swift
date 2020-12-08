@@ -9,8 +9,10 @@
 //
 
 import UIKit
+import SkeletonView
 
 class AppHomeViewController:BaseViewController{
+    @IBOutlet var viewAppHome: UIView!
     @IBOutlet weak var lbAppHome: UILabel!
     @IBOutlet weak var lbEnded: UILabel!
     @IBOutlet weak var lbComingSoon: UILabel!
@@ -34,6 +36,7 @@ class AppHomeViewController:BaseViewController{
     var indexPageControl = 0
     var menuState = false
     var ListEvent = [Event?]()
+    var code = ""
     
     var listEventHappening = [Event?]()
     var listEventComingSoon = [Event?]()
@@ -94,15 +97,41 @@ class AppHomeViewController:BaseViewController{
         imgUser.borderColor = AppColor.YellowFAB32A
         pullControl.tintColor = AppColor.YellowFAB32A
         scrollView.alwaysBounceVertical = true
+        skeletonCollectionView()
+        skeletonProfile()
+    }
+    func skeletonProfile(){
+        imgUser.isSkeletonable = true
+        imgUser.showAnimatedSkeleton(usingColor: UIColor.clouds, animation: nil, transition:.crossDissolve(0.25))
+        
+        lbName.isSkeletonable = true
+        lbName.showAnimatedSkeleton(usingColor: UIColor.clouds, animation: nil, transition:.crossDissolve(0.25))
+        
+        lbID.isSkeletonable = true
+        lbID.showAnimatedSkeleton(usingColor: UIColor.clouds, animation: nil, transition:.crossDissolve(0.25))
+        
+        lbFaculty.isSkeletonable = true
+        lbFaculty.showAnimatedSkeleton(usingColor: UIColor.clouds, animation: nil, transition:.crossDissolve(0.25))
+    }
+    func skeletonCollectionView(){
+        collectionComingSoon.isSkeletonable = true
+        collectionComingSoon.showAnimatedSkeleton(usingColor: UIColor.clouds, animation: nil, transition:.crossDissolve(0.25))
+        
+        collectionHappenning.isSkeletonable = true
+        collectionHappenning.showAnimatedSkeleton(usingColor: UIColor.clouds, animation: nil, transition:.crossDissolve(0.25))
+        
+        collectionEnded.isSkeletonable = true
+        collectionEnded.showAnimatedSkeleton(usingColor: UIColor.clouds, animation: nil, transition:.crossDissolve(0.25))
     }
     
     @objc func pulledRefreshControl(sender:AnyObject) {
-        pullControl.endRefreshing()
         refreshListEvent()
+        presenter.loadProfile()
+        
     }
     
     private func pullRefreshData() {
-        
+        skeletonCollectionView()
         pullControl.addTarget(self, action: #selector(pulledRefreshControl), for: UIControl.Event.valueChanged)
         scrollView.addSubview(pullControl)
 
@@ -172,10 +201,30 @@ class AppHomeViewController:BaseViewController{
     }
     @IBAction func btBarcode(_ sender: UIButton) {
         sender.animationScale()
-        let barcode = BarcodeViewController(presenter: BarcodePresenter())
+        let barcode = BarcodeViewController(presenter: BarcodePresenter(code: code))
         self.navigationController?.pushViewController(barcode, animated: true)
     }
     
+    
+}
+extension AppHomeViewController: SkeletonCollectionViewDataSource {
+  func collectionSkeletonView(_ skeletonView: UICollectionView, cellIdentifierForItemAt indexPath: IndexPath) -> ReusableCellIdentifier {
+    switch skeletonView {
+    case collectionHappenning:
+        return "HappenningCellAppHome"
+    default:
+        return "ComingSoonEndedCellAppHome"
+    }
+  }
+  func collectionSkeletonView(_ skeletonView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    return 6
+  }
+//  func collectionSkeletonView(_ skeletonView: UICollectionView, supplementaryViewIdentifierOfKind: String, at indexPath: IndexPath) -> ReusableCellIdentifier? {
+//    return "HeaderSearch"
+//  }
+  func numSections(in collectionSkeletonView: UICollectionView) -> Int {
+    return 1
+  }
     
 }
 
@@ -296,6 +345,8 @@ extension AppHomeViewController: UICollectionViewDelegate,UICollectionViewDataSo
 extension AppHomeViewController: AppHomeViewProtocol {
     func fetchInfoEventHappeningSuccess() {
         listEventHappening = presenter.happeningEvent
+        collectionHappenning.hideSkeleton()
+        pullControl.endRefreshing()
         collectionHappenning.reloadData()
     }
     
@@ -305,6 +356,8 @@ extension AppHomeViewController: AppHomeViewProtocol {
     
     func fetchInfoEventComingSoonSuccess() {
         listEventComingSoon = presenter.comingsoonEvent
+        collectionComingSoon.hideSkeleton()
+        pullControl.endRefreshing()
         collectionComingSoon.reloadData()
     }
     
@@ -314,6 +367,8 @@ extension AppHomeViewController: AppHomeViewProtocol {
     
     func fetchInfoEventEndedSuccess() {
         listEventEnded = presenter.endedEvent
+        collectionEnded.hideSkeleton()
+        pullControl.endRefreshing()
         collectionEnded.reloadData()
     }
     
@@ -328,6 +383,7 @@ extension AppHomeViewController: AppHomeViewProtocol {
         if let profile = profile {
             lbName.text = profile.name
             lbID.text = profile.code
+            code = profile.code ?? ""
             lbFaculty.text = profile.faculty?.localized
             imgUser.loadImage(urlString: profile.urlImage!)
             if profile.urlImage! == "" {
@@ -336,6 +392,10 @@ extension AppHomeViewController: AppHomeViewProtocol {
                 imgUser.borderColor = .clear
             }
         } else { return }
+        lbName.hideSkeleton()
+        lbID.hideSkeleton()
+        lbFaculty.hideSkeleton()
+        imgUser.hideSkeleton()
     }
     
     func fetchProfileFailed() {

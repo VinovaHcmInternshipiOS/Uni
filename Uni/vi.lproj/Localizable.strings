@@ -204,6 +204,9 @@
 "The new password is not the same as the confirmation password." = "Mật khẩu mới không giống với mật khẩu xác nhận.";
 "Account created failed." = "Đã tạo tài khoản thất bại.";
 "ID already exists belong another account." = "ID đã tồn tại thuộc về một tài khoản khác.";
+"The event created failed."  = "Sự kiện được tạo không thành công.";
+"The event update failed." = "Cập nhật sự kiện không thành công.";
+"Please fill in all information." = "Vui lòng điền đầy đủ tất cả thông tin.";
 
 //MARK: -- HandleSuccess
 "Your Password has been changed." = "Mật khẩu của bạn đã được thay đổi.";
@@ -211,6 +214,8 @@
 "Account status changed successfully." = "Thay đổi trạng thái tài khoản thành công.";
 "Account status change failed." = "Thay đổi trạng thái tài khoản thất bại.";
 "Account created successfully." = "Đã tạo tài khoản thành công.";
+"The event has been successfully created." = "Sự kiện đã được tạo thành công.";
+"The event has been successfully updated." = "Sự kiện đã được cập nhật thành công.";
 
 //MARK: -- DetailAccount
 "Detail\nAccount" = "Chi tiết\nTài khoản";
