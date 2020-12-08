@@ -9,7 +9,6 @@
 //
 
 import UIKit
-import Pulsator
 class BarcodeViewController: BaseViewController {
 
 	var presenter: BarcodePresenterProtocol
