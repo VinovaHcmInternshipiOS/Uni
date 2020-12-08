@@ -277,7 +277,7 @@ extension UpdateEventViewController: UpdateEventViewProtocol {
     
     func updateEventFailed() {
         removeSpinner()
-        presentAlertWithTitle(title: AppLanguage.HandleError.anError.localized, message: AppLanguage.HandleError.updateEvent.localized, options: AppLanguage.Ok.localized) { [self] (option) in
+        presentAlertWithTitle(title: AppLanguage.HandleError.anError.localized, message: AppLanguage.HandleError.updateEvent.localized, options: AppLanguage.Ok.localized) { [] (option) in
         }
     }
     
