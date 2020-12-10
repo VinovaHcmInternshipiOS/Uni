@@ -8,18 +8,68 @@
 import UIKit
 import Firebase
 import IQKeyboardManagerSwift
+import UserNotifications
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    let gcmMessageIDKey = "gcm.message_id"
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        
         NetworkState.shared.startMonitoring()
         FirebaseApp.configure()
         IQKeyboardManager.shared.enable = true
         Switcher.updateRootVC()
-        return true
+        
+        if #available(iOS 10.0, *) {
+                  UNUserNotificationCenter.current().delegate = self
+                  Messaging.messaging().delegate = self
+                  let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+                  UNUserNotificationCenter.current().requestAuthorization(
+                    options: authOptions,
+                    completionHandler: {_, _ in })
+                } else {
+                  let settings: UIUserNotificationSettings =
+                  UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+                  application.registerUserNotificationSettings(settings)
+                }
+                application.registerForRemoteNotifications()
+                return true
+    }
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
+            if let messageID = userInfo[gcmMessageIDKey] {
+                print("Message ID: \(messageID)")
+            }
+            print(userInfo)
+        }
+
+        func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
+                         fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+            if let messageID = userInfo[gcmMessageIDKey] {
+                print("Message ID: \(messageID)")
+            }
+            print(userInfo)
+            completionHandler(UIBackgroundFetchResult.newData)
+        }
+    
+    
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+      print("Unable to register for remote notifications: \(error.localizedDescription)")
+    }
+
+    // This function is added here only for debugging purposes, and can be removed if swizzling is enabled.
+    // If swizzling is disabled then this function must be implemented so that the APNs token can be paired to
+    // the FCM registration token.
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        Messaging.messaging().apnsToken = deviceToken
+      // With swizzling disabled you must set the APNs token here.
+//       Messaging.messaging().apnsToken = deviceToken
+//        print("APNs token retrieved: \(deviceToken)")
+        let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
+        let token = tokenParts.joined()
+        print("Device Token: \(token)")
     }
 
     // MARK: UISceneSession Lifecycle
@@ -35,7 +85,49 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
-
+        
 
 }
 
+// [START ios_10_message_handling]
+@available(iOS 10, *)
+extension AppDelegate : UNUserNotificationCenterDelegate {
+
+  // Receive displayed notifications for iOS 10 devices.
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                willPresent notification: UNNotification,
+      withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+      let userInfo = notification.request.content.userInfo
+      print(userInfo)
+      if let messageID = userInfo[gcmMessageIDKey] {
+        print("Message ID: \(messageID)")
+      }
+      completionHandler([[.alert, .sound]])
+    }
+
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                didReceive response: UNNotificationResponse,
+                                withCompletionHandler completionHandler: @escaping () -> Void) {
+      completionHandler()
+    }
+}
+// [END ios_10_message_handling]
+
+extension AppDelegate : MessagingDelegate {
+
+
+  // [START refresh_token]
+  func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
+    print("Firebase registration token: \(fcmToken ?? "")")
+    if let fcmToken = fcmToken {
+        let dataDict:[String: String] = ["token": fcmToken]
+        NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDict)
+    } else {return}
+    
+    }
+
+    // TODO: If necessary send token to application server.
+    // Note: This callback is fired at each app startup and whenever a new token is generated.
+
+  // [END refresh_token]
+}

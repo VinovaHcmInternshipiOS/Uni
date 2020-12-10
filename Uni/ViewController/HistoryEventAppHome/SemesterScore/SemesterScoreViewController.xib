@@ -12,11 +12,15 @@
         <array key="Raleway-Medium.ttf">
             <string>Raleway-Medium</string>
         </array>
+        <array key="Raleway-Regular.ttf">
+            <string>Raleway-Regular</string>
+        </array>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SemesterScoreViewController" customModule="Uni" customModuleProvider="target">
             <connections>
                 <outlet property="heightTableView" destination="Ppo-Tp-n6G" id="T5q-fI-9Ur"/>
+                <outlet property="lbNoData" destination="Zzt-4i-8P0" id="7iN-C0-lHi"/>
                 <outlet property="lbSemester" destination="lrN-AN-4Wg" id="z8x-Sb-seb"/>
                 <outlet property="lbYear" destination="pmk-o4-VzM" id="qyG-XX-lh8"/>
                 <outlet property="scrollView" destination="gJU-bg-is3" id="5B2-xa-BVE"/>
@@ -71,10 +75,18 @@
                                 <constraint firstItem="pmk-o4-VzM" firstAttribute="leading" secondItem="fCI-9Z-NOx" secondAttribute="leading" constant="32" id="z68-w0-nvr"/>
                             </constraints>
                         </view>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Data." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zzt-4i-8P0">
+                            <rect key="frame" x="171.5" y="387.5" width="71" height="21"/>
+                            <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="18"/>
+                            <color key="textColor" name="5B5B5B"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="fCI-9Z-NOx" secondAttribute="trailing" id="4dj-Qb-JQZ"/>
+                        <constraint firstItem="Zzt-4i-8P0" firstAttribute="centerX" secondItem="gJU-bg-is3" secondAttribute="centerX" id="BQA-lC-QlC"/>
                         <constraint firstItem="fCI-9Z-NOx" firstAttribute="top" secondItem="gJU-bg-is3" secondAttribute="top" id="NG0-Ts-wBz"/>
+                        <constraint firstItem="Zzt-4i-8P0" firstAttribute="centerY" secondItem="gJU-bg-is3" secondAttribute="centerY" id="Xn7-io-3EA"/>
                         <constraint firstAttribute="bottom" secondItem="fCI-9Z-NOx" secondAttribute="bottom" id="ewp-KG-rvl"/>
                         <constraint firstItem="fCI-9Z-NOx" firstAttribute="leading" secondItem="gJU-bg-is3" secondAttribute="leading" id="ysg-fO-fgX"/>
                     </constraints>

@@ -125,27 +125,50 @@ class ProfilePresenter: ProfilePresenterProtocol {
     }
     
     func fetchProfileAttendance(keyUser: String) {
-
-                let placeRef = self.ref.child("Data").child("\(keyUser)")
-                placeRef.observe(.value, with: { [self] snapshot in
-                    if(snapshot.exists())
-                    {
-                        let placeDict = snapshot.value as! [String: Any]
-                        let name = placeDict["Name"] as! String
-                        let gender = placeDict["Gender"] as! String
-                        let classs = placeDict["Class"] as! String
-                        let course = placeDict["Course"] as! String
-                        let faculty = placeDict["Faculty"] as! String
-                        let urlImage = placeDict["Image"] as! String
-                        
-                        profileUser = Profile(code: keyUser, name: name, email: "", gender: gender, classs: classs, course: course, faculty: faculty, urlImage: urlImage)
-                        view?.fetchProfileAttendanceSuccess()
+        let placeRef = self.ref.child("Data").child("\(keyUser)")
+        placeRef.observe(.value, with: { [self] snapshot in
+            if(snapshot.exists())
+            {
+                let placeDict = snapshot.value as! [String: Any]
+                let name = placeDict["Name"] as! String
+                let gender = placeDict["Gender"] as! String
+                let classs = placeDict["Class"] as! String
+                let course = placeDict["Course"] as! String
+                let faculty = placeDict["Faculty"] as! String
+                let urlImage = placeDict["Image"] as! String
+                let code = placeDict["Code"] as! String
+                
+                self.ref.child("Users").queryOrdered(byChild: "Email").queryStarting(atValue: "\(code)").queryEnding(atValue: "\(code)" + "\u{f8ff}").observeSingleEvent(of:.value) { [self] snapshot in
+                    if (snapshot.exists()) {
+                        for keyUser in snapshot.children.allObjects as! [DataSnapshot] {
+                            let placeRef = self.ref.child("Users/\(keyUser.key)")
+                            placeRef.observeSingleEvent(of:.value, with: { [self] snapshot in
+                                if snapshot.exists()
+                                {
+                                    let dict = snapshot.value as! [String: Any]
+                                    let email = dict["Email"] as! String
+                                    print(email)
+                                }
+                                else
+                                {
+                                    
+                                }
+                            })
+                        }
+                    } else {
                         
                     }
-                    else
-                    {
-                        view?.fetchProfileAttendanceFailed()
-                    }
-                })
+                    
+                }
+                
+                profileUser = Profile(code: keyUser, name: name, email: "", gender: gender, classs: classs, course: course, faculty: faculty, urlImage: urlImage)
+                view?.fetchProfileAttendanceSuccess()
+                
+            }
+            else
+            {
+                view?.fetchProfileAttendanceFailed()
+            }
+        })
     }
 }

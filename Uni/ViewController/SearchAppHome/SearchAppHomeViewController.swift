@@ -13,6 +13,7 @@ import SkeletonView
 
 class SearchAppHomeViewController: BaseViewController {
     
+    @IBOutlet weak var lbNoData: UILabel!
     @IBOutlet weak var lbSearchEvent: UILabel!
     @IBOutlet weak var heightTableView: NSLayoutConstraint!
     @IBOutlet weak var scrollView: UIScrollView!
@@ -40,6 +41,7 @@ class SearchAppHomeViewController: BaseViewController {
     
     func setupLanguage() {
         lbSearchEvent.text = AppLanguage.SearchEvent.SearchEvent.localized
+        lbNoData.text = AppLanguage.HandleError.noData.localized
     }
     func setupUI(){
         tableView.dataSource = self
@@ -80,9 +82,25 @@ class SearchAppHomeViewController: BaseViewController {
     }
     
     @objc func actionSearch(sender: UIButton) {
+        lbNoData.isHidden = true
         getkeySearch?()
     }
     
+    func remakeData(){
+        listResultsEvent = presenter.resultsEvent
+        pullControl.endRefreshing()
+        tableView.hideSkeleton()
+        tableView.reloadData()
+        checkEmptyData()
+    }
+    
+    func checkEmptyData(){
+        if listResultsEvent.count != 0 {
+            lbNoData.isHidden = true
+        } else {
+            lbNoData.isHidden = false
+        }
+    }
 }
 
 extension SearchAppHomeViewController: SkeletonTableViewDataSource {
@@ -175,18 +193,11 @@ extension SearchAppHomeViewController: UITableViewDataSource {
 
 extension SearchAppHomeViewController: SearchAppHomeViewProtocol{
     func fetchEventSuccess() {
-        listResultsEvent = presenter.resultsEvent
-        pullControl.endRefreshing()
-        tableView.hideSkeleton()
-        tableView.reloadData()
+        remakeData()
     }
     
     func fetchEventFailed() {
-        //        showAlert(title: "An Error", message: "Event not found", actionTitles: ["OK"], style: [.default], actions: [.none])
-        listResultsEvent.removeAll()
-        pullControl.endRefreshing()
-        tableView.hideSkeleton()
-        tableView.reloadData()
+        remakeData()
     }
     
     

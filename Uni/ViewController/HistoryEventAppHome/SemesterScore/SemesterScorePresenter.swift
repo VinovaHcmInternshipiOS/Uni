@@ -77,8 +77,6 @@ class SemesterScorePresenter: SemesterScorePresenterProtocol {
                         view?.fetchHistoryEventFailed()
                     }
                 })
-                
-                
             }
             else
             {

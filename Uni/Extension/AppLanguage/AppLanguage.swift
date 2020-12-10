@@ -23,6 +23,9 @@ class AppLanguage {
     static let Disable = "Disable"
     static let Enable = "Enable"
     static let Confirm = "Confirm"
+    static let Checking = "Checking..."
+    static let FooterCamera = "Place the barcode within the window to scan.\nThe search will start automatically."
+    static let titleCamera = "Scan Barcode"
     
     //MARK: -- HandleError
     class HandleError {
@@ -43,7 +46,12 @@ class AppLanguage {
         static let createEvent  = "The event created failed."
         static let updateEvent = "The event update failed."
         static let fillIn = "Please fill in all information."
-        
+        static let noData = "No Data."
+        static let noHappenning = "no ongoing events."
+        static let noComingSoon = "no upcoming events."
+        static let noEnded = "no event has ended."
+        static let attendanceAlready = "Already exists ID in event list."
+        static let invalidID = "Invalid ID."
     }
     //MARK: -- HandleSuccess
     class HandleSuccess {
@@ -53,6 +61,9 @@ class AppLanguage {
         static let createAccount = "Account created successfully."
         static let createEvent = "The event has been successfully created."
         static let updateEvent = "The event has been successfully updated."
+        static let updateInformationID = "Please update information of the ID."
+        static let attendance = "Attendance success for ID."
+
     }
     
     //MARK: -- HandleConfirm

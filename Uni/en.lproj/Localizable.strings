@@ -208,6 +208,12 @@
 "The event created failed."  = "The event created failed.";
 "The event update failed." = "The event update failed.";
 "Please fill in all information." = "Please fill in all information.";
+"No Data." = "No Data.";
+"no ongoing events." = "no ongoing events.";
+"no upcoming events." = "no upcoming events.";
+"no event has ended." = "no event has ended.";
+"Already exists ID in event list." = "Already exists ID in event list.";
+"Invalid ID." = "Invalid ID.";
 
 
 //MARK: -- HandleSuccess
@@ -217,6 +223,11 @@
 "Account created successfully." = "Account created successfully.";
 "The event has been successfully updated." = "The event has been successfully updated.";
 "The event has been successfully updated." = "The event has been successfully updated.";
+"Please update information of the ID." = "Please update information of the ID.";
+"Attendance success for ID." = "Attendance success for ID.";
+"Checking..." = "Checking...";
+"Place the barcode within the window to scan.\nThe search will start automatically." = "Place the barcode within the window to scan.\nThe search will start automatically.";
+"Scan Barcode" = "Scan Barcode";
 
 //MARK: -- DetailAccount
 "Detail\nAccount" = "Detail\nAccount";

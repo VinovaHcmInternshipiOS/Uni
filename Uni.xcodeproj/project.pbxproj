@@ -38,6 +38,7 @@
 		F5694E722574CEFF00C1D14D /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5694E6F2574CEFF00C1D14D /* AboutViewController.swift */; };
 		F5694E732574CEFF00C1D14D /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5694E702574CEFF00C1D14D /* AboutViewController.xib */; };
 		F56D11E2257E7DBB000CC1A5 /* Pods_Uni.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F56D11E1257E7DBB000CC1A5 /* Pods_Uni.framework */; };
+		F56D14322580AE7B000CC1A5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F56D14312580AE7B000CC1A5 /* GoogleService-Info.plist */; };
 		F56DFE8B25676EE20080A31F /* ADEEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F56DFE8A25676EE20080A31F /* ADEEvent.swift */; };
 		F56DFF62256909820080A31F /* DatePickerViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F56DFF5F256909820080A31F /* DatePickerViewPresenter.swift */; };
 		F56DFF63256909820080A31F /* DatePickerViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F56DFF60256909820080A31F /* DatePickerViewViewController.swift */; };
@@ -100,7 +101,6 @@
 		F59221D02553FD8D002F3F50 /* RankViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F59221CD2553FD8C002F3F50 /* RankViewController.xib */; };
 		F5937D3B2578D3F6007EA398 /* DetailAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5937D3A2578D3F6007EA398 /* DetailAccount.swift */; };
 		F593CBF3255BE863005D4F15 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F593CBF2255BE863005D4F15 /* UIButton+Extension.swift */; };
-		F593CBF9255BEDB1005D4F15 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F593CBF8255BEDB1005D4F15 /* GoogleService-Info.plist */; };
 		F593CC5F255CD437005D4F15 /* NetworkState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F593CC5E255CD437005D4F15 /* NetworkState.swift */; };
 		F593CC98255CE1C7005D4F15 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F593CC97255CE1C7005D4F15 /* UIViewController+Extension.swift */; };
 		F593CC9C255D36DB005D4F15 /* UIAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F593CC9B255D36DB005D4F15 /* UIAlertController.swift */; };
@@ -212,6 +212,8 @@
 		F5694E6F2574CEFF00C1D14D /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		F5694E702574CEFF00C1D14D /* AboutViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutViewController.xib; sourceTree = "<group>"; };
 		F56D11E1257E7DBB000CC1A5 /* Pods_Uni.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_Uni.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F56D13BB25808537000CC1A5 /* Uni.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Uni.entitlements; sourceTree = "<group>"; };
+		F56D14312580AE7B000CC1A5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F56DFE8A25676EE20080A31F /* ADEEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ADEEvent.swift; sourceTree = "<group>"; };
 		F56DFF5F256909820080A31F /* DatePickerViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewPresenter.swift; sourceTree = "<group>"; };
 		F56DFF60256909820080A31F /* DatePickerViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewViewController.swift; sourceTree = "<group>"; };
@@ -277,7 +279,6 @@
 		F59221CD2553FD8C002F3F50 /* RankViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RankViewController.xib; sourceTree = "<group>"; };
 		F5937D3A2578D3F6007EA398 /* DetailAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailAccount.swift; sourceTree = "<group>"; };
 		F593CBF2255BE863005D4F15 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
-		F593CBF8255BEDB1005D4F15 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F593CC5E255CD437005D4F15 /* NetworkState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkState.swift; sourceTree = "<group>"; };
 		F593CC97255CE1C7005D4F15 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		F593CC9B255D36DB005D4F15 /* UIAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertController.swift; sourceTree = "<group>"; };
@@ -599,9 +600,10 @@
 		F582EA69254FEE58002BF86F /* Uni */ = {
 			isa = PBXGroup;
 			children = (
+				F56D14312580AE7B000CC1A5 /* GoogleService-Info.plist */,
+				F56D13BB25808537000CC1A5 /* Uni.entitlements */,
 				F593CCAA255E401F005D4F15 /* Model */,
 				F593CCA5255E2306005D4F15 /* Base */,
-				F593CBF8255BEDB1005D4F15 /* GoogleService-Info.plist */,
 				F582EACC254FF590002BF86F /* Extension */,
 				F582EA7F254FEE75002BF86F /* ViewController */,
 				F582EA6A254FEE58002BF86F /* AppDelegate.swift */,
@@ -1250,7 +1252,6 @@
 				F58527B125510B3700F888E8 /* HappenningCellAppHome.xib in Resources */,
 				F5CF0D032576020C00D3BBF8 /* ListUserCell.xib in Resources */,
 				F582EAD825503B11002BF86F /* ForgotPasswordViewController.xib in Resources */,
-				F593CBF9255BEDB1005D4F15 /* GoogleService-Info.plist in Resources */,
 				F51260492566560C00B517DC /* ProfileTableViewCell.xib in Resources */,
 				F5785E3825776F7000EBEE8F /* PickerDataViewController.xib in Resources */,
 				F5CF0CFD257601D800D3BBF8 /* ListUserViewController.xib in Resources */,
@@ -1274,6 +1275,7 @@
 				F582EAB0254FF1D1002BF86F /* Raleway-BoldItalic.ttf in Resources */,
 				F582EABD254FF1D1002BF86F /* Raleway-BlackItalic.ttf in Resources */,
 				F51260692566783100B517DC /* CreateEventViewController.xib in Resources */,
+				F56D14322580AE7B000CC1A5 /* GoogleService-Info.plist in Resources */,
 				F5B29F5625748E84007822F4 /* SettingViewController.xib in Resources */,
 				F5CF0CEB2575EA9A00D3BBF8 /* ManageCell.xib in Resources */,
 				F582EAC4254FF1D1002BF86F /* README.txt in Resources */,
@@ -1611,8 +1613,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = D85ZD7VL82;
+				CODE_SIGN_ENTITLEMENTS = Uni/Uni.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = XX83HG39E3;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)/**",
@@ -1646,8 +1650,9 @@
 					"@executable_path/Frameworks",
 				);
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = nguyengiahuy.Uni;
+				PRODUCT_BUNDLE_IDENTIFIER = vn.giahuy.Uni;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "Management Student GiaHuy";
 				SWIFT_COMPILATION_MODE = singlefile;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -1661,8 +1666,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = D85ZD7VL82;
+				CODE_SIGN_ENTITLEMENTS = Uni/Uni.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = XX83HG39E3;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)/**",
@@ -1696,8 +1703,9 @@
 					"@executable_path/Frameworks",
 				);
 				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = nguyengiahuy.Uni;
+				PRODUCT_BUNDLE_IDENTIFIER = vn.giahuy.Uni;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "Management Student GiaHuy";
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-Osize";
 				SWIFT_VERSION = 5.0;

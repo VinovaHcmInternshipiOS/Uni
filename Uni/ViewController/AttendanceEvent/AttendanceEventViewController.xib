@@ -12,6 +12,9 @@
         <array key="Raleway-Medium.ttf">
             <string>Raleway-Medium</string>
         </array>
+        <array key="Raleway-Regular.ttf">
+            <string>Raleway-Regular</string>
+        </array>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AttendanceEventViewController" customModule="Uni" customModuleProvider="target">
@@ -22,6 +25,7 @@
                 <outlet property="collectionView" destination="79t-kG-Ld8" id="vS6-E8-vet"/>
                 <outlet property="heightCollectionView" destination="lIx-8h-jEO" id="FkF-QL-b6U"/>
                 <outlet property="lbListAttendance" destination="Jqo-ca-0Qt" id="LNl-mB-WQD"/>
+                <outlet property="lbNoData" destination="QOs-y0-Xqv" id="VWf-VC-EA8"/>
                 <outlet property="scrollView" destination="7yj-tg-H8U" id="EU2-Zw-byr"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="viewBtExport" destination="dpz-Gk-WwW" id="4VF-mR-ano"/>
@@ -70,12 +74,20 @@
                                 <constraint firstItem="Jqo-ca-0Qt" firstAttribute="leading" secondItem="fEN-f5-p93" secondAttribute="leading" constant="32" id="ua9-yF-7ia"/>
                             </constraints>
                         </view>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Data" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QOs-y0-Xqv">
+                            <rect key="frame" x="174" y="437.5" width="66.5" height="21"/>
+                            <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="18"/>
+                            <color key="textColor" name="5B5B5B"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <constraints>
+                        <constraint firstItem="QOs-y0-Xqv" firstAttribute="centerY" secondItem="7yj-tg-H8U" secondAttribute="centerY" id="0jb-PO-XtA"/>
                         <constraint firstAttribute="bottom" secondItem="fEN-f5-p93" secondAttribute="bottom" id="Dqd-vy-bcG"/>
                         <constraint firstItem="fEN-f5-p93" firstAttribute="leading" secondItem="7yj-tg-H8U" secondAttribute="leading" id="LVC-No-slt"/>
                         <constraint firstItem="fEN-f5-p93" firstAttribute="top" secondItem="7yj-tg-H8U" secondAttribute="top" id="fxC-dy-NOf"/>
                         <constraint firstAttribute="trailing" secondItem="fEN-f5-p93" secondAttribute="trailing" id="gyH-Os-mQv"/>
+                        <constraint firstItem="QOs-y0-Xqv" firstAttribute="centerX" secondItem="7yj-tg-H8U" secondAttribute="centerX" id="hhN-jc-rJd"/>
                     </constraints>
                 </scrollView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xrk-x5-clE">
@@ -223,6 +235,9 @@
         <image name="icBarcode-yellow" width="24" height="24"/>
         <image name="icExport-yellow" width="30" height="30"/>
         <image name="icPlus-yellow" width="24" height="24"/>
+        <namedColor name="5B5B5B">
+            <color red="0.35699999332427979" green="0.35699999332427979" blue="0.35699999332427979" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="Color-2">
             <color red="0.98400002717971802" green="0.76899999380111694" blue="0.34900000691413879" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

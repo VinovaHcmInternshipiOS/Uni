@@ -31,7 +31,7 @@ protocol AppHomeViewProtocol: class {
 protocol AppHomePresenterProtocol: class {
     
     var view: AppHomeViewProtocol? { get set }
-
+    
     var profileUser: Home? {get set}
     var happeningEvent: [Event?] {get set}
     var comingsoonEvent: [Event?] {get set}
@@ -45,7 +45,7 @@ protocol AppHomePresenterProtocol: class {
 }
 
 class AppHomePresenter: AppHomePresenterProtocol {
-
+    
     weak var view: AppHomeViewProtocol?
     var ref = Database.database().reference()
     var databaseHandle = DatabaseHandle()
@@ -55,9 +55,9 @@ class AppHomePresenter: AppHomePresenterProtocol {
     var happeningEvent: [Event?] = []
     var comingsoonEvent: [Event?] = []
     var endedEvent: [Event?] = []
-
+    
     func getInfoEventHappening() {
-        ref.child("Event").queryOrdered(byChild: "Type").queryEqual(toValue:"Happening" ).observeSingleEvent(of: .value) { (snapshot) in
+        ref.child("Event").queryOrdered(byChild: "Type").queryEqual(toValue:"Happening" ).observeSingleEvent(of: .value) { [self] (snapshot) in
             if(snapshot.exists()) {
                 for keyEvent in snapshot.children.allObjects as! [DataSnapshot] {
                     let placeRef = self.ref.child("Event/\(keyEvent.key)")
@@ -75,26 +75,27 @@ class AppHomePresenter: AppHomePresenterProtocol {
                             let request = Event(title: title, key: key, date: date, checkout: checkout, checkin: checkin, type: type, urlImage: urrlImage)
                             
                             happeningEvent.append(request)
-                          //  DispatchQueue.main.async {
-                                view?.fetchInfoEventHappeningSuccess()
-                          //  }
+                            //  DispatchQueue.main.async {
+                            view?.fetchInfoEventHappeningSuccess()
+                            //  }
                         }
                         else
                         {
-                                view?.fetchInfoEventHappeningFailed()
+                            view?.fetchInfoEventHappeningFailed()
                         }
                     })
-
+                    
                 }
-                //print(snapshot.childrenCount)
-               
-
+                
+                
+            } else {
+                view?.fetchInfoEventHappeningFailed()
             }
         }
     }
     
     func getInfoEventComingSoon() {
-        ref.child("Event").queryOrdered(byChild: "Type").queryEqual(toValue:"ComingSoon" ).observeSingleEvent(of: .value) { (snapshot) in
+        ref.child("Event").queryOrdered(byChild: "Type").queryEqual(toValue:"ComingSoon" ).observeSingleEvent(of: .value) { [self] (snapshot) in
             if(snapshot.exists()) {
                 for keyEvent in snapshot.children.allObjects as! [DataSnapshot] {
                     let placeRef = self.ref.child("Event/\(keyEvent.key)")
@@ -112,24 +113,26 @@ class AppHomePresenter: AppHomePresenterProtocol {
                             let request = Event(title: title, key: key, date: date, checkout: checkout, checkin: checkin, type: type, urlImage: urrlImage)
                             
                             comingsoonEvent.append(request)
-                           // DispatchQueue.main.async {
-                                view?.fetchInfoEventComingSoonSuccess()
-                           // }
+                            // DispatchQueue.main.async {
+                            view?.fetchInfoEventComingSoonSuccess()
+                            // }
                         }
                         else
                         {
-                                view?.fetchInfoEventComingSoonFailed()
+                            view?.fetchInfoEventComingSoonFailed()
                         }
                     })
-
+                    
                 }
-
+                
+            } else {
+                view?.fetchInfoEventComingSoonFailed()
             }
         }
     }
     
     func getInfoEventEnded() {
-        ref.child("Event").queryOrdered(byChild: "Type").queryEqual(toValue:"Ended" ).observeSingleEvent(of: .value) { (snapshot) in
+        ref.child("Event").queryOrdered(byChild: "Type").queryEqual(toValue:"Ended" ).observeSingleEvent(of: .value) { [self] (snapshot) in
             if(snapshot.exists()) {
                 for keyEvent in snapshot.children.allObjects as! [DataSnapshot] {
                     let placeRef = self.ref.child("Event/\(keyEvent.key)")
@@ -148,16 +151,18 @@ class AppHomePresenter: AppHomePresenterProtocol {
                             
                             endedEvent.append(request)
                             //DispatchQueue.main.async {
-                                view?.fetchInfoEventEndedSuccess()
-                           // }
+                            view?.fetchInfoEventEndedSuccess()
+                            // }
                         }
                         else
                         {
-                                view?.fetchInfoEventEndedFailed()
+                            view?.fetchInfoEventEndedFailed()
                         }
                     })
-
+                    
                 }
+            } else {
+                view?.fetchInfoEventEndedFailed()
             }
         }
     }
@@ -178,10 +183,10 @@ class AppHomePresenter: AppHomePresenterProtocol {
                         let name = placeDict["Name"] as! String
                         let faculty = placeDict["Faculty"] as! String
                         let urlImage = placeDict["Image"] as! String
-                    
+                        
                         profileUser = Home(code: code, name: name,faculty: faculty, urlImage: urlImage)
                         view?.fetchProfileSuccess()
-
+                        
                     }
                     else
                     {

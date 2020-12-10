@@ -78,7 +78,10 @@ class LoginViewController: UIViewController {
     
     @IBAction func gotoAppHomeVC(_ sender: Any) {
         self.showSpinner()
-        presenter.siginIn(email: txtEmail.text!, password: txtPassword.text!)
+        if let email = txtEmail.text, let password = txtPassword.text {
+            presenter.siginIn(email: email, password: password)
+        } else {return}
+        
         
     }
     let okActionHandler: ((UIAlertAction) -> Void) = {(action) in

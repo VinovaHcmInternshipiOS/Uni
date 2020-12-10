@@ -12,6 +12,9 @@
         <array key="Raleway-Medium.ttf">
             <string>Raleway-Medium</string>
         </array>
+        <array key="Raleway-Regular.ttf">
+            <string>Raleway-Regular</string>
+        </array>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ListEventViewController" customModule="Uni" customModuleProvider="target">
@@ -20,6 +23,7 @@
                 <outlet property="collectionView" destination="uk0-u1-EMp" id="snb-LL-KTR"/>
                 <outlet property="heightCollectionView" destination="9eX-UH-mAm" id="vBx-1p-CDs"/>
                 <outlet property="lbListEvent" destination="4gS-PT-NzB" id="SCm-a4-w5P"/>
+                <outlet property="lbNoData" destination="0Um-RF-dZ9" id="NGT-0U-8Gz"/>
                 <outlet property="scrollView" destination="5Pz-QW-eN8" id="EBS-iL-2WI"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="viewButton" destination="8ct-83-g5h" id="QRb-DS-0pp"/>
@@ -66,10 +70,18 @@
                                 <constraint firstItem="4gS-PT-NzB" firstAttribute="top" secondItem="8KW-G0-ZgJ" secondAttribute="top" constant="35" id="fRP-Ue-noP"/>
                             </constraints>
                         </view>
+                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Data" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Um-RF-dZ9">
+                            <rect key="frame" x="154.5" y="444.5" width="66.5" height="21"/>
+                            <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="18"/>
+                            <color key="textColor" name="5B5B5B"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <constraints>
+                        <constraint firstItem="0Um-RF-dZ9" firstAttribute="centerX" secondItem="5Pz-QW-eN8" secondAttribute="centerX" id="co8-aC-ENN"/>
                         <constraint firstAttribute="trailing" secondItem="8KW-G0-ZgJ" secondAttribute="trailing" id="hSP-V3-Mnb"/>
                         <constraint firstItem="8KW-G0-ZgJ" firstAttribute="top" secondItem="5Pz-QW-eN8" secondAttribute="top" id="iVQ-aQ-oGU"/>
+                        <constraint firstItem="0Um-RF-dZ9" firstAttribute="centerY" secondItem="5Pz-QW-eN8" secondAttribute="centerY" id="lfd-S5-bIy"/>
                         <constraint firstAttribute="bottom" secondItem="8KW-G0-ZgJ" secondAttribute="bottom" constant="-155" id="mdi-nc-OZj"/>
                         <constraint firstItem="8KW-G0-ZgJ" firstAttribute="leading" secondItem="5Pz-QW-eN8" secondAttribute="leading" id="vra-Z1-fAL"/>
                     </constraints>
@@ -132,6 +144,9 @@
     </objects>
     <resources>
         <image name="icPlus-yellow" width="24" height="24"/>
+        <namedColor name="5B5B5B">
+            <color red="0.35699999332427979" green="0.35699999332427979" blue="0.35699999332427979" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="Color-2">
             <color red="0.98400002717971802" green="0.76899999380111694" blue="0.34900000691413879" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

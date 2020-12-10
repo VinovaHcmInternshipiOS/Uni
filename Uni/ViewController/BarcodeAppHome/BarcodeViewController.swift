@@ -52,9 +52,10 @@ class BarcodeViewController: BaseViewController {
    
     
     @objc func generate(){
+
         count = count - 1
         lbBarcode.text = "\(count)s"
-        
+
         if timeEnd == getTimeInveral() {
             timeCount.invalidate()
             presenter.deleteFakeCode()

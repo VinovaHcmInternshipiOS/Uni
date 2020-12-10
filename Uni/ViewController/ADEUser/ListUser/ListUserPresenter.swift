@@ -17,7 +17,7 @@ import Firebase
 protocol ListUserViewProtocol: class {
     func fetchUserSuccess()
     func fetchUserFailed()
-
+    
     func fetchUserSearchSuccess()
     func fetchUserSearchFailed()
 }
@@ -42,49 +42,67 @@ class ListUserPresenter: ListUserPresenterProtocol {
         ref.child("Users").observeSingleEvent(of:.value) { [self] (snapshot) in
             if(snapshot.exists()) {
                 
-                    for keyUser in snapshot.children.allObjects as! [DataSnapshot] {
-                        let placeRef = self.ref.child("Users/\(keyUser.key)")
-                        placeRef.observeSingleEvent(of:.value, with: { [self] snapshot in
-                            if snapshot.exists()
-                            {
-                                let dict = snapshot.value as! [String: Any]
-                                let code = dict["Code"] as! String
-                                let email = dict["Email"] as! String
-                                let uid = dict["Uid"] as! String
-                                
-                                let placeRef = self.ref.child("Users/\(keyUser.key)/Auth")
-                                placeRef.observeSingleEvent(of:.value, with: { [self] snapshot in
-                                    if snapshot.exists()
-                                    {
-                                        let dict = snapshot.value as! [String: Any]
-                                        let role = dict["Role"] as! String
-                                        let state = dict["State"] as! Bool
-                                        
-                                        infoUsers.append(ListUser(code: code, email: email, uid: uid, role: role, state: state))
-                                        DispatchQueue.main.async {
-                                            view?.fetchUserSuccess()
+                for keyUser in snapshot.children.allObjects as! [DataSnapshot] {
+                    let placeRef = self.ref.child("Users/\(keyUser.key)")
+                    placeRef.observeSingleEvent(of:.value, with: { [self] snapshot in
+                        if snapshot.exists()
+                        {
+                            let dict = snapshot.value as! [String: Any]
+                            let code = dict["Code"] as! String
+                            let email = dict["Email"] as! String
+                            let uid = dict["Uid"] as! String
+                            
+                            let placeRef = self.ref.child("Data/\(code)")
+                            placeRef.observeSingleEvent(of:.value, with: { [self] snapshot in
+                                if snapshot.exists()
+                                {
+                                    let dict = snapshot.value as! [String: Any]
+                                    let name = dict["Name"] as! String
+                                    let Image = dict["Image"] as! String
+
+                                    let placeRef = self.ref.child("Users/\(keyUser.key)/Auth")
+                                    placeRef.observeSingleEvent(of:.value, with: { [self] snapshot in
+                                        if snapshot.exists()
+                                        {
+                                            let dict = snapshot.value as! [String: Any]
+                                            let role = dict["Role"] as! String
+                                            let state = dict["State"] as! Bool
+                                            
+                                            if role != "Admin" {
+                                                infoUsers.append(ListUser(code: code, email: email, uid: uid, role: role, state: state, name: name,urlImage: Image))
+                                            }
+                                            DispatchQueue.main.async {
+                                                view?.fetchUserSuccess()
+                                            }
+                                            
                                         }
-                                        
-                                        
-                                       
-                                    }
-                                    else {
-                                        view?.fetchUserFailed()
-                                    }
-                                })
-                            }
-                            else
-                            {
-                                view?.fetchUserFailed()
-                            }
-                        })
-                    }
-                    
-       
+                                        else {
+                                            view?.fetchUserFailed()
+                                        }
+                                    })
+                                    
+                                    
+                                    
+                                }
+                                else {
+                                    view?.fetchUserFailed()
+                                }
+                            })
+                        }
+                        else
+                        {
+                            view?.fetchUserFailed()
+                        }
+                    })
+                }
+                
+                
+            } else {
+                view?.fetchUserFailed()
             }
         }
     }
-
+    
     
     func fetchUsersResult(keyUser: String) {
         infoUsers.removeAll()
@@ -100,32 +118,49 @@ class ListUserPresenter: ListUserPresenterProtocol {
                             let email = dict["Email"] as! String
                             let uid = dict["Uid"] as! String
                             
-                            let placeRef = self.ref.child("Users/\(keyUser.key)/Auth")
+                            let placeRef = self.ref.child("Data/\(code)")
                             placeRef.observeSingleEvent(of:.value, with: { [self] snapshot in
                                 if snapshot.exists()
                                 {
                                     let dict = snapshot.value as! [String: Any]
-                                    let role = dict["Role"] as! String
-                                    let state = dict["State"] as! Bool
+                                    let name = dict["Name"] as! String
+                                    let Image = dict["Image"] as! String
+
+                                    let placeRef = self.ref.child("Users/\(keyUser.key)/Auth")
+                                    placeRef.observeSingleEvent(of:.value, with: { [self] snapshot in
+                                        if snapshot.exists()
+                                        {
+                                            let dict = snapshot.value as! [String: Any]
+                                            let role = dict["Role"] as! String
+                                            let state = dict["State"] as! Bool
+                                            
+                                            if role != "Admin" {
+                                                infoUsers.append(ListUser(code: code, email: email, uid: uid, role: role, state: state, name: name,urlImage: Image))
+                                            }
+                                            DispatchQueue.main.async {
+                                                view?.fetchUserSearchSuccess()
+                                            }
+                                            
+                                        }
+                                        else {
+                                            view?.fetchUserSearchFailed()
+                                        }
+                                    })
                                     
-                                    infoUsers.append(ListUser(code: code, email: email, uid: uid, role: role, state: state))
-                                    DispatchQueue.main.async {
-                                        view?.fetchUserSuccess()
-                                    }
                                 }
                                 else {
-                                    view?.fetchUserFailed()
+                                    view?.fetchUserSearchFailed()
                                 }
                             })
                         }
                         else
                         {
-                            view?.fetchUserSuccess()
+                            view?.fetchUserSearchFailed()
                         }
                     })
                 }
             } else {
-                view?.fetchUserSuccess()
+                view?.fetchUserSearchFailed()
             }
             
         }

@@ -12,6 +12,7 @@ import UIKit
 import SkeletonView
 class ListUserViewController: BaseViewController {
     
+    @IBOutlet weak var lbNoData: UILabel!
     @IBOutlet weak var viewPlus: UIView!
     @IBOutlet weak var btPlus: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
@@ -47,6 +48,7 @@ class ListUserViewController: BaseViewController {
     
     func setupLanguage(){
         lbListUser.text = AppLanguage.ListUser.ListUser.localized
+        lbNoData.text = AppLanguage.HandleError.noData.localized
     }
     
     func setupUI() {
@@ -86,6 +88,7 @@ class ListUserViewController: BaseViewController {
     
     @objc func actionSearch(sender: UIButton) {
         skeletonView()
+        lbNoData.isHidden = true
         sender.isEnabled = false
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
             sender.isEnabled = true
@@ -98,6 +101,21 @@ class ListUserViewController: BaseViewController {
         navigationController?.pushViewController(createUser, animated: true)
         createUser.refreshListUser = { [self] in
             refreshListUser()
+        }
+    }
+    
+    func remakeData(){
+        listUser = presenter.infoUsers
+        collectionView.hideSkeleton()
+        collectionView.reloadData()
+        checkEmptyData()
+    }
+    
+    func checkEmptyData(){
+        if listUser.count != 0 {
+            lbNoData.isHidden = true
+        } else {
+            lbNoData.isHidden = false
         }
     }
     
@@ -121,7 +139,7 @@ extension ListUserViewController: SkeletonCollectionViewDataSource {
 extension ListUserViewController: UICollectionViewDelegateFlowLayout,UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width / 2 - 10, height: 170 )
+        return CGSize(width: collectionView.frame.width / 2 - 10, height: 202 )
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -205,6 +223,10 @@ extension ListUserViewController: UICollectionViewDataSource {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ListUserCell", for: indexPath) as? ListUserCell {
             cell.lbEmail.text = listUser[indexPath.row]?.email
             cell.lbID.text = listUser[indexPath.row]?.code
+            cell.lbName.text = listUser[indexPath.row]?.name
+            if let profileURL = listUser[indexPath.row]?.urlImage {
+                cell.imgProfile.loadImage(urlString: profileURL)
+            }
             if listUser[indexPath.row]?.state == true {
                 cell.viewState.backgroundColor = .systemGreen
             } else {
@@ -222,24 +244,20 @@ extension ListUserViewController: UICollectionViewDataSource {
 
 extension ListUserViewController: ListUserViewProtocol{
     func fetchUserSearchSuccess() {
-        listUser = presenter.infoUsers
-        collectionView.hideSkeleton()
-        collectionView.reloadData()
+        remakeData()
   
     }
     
     func fetchUserSearchFailed() {
         print("search user failed")
-        collectionView.hideSkeleton()
+        remakeData()
   
     }
     
     
     func fetchUserSuccess() {
-        listUser = presenter.infoUsers
+        remakeData()
         pullControl.endRefreshing()
-        collectionView.hideSkeleton()
-        collectionView.reloadData()
  
     }
     
@@ -248,6 +266,7 @@ extension ListUserViewController: ListUserViewProtocol{
         pullControl.endRefreshing()
         collectionView.hideSkeleton()
         collectionView.reloadData()
+        checkEmptyData()
 
     }
     

@@ -207,6 +207,13 @@
 "The event created failed."  = "Sự kiện được tạo không thành công.";
 "The event update failed." = "Cập nhật sự kiện không thành công.";
 "Please fill in all information." = "Vui lòng điền đầy đủ tất cả thông tin.";
+"No Data." = "Không có dữ liệu.";
+"no ongoing events." = "không có sự kiện đang diễn ra.";
+"no upcoming events." = "không có sự kiện sắp tới.";
+"no event has ended." = "không có sự kiện nào đã kết thúc.";
+"Already exists ID in event list." = "Đã tồn tại ID trong danh sách sự kiện.";
+"Invalid ID." = "ID không hợp lệ.";
+
 
 //MARK: -- HandleSuccess
 "Your Password has been changed." = "Mật khẩu của bạn đã được thay đổi.";
@@ -216,6 +223,11 @@
 "Account created successfully." = "Đã tạo tài khoản thành công.";
 "The event has been successfully created." = "Sự kiện đã được tạo thành công.";
 "The event has been successfully updated." = "Sự kiện đã được cập nhật thành công.";
+"Please update information of the ID." = "Vui lòng cập nhật thông tin của ID.";
+"Attendance success for ID." = "Điểm danh thành công cho ID.";
+"Checking..." = "Đang kiểm tra...";
+"Place the barcode within the window to scan.\nThe search will start automatically." = "Đặt mã vạch trong cửa sổ để quét.\nTìm kiếm sẽ tự động bắt đầu.";
+"Scan Barcode" = "Quét mã vạch";
 
 //MARK: -- DetailAccount
 "Detail\nAccount" = "Chi tiết\nTài khoản";

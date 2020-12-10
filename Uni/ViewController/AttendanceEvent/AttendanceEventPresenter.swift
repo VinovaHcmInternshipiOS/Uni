@@ -39,8 +39,10 @@ protocol AttendanceEventViewProtocol: class {
     func updateListEventOfUserFailed()
     func fetchDetailSuccess()
     func fetchDetailFailed()
-    func checkFakeCodeSuccess(code:String,type:typeInput)
+    func checkFakeCodeSuccess(code:String,type:typeInput )
     func checkFakeCodeFailed()
+    func searchAttendanceEventSuccess()
+    func searchAttendanceEventFailed()
 }
 
 // MARK: Presenter -
@@ -60,7 +62,7 @@ protocol AttendanceEventPresenterProtocol: class {
     func getScoreUser(code:String,scoreEvent:Int)
     func updateListEventOfUser(code: String,keyEvent:String,score:Int,date:String,checkin:String)
     func getDetailEvent(keyEvent: String)
-    func checkFakeCode(fakeCode: String,type: typeInput)
+    func checkFakeCode(fakeCode: String,type: typeInput )
 }
 
 class AttendanceEventPresenter: AttendanceEventPresenterProtocol {
@@ -261,18 +263,18 @@ class AttendanceEventPresenter: AttendanceEventPresenterProtocol {
                                     if infoAttendance.contains(where: {$0?.code == keyJoiner}) == false {                           infoAttendance.append(AttendanceEvent(code: keyJoiner, name: name, checkin: checkin, date: date, urlImage: urlImage))
                                         
                                     }
-                                    view?.fetchAttendanceSuccess()
+                                    view?.searchAttendanceEventSuccess()
         
                                 }
                                 else
                                 {
-                                    view?.fetchAttendanceFailed()
+                                    view?.searchAttendanceEventFailed()
                                 }
                             })
                         }
                         else
                         {
-                                view?.fetchAttendanceFailed()
+                            view?.searchAttendanceEventFailed()
                         }
                     })
     }
@@ -313,12 +315,12 @@ class AttendanceEventPresenter: AttendanceEventPresenterProtocol {
                 let code = placeDict["Code"] as! String
 
                 DispatchQueue.main.async {
-                    view?.checkFakeCodeSuccess(code: code,type:type)
+                    view?.checkFakeCodeSuccess(code: code,type:type )
                 }
             }
             else
             {
-                view?.checkFakeCodeFailed()
+                view?.checkFakeCodeFailed( )
             }
         })
     }

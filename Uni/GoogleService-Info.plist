@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>776133974180-7o14uub8lshb2svv6cacgndv27ge8b2q.apps.googleusercontent.com</string>
+	<string>854200893643-j1nfobt43faq4isv86s9g2rkhunr5t82.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.776133974180-7o14uub8lshb2svv6cacgndv27ge8b2q</string>
+	<string>com.googleusercontent.apps.854200893643-j1nfobt43faq4isv86s9g2rkhunr5t82</string>
 	<key>API_KEY</key>
-	<string>AIzaSyBjkRVK5NLTl-8RJDT-oAnUwS6d7LP0oEk</string>
+	<string>AIzaSyC-7YgkFDJyqyYHR-Tn4ie8_lJBzXVITV8</string>
 	<key>GCM_SENDER_ID</key>
-	<string>776133974180</string>
+	<string>854200893643</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>nguyengiahuy.Uni</string>
+	<string>vn.giahuy.Uni</string>
 	<key>PROJECT_ID</key>
-	<string>the-uni-c151e</string>
+	<string>the-uni-92754</string>
 	<key>STORAGE_BUCKET</key>
-	<string>the-uni-c151e.appspot.com</string>
+	<string>the-uni-92754.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,8 +29,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:776133974180:ios:5cb8b3988e8516c3466e31</string>
+	<string>1:854200893643:ios:42e3790a25cfed6f0f9b4e</string>
 	<key>DATABASE_URL</key>
-	<string>https://the-uni-c151e.firebaseio.com</string>
+	<string>https://the-uni-92754-default-rtdb.firebaseio.com</string>
 </dict>
 </plist>

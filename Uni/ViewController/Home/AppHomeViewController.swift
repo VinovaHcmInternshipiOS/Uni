@@ -12,6 +12,9 @@ import UIKit
 import SkeletonView
 
 class AppHomeViewController:BaseViewController{
+    @IBOutlet weak var lbNoDataEnded: UILabel!
+    @IBOutlet weak var lbNoDataComingSoon: UILabel!
+    @IBOutlet weak var lbNoDataHappening: UILabel!
     @IBOutlet var viewAppHome: UIView!
     @IBOutlet weak var lbAppHome: UILabel!
     @IBOutlet weak var lbEnded: UILabel!
@@ -86,9 +89,9 @@ class AppHomeViewController:BaseViewController{
         lbComingSoon.text = AppLanguage.HomeApp.ComingSoon.localized
         lbEnded.text = AppLanguage.HomeApp.Ended.localized
         lbAppHome.text = AppLanguage.HomeApp.AppHome.localized
-        
-
-        
+        lbNoDataHappening.text = AppLanguage.HandleError.noHappenning.localized
+        lbNoDataComingSoon.text = AppLanguage.HandleError.noComingSoon.localized
+        lbNoDataEnded.text = AppLanguage.HandleError.noEnded.localized
     }
     
     func setupUI(){
@@ -181,6 +184,33 @@ class AppHomeViewController:BaseViewController{
         addButtonImageToNavigation(image: AppIcon.icBellYellow!, style: .right, action: #selector(notification))
         self.navigationController?.hideShadowLine()
     }
+    
+    func checkEmptyDataHappenning(){
+        if listEventHappening.count != 0 {
+            lbNoDataHappening.isHidden = true
+        } else {
+            lbNoDataHappening.isHidden = false
+        }
+    }
+    
+    func checkEmptyDataComingSoon(){
+        if listEventComingSoon.count != 0 {
+            lbNoDataComingSoon.isHidden = true
+        } else {
+            lbNoDataComingSoon.isHidden = false
+        }
+    }
+    
+    func checkEmptyDataEnded(){
+        if listEventEnded.count != 0 {
+            lbNoDataEnded.isHidden = true
+        } else {
+            lbNoDataEnded.isHidden = false
+        }
+    }
+    
+    
+    
     @objc func notification(){
    
     }
@@ -348,10 +378,14 @@ extension AppHomeViewController: AppHomeViewProtocol {
         collectionHappenning.hideSkeleton()
         pullControl.endRefreshing()
         collectionHappenning.reloadData()
+        checkEmptyDataHappenning()
     }
     
     func fetchInfoEventHappeningFailed() {
+        collectionHappenning.hideSkeleton()
+        pullControl.endRefreshing()
         print("Fetch info event happening error")
+        checkEmptyDataHappenning()
     }
     
     func fetchInfoEventComingSoonSuccess() {
@@ -359,10 +393,14 @@ extension AppHomeViewController: AppHomeViewProtocol {
         collectionComingSoon.hideSkeleton()
         pullControl.endRefreshing()
         collectionComingSoon.reloadData()
+        checkEmptyDataComingSoon()
     }
     
     func fetchInfoEventComingSoonFailed() {
+        collectionComingSoon.hideSkeleton()
+        pullControl.endRefreshing()
         print("Fetch info event comingsoon error")
+        checkEmptyDataComingSoon()
     }
     
     func fetchInfoEventEndedSuccess() {
@@ -370,10 +408,15 @@ extension AppHomeViewController: AppHomeViewProtocol {
         collectionEnded.hideSkeleton()
         pullControl.endRefreshing()
         collectionEnded.reloadData()
+        checkEmptyDataEnded()
     }
     
     func fetchInfoEventEndedFailed() {
+
+        collectionEnded.hideSkeleton()
+        pullControl.endRefreshing()
         print("Fetch info event ended error")
+        checkEmptyDataEnded()
     }
     
     
@@ -399,6 +442,10 @@ extension AppHomeViewController: AppHomeViewProtocol {
     }
     
     func fetchProfileFailed() {
+        lbName.hideSkeleton()
+        lbID.hideSkeleton()
+        lbFaculty.hideSkeleton()
+        imgUser.hideSkeleton()
         print("Fetch profile user error")
     }
     

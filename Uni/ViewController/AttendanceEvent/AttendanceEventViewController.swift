@@ -11,8 +11,10 @@
 import UIKit
 import BarcodeScanner
 import AVFoundation
+import AudioToolbox
 import MessageUI
 class AttendanceEventViewController: BaseViewController,AVCaptureMetadataOutputObjectsDelegate,MFMailComposeViewControllerDelegate {
+    @IBOutlet weak var lbNoData: UILabel!
     @IBOutlet weak var btPlus: UIButton!
     @IBOutlet weak var viewPlus: UIView!
     @IBOutlet weak var viewBtExport: UIView!
@@ -28,8 +30,9 @@ class AttendanceEventViewController: BaseViewController,AVCaptureMetadataOutputO
     var listAttendance = [AttendanceEvent?]()
     var keyDetailEvent = ""
     var getkeySearch: (()->Void)? = nil
-    var viewController = BarcodeScannerViewController()
     var dataCSV: Data?
+    let viewController = BarcodeScannerViewController()
+    let systemSoundID: SystemSoundID = 1103 // Tick
     init(presenter: AttendanceEventPresenterProtocol) {
         self.presenter = presenter
         super.init(nibName: "AttendanceEventViewController", bundle: nil)
@@ -48,13 +51,22 @@ class AttendanceEventViewController: BaseViewController,AVCaptureMetadataOutputO
         setupLanguage()
         pullRefreshData()
         addNav()
+     
     }
+    
     
     func setupLanguage(){
         lbListAttendance.text = AppLanguage.ListAttendance.ListAttendance.localized
+        lbNoData.text = AppLanguage.HandleError.noData.localized
     }
     
     func setupUI() {
+        
+        viewController.codeDelegate = self
+        viewController.errorDelegate = self
+        viewController.dismissalDelegate = self
+        
+
         collectionView.delegate =  self
         collectionView.dataSource = self
         collectionView.register(UINib(nibName: "AttendanceCell", bundle: nil), forCellWithReuseIdentifier: "AttendanceCell")
@@ -73,6 +85,7 @@ class AttendanceEventViewController: BaseViewController,AVCaptureMetadataOutputO
         scrollView.alwaysBounceVertical = true
         skeletonView()
     }
+    
     
     func skeletonView(){
         collectionView.isSkeletonable = true
@@ -186,28 +199,28 @@ class AttendanceEventViewController: BaseViewController,AVCaptureMetadataOutputO
     }
     
     @IBAction func addAttendance(_ sender: Any) {
-        let alert = UIAlertController(title: "", message: AppLanguage.ListAttendance.Attendance.localized, preferredStyle: .alert)
-        alert.addTextField(configurationHandler: { (TextField) in
-            TextField.placeholder = AppLanguage.ListAttendance.EnterIDStudent.localized
-            TextField.keyboardType = UIKeyboardType.numberPad
-        })
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [self] (updateAction) in
-            let studentID = alert.textFields!.first!.text!
-            let charactersetTextView = CharacterSet(charactersIn: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ,[]:;<>,+=-_|!@%^&?$/.{()*&^%#`~'} ")
-            if (studentID.rangeOfCharacter(from: charactersetTextView.intersection(charactersetTextView)) != nil){
-                
-                self.presentAlertWithTitle(title: "Invalid ID", message: "Please try again!", options: "OK") { (Int) in}
-            }
-            else
-            {
-                presenter.checkExistUser(keyEvent:keyDetailEvent,code: studentID,type: .keyboard)
-                
-            }
-        }))
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
-            alert.dismiss(animated: true, completion: nil)
-        }))
-        self.present(alert, animated: true, completion: nil)
+//        let alert = UIAlertController(title: "", message: AppLanguage.ListAttendance.Attendance.localized, preferredStyle: .alert)
+//        alert.addTextField(configurationHandler: { (TextField) in
+//            TextField.placeholder = AppLanguage.ListAttendance.EnterIDStudent.localized
+//            TextField.keyboardType = UIKeyboardType.numberPad
+//        })
+//        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [self] (updateAction) in
+//            let studentID = alert.textFields!.first!.text!
+//            let charactersetTextView = CharacterSet(charactersIn: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ,[]:;<>,+=-_|!@%^&?$/.{()*&^%#`~'} ")
+//            if (studentID.rangeOfCharacter(from: charactersetTextView.intersection(charactersetTextView)) != nil){
+//
+//                self.presentAlertWithTitle(title: "Invalid ID", message: "Please try again!", options: "OK") { (Int) in}
+//            }
+//            else
+//            {
+//                presenter.checkExistUser(keyEvent:keyDetailEvent,code: studentID,type: .keyboard)
+//
+//            }
+//        }))
+//        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
+//            alert.dismiss(animated: true, completion: nil)
+//        }))
+//        self.present(alert, animated: true, completion: nil)
     }
     
     func refreshListAttendance() {
@@ -218,22 +231,21 @@ class AttendanceEventViewController: BaseViewController,AVCaptureMetadataOutputO
     @objc func pulledRefreshControl(sender:AnyObject) {
         skeletonView()
         refreshListAttendance()
-        
-        
-        
     }
     
     private func pullRefreshData() {
         pullControl.addTarget(self, action: #selector(pulledRefreshControl), for: UIControl.Event.valueChanged)
         scrollView.addSubview(pullControl)
     }
-    
+
     @IBAction func scanBarcode(_ sender: Any) {
-        let viewController = makeBarcodeScannerViewController()
-        viewController.dismissalDelegate = self
+        viewController.headerViewController.closeButton.tintColor = .red
         viewController.cameraViewController.showsCameraButton = true
-        viewController.messageViewController.messages.notFoundText = "Invalid ID"
-        viewController.messageViewController.messages.processingText = "Checking..."
+        viewController.cameraViewController.barCodeFocusViewType = .animated
+        viewController.messageViewController.messages.notFoundText = AppLanguage.HandleError.invalidID.localized
+        viewController.messageViewController.messages.processingText = AppLanguage.Checking.localized
+        viewController.headerViewController.titleLabel.text = AppLanguage.titleCamera.localized
+        viewController.messageViewController.messages.scanningText = AppLanguage.FooterCamera.localized
         present(viewController, animated: false, completion: nil)
     }
     
@@ -242,19 +254,31 @@ class AttendanceEventViewController: BaseViewController,AVCaptureMetadataOutputO
     {
         let feedbackGenerator = UIImpactFeedbackGenerator(style: .heavy)
         feedbackGenerator.impactOccurred()
+        AudioServicesPlaySystemSound (systemSoundID)
     }
     
-    func makeBarcodeScannerViewController() -> BarcodeScannerViewController {
-        viewController.codeDelegate = self
-        viewController.errorDelegate = self
-        viewController.dismissalDelegate = self
-        viewController.headerViewController.closeButton.tintColor = .red
-        return viewController
-    }
     
     @objc func actionSearch(sender: UIButton) {
         skeletonView()
+        lbNoData.isHidden = true
         getkeySearch?()
+    }
+    
+    func remakeData(){
+        listAttendance = presenter.infoAttendance
+        collectionView.hideSkeleton()
+        collectionView.reloadData()
+        checkEmptyData()
+        
+    }
+    
+    func checkEmptyData(){
+        print(listAttendance.count)
+        if listAttendance.count != 0 {
+            lbNoData.isHidden = true
+        } else {
+            lbNoData.isHidden = false
+        }
     }
     
 }
@@ -363,13 +387,14 @@ extension AttendanceEventViewController: UICollectionViewDataSource {
 
 extension AttendanceEventViewController: BarcodeScannerCodeDelegate {
     func scanner(_ controller: BarcodeScannerViewController, didCaptureCode code: String, type: String) {
+        vibrate()
         print("Barcode Data: \(code)")
         print("Symbology Type: \(type)")
         let charactersetTextView = CharacterSet(charactersIn: ",[]:;<>,+=-_|!@%^&?$/.{()*&^%#`~'} ")
         if (code.rangeOfCharacter(from: charactersetTextView.intersection(charactersetTextView)) != nil){
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                 controller.messageViewController.errorTintColor = UIColor.systemRed
-                controller.resetWithError(message: "Invalid ID")
+                controller.resetWithError(message: AppLanguage.HandleError.invalidID.localized)
             }
         }
         else
@@ -382,6 +407,7 @@ extension AttendanceEventViewController: BarcodeScannerCodeDelegate {
 extension AttendanceEventViewController: BarcodeScannerErrorDelegate {
     func scanner(_ controller: BarcodeScannerViewController, didReceiveError error: Error) {
         print(error)
+        
     }
 }
 
@@ -393,12 +419,23 @@ extension AttendanceEventViewController: BarcodeScannerDismissalDelegate {
 }
 
 extension AttendanceEventViewController: AttendanceEventViewProtocol {
+    
+    func searchAttendanceEventSuccess() {
+        remakeData()
+    }
+    
+    func searchAttendanceEventFailed() {
+        remakeData()
+    }
+    
     func checkFakeCodeSuccess(code: String, type: typeInput) {
         presenter.checkExistUser(keyEvent:keyDetailEvent,code: code,type:type)
     }
     
     func checkFakeCodeFailed() {
-        print("check fake code failed")
+        
+        viewController.messageViewController.errorTintColor = UIColor.systemRed
+        viewController.resetWithError(message: AppLanguage.HandleError.invalidID.localized)
     }
     
     func fetchDetailSuccess() {
@@ -459,12 +496,15 @@ extension AttendanceEventViewController: AttendanceEventViewProtocol {
     func checkExistUserSuccess(code: String,type: typeInput) {
         switch type {
         case .scan:
+           
             DispatchQueue.main.asyncAfter(deadline: .now()) { [self] in
-                viewController.messageViewController.errorTintColor = UIColor.systemRed
-                viewController.resetWithError(message: "\(code)\rAlready exists in event list.")
-            }
+                    viewController.messageViewController.errorTintColor = UIColor.systemRed
+                    viewController.resetWithError(message: "\(code)\r\(AppLanguage.HandleError.attendanceAlready.localized)")
+                }
+            
+      
         case .keyboard:
-            presentAlertWithTitle(title: "Opps", message: "\(code)\rAlready exists in event list.", options: "OK") { (Int) in
+            presentAlertWithTitle(title: AppLanguage.HandleError.anError.localized, message: "\(code)\(AppLanguage.HandleError.attendanceAlready.localized)", options: AppLanguage.Ok.localized) { (Int) in
             }
         }
     }
@@ -484,12 +524,15 @@ extension AttendanceEventViewController: AttendanceEventViewProtocol {
     func checkUserAttendanceSuccess(code: String,type:typeInput) {
         switch type {
         case .scan:
+            
             DispatchQueue.main.asyncAfter(deadline: .now()) {  [self] in
-                viewController.messageViewController.errorTintColor = UIColor.systemGreen
-                viewController.resetWithError(message: "\(AppLanguage.HandleSuccess.Success.localized) \rID: \(code)")
-            }
+                    viewController.messageViewController.errorTintColor = UIColor.systemGreen
+                    viewController.resetWithError(message: "\(AppLanguage.HandleSuccess.attendance.localized) \rID: \(code)")
+                }
+            
+  
         case .keyboard:
-            presentAlertWithTitle(title: AppLanguage.HandleSuccess.Success.localized, message: "Attendance success for ID \(code)", options: "OK") { (Int) in
+            presentAlertWithTitle(title: AppLanguage.HandleSuccess.Success.localized, message: "\(AppLanguage.HandleSuccess.attendance.localized)\r\(code)", options: AppLanguage.Ok.localized) { (Int) in
             }
         }
         presenter.getScoreEvent(keyEvent: keyDetailEvent, code: code)
@@ -498,12 +541,15 @@ extension AttendanceEventViewController: AttendanceEventViewProtocol {
     func checkUserAttendanceFailed(code: String,type:typeInput) {
         switch type {
         case .scan:
+            
             DispatchQueue.main.asyncAfter(deadline: .now()) { [self] in
-                viewController.messageViewController.errorTintColor = UIColor.systemGreen
-                viewController.resetWithError(message: "Success \rID: \(code)\rPlease update Infomation of the ID")
-            }
+                    viewController.messageViewController.errorTintColor = UIColor.systemGreen
+                    viewController.resetWithError(message: "\(AppLanguage.HandleSuccess.Success.localized) \(AppLanguage.HandleSuccess.updateInformationID.localized)")
+                }
+            
+            
         case .keyboard:
-            presentAlertWithTitle(title: "Success", message: "Please update Infomation of the ID", options: "OK") { (Int) in
+            presentAlertWithTitle(title: AppLanguage.HandleSuccess.Success.localized, message: AppLanguage.HandleSuccess.updateInformationID.localized, options: AppLanguage.Ok.localized) { (Int) in
             }
         }
         presenter.createUser(code: code)
@@ -515,20 +561,19 @@ extension AttendanceEventViewController: AttendanceEventViewProtocol {
     }
     
     func userAttendanceFailed() {
+        remakeData()
+        pullControl.endRefreshing()
         print("Failed")
     }
     
     func fetchAttendanceSuccess() {
-        listAttendance = presenter.infoAttendance
+        remakeData()
         pullControl.endRefreshing()
-        collectionView.hideSkeleton()
-        collectionView.reloadData()
     }
     
     func fetchAttendanceFailed() {
         print("fetch attendance failed")
+        remakeData()
         pullControl.endRefreshing()
-        collectionView.hideSkeleton()
-        collectionView.reloadData()
     }
 }

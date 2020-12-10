@@ -76,7 +76,7 @@ class ListEventPresenter: ListEventPresenterProtocol {
     
     func fetchEvent() {
         
-        ref.child("Event").observeSingleEvent(of:.value) { (snapshot) in
+        ref.child("Event").observeSingleEvent(of:.value) { [self] (snapshot) in
             if(snapshot.exists()) {
                 for keyEvent in snapshot.children.allObjects as! [DataSnapshot] {
                     let placeRef = self.ref.child("Event/\(keyEvent.key)")
@@ -106,12 +106,14 @@ class ListEventPresenter: ListEventPresenterProtocol {
                     })
                     
                 }
+            } else {
+                view?.fetchEventFailed()
             }
         }
     }
     func fetchEventResult(keyEvent: String) {
         infoEvent.removeAll()
-        self.ref.child("Event").queryOrdered(byChild: "Title").queryStarting(atValue: "\(keyEvent)").queryEnding(atValue: "\(keyEvent)" + "\u{f8ff}").observe(.value) { [self] snapshot in
+        self.ref.child("Event").queryOrdered(byChild: "Title").queryStarting(atValue: "\(keyEvent)").queryEnding(atValue: "\(keyEvent)" + "\u{f8ff}").observeSingleEvent(of:.value) { [self] snapshot in
             if (snapshot.exists()) {
                 for keyEvent in snapshot.children.allObjects as! [DataSnapshot] {
                     let placeRef = self.ref.child("Event/\(keyEvent.key)")
@@ -131,17 +133,17 @@ class ListEventPresenter: ListEventPresenterProtocol {
                             
                             infoEvent.append(request)
                             DispatchQueue.main.async {
-                                view?.fetchEventSuccess()
+                                view?.fetchEventSearchSuccess()
                             }
                         }
                         else
                         {
-                            view?.fetchEventFailed()
+                            view?.fetchEventSearchFailed()
                         }
                     })
                 }
             } else {
-                view?.fetchEventFailed()
+                view?.fetchEventSearchFailed()
             }
             
         }

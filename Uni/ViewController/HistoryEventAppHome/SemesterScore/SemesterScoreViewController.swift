@@ -13,6 +13,7 @@ import SkeletonView
 
 class SemesterScoreViewController: BaseViewController {
 
+    @IBOutlet weak var lbNoData: UILabel!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var viewScore: UIView!
     @IBOutlet weak var totalScore: UILabel!
@@ -43,12 +44,21 @@ class SemesterScoreViewController: BaseViewController {
         setupUI()
         setupLanguage()
         loadLabel()
-     
-        for i in 0..<dataSemester.count {
-           presenter.fetchHistoryEvent(keyEvent: (dataSemester[i]?.Key)!)
-        }
+        fetchSemester ()
+        
         
 
+    }
+    func fetchSemester () {
+        if dataSemester.count != 0 {
+            lbNoData.isHidden = true
+            for i in 0..<dataSemester.count {
+               presenter.fetchHistoryEvent(keyEvent: (dataSemester[i]?.Key)!)
+            }
+        } else {
+            lbNoData.isHidden = false
+            hideSkeletonView()
+        }
     }
     func loadLabel() {
         lbYear.text = dataLabelYear
@@ -58,6 +68,7 @@ class SemesterScoreViewController: BaseViewController {
     func setupLanguage(){
         totalEvent.text = AppLanguage.Semester.TotalEvent.localized
         totalScore.text = AppLanguage.Semester.TotalScore.localized
+        lbNoData.text = AppLanguage.HandleError.noData.localized
     }
 
     func setupUI(){

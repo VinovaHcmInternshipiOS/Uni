@@ -32,6 +32,9 @@
                 <outlet property="lbHappenning" destination="NDO-QS-Kd5" id="VUp-u9-mQF"/>
                 <outlet property="lbID" destination="WBk-dh-cPD" id="pmx-mH-f1b"/>
                 <outlet property="lbName" destination="rxZ-TC-v6j" id="hY3-ar-KjY"/>
+                <outlet property="lbNoDataComingSoon" destination="zHS-XW-eHy" id="ygz-b6-bdV"/>
+                <outlet property="lbNoDataEnded" destination="LYN-iR-vag" id="duB-Tj-Fe6"/>
+                <outlet property="lbNoDataHappening" destination="fFm-5V-azE" id="DnJ-Rn-oeF"/>
                 <outlet property="pageControl" destination="SI5-hK-jyF" id="ebZ-Ch-Y16"/>
                 <outlet property="scrollView" destination="gg5-jh-tLP" id="apB-w3-42r"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -359,6 +362,12 @@
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="no ongoing events." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fFm-5V-azE">
+                                    <rect key="frame" x="130" y="568" width="154" height="21"/>
+                                    <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="18"/>
+                                    <color key="textColor" name="5B5B5B"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="d3G-X6-EmU">
                                     <rect key="frame" x="22" y="1096.5" width="360" height="297"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -372,6 +381,18 @@
                                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </collectionViewFlowLayout>
                                 </collectionView>
+                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="no upcoming events." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zHS-XW-eHy">
+                                    <rect key="frame" x="122.5" y="885.5" width="169" height="21"/>
+                                    <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="18"/>
+                                    <color key="textColor" name="5B5B5B"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="no event has ended." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LYN-iR-vag">
+                                    <rect key="frame" x="125" y="1234.5" width="164" height="21"/>
+                                    <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="18"/>
+                                    <color key="textColor" name="5B5B5B"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
@@ -380,11 +401,13 @@
                                 <constraint firstItem="MnW-If-RAY" firstAttribute="width" secondItem="Mwb-sB-UJJ" secondAttribute="height" multiplier="35:368" constant="-71.235507246376827" id="7yD-To-VUi"/>
                                 <constraint firstItem="W0N-8K-OqL" firstAttribute="leading" secondItem="Mwb-sB-UJJ" secondAttribute="leading" constant="32" id="809-pF-ug7"/>
                                 <constraint firstItem="ZIx-kM-VSU" firstAttribute="top" secondItem="F2t-ME-TTa" secondAttribute="bottom" constant="11" id="BW4-Lh-kHJ"/>
+                                <constraint firstItem="fFm-5V-azE" firstAttribute="centerX" secondItem="Mwb-sB-UJJ" secondAttribute="centerX" id="E1P-Ov-Ecj"/>
                                 <constraint firstItem="HcM-bs-Z7P" firstAttribute="width" secondItem="Mwb-sB-UJJ" secondAttribute="height" multiplier="35:368" constant="-71.568840579710184" id="F9p-3X-EYR"/>
                                 <constraint firstItem="SI5-hK-jyF" firstAttribute="centerX" secondItem="s5J-Lb-Vi3" secondAttribute="centerX" id="FqB-uP-huE"/>
                                 <constraint firstItem="s5J-Lb-Vi3" firstAttribute="top" secondItem="NDO-QS-Kd5" secondAttribute="bottom" constant="10" id="G5A-wK-QGB"/>
                                 <constraint firstAttribute="trailing" secondItem="ZIx-kM-VSU" secondAttribute="trailing" constant="32" id="JUH-Un-GuR"/>
                                 <constraint firstAttribute="trailing" secondItem="gVG-Og-EVU" secondAttribute="trailing" constant="32" id="L4u-UT-Jzj"/>
+                                <constraint firstItem="zHS-XW-eHy" firstAttribute="centerX" secondItem="Mwb-sB-UJJ" secondAttribute="centerX" id="Ocv-Mw-fWz"/>
                                 <constraint firstItem="Fu0-HR-OPE" firstAttribute="leading" secondItem="Mwb-sB-UJJ" secondAttribute="leading" constant="32" id="Q3s-1L-IP5"/>
                                 <constraint firstItem="ZIx-kM-VSU" firstAttribute="leading" secondItem="Mwb-sB-UJJ" secondAttribute="leading" constant="22" id="QVz-pk-55Z"/>
                                 <constraint firstItem="gVG-Og-EVU" firstAttribute="top" secondItem="agw-r8-1O9" secondAttribute="bottom" constant="45" id="Qxj-GZ-XcV"/>
@@ -393,11 +416,14 @@
                                 <constraint firstAttribute="trailing" secondItem="s5J-Lb-Vi3" secondAttribute="trailing" constant="30" id="UoD-1X-x2l"/>
                                 <constraint firstItem="SI5-hK-jyF" firstAttribute="top" secondItem="Fu0-HR-OPE" secondAttribute="bottom" constant="264.5" id="V9Y-aQ-9hE"/>
                                 <constraint firstItem="MnW-If-RAY" firstAttribute="height" secondItem="Mwb-sB-UJJ" secondAttribute="height" multiplier="35:368" constant="-70.902173913043498" id="WuJ-kj-lk9"/>
+                                <constraint firstItem="zHS-XW-eHy" firstAttribute="centerY" secondItem="ZIx-kM-VSU" secondAttribute="centerY" id="Xc9-ec-zft"/>
                                 <constraint firstItem="NDO-QS-Kd5" firstAttribute="leading" secondItem="Mwb-sB-UJJ" secondAttribute="leading" constant="32" id="aKX-9p-G0w"/>
                                 <constraint firstItem="d3G-X6-EmU" firstAttribute="top" secondItem="W0N-8K-OqL" secondAttribute="bottom" constant="11" id="bEj-xd-ksc"/>
+                                <constraint firstItem="LYN-iR-vag" firstAttribute="centerY" secondItem="d3G-X6-EmU" secondAttribute="centerY" id="cVE-Yy-v5r"/>
                                 <constraint firstItem="s5J-Lb-Vi3" firstAttribute="leading" secondItem="Mwb-sB-UJJ" secondAttribute="leading" constant="30" id="eOq-Vm-FV2"/>
                                 <constraint firstItem="W0N-8K-OqL" firstAttribute="top" secondItem="ZIx-kM-VSU" secondAttribute="bottom" constant="22" id="fVi-AC-DqQ"/>
                                 <constraint firstItem="fU9-0Q-kvz" firstAttribute="width" secondItem="Mwb-sB-UJJ" secondAttribute="height" multiplier="35:368" constant="-71.902173913043526" id="fe7-l3-4OG"/>
+                                <constraint firstItem="LYN-iR-vag" firstAttribute="centerX" secondItem="Mwb-sB-UJJ" secondAttribute="centerX" id="gq4-ut-9Yo"/>
                                 <constraint firstItem="agw-r8-1O9" firstAttribute="top" secondItem="Mwb-sB-UJJ" secondAttribute="top" constant="35" id="hXx-eD-K2T"/>
                                 <constraint firstItem="GrU-0R-FD3" firstAttribute="width" secondItem="Mwb-sB-UJJ" secondAttribute="height" multiplier="35:369" constant="-71.517615176151764" id="hn1-xF-C53"/>
                                 <constraint firstItem="gVG-Og-EVU" firstAttribute="leading" secondItem="Mwb-sB-UJJ" secondAttribute="leading" constant="32" id="jAI-BW-Tg4"/>
@@ -406,6 +432,7 @@
                                 <constraint firstAttribute="trailing" secondItem="d3G-X6-EmU" secondAttribute="trailing" constant="32" id="tdJ-6v-akd"/>
                                 <constraint firstItem="nnq-1v-kRU" firstAttribute="top" secondItem="gVG-Og-EVU" secondAttribute="bottom" constant="29" id="uYt-dt-sZF"/>
                                 <constraint firstItem="Fu0-HR-OPE" firstAttribute="top" secondItem="nnq-1v-kRU" secondAttribute="bottom" constant="13" id="v6U-Gx-VGm"/>
+                                <constraint firstItem="fFm-5V-azE" firstAttribute="centerY" secondItem="s5J-Lb-Vi3" secondAttribute="centerY" id="wG6-xL-6Fu"/>
                                 <constraint firstItem="nnq-1v-kRU" firstAttribute="leading" secondItem="Mwb-sB-UJJ" secondAttribute="leading" constant="32" id="xaA-9x-bz7"/>
                             </constraints>
                         </view>
@@ -441,6 +468,9 @@
         <image name="icHomeHistory" width="28" height="28"/>
         <image name="icHomeLeaderBoard" width="28" height="28"/>
         <image name="icHomeSearch" width="28" height="28"/>
+        <namedColor name="5B5B5B">
+            <color red="0.35699999332427979" green="0.35699999332427979" blue="0.35699999332427979" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="Color-1">
             <color red="0.0" green="0.0" blue="0.0" alpha="0.15000000596046448" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

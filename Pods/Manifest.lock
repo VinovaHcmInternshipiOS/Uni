@@ -13,9 +13,14 @@ PODS:
   - Firebase/Database (7.2.0):
     - Firebase/CoreOnly
     - FirebaseDatabase (~> 7.2.0)
+  - Firebase/InAppMessaging (7.2.0):
+    - Firebase/CoreOnly
+    - FirebaseInAppMessaging (~> 7.2.0-beta)
   - Firebase/Storage (7.2.0):
     - Firebase/CoreOnly
     - FirebaseStorage (~> 7.2.0)
+  - FirebaseABTesting (7.2.0):
+    - FirebaseCore (~> 7.0)
   - FirebaseAnalytics (7.2.0):
     - FirebaseCore (~> 7.0)
     - FirebaseInstallations (~> 7.0)
@@ -42,6 +47,12 @@ PODS:
   - FirebaseDatabase (7.2.0):
     - FirebaseCore (~> 7.0)
     - leveldb-library (~> 1.22)
+  - FirebaseInAppMessaging (7.2.0-beta):
+    - FirebaseABTesting (~> 7.0)
+    - FirebaseCore (~> 7.0)
+    - FirebaseInstallations (~> 7.0)
+    - GoogleUtilities/Environment (~> 7.0)
+    - nanopb (~> 2.30906.0)
   - FirebaseInstallations (7.2.0):
     - FirebaseCore (~> 7.0)
     - GoogleUtilities/Environment (~> 7.0)
@@ -94,6 +105,7 @@ DEPENDENCIES:
   - Firebase/Analytics
   - Firebase/Auth
   - Firebase/Database
+  - Firebase/InAppMessaging
   - Firebase/Storage
   - IQKeyboardManagerSwift
   - ShimmerSwift
@@ -103,11 +115,13 @@ SPEC REPOS:
   trunk:
     - BarcodeScanner
     - Firebase
+    - FirebaseABTesting
     - FirebaseAnalytics
     - FirebaseAuth
     - FirebaseCore
     - FirebaseCoreDiagnostics
     - FirebaseDatabase
+    - FirebaseInAppMessaging
     - FirebaseInstallations
     - FirebaseStorage
     - GoogleAppMeasurement
@@ -124,11 +138,13 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   BarcodeScanner: 2f5a53198eae49dc39bf61f2c1f05c04e01ff72d
   Firebase: 456eeacc158d8c58586b7871619a81bb9f27d4ae
+  FirebaseABTesting: 55ed7b94464eee98180d91131f3c85e554ae243d
   FirebaseAnalytics: 2673264e482b428df13786b59165ebf420881d7a
   FirebaseAuth: e6a214cc897d2eab7635b1e5dd6b4298fd1e776b
   FirebaseCore: c959e8a598f83125c01c1700d9161b236ab3833c
   FirebaseCoreDiagnostics: 2d508e12e77e9691ca67d1669b91ee80f0985b29
   FirebaseDatabase: efb4d986413f55f7d9a05e621bd86ca1589e6ca7
+  FirebaseInAppMessaging: 6a136aee1c49a12d8f63d8eb73c0799188f1a9ca
   FirebaseInstallations: 9ab3a9a6522e687f59ff9bcfd92949ac85073f3c
   FirebaseStorage: 4c2cdd98dfe5f6b3fae02db0da72105ac5554bbd
   GoogleAppMeasurement: 57a0df93dc2feb5176b1bac06012dbd725191ba5
@@ -142,6 +158,6 @@ SPEC CHECKSUMS:
   ShimmerSwift: f7ed2daf9c246de8299dfd9e12c6ab465cba9842
   SkeletonView: cc84ce90a804dd0dd7198dd802833411c8a64eaf
 
-PODFILE CHECKSUM: af9312f695f4b6606b730f98e9f3ae85966d82bf
+PODFILE CHECKSUM: 8d3c4cf70b73e091c3839e34144db46da1ae15ca
 
 COCOAPODS: 1.10.0

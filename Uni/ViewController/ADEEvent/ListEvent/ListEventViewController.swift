@@ -13,6 +13,7 @@ import SkeletonView
 
 class ListEventViewController: BaseViewController {
 
+    @IBOutlet weak var lbNoData: UILabel!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var lbListEvent: UILabel!
     @IBOutlet weak var btCreate: UIButton!
@@ -49,6 +50,7 @@ class ListEventViewController: BaseViewController {
     
     func setupLanguage(){
         lbListEvent.text = AppLanguage.ListEvent.ListEvent.localized
+        lbNoData.text = AppLanguage.HandleError.noData.localized
     }
     
     func setupUI() {
@@ -99,6 +101,7 @@ class ListEventViewController: BaseViewController {
     
     @objc func actionSearch(sender: UIButton) {
         skeletonView()
+        lbNoData.isHidden = true
         getkeySearch?()
     }
     
@@ -127,7 +130,21 @@ class ListEventViewController: BaseViewController {
             removeSpinner()
         }
     }
-
+    
+    func remakeData(){
+        ListEvent = presenter.infoEvent
+        collectionView.hideSkeleton()
+        collectionView.reloadData()
+        checkEmptyData()
+    }
+    
+    func checkEmptyData(){
+        if ListEvent.count != 0 {
+            lbNoData.isHidden = true
+        } else {
+            lbNoData.isHidden = false
+        }
+    }
 
 }
 
@@ -246,17 +263,21 @@ extension ListEventViewController: UICollectionViewDataSource {
 extension ListEventViewController: ListEventViewProtocol{
     func checkJoinerSuccess() {
         removeSpinner()
+        checkEmptyData()
         print("Cannot remove event")
     }
 
     func checkJoinerFailed(keyEvent:String) {
+        
         removeSpinner()
         showAlert(title: "Confirm", message: "Do you want to delete this event", actionTitles: ["Cancel","Delete"], style: [.default,.destructive], actions: [cancelActionHandler,deleteActionHandler])
+        checkEmptyData()
     }
     
     func removeEventSuccess() {
         refreshListEvent()
         removeSpinner()
+        checkEmptyData()
         print("remove event success")
     }
     
@@ -266,28 +287,22 @@ extension ListEventViewController: ListEventViewProtocol{
     }
     
     func fetchEventSearchSuccess() {
-        ListEvent = presenter.infoEvent
-        collectionView.hideSkeleton()
-        collectionView.reloadData()
+        remakeData()
     }
     
     func fetchEventSearchFailed() {
-        showAlert(title: "An Error", message: "Event not found", actionTitles: ["OK"], style: [.default], actions: [.none])
-        ListEvent.removeAll()
-        collectionView.hideSkeleton()
-        collectionView.reloadData()
+        remakeData()
     }
     
     func fetchEventSuccess() {
-        ListEvent = presenter.infoEvent
+        remakeData()
         pullControl.endRefreshing()
-        collectionView.hideSkeleton()
-        collectionView.reloadData()
         removeSpinner()
         
     }
     
     func fetchEventFailed() {
+        checkEmptyData()
         print("fetch list event failed")
         pullControl.endRefreshing()
         collectionView.hideSkeleton()
