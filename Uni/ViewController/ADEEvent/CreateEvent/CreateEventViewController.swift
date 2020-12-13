@@ -36,6 +36,7 @@ class CreateEventViewController: BaseViewController {
     var imagePicker: ImagePicker!
     var scoreEvent = 0
     var refreshListEvent: (()->Void)? = nil
+    let sender = PushNotificationSender()
 	init(presenter: CreateEventPresenterProtocol) {
         self.presenter = presenter
         super.init(nibName: "CreateEventViewController", bundle: nil)
@@ -171,6 +172,21 @@ extension CreateEventViewController: ImagePickerDelegate {
 }
 
 extension CreateEventViewController: CreateEventViewProtocol {
+    func createEventSuccess(path: String, title: String) {
+        removeSpinner()
+        sender.sendPushNotification(to: "", title: "New event!!!", body: "Hi, we have just added \(title) event in the Uni.\nWe will be happy if you join us.\nLets explore.")
+        presentAlertWithTitle(title: AppLanguage.HandleSuccess.Success.localized, message: AppLanguage.HandleSuccess.createEvent.localized, options: AppLanguage.Ok.localized) { [self] (option) in
+            self.navigationController?.popViewController(animated: true)
+            refreshListEvent?()
+    }
+       
+        if let imageLanscape = imgLandscape.image, let imagePortal = imgPortal.image{
+            presenter.uploadImage(images: [imageLanscape,imagePortal],path: path)
+        } else {return}
+        
+        
+    }
+    
     func uploadImageLandscapeSuccess(keyRef: String, pathEvent: String) {
         presenter.updateImageEvent(keyRef: keyRef, path: pathEvent, type: .Landscape)
         removeSpinner()
@@ -190,21 +206,7 @@ extension CreateEventViewController: CreateEventViewProtocol {
         print("Upload image portal failed")
         removeSpinner()
     }
-    
-    func createEventSuccess(path: String) {
-        removeSpinner()
-        presentAlertWithTitle(title: AppLanguage.HandleSuccess.Success.localized, message: AppLanguage.HandleSuccess.createEvent.localized, options: AppLanguage.Ok.localized) { [self] (option) in
-            self.navigationController?.popViewController(animated: true)
-            refreshListEvent?()
-    }
-       
-        if let imageLanscape = imgLandscape.image, let imagePortal = imgPortal.image{
-            presenter.uploadImage(images: [imageLanscape,imagePortal],path: path)
-        } else {return}
-        
-        
-    }
-    
+
     func createEventFailed() {
         removeSpinner()
         presentAlertWithTitle(title: AppLanguage.HandleError.anError.localized, message: AppLanguage.HandleError.createEvent.localized, options: AppLanguage.Ok.localized) { [] (option) in

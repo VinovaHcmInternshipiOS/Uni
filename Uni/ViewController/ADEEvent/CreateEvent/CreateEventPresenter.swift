@@ -17,7 +17,7 @@ import UIKit
 
 // MARK: View -
 protocol CreateEventViewProtocol: class {
-    func createEventSuccess(path:String)
+    func createEventSuccess(path:String,title:String)
     func createEventFailed()
     func uploadImageLandscapeSuccess(keyRef:String,pathEvent:String)
     func uploadImagePortalSuccess(keyRef:String,pathEvent:String)
@@ -56,7 +56,7 @@ class CreateEventPresenter: CreateEventPresenterProtocol {
             }
             else
             {
-                view?.createEventSuccess(path: childAuto!)
+                view?.createEventSuccess(path: childAuto!,title: title)
             }
         }
     }
