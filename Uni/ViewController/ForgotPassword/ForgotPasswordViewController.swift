@@ -13,14 +13,14 @@ import UIKit
 
 class ForgotPasswordViewController: BaseViewController{
 
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
     @IBOutlet weak var lbSend: UILabel!
     @IBOutlet weak var lbForgotPassword: UILabel!
     @IBOutlet weak var txtEmail: UITextField!
     @IBOutlet weak var lbTime: UILabel!
     @IBOutlet weak var btSend: UIButton!
     var presenter: ForgotPasswordPresenterProtocol
-    var counter = 15
-    var resendTimer = Timer()
+
 	init(presenter: ForgotPasswordPresenterProtocol) {
         self.presenter = presenter
         super.init(nibName: "ForgotPasswordViewController", bundle: nil)
@@ -51,45 +51,35 @@ class ForgotPasswordViewController: BaseViewController{
     }
     
     func setupUI(){
- 
+        spinner.isHidden = true
     }
     
     @IBAction func btSend(_ sender: Any) {
+        spinner.startAnimating()
+        spinner.isHidden = false
+        btSend.isEnabled = false
         presenter.sendEmailResetPassword(email: txtEmail.text!)
         
         
     }
-    
-     @objc func updateCounter() {
-        
-        if counter > -1 {
-            lbTime.isHidden = false
-            lbTime.text = "\(counter)s"
-            print(counter)
-            counter -= 1
-
-        } else {
-            resendTimer.invalidate()
-            lbTime.isHidden = true
-            btSend.isEnabled = true
-            
-        }
-    }
-    
-    
 }
 
 extension ForgotPasswordViewController: ForgotPasswordViewProtocol {
     func sendSuccess() {
-        counter = 15
-        resendTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateCounter), userInfo: nil, repeats: true)
-        btSend.isEnabled = false
-        lbTime.isHidden = false
-        navigationController?.popToRootViewController(animated: true)
+        spinner.stopAnimating()
+        spinner.isHidden = true
+        btSend.isEnabled = true
+        presentAlertWithTitle(title: AppLanguage.HandleSuccess.Success.localized, message: AppLanguage.HandleSuccess.sendMailPassword.localized, options: AppLanguage.Ok.localized) { (Int) in
+            self.navigationController?.popToRootViewController(animated: true)
+        }
+        
     }
     
     func sendFailed(error: Error!) {
         handleError(error)
+        spinner.stopAnimating()
+        spinner.isHidden = true
+        btSend.isEnabled = true
     }
     
     
