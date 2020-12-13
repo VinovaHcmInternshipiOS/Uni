@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Raleway-Light.ttf">
+            <string>Raleway-Light</string>
+        </array>
+        <array key="Raleway-SemiBold.ttf">
+            <string>Raleway-SemiBold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PushNotificationViewController" customModule="Uni" customModuleProvider="target">
+            <connections>
+                <outlet property="btSentNotice" destination="DvV-eW-V7q" id="J8Q-Oe-cQ8"/>
+                <outlet property="lbSentNotice" destination="kuC-qm-mLS" id="AuT-jG-xcg"/>
+                <outlet property="txtContent" destination="ecH-UG-x6a" id="G41-AC-IH6"/>
+                <outlet property="txtTitle" destination="zgX-El-vaI" id="IPe-z5-PW9"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PnQ-qb-kYy">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uZ6-HM-lG7">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sent Notice" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kuC-qm-mLS" userLabel="Sent Notice">
+                                    <rect key="frame" x="32" y="35" width="116.5" height="93.5"/>
+                                    <fontDescription key="fontDescription" name="Raleway-Light" family="Raleway" pointSize="40"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zgX-El-vaI">
+                                    <rect key="frame" x="32" y="178.5" width="350" height="40"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="40" id="3Ft-Xb-H0i"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                            <color key="value" name="5B5B5B"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                            <real key="value" value="1"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <real key="value" value="20"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </textField>
+                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ecH-UG-x6a">
+                                    <rect key="frame" x="32" y="268.5" width="350" height="150"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="150" id="i9G-hX-YzS"/>
+                                    </constraints>
+                                    <color key="textColor" systemColor="labelColor"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                            <color key="value" name="5B5B5B"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                            <real key="value" value="1"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <real key="value" value="20"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </textView>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DvV-eW-V7q">
+                                    <rect key="frame" x="100" y="478.5" width="214" height="40"/>
+                                    <color key="backgroundColor" name="FBC459"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="40" id="DBf-Uy-kGk"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="22"/>
+                                    <state key="normal" title="Sent">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                            <color key="value" name="FAB32A"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                            <real key="value" value="1"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <real key="value" value="20"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="sentNotice:" destination="-1" eventType="touchUpInside" id="8tx-Of-BPw"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstItem="DvV-eW-V7q" firstAttribute="leading" secondItem="uZ6-HM-lG7" secondAttribute="leading" constant="100" id="5iM-fT-uo3"/>
+                                <constraint firstAttribute="trailing" secondItem="DvV-eW-V7q" secondAttribute="trailing" constant="100" id="7pq-ax-rRm"/>
+                                <constraint firstItem="kuC-qm-mLS" firstAttribute="top" secondItem="uZ6-HM-lG7" secondAttribute="top" constant="35" id="Cdg-yy-d8V"/>
+                                <constraint firstItem="zgX-El-vaI" firstAttribute="top" secondItem="kuC-qm-mLS" secondAttribute="bottom" constant="50" id="LIE-Oc-m4k"/>
+                                <constraint firstAttribute="trailing" secondItem="zgX-El-vaI" secondAttribute="trailing" constant="32" id="OTZ-TK-H4L"/>
+                                <constraint firstItem="zgX-El-vaI" firstAttribute="leading" secondItem="uZ6-HM-lG7" secondAttribute="leading" constant="32" id="PKk-pf-7ff"/>
+                                <constraint firstItem="ecH-UG-x6a" firstAttribute="leading" secondItem="uZ6-HM-lG7" secondAttribute="leading" constant="32" id="UG5-eG-1Nf"/>
+                                <constraint firstItem="ecH-UG-x6a" firstAttribute="top" secondItem="zgX-El-vaI" secondAttribute="bottom" constant="50" id="fck-51-TAe"/>
+                                <constraint firstItem="kuC-qm-mLS" firstAttribute="leading" secondItem="uZ6-HM-lG7" secondAttribute="leading" constant="32" id="kcu-fH-jrP"/>
+                                <constraint firstItem="DvV-eW-V7q" firstAttribute="top" secondItem="ecH-UG-x6a" secondAttribute="bottom" constant="60" id="swW-c9-zXb"/>
+                                <constraint firstAttribute="trailing" secondItem="ecH-UG-x6a" secondAttribute="trailing" constant="32" id="vgz-LY-dhS"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="uZ6-HM-lG7" secondAttribute="trailing" id="G5w-3k-oVT"/>
+                        <constraint firstItem="uZ6-HM-lG7" firstAttribute="top" secondItem="PnQ-qb-kYy" secondAttribute="top" id="MIk-fu-blH"/>
+                        <constraint firstItem="uZ6-HM-lG7" firstAttribute="leading" secondItem="PnQ-qb-kYy" secondAttribute="leading" id="P6r-dJ-0w5"/>
+                        <constraint firstAttribute="bottom" secondItem="uZ6-HM-lG7" secondAttribute="bottom" id="xaM-F2-hsr"/>
+                    </constraints>
+                </scrollView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="PnQ-qb-kYy" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="0Wy-Zy-cmu"/>
+                <constraint firstAttribute="bottom" secondItem="PnQ-qb-kYy" secondAttribute="bottom" id="C1i-M9-TuI"/>
+                <constraint firstAttribute="trailing" secondItem="PnQ-qb-kYy" secondAttribute="trailing" id="ExC-jH-ah8"/>
+                <constraint firstItem="PnQ-qb-kYy" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="HBp-ge-fyj"/>
+                <constraint firstItem="uZ6-HM-lG7" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="hz1-Dg-THc"/>
+                <constraint firstItem="uZ6-HM-lG7" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" priority="250" id="v6m-Xp-AWU"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="91.304347826086968" y="75"/>
+        </view>
+    </objects>
+    <resources>
+        <namedColor name="5B5B5B">
+            <color red="0.35699999332427979" green="0.35699999332427979" blue="0.35699999332427979" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="FAB32A">
+            <color red="0.98000001907348633" green="0.70200002193450928" blue="0.16500000655651093" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="FBC459">
+            <color red="0.98400002717971802" green="0.76899999380111694" blue="0.34900000691413879" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
