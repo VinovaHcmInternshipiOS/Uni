@@ -24,7 +24,7 @@ protocol AppHomeViewProtocol: class {
     func fetchInfoEventComingSoonFailed()
     func fetchInfoEventEndedSuccess()
     func fetchInfoEventEndedFailed()
-    
+    func checkStateLiveSuccess()
 }
 
 // MARK: Presenter -
@@ -40,6 +40,7 @@ protocol AppHomePresenterProtocol: class {
     func getInfoEventHappening()
     func getInfoEventComingSoon()
     func getInfoEventEnded()
+    func checkStateLive()
     
     
 }
@@ -201,6 +202,23 @@ class AppHomePresenter: AppHomePresenterProtocol {
                 view?.fetchProfileFailed()
             }
         })
+    }
+    
+    func checkStateLive() {
+        if let user = user?.uid {
+            let placeRef = self.ref.child("Users").child("\(user)").child("Auth")
+            placeRef.observe(.value, with: { [self] snapshot in
+                if(snapshot.exists())
+                {
+                    let placeDict = snapshot.value as! [String: Any]
+                    let state = placeDict["State"] as! Bool
+                    if(state == false ) {
+                        view?.checkStateLiveSuccess()
+                    }
+                    
+                }
+            })
+        } else {return}
     }
     
 }

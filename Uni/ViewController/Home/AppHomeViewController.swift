@@ -65,6 +65,7 @@ class AppHomeViewController:BaseViewController{
         presenter.getInfoEventHappening()
         presenter.getInfoEventComingSoon()
         presenter.getInfoEventEnded()
+        presenter.checkStateLive()
         movetoProfile()
         pullRefreshData()
         _ = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(moveToNextPage), userInfo: nil, repeats: true)
@@ -373,6 +374,8 @@ extension AppHomeViewController: UICollectionViewDelegate,UICollectionViewDataSo
 }
 
 extension AppHomeViewController: AppHomeViewProtocol {
+
+    
     func fetchInfoEventHappeningSuccess() {
         listEventHappening = presenter.happeningEvent
         collectionHappenning.hideSkeleton()
@@ -449,6 +452,13 @@ extension AppHomeViewController: AppHomeViewProtocol {
         print("Fetch profile user error")
     }
     
+    func checkStateLiveSuccess() {
+        presentAlertWithTitle(title: AppLanguage.Opps.localized, message: AppLanguage.HandleError.userDisabled.localized, options: AppLanguage.Ok.localized) { (Int) in
+            Switcher.updateRootVC()
+            self.navigationController?.popToRootViewController(animated: true)
+        }
+        
+    }
     
 }
 
