@@ -9,6 +9,9 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseMessaging
+import UserNotifications
 
 class ManageViewController: BaseViewController, ManageViewProtocol {
 
@@ -29,7 +32,7 @@ class ManageViewController: BaseViewController, ManageViewProtocol {
     
 	override func viewDidLoad() {
         super.viewDidLoad()
-        listFunction = [AppLanguage.Manage.EventManage.localized,AppLanguage.Manage.UserManage.localized]
+        listFunction = [AppLanguage.Manage.EventManage.localized,AppLanguage.Manage.UserManage.localized,AppLanguage.Manage.SendNotice.localized]
         presenter.view = self
         presenter.viewDidLoad()
         setupUI()
@@ -53,36 +56,10 @@ class ManageViewController: BaseViewController, ManageViewProtocol {
         addButtonImageToNavigation(image: AppIcon.icBellYellow!, style: .right, action: #selector(notification))
         self.navigationController?.hideShadowLine()
     }
-    class PushNotificationSender {
-        func sendPushNotification(to token: String, title: String, body: String) {
-            let urlString = "https://fcm.googleapis.com/fcm/send"
-            let url = NSURL(string: urlString)!
-            let paramString: [String : Any] = ["to" : token,
-                                               "notification" : ["title" : title, "body" : body],
-                                               "data" : ["user" : "test_id"]
-            ]
-            let request = NSMutableURLRequest(url: url as URL)
-            request.httpMethod = "POST"
-            request.httpBody = try? JSONSerialization.data(withJSONObject:paramString, options: [.prettyPrinted])
-            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-            request.setValue("key=AAAAxuJXQMs:APA91bF_VSOeNqbz_iLMl67NgIdS9RyJGFnQ6pSeUKOiYG3YyykhnRklJxmXcDt1LltHrc96jXLexb1uOkk3p4y4LggCs8LAXlzMUCKjtcSn42ccNXgZ6S7vTY8PJAKGUYQNk1rTRuUL", forHTTPHeaderField: "Authorization")
-            let task =  URLSession.shared.dataTask(with: request as URLRequest)  { (data, response, error) in
-                do {
-                    if let jsonData = data {
-                        if let jsonDataDict  = try JSONSerialization.jsonObject(with: jsonData, options: JSONSerialization.ReadingOptions.allowFragments) as? [String: AnyObject] {
-                            NSLog("Received data:\n\(jsonDataDict))")
-                        }
-                    }
-                } catch let err as NSError {
-                    print(err.debugDescription)
-                }
-            }
-            task.resume()
-        }
-    }
+    
     @objc func notification(){
         let sender = PushNotificationSender()
-        sender.sendPushNotification(to: "1caf2a7d61f3ebba4562bfaff8e7131c1b40445a8bef29912b21ef1f29d7eec4", title: "Notification title", body: "Notification body")
+        sender.sendPushNotification(to: "", title: "Notification title", body: "Notification body")
     }
 
 }
@@ -121,9 +98,12 @@ extension ManageViewController: UICollectionViewDataSource {
         case 0:
             let ListEvent = ListEventViewController(presenter: ListEventPresenter())
             navigationController?.pushViewController(ListEvent, animated: true)
-        default:
+        case 1:
             let ListUser = ListUserViewController(presenter: ListUserPresenter())
             navigationController?.pushViewController(ListUser, animated: true)
+        default:
+            let SendNotice = PushNotificationViewController(presenter: PushNotificationPresenter())
+            navigationController?.pushViewController(SendNotice, animated: true)
         }
 
     }
