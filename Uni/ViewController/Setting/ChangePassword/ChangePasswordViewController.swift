@@ -12,6 +12,7 @@ import UIKit
 
 class ChangePasswordViewController: BaseViewController {
 
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
     @IBOutlet weak var lbChangePassword: UILabel!
     @IBOutlet weak var lbEnterYour: UILabel!
     @IBOutlet weak var lbNewPassword: UILabel!
@@ -19,7 +20,6 @@ class ChangePasswordViewController: BaseViewController {
     @IBOutlet weak var txtNewPassword: UITextField!
     @IBOutlet weak var txtConfỉrmPassword: UITextField!
     @IBOutlet weak var btSave: UIButton!
-    var okActionHandler: ((UIAlertAction) -> Void)? = nil
     var presenter: ChangePasswordPresenterProtocol
 
 	init(presenter: ChangePasswordPresenterProtocol) {
@@ -54,8 +54,12 @@ class ChangePasswordViewController: BaseViewController {
         btSave.backgroundColor = AppColor.YellowFAB32A
         btSave.shadowColor = AppColor.YellowFBC459
         lbEnterYour.textColor = AppColor.YellowFAB32A
+        spinner.isHidden = true
     }
     @IBAction func btSave(_ sender: Any) {
+        btSave.isHidden = true
+        spinner.startAnimating()
+        spinner.isHidden = false
         if let newPassword = txtNewPassword.text, let confirmPassword = txtConfỉrmPassword.text {
             if newPassword == confirmPassword {
                 presenter.changePassword(newPassword: confirmPassword)
@@ -66,20 +70,25 @@ class ChangePasswordViewController: BaseViewController {
         } else {return}
     }
     
-    @objc func gotoSettingVC(){
-        navigationController?.popViewController(animated: true)
-    }
+
     
 }
 
 extension ChangePasswordViewController: ChangePasswordViewProtocol {
     func changePasswordSuccess() {
-        showAlert(title: AppLanguage.HandleSuccess.Success.localized, message: AppLanguage.HandleSuccess.changePassword.localized, actionTitles: [AppLanguage.Ok.localized], style: [.cancel], actions: [okActionHandler])
-        perform(#selector(gotoSettingVC), with: self, afterDelay: 1.0)
+        btSave.isHidden = false
+        spinner.stopAnimating()
+        spinner.isHidden = true
+        presentAlertWithTitle(title: AppLanguage.HandleSuccess.Success.localized, message: AppLanguage.HandleSuccess.changePassword.localized, options: AppLanguage.Ok.localized) { (Int) in
+            self.navigationController?.popViewController(animated: true)
+        }
         
     }
     
     func changePasswordFailed(error: Error) {
         handleError(error)
+        btSave.isHidden = false
+        spinner.stopAnimating()
+        spinner.isHidden = true
     }
 }
