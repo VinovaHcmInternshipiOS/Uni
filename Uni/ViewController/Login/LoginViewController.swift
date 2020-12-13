@@ -95,6 +95,8 @@ class LoginViewController: UIViewController {
 }
 
 extension LoginViewController: LoginViewProtocol {
+
+    
     
     func checkAuthSuccess(role: String) {
         print(role,"Change")
@@ -109,23 +111,23 @@ extension LoginViewController: LoginViewProtocol {
         AppIcon.icExportYellow = role == "Admin" ? AppIcon.icExportRed : AppIcon.DefaulticExportYellow 
         
         UserDefaults.standard.set(false, forKey: "status")
-        Switcher.updateRootVC()
         let AppHomeVC = AppHomeViewController(presenter: AppHomePresenter())
         UserDefaults.standard.setValue(0, forKey: "caseMenu")
         navigationController?.pushViewController(AppHomeVC, animated: true)
-        
+        Switcher.updateRootVC()
     }
     
     func checkAuthFailed() {
-        print("Check Auth Failed")
+        presentAlertWithTitle(title: AppLanguage.HandleError.anError.localized, message: AppLanguage.HandleError.anotherError.localized, options: AppLanguage.Ok.localized) { (Int) in}
     }
     
+    func checkStateUser() {
+        presentAlertWithTitle(title: AppLanguage.HandleError.anError.localized, message: AppLanguage.HandleError.userDisabled.localized, options: AppLanguage.Ok.localized) { (Int) in}
+    }
     
     func loginSuccess() {
         removeSpinner()
-        presenter.checkAuth { (role) in
-            
-        }
+        presenter.checkAuth { (role) in}
     }
     
     func loginFailed(error: Error) {

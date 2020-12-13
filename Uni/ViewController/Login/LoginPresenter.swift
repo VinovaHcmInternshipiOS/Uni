@@ -19,6 +19,7 @@ protocol LoginViewProtocol: class {
     func loginFailed(error: Error)
     func checkAuthSuccess(role:String)
     func checkAuthFailed()
+    func checkStateUser()
     
 }
 
@@ -27,6 +28,7 @@ protocol LoginPresenterProtocol: class {
 	var view: LoginViewProtocol? { get set }
     func siginIn(email:String, password: String)
     func checkAuth(completion: @escaping(String)->Void)
+    
 }
 
 class LoginPresenter: LoginPresenterProtocol {
@@ -58,18 +60,29 @@ class LoginPresenter: LoginPresenterProtocol {
     }
     
     func checkAuth(completion: @escaping (String) -> Void) {
-        guard let user = user else { return }
-        let placeRef = self.ref.child("Users").child("\(user.uid)").child("Auth")
-        placeRef.observeSingleEvent(of:.value, with: { [self] snapshot in
-            if(snapshot.exists())
-            {
-                let placeDict = snapshot.value as! [String: Any]
-                let role = placeDict["Role"] as! String
-                completion(role)
-                view?.checkAuthSuccess(role: role)
-            }
-            
-        })
+        if let user = user?.uid {
+            let placeRef = self.ref.child("Users").child("\(user)").child("Auth")
+            placeRef.observeSingleEvent(of:.value, with: { [self] snapshot in
+                if(snapshot.exists())
+                {
+                    let placeDict = snapshot.value as! [String: Any]
+                    let role = placeDict["Role"] as! String
+                    let state = placeDict["State"] as! Bool
+                    if (state == true) {
+                        completion(role)
+                        view?.checkAuthSuccess(role: role)
+                    } else {
+                        do { try Auth.auth().signOut()
+                        } catch _ {}
+                        view?.checkStateUser()
+                    }
+                    
+                } else {
+                    view?.checkAuthFailed()
+                }
+                
+            })
+        } else {return}
+        
     }
-    
 }
