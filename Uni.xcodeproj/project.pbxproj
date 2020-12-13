@@ -53,6 +53,10 @@
 		F5785E3F2577E6D900EBEE8F /* ChangePasswordPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5785E3C2577E6D900EBEE8F /* ChangePasswordPresenter.swift */; };
 		F5785E402577E6D900EBEE8F /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5785E3D2577E6D900EBEE8F /* ChangePasswordViewController.swift */; };
 		F5785E412577E6D900EBEE8F /* ChangePasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5785E3E2577E6D900EBEE8F /* ChangePasswordViewController.xib */; };
+		F57DD15225834AF600B70728 /* PushNotificationSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57DD15125834AF600B70728 /* PushNotificationSender.swift */; };
+		F57DD1582583705500B70728 /* PushNotificationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57DD1552583705500B70728 /* PushNotificationPresenter.swift */; };
+		F57DD1592583705600B70728 /* PushNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57DD1562583705500B70728 /* PushNotificationViewController.swift */; };
+		F57DD15A2583705600B70728 /* PushNotificationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F57DD1572583705500B70728 /* PushNotificationViewController.xib */; };
 		F57FCE5A2577422D00158A35 /* ADEUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57FCE592577422D00158A35 /* ADEUser.swift */; };
 		F582EA6B254FEE58002BF86F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F582EA6A254FEE58002BF86F /* AppDelegate.swift */; };
 		F582EA6D254FEE58002BF86F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F582EA6C254FEE58002BF86F /* SceneDelegate.swift */; };
@@ -228,6 +232,10 @@
 		F5785E3C2577E6D900EBEE8F /* ChangePasswordPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordPresenter.swift; sourceTree = "<group>"; };
 		F5785E3D2577E6D900EBEE8F /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
 		F5785E3E2577E6D900EBEE8F /* ChangePasswordViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChangePasswordViewController.xib; sourceTree = "<group>"; };
+		F57DD15125834AF600B70728 /* PushNotificationSender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationSender.swift; sourceTree = "<group>"; };
+		F57DD1552583705500B70728 /* PushNotificationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationPresenter.swift; sourceTree = "<group>"; };
+		F57DD1562583705500B70728 /* PushNotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationViewController.swift; sourceTree = "<group>"; };
+		F57DD1572583705500B70728 /* PushNotificationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PushNotificationViewController.xib; sourceTree = "<group>"; };
 		F57FCE592577422D00158A35 /* ADEUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ADEUser.swift; sourceTree = "<group>"; };
 		F582EA67254FEE58002BF86F /* Uni.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Uni.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F582EA6A254FEE58002BF86F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -570,6 +578,16 @@
 			path = ChangePassword;
 			sourceTree = "<group>";
 		};
+		F57DD1542583703E00B70728 /* PushNotification */ = {
+			isa = PBXGroup;
+			children = (
+				F57DD1552583705500B70728 /* PushNotificationPresenter.swift */,
+				F57DD1562583705500B70728 /* PushNotificationViewController.swift */,
+				F57DD1572583705500B70728 /* PushNotificationViewController.xib */,
+			);
+			path = PushNotification;
+			sourceTree = "<group>";
+		};
 		F57FCE582577420400158A35 /* ADEUser */ = {
 			isa = PBXGroup;
 			children = (
@@ -612,6 +630,7 @@
 				F582EA90254FF088002BF86F /* LaunchScreen.storyboard */,
 				F582EA78254FEE5E002BF86F /* Info.plist */,
 				F5B29F4C257488B5007822F4 /* Localizable.strings */,
+				F57DD15125834AF600B70728 /* PushNotificationSender.swift */,
 			);
 			path = Uni;
 			sourceTree = "<group>";
@@ -619,6 +638,7 @@
 		F582EA7F254FEE75002BF86F /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				F57DD1542583703E00B70728 /* PushNotification */,
 				F5CF0CF6257601B700D3BBF8 /* ADEUser */,
 				F5CF0CEE2575F39D00D3BBF8 /* PrivacyPolicy */,
 				F5CF0CDE2575E50800D3BBF8 /* Manage */,
@@ -1249,6 +1269,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F5C26FF1256BA8370015576A /* ListEventCell.xib in Resources */,
+				F57DD15A2583705600B70728 /* PushNotificationViewController.xib in Resources */,
 				F58527B125510B3700F888E8 /* HappenningCellAppHome.xib in Resources */,
 				F5CF0D032576020C00D3BBF8 /* ListUserCell.xib in Resources */,
 				F582EAD825503B11002BF86F /* ForgotPasswordViewController.xib in Resources */,
@@ -1418,6 +1439,7 @@
 				F5937D3B2578D3F6007EA398 /* DetailAccount.swift in Sources */,
 				F5940FAB25763B8C00427480 /* CreateUserViewController.swift in Sources */,
 				F56DFF63256909820080A31F /* DatePickerViewViewController.swift in Sources */,
+				F57DD1592583705600B70728 /* PushNotificationViewController.swift in Sources */,
 				F50D63A62554EDCC007509D0 /* SearchAppHomeViewController.swift in Sources */,
 				F50D639B25545317007509D0 /* RankTableViewCell.swift in Sources */,
 				F52CD26525788157009C7188 /* ConfirmPasswordPresenter.swift in Sources */,
@@ -1426,6 +1448,7 @@
 				F5A2AEFC255A74C400502E0F /* SlideMenuViewController.swift in Sources */,
 				F52E42C8256BC27E0044A03C /* AttendanceCell.swift in Sources */,
 				F582EA6B254FEE58002BF86F /* AppDelegate.swift in Sources */,
+				F57DD15225834AF600B70728 /* PushNotificationSender.swift in Sources */,
 				F5BEFDF0255A3B6C005A1A2E /* BarcodeViewController.swift in Sources */,
 				F5CF0CEA2575EA9A00D3BBF8 /* ManageCell.swift in Sources */,
 				F5A04E2D255502B000DB396C /* SearchEventLabelCell.swift in Sources */,
@@ -1440,6 +1463,7 @@
 				F52E42C1256BC1000044A03C /* AttendanceEventPresenter.swift in Sources */,
 				F5CF0CE32575E51700D3BBF8 /* ManageViewController.swift in Sources */,
 				F5126042256652C200B517DC /* Profile.swift in Sources */,
+				F57DD1582583705500B70728 /* PushNotificationPresenter.swift in Sources */,
 				F5B1A698255553F300CC0C1A /* HeaderHistory.swift in Sources */,
 				F5B1A6A12559157000CC0C1A /* SemesterScoreViewController.swift in Sources */,
 				F5DF01F8256B702700B5E444 /* String+Extension.swift in Sources */,
@@ -1644,7 +1668,7 @@
 					"\"${PODS_TARGET_SRCROOT}/Sources/FBLPromises/include\"",
 				);
 				INFOPLIST_FILE = Uni/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1697,7 +1721,7 @@
 					"\"${PODS_TARGET_SRCROOT}/Sources/FBLPromises/include\"",
 				);
 				INFOPLIST_FILE = Uni/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

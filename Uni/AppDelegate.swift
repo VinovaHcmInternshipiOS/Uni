@@ -22,7 +22,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         IQKeyboardManager.shared.enable = true
         Switcher.updateRootVC()
-        
+        Messaging.messaging().subscribe(toTopic: "notify") { error in
+          
+            if error != nil {
+                print("Subscribed to notify topic failed")
+            } else {
+                print("Subscribed to notify topic success")
+            }
+        }
         if #available(iOS 10.0, *) {
                   UNUserNotificationCenter.current().delegate = self
                   Messaging.messaging().delegate = self
@@ -97,7 +104,7 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 willPresent notification: UNNotification,
       withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-      let userInfo = notification.request.content.userInfo
+        let userInfo = notification.request.content.userInfo
       print(userInfo)
       if let messageID = userInfo[gcmMessageIDKey] {
         print("Message ID: \(messageID)")

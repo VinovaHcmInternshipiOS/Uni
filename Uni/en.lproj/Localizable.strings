@@ -89,6 +89,7 @@
 "Create\nEvent" = "Create\nEvent";
 "Title" = "Title";
 "Overview" = "Overview";
+"Location" = "Location";
 "Date" = "Date";
 "Time" = "Time";
 "Score" = "Score";
@@ -133,6 +134,7 @@
 "Event\nManage" = "Event\nManage";
 "Users\nManage" = "Users\nManage";
 "Hi,\nAdmin" = "Hi,\nAdmin";
+"Send Notice" = "Send Notice";
 
 //MARK: -- Privacy
 "Privacy\nPolicy" = "Privacy\nPolicy";
@@ -228,6 +230,7 @@
 "Checking..." = "Checking...";
 "Place the barcode within the window to scan.\nThe search will start automatically." = "Place the barcode within the window to scan.\nThe search will start automatically.";
 "Scan Barcode" = "Scan Barcode";
+"Please check your email to change your password."; = "Please check your email to change your password.";
 
 //MARK: -- DetailAccount
 "Detail\nAccount" = "Detail\nAccount";

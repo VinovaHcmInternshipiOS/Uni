@@ -89,6 +89,7 @@
 "Create\nEvent" = "Tạo\nSự kiện";
 "Title" = "Tiêu đề";
 "Overview" = "Mô tả";
+"Location" = "Địa điểm";
 "Date" = "Ngày";
 "Time" = "Thời gian";
 "Score" = "Điểm";
@@ -132,6 +133,7 @@
 "Event\nManage" = "Quản lý\nSự kiện";
 "Users\nManage" = "Quản lý\nNgười dùng";
 "Hi,\nAdmin" = "Xin chào,\nQuản trị viên";
+"Send Notice" = "Gửi\nThông báo";
 
 //MARK: -- Privacy
 "Privacy\nPolicy" = "Chính sách\nBảo mật";
@@ -193,9 +195,9 @@
 "An Error" = "Lỗi";
 "Error" = "Lỗi";
 "The email is already in use with another account." = "Email đã được sử dụng với một tài khoản khác.";
-"Account not found for the specified user. Please check and try again." = "Account not found for the specified user. Please check and try again.";
+"Account not found for the specified user. Please check and try again." = "Không tìm thấy tài khoản cho người dùng được chỉ định. Vui lòng kiểm tra và thử lại.";
 "Your account has been disabled. Please contact support." =
-"Không tìm thấy tài khoản cho người dùng được chỉ định. Vui lòng kiểm tra và thử lại.";
+"Tài khoản của bạn đã bị vô hiệu hóa. Vui lòng liên hệ với bộ phận hỗ trợ.";
 "Please enter a valid email." = "Vui lòng nhập email hợp lệ.";
 "You are not connected to the Internet." = "Không có kết nối với Internet.";
 "Your password is too weak. The password must be 6 characters long or more." = "Mật khẩu của bạn quá yếu. Mật khẩu phải dài từ 6 ký tự trở lên.";
@@ -228,6 +230,7 @@
 "Checking..." = "Đang kiểm tra...";
 "Place the barcode within the window to scan.\nThe search will start automatically." = "Đặt mã vạch trong cửa sổ để quét.\nTìm kiếm sẽ tự động bắt đầu.";
 "Scan Barcode" = "Quét mã vạch";
+"Please check your email to change your password."; = "Vui lòng kiểm tra email để tiến hành đổi mật khẩu.";
 
 //MARK: -- DetailAccount
 "Detail\nAccount" = "Chi tiết\nTài khoản";
