@@ -10,12 +10,14 @@
 
 import UIKit
 
-class PushNotificationViewController: UIViewController, PushNotificationViewProtocol {
+class PushNotificationViewController: BaseViewController, PushNotificationViewProtocol {
 
     @IBOutlet weak var txtTitle: UITextField!
     @IBOutlet weak var txtContent: UITextView!
     @IBOutlet weak var lbSentNotice: UILabel!
     @IBOutlet weak var btSentNotice: UIButton!
+    @IBOutlet weak var lbContent: UILabel!
+    @IBOutlet weak var lbTitle: UILabel!
     var presenter: PushNotificationPresenterProtocol
     let senderPushNotice = PushNotificationSender()
 	init(presenter: PushNotificationPresenterProtocol) {
@@ -32,10 +34,30 @@ class PushNotificationViewController: UIViewController, PushNotificationViewProt
 
         presenter.view = self
         presenter.viewDidLoad()
+        setupLanguage()
+        setupUI()
+        
     }
+    
+    func setupLanguage() {
+        lbTitle.text = AppLanguage.Title.localized
+        lbContent.text = AppLanguage.Content.localized
+        lbSentNotice.text = AppLanguage.Manage.SendNotice.localized
+    }
+    
+    func setupUI() {
+        btSentNotice.setTitle(AppLanguage.CreateUser.Done.localized, for: .normal)
+        btSentNotice.backgroundColor = AppColor.YellowFAB32A
+        btSentNotice.shadowColor = AppColor.YellowShadow
+    }
+    
     @IBAction func sentNotice(_ sender: Any) {
         if let title = txtTitle.text, let content = txtContent.text {
-            senderPushNotice.sendPushNotification(to: "", title: title, body: content)
+            if title == "" || content == "" {
+                presentAlertWithTitle(title: AppLanguage.HandleError.anError.localized, message: AppLanguage.HandleError.fillIn.localized, options: AppLanguage.Ok.localized) { (Int) in}
+            } else {
+                senderPushNotice.sendPushNotification(to: "", title: title, body: content)
+            }
         } else { return }
         
     }
