@@ -12,6 +12,8 @@ import UIKit
 
 class RankViewController: BaseViewController {
 
+    @IBOutlet weak var lbNameProfile: UILabel!
+    @IBOutlet weak var lbRankProfile: UILabel!
     @IBOutlet weak var lbScore: UILabel!
     @IBOutlet weak var lbRank: UILabel!
     @IBOutlet weak var lbScoreRank3: UILabel!
@@ -68,15 +70,24 @@ class RankViewController: BaseViewController {
 extension RankViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return rankEvent.count
+        if rankEvent.count > 3 {
+            return rankEvent.count - 3
+        } else {
+            return 0
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "RankTableViewCell", for: indexPath) as? RankTableViewCell else { return UITableViewCell()}
-            cell.lbRank.text = "\(indexPath.row)"
+        if indexPath.row > 2 {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "RankTableViewCell", for: indexPath) as? RankTableViewCell else { return UITableViewCell()}
+            cell.lbRank.text = "\(indexPath.row + 1)"
             cell.lbName.text = rankEvent[indexPath.row]?.name
             cell.lbScore.text = "\(rankEvent[indexPath.row]?.score ?? 0)"
-        return cell
+            return cell
+        }
+        return UITableViewCell()
+        
     }
     
     
@@ -95,6 +106,18 @@ extension RankViewController: UITableViewDelegate {
 }
 
 extension RankViewController: RankViewProtocol {
+    func fetchProfileRankSuccess() {
+        lbNameProfile.text = presenter.nameProfile
+        lbScore.text = "\(AppLanguage.Rank.Score.localized) \(presenter.scoreProfile)"
+        lbRankProfile.text = "\(presenter.searchRankProfile())"
+    }
+    
+    func fetchProfileRankFailed() {
+        lbNameProfile.text = ""
+        lbScore.text = ""
+        print("fetch profile rank failed")
+    }
+    
     func fetchRankSuccess() {
         rankEvent = presenter.rankEvent
         for i in 0..<rankEvent.count {
@@ -119,6 +142,7 @@ extension RankViewController: RankViewProtocol {
             }
         }
         tableView.reloadData()
+        presenter.fetchProfileRank()
     }
     
     func fetchRanhFailed() {

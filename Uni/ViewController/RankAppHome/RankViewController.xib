@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -19,10 +18,12 @@
                 <outlet property="imgRank1" destination="pAS-Df-elU" id="EJm-wO-crJ"/>
                 <outlet property="imgRank2" destination="4tK-eI-4gs" id="feQ-Ox-8AE"/>
                 <outlet property="imgRank3" destination="UVQ-0G-Kmt" id="7jZ-1H-AZA"/>
+                <outlet property="lbNameProfile" destination="YQK-XG-qhf" id="SzS-QZ-srC"/>
                 <outlet property="lbNameRank1" destination="O8S-KL-QDa" id="if4-Nx-lcD"/>
                 <outlet property="lbNameRank2" destination="aQ5-ek-xjc" id="G8o-Nd-Ajo"/>
                 <outlet property="lbNameRank3" destination="6jM-uI-Fbk" id="Dq3-7k-NpP"/>
                 <outlet property="lbRank" destination="thX-JR-2VN" id="Di2-8O-4rH"/>
+                <outlet property="lbRankProfile" destination="okd-To-m61" id="vDn-Gq-L9G"/>
                 <outlet property="lbScore" destination="zyj-GH-eGz" id="Fph-tG-htu"/>
                 <outlet property="lbScoreRank1" destination="y9N-cC-Em0" id="LzN-vb-7Gv"/>
                 <outlet property="lbScoreRank2" destination="iwm-J6-dVU" id="y2c-DB-n0a"/>
@@ -41,7 +42,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="414" height="806.5"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5tU-Zb-wZC">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="446"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="451"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H4n-ti-QOP">
                                     <rect key="frame" x="293" y="156" width="89" height="158"/>
@@ -73,7 +74,7 @@
                                             </userDefinedRuntimeAttributes>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6jM-uI-Fbk">
-                                            <rect key="frame" x="8.5" y="81" width="72" height="16.5"/>
+                                            <rect key="frame" x="5" y="81" width="79" height="16.5"/>
                                             <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="14"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -92,12 +93,12 @@
                                         <constraint firstAttribute="height" constant="158" id="Cwt-Xt-GOi"/>
                                         <constraint firstAttribute="trailing" secondItem="T3J-7k-nPz" secondAttribute="trailing" constant="21.5" id="KB7-SW-u0Y"/>
                                         <constraint firstItem="T3J-7k-nPz" firstAttribute="leading" secondItem="H4n-ti-QOP" secondAttribute="leading" constant="21.5" id="Syq-AO-TUT"/>
-                                        <constraint firstItem="6jM-uI-Fbk" firstAttribute="leading" secondItem="H4n-ti-QOP" secondAttribute="leading" constant="8.5" id="eBV-oP-9P8"/>
+                                        <constraint firstItem="6jM-uI-Fbk" firstAttribute="leading" secondItem="H4n-ti-QOP" secondAttribute="leading" constant="5" id="eBV-oP-9P8"/>
                                         <constraint firstItem="UVQ-0G-Kmt" firstAttribute="centerX" secondItem="H4n-ti-QOP" secondAttribute="centerX" id="lBs-Sh-1KE"/>
                                         <constraint firstItem="UVQ-0G-Kmt" firstAttribute="top" secondItem="gVv-h0-uoD" secondAttribute="bottom" id="opd-RC-aWK"/>
                                         <constraint firstItem="gVv-h0-uoD" firstAttribute="centerX" secondItem="H4n-ti-QOP" secondAttribute="centerX" id="seM-9k-BUx"/>
                                         <constraint firstItem="gVv-h0-uoD" firstAttribute="top" secondItem="H4n-ti-QOP" secondAttribute="top" id="vWE-6Z-OUs"/>
-                                        <constraint firstAttribute="trailing" secondItem="6jM-uI-Fbk" secondAttribute="trailing" constant="8.5" id="wlJ-d5-zke"/>
+                                        <constraint firstAttribute="trailing" secondItem="6jM-uI-Fbk" secondAttribute="trailing" constant="5" id="wlJ-d5-zke"/>
                                     </constraints>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -117,7 +118,7 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                 </view>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rank" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="thX-JR-2VN">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rank" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="thX-JR-2VN">
                                     <rect key="frame" x="32" y="35" width="350" height="47"/>
                                     <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="40"/>
                                     <nil key="textColor"/>
@@ -147,7 +148,7 @@
                                             </userDefinedRuntimeAttributes>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O8S-KL-QDa">
-                                            <rect key="frame" x="20" y="116" width="70" height="20"/>
+                                            <rect key="frame" x="10" y="116" width="90" height="20"/>
                                             <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -169,9 +170,9 @@
                                         <constraint firstItem="O8S-KL-QDa" firstAttribute="top" secondItem="pAS-Df-elU" secondAttribute="bottom" constant="16" id="fwa-9I-q3l"/>
                                         <constraint firstAttribute="height" constant="216" id="okQ-Ik-y2I"/>
                                         <constraint firstItem="oGE-MG-L4Y" firstAttribute="top" secondItem="UTU-PP-qO7" secondAttribute="top" id="sFs-T7-DaF"/>
-                                        <constraint firstAttribute="trailing" secondItem="O8S-KL-QDa" secondAttribute="trailing" constant="20" id="uSk-YK-LZb"/>
+                                        <constraint firstAttribute="trailing" secondItem="O8S-KL-QDa" secondAttribute="trailing" constant="10" id="uSk-YK-LZb"/>
                                         <constraint firstItem="y9N-cC-Em0" firstAttribute="leading" secondItem="UTU-PP-qO7" secondAttribute="leading" constant="32" id="ura-g4-wez"/>
-                                        <constraint firstItem="O8S-KL-QDa" firstAttribute="leading" secondItem="UTU-PP-qO7" secondAttribute="leading" constant="20" id="xCs-nr-ZeO"/>
+                                        <constraint firstItem="O8S-KL-QDa" firstAttribute="leading" secondItem="UTU-PP-qO7" secondAttribute="leading" constant="10" id="xCs-nr-ZeO"/>
                                     </constraints>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -215,7 +216,7 @@
                                             </userDefinedRuntimeAttributes>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aQ5-ek-xjc">
-                                            <rect key="frame" x="8.5" y="81" width="72" height="16.5"/>
+                                            <rect key="frame" x="5" y="81" width="79" height="16.5"/>
                                             <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="14"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -229,7 +230,7 @@
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
-                                        <constraint firstItem="aQ5-ek-xjc" firstAttribute="leading" secondItem="uTD-10-O58" secondAttribute="leading" constant="8.5" id="13f-wa-fGU"/>
+                                        <constraint firstItem="aQ5-ek-xjc" firstAttribute="leading" secondItem="uTD-10-O58" secondAttribute="leading" constant="5" id="13f-wa-fGU"/>
                                         <constraint firstItem="W0p-Fs-Hpr" firstAttribute="top" secondItem="uTD-10-O58" secondAttribute="top" id="3uf-GL-qfc"/>
                                         <constraint firstItem="aQ5-ek-xjc" firstAttribute="top" secondItem="4tK-eI-4gs" secondAttribute="bottom" constant="5" id="4cN-z2-6N3"/>
                                         <constraint firstAttribute="height" constant="158" id="6ni-2Y-BgT"/>
@@ -238,7 +239,7 @@
                                         <constraint firstItem="W0p-Fs-Hpr" firstAttribute="centerX" secondItem="uTD-10-O58" secondAttribute="centerX" id="MLa-KM-yVb"/>
                                         <constraint firstItem="4tK-eI-4gs" firstAttribute="top" secondItem="W0p-Fs-Hpr" secondAttribute="bottom" id="PfN-JI-aOF"/>
                                         <constraint firstItem="4tK-eI-4gs" firstAttribute="centerX" secondItem="uTD-10-O58" secondAttribute="centerX" id="iEB-gB-LKb"/>
-                                        <constraint firstAttribute="trailing" secondItem="aQ5-ek-xjc" secondAttribute="trailing" constant="8.5" id="tes-Ai-gsb"/>
+                                        <constraint firstAttribute="trailing" secondItem="aQ5-ek-xjc" secondAttribute="trailing" constant="5" id="tes-Ai-gsb"/>
                                         <constraint firstItem="iwm-J6-dVU" firstAttribute="top" secondItem="aQ5-ek-xjc" secondAttribute="bottom" constant="12" id="wPp-zn-dJY"/>
                                     </constraints>
                                     <userDefinedRuntimeAttributes>
@@ -260,7 +261,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </view>
                                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LYz-CV-AL3">
-                                    <rect key="frame" x="32" y="346" width="350" height="100"/>
+                                    <rect key="frame" x="32" y="351" width="350" height="100"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="100" id="2Kl-Ta-KxI"/>
@@ -285,7 +286,7 @@
                                 <constraint firstItem="thX-JR-2VN" firstAttribute="leading" secondItem="5tU-Zb-wZC" secondAttribute="leading" constant="32" id="fQc-5d-3HS"/>
                                 <constraint firstItem="H4n-ti-QOP" firstAttribute="leading" secondItem="UTU-PP-qO7" secondAttribute="trailing" constant="31" id="kFh-sw-WXM"/>
                                 <constraint firstItem="uTD-10-O58" firstAttribute="top" secondItem="thX-JR-2VN" secondAttribute="bottom" constant="74" id="nay-3D-4SW"/>
-                                <constraint firstItem="LYz-CV-AL3" firstAttribute="top" secondItem="UTU-PP-qO7" secondAttribute="bottom" constant="10" id="rYw-mw-KRy"/>
+                                <constraint firstItem="LYz-CV-AL3" firstAttribute="top" secondItem="UTU-PP-qO7" secondAttribute="bottom" constant="15" id="rYw-mw-KRy"/>
                             </constraints>
                         </view>
                     </subviews>
@@ -306,13 +307,13 @@
                                 <constraint firstAttribute="width" constant="40" id="lWP-Cs-a7d"/>
                             </constraints>
                         </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="okd-To-m61">
-                            <rect key="frame" x="43" y="0.0" width="12" height="30"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="okd-To-m61">
+                            <rect key="frame" x="46" y="0.0" width="6.5" height="30"/>
                             <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="25"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nguyễn Gia Huy" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YQK-XG-qhf">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YQK-XG-qhf">
                             <rect key="frame" x="99" y="18" width="152" height="16.5"/>
                             <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="14"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
