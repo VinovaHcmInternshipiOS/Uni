@@ -59,7 +59,6 @@ class ConfirmPasswordViewController: UIViewController {
         btCancel.isEnabled = false
         if let password = txtPassword.text {
             view.endEditing(true)
-            
             presenter.confirmPassword(password:password)
         } else {return}
         

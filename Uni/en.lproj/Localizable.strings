@@ -134,7 +134,7 @@
 "Event\nManage" = "Event\nManage";
 "Users\nManage" = "Users\nManage";
 "Hi,\nAdmin" = "Hi,\nAdmin";
-"Send Notice" = "Send Notice";
+"Send\nNotification" = "Send\nNotification";
 
 //MARK: -- Privacy
 "Privacy\nPolicy" = "Privacy\nPolicy";
@@ -247,3 +247,5 @@
 //MARK: -- ResetPassword
 "Please enter your Email" = "Please enter your Email";
 
+"Title" = "Title";
+"Content" = "Content";

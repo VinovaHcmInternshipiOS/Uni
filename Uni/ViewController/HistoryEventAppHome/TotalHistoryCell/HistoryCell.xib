@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -47,14 +46,14 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KMt-tE-KjF">
                         <rect key="frame" x="10" y="10" width="150" height="150"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SEMESTER" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CsC-jg-W28">
-                                <rect key="frame" x="28" y="36" width="94" height="42"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SEMESTER" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CsC-jg-W28">
+                                <rect key="frame" x="27.5" y="36" width="95" height="21"/>
                                 <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="18"/>
                                 <color key="textColor" red="0.98039215686274506" green="0.70196078431372544" blue="0.16470588235294117" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5hv-vB-lP8">
-                                <rect key="frame" x="28" y="78" width="27" height="56"/>
+                                <rect key="frame" x="27.5" y="57" width="27" height="56"/>
                                 <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="48"/>
                                 <color key="textColor" red="0.98039215690000003" green="0.70196078429999997" blue="0.1647058824" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -63,10 +62,9 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="CsC-jg-W28" firstAttribute="top" secondItem="KMt-tE-KjF" secondAttribute="top" constant="36" id="0Ki-R9-xUX"/>
-                            <constraint firstAttribute="trailing" secondItem="CsC-jg-W28" secondAttribute="trailing" constant="28" id="2HS-qu-aHN"/>
-                            <constraint firstItem="CsC-jg-W28" firstAttribute="leading" secondItem="KMt-tE-KjF" secondAttribute="leading" constant="28" id="YnB-4w-230"/>
+                            <constraint firstItem="CsC-jg-W28" firstAttribute="centerX" secondItem="KMt-tE-KjF" secondAttribute="centerX" id="1wr-z5-Xuw"/>
+                            <constraint firstItem="5hv-vB-lP8" firstAttribute="leading" secondItem="CsC-jg-W28" secondAttribute="leading" id="b1H-Me-xKH"/>
                             <constraint firstItem="5hv-vB-lP8" firstAttribute="top" secondItem="CsC-jg-W28" secondAttribute="bottom" id="yaZ-mk-8xi"/>
-                            <constraint firstItem="5hv-vB-lP8" firstAttribute="leading" secondItem="KMt-tE-KjF" secondAttribute="leading" constant="28" id="yxE-yd-716"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">

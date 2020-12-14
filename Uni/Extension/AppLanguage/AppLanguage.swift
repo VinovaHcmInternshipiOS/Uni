@@ -27,6 +27,8 @@ class AppLanguage {
     static let FooterCamera = "Place the barcode within the window to scan.\nThe search will start automatically."
     static let titleCamera = "Scan Barcode"
     static let Opps = "Opps"
+    static let Title = "Title"
+    static let Content = "Content"
     
     //MARK: -- HandleError
     class HandleError {
@@ -241,7 +243,7 @@ class AppLanguage {
         static let EventManage = "Event\nManage"
         static let UserManage = "Users\nManage"
         static let HiAdmin = "Hi,\nAdmin"
-        static let SendNotice = "Send Notice"
+        static let SendNotice = "Send\nNotification"
     }
     
     //MARK:-- Privacy

@@ -110,7 +110,7 @@
 "Check-out" = "Giờ kết thúc";
 
 //MARK: -- Rank
-"Rank" = "Bảng xếp hạng";
+"Rank" = "Bảng\nXếp hạng";
 "Score:" = "Điểm:";
 
 //MARK: -- Setting
@@ -133,7 +133,7 @@
 "Event\nManage" = "Quản lý\nSự kiện";
 "Users\nManage" = "Quản lý\nNgười dùng";
 "Hi,\nAdmin" = "Xin chào,\nQuản trị viên";
-"Send Notice" = "Gửi\nThông báo";
+"Send\nNotification" = "Gửi\nThông báo";
 
 //MARK: -- Privacy
 "Privacy\nPolicy" = "Chính sách\nBảo mật";
@@ -247,3 +247,5 @@
 //MARK: -- ResetPassword
 "Please enter your Email" = "Vui lòng nhập email";
 
+"Title" = "Tiêu đề";
+"Content" = "Nội dung";

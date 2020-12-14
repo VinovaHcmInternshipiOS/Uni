@@ -33,20 +33,24 @@ protocol UpdateEventViewProtocol: class {
 protocol UpdateEventPresenterProtocol: class {
 	var view: UpdateEventViewProtocol? { get set }
     var detailEvent: DetailEvent? {get set}
-    func getDetailEvent(keyEvent: String)
-    func updateEvent(urlImgLanscape: String,urlImgPortal:String,title:String,overview:String,location:String,date:String,checkin:String,checkout:String,score:Int,keyEvent:String)
-    func uploadImage(image: UIImage,type:typeImage,path:String)
-    func updateImageEvent(keyRef:String,path:String,type:typeImage)
+    var keyEvent: String {get set}
+    func getDetailEvent()
+    func updateEvent(urlImgLanscape: String,urlImgPortal:String,title:String,overview:String,location:String,date:String,checkin:String,checkout:String,score:Int)
+    func uploadImage(image: UIImage,type:typeImage)
+    func updateImageEvent(keyRef:String,type:typeImage)
 }
 
 class UpdateEventPresenter: UpdateEventPresenterProtocol {
+    var keyEvent: String
     weak var view: UpdateEventViewProtocol?
     var ref = Database.database().reference()
     var databaseHandle = DatabaseHandle()
     var detailEvent: DetailEvent?
     let storageRef = Storage.storage().reference()
-    
-    func getDetailEvent(keyEvent: String) {
+    init(keyEvent: String) {
+        self.keyEvent = keyEvent
+    }
+    func getDetailEvent() {
         let placeRef = self.ref.child("Event/\(keyEvent)")
         placeRef.observe(.value, with: { [self] snapshot in
             if snapshot.exists()
@@ -74,7 +78,7 @@ class UpdateEventPresenter: UpdateEventPresenterProtocol {
         })
     }
     
-    func updateEvent(urlImgLanscape: String, urlImgPortal: String, title: String, overview: String, location: String, date: String, checkin: String, checkout: String, score: Int,keyEvent:String) {
+    func updateEvent(urlImgLanscape: String, urlImgPortal: String, title: String, overview: String, location: String, date: String, checkin: String, checkout: String, score: Int) {
         let path = self.ref.child("Event/\(keyEvent)")
         let sentValue = ["ImageLandscape":"\(urlImgLanscape)","ImagePortal":"\(urlImgPortal)","Title":"\(title)","Overview":"\(overview)","Location":"\(location)","Date":"\(date)","Checkin":"\(checkin)","Checkout":"\(checkout)","Score":score,"Key":keyEvent,"Type":"ComingSoon"] as [String : Any]
         path.setValue(sentValue) { [self]
@@ -89,8 +93,8 @@ class UpdateEventPresenter: UpdateEventPresenterProtocol {
         }
     }
     
-    func uploadImage(image:UIImage,type:typeImage,path:String) {
-            let storedImage = storageRef.child("Event/\(path)/\(image.hashValue)")
+    func uploadImage(image:UIImage,type:typeImage) {
+            let storedImage = storageRef.child("Event/\(keyEvent)/\(image.hashValue)")
             if let uploadData = image.jpegData(compressionQuality: 1)
             {
                 let metaData = StorageMetadata()
@@ -118,8 +122,8 @@ class UpdateEventPresenter: UpdateEventPresenterProtocol {
             }
     }
     
-    func updateImageEvent(keyRef: String, path: String, type: typeImage) {
-        let ImageEvent = ["Event/\(path)/Image\(type)":(keyRef)] as [String : Any]
+    func updateImageEvent(keyRef: String, type: typeImage) {
+        let ImageEvent = ["Event/\(keyEvent)/Image\(type)":(keyRef)] as [String : Any]
         ref.updateChildValues(ImageEvent as [AnyHashable : Any]) { [self] (error, snapshot) in
             if error != nil {
                 view?.updateImageEventFailed()

@@ -9,11 +9,13 @@ import Foundation
 class RankEvent {
     var name: String?
     var score: Int?
+    var code: String?
     var imgURL: String?
     
-    init(name: String, score: Int, imgURL: String) {
+    init(name: String, score: Int,code: String, imgURL: String) {
         self.name = name
         self.score = score
+        self.code = code
         self.imgURL = imgURL
         
     }

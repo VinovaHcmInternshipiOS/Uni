@@ -35,7 +35,7 @@ class UpdateEventViewController: UIViewController {
 	var presenter: UpdateEventPresenterProtocol
     var imagePicker: ImagePicker!
     var scoreEvent = 0
-    var keyDetailEvent = ""
+    //var keyDetailEvent = ""
     var imageLandscapeIsChanged = false
     var imagePortalIsChanged = false
     var urlImageLandscape = ""
@@ -55,7 +55,7 @@ class UpdateEventViewController: UIViewController {
         super.viewDidLoad()
 
         presenter.view = self
-        presenter.getDetailEvent(keyEvent: keyDetailEvent)
+        presenter.getDetailEvent()
         setupUI()
         setupLanguage()
     }
@@ -149,7 +149,7 @@ class UpdateEventViewController: UIViewController {
         if (btCheckin.titleLabel?.text)! != AppLanguage.UpdateEvent.Checkin.localized && (btCheckout.titleLabel?.text)! != AppLanguage.UpdateEvent.Checkout.localized && contentTitle.text?.isEmpty == false && contentOverview.text?.isEmpty == false && contentLocation.text?.isEmpty == false {
             if let title = contentTitle.text, let overview = contentOverview.text, let location = contentLocation.text, let date = btChooseDate.titleLabel?.text,let checkin = btCheckin.titleLabel?.text,let checkout = btCheckout.titleLabel?.text {
                 showSpinner()
-                presenter.updateEvent(urlImgLanscape: urlImageLandscape, urlImgPortal: urlImagePortal, title: title, overview: overview, location: location, date: date, checkin: checkin.formatDateCreate(), checkout: checkout.formatDateCreate(), score: scoreEvent,keyEvent: keyDetailEvent)
+                presenter.updateEvent(urlImgLanscape: urlImageLandscape, urlImgPortal: urlImagePortal, title: title, overview: overview, location: location, date: date, checkin: checkin.formatDateCreate(), checkout: checkout.formatDateCreate(), score: scoreEvent)
 
             } else {return}
 
@@ -215,11 +215,11 @@ extension UpdateEventViewController: UpdateEventViewProtocol {
     }
     
     func uploadImageLandscapeSuccess(keyRef: String) {
-        presenter.updateImageEvent(keyRef: keyRef, path: keyDetailEvent, type: .Landscape)
+        presenter.updateImageEvent(keyRef: keyRef, type: .Landscape)
     }
     
     func uploadImagePortalSuccess(keyRef: String) {
-        presenter.updateImageEvent(keyRef: keyRef, path: keyDetailEvent, type: .Portal)
+        presenter.updateImageEvent(keyRef: keyRef, type: .Portal)
     }
     
     func uploadImageLandscapeFailed() {
@@ -263,13 +263,13 @@ extension UpdateEventViewController: UpdateEventViewProtocol {
         removeSpinner()
             if imageLandscapeIsChanged == true {
                 if let imageLanscape = imgLandscape.image {
-                    presenter.uploadImage(image: imageLanscape, type: .Landscape, path: keyDetailEvent)
+                    presenter.uploadImage(image: imageLanscape, type: .Landscape)
                    
                 } else { return }
                 
             } else if imagePortalIsChanged == true {
                 if let imagePortal = imgPortal.image {
-                    presenter.uploadImage(image: imagePortal, type: .Portal, path: keyDetailEvent)
+                    presenter.uploadImage(image: imagePortal, type: .Portal)
                 } else { return }
                
             }

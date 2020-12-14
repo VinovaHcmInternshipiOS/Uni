@@ -127,6 +127,7 @@ extension LoginViewController: LoginViewProtocol {
     
     func loginSuccess() {
         removeSpinner()
+        
         presenter.checkAuth { (role) in}
     }
     
