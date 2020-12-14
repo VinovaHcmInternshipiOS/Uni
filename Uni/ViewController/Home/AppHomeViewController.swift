@@ -217,7 +217,7 @@ class AppHomeViewController:BaseViewController{
     }
     @IBAction func btLeaderboard(_ sender: UIButton) {
         sender.animationScale()
-        let leaderBoard = RankViewController(presenter: RankPresenter())
+        let leaderBoard = RankViewController(presenter: RankPresenter(code: code))
         self.navigationController?.pushViewController(leaderBoard, animated: true)
     }
     @IBAction func btSearchEvent(_ sender: UIButton) {
