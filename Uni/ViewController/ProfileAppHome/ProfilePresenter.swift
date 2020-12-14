@@ -138,7 +138,7 @@ class ProfilePresenter: ProfilePresenterProtocol {
                 let urlImage = placeDict["Image"] as! String
                 let code = placeDict["Code"] as! String
                 
-                self.ref.child("Users").queryOrdered(byChild: "Email").queryStarting(atValue: "\(code)").queryEnding(atValue: "\(code)" + "\u{f8ff}").observeSingleEvent(of:.value) { [self] snapshot in
+                self.ref.child("Users").queryOrdered(byChild: "Code").queryStarting(atValue: "\(code)").queryEnding(atValue: "\(code)" + "\u{f8ff}").observeSingleEvent(of:.value) { [self] snapshot in
                     if (snapshot.exists()) {
                         for keyUser in snapshot.children.allObjects as! [DataSnapshot] {
                             let placeRef = self.ref.child("Users/\(keyUser.key)")
@@ -147,23 +147,17 @@ class ProfilePresenter: ProfilePresenterProtocol {
                                 {
                                     let dict = snapshot.value as! [String: Any]
                                     let email = dict["Email"] as! String
-                                    print(email)
-                                }
-                                else
-                                {
-                                    
+                                    profileUser = Profile(code: keyUser.key, name: name, email: email, gender: gender, classs: classs, course: course, faculty: faculty, urlImage: urlImage)
+                                    view?.fetchProfileAttendanceSuccess()
                                 }
                             })
                         }
                     } else {
-                        
+                        profileUser = Profile(code: keyUser, name: name, email: "", gender: gender, classs: classs, course: course, faculty: faculty, urlImage: urlImage)
+                        view?.fetchProfileAttendanceSuccess()
                     }
                     
                 }
-                
-                profileUser = Profile(code: keyUser, name: name, email: "", gender: gender, classs: classs, course: course, faculty: faculty, urlImage: urlImage)
-                view?.fetchProfileAttendanceSuccess()
-                
             }
             else
             {
