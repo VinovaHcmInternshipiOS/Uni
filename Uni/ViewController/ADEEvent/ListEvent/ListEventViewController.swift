@@ -22,6 +22,7 @@ class ListEventViewController: BaseViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     var presenter: ListEventPresenterProtocol
     var ListEvent = [Event?]()
+    var clearSearchText: (()->Void)? = nil
     var getkeySearch: (()->Void)? = nil
     var deleteActionHandler: ((UIAlertAction) -> Void)? = nil
     var cancelActionHandler: ((UIAlertAction) -> Void)? = nil
@@ -75,11 +76,12 @@ class ListEventViewController: BaseViewController {
     
     func refreshListEvent() {
         skeletonView()
-        presenter.infoEvent = []
+       // presenter.infoEvent.removeAll()
         presenter.fetchEvent()
     }
     
     @objc func pulledRefreshControl(sender:AnyObject) {
+        clearSearchText?()
         refreshListEvent()
         
     }
@@ -105,36 +107,18 @@ class ListEventViewController: BaseViewController {
         getkeySearch?()
     }
     
-    @objc func updateEvent(sender: UIButton){
-        sender.animationScale()
-        let updateEvent = UpdateEventViewController(presenter: UpdateEventPresenter())
-        updateEvent.updateListEvent = { [self] in
-            refreshListEvent()
-        }
-        updateEvent.keyDetailEvent = (ListEvent[sender.tag]?.key)!
-        navigationController?.pushViewController(updateEvent, animated: true)
-        
-    }
-    
-    @objc func deleteEvent(sender: UIButton){
-        sender.animationScale()
-        showSpinner()
-        presenter.checkJoiner(keyEvent: (ListEvent[sender.tag]?.key)!)
-        
-        deleteActionHandler = { [self](action) in
-            showSpinner()
-            presenter.removeEvent(keyEvent: (ListEvent[sender.tag]?.key)!)
-        }
-        
-        cancelActionHandler = { [self](action) in
-            removeSpinner()
-        }
-    }
     
     func remakeData(){
         ListEvent = presenter.infoEvent
         collectionView.hideSkeleton()
-        collectionView.reloadData()
+        collectionView.insertItems(at: [IndexPath(row: ListEvent.count - 1, section: 0)])
+        collectionView.performBatchUpdates({
+            collectionView.reloadItems(at: [IndexPath(row: ListEvent.count - 1, section: 0)])
+        }){_ in
+            // optional closure
+            print("finished updating cell")
+        }
+        
         checkEmptyData()
     }
     
@@ -180,6 +164,9 @@ extension ListEventViewController: UICollectionViewDelegateFlowLayout,UICollecti
                 headerView.backgroundColor = .none
                 getkeySearch = { [self] in
                     presenter.fetchEventResult(keyEvent: headerView.txtSearch.text!)
+                }
+                clearSearchText = {
+                    headerView.txtSearch.text = ""
                 }
                 headerView.btSearch.addTarget(self, action: #selector(actionSearch(sender:)), for: .touchUpInside)
                 
@@ -246,10 +233,16 @@ extension ListEventViewController: UICollectionViewDataSource {
             if let profileURL = ListEvent[indexPath.row]?.urlImage {
                 cell.imgEvent.loadImage(urlString: profileURL)
             }
-            cell.btUpdate.tag = indexPath.row
-            cell.btDelete.tag = indexPath.row
-            cell.btUpdate.addTarget(self, action: #selector(updateEvent), for: .touchUpInside)
-            cell.btDelete.addTarget(self, action: #selector(deleteEvent), for: .touchUpInside)
+            cell.delete = { [self] in
+                presenter.removeEvent(keyEvent: (ListEvent[indexPath.row]?.key)!)
+            }
+            cell.update = { [self] in
+                let updateEvent = UpdateEventViewController(presenter: UpdateEventPresenter(keyEvent: (ListEvent[indexPath.row]?.key)!))
+                updateEvent.updateListEvent = { [self] in
+                    refreshListEvent()
+                }
+                navigationController?.pushViewController(updateEvent, animated: true)
+            }
             return cell
         }
         else {
@@ -291,7 +284,10 @@ extension ListEventViewController: ListEventViewProtocol{
     }
     
     func fetchEventSearchFailed() {
-        remakeData()
+        //remakeData()
+        ListEvent.removeAll()
+        collectionView.hideSkeleton()
+        checkEmptyData()
     }
     
     func fetchEventSuccess() {
@@ -306,7 +302,7 @@ extension ListEventViewController: ListEventViewProtocol{
         print("fetch list event failed")
         pullControl.endRefreshing()
         collectionView.hideSkeleton()
-        collectionView.reloadData()
+        //collectionView.reloadData()
     }
     
     

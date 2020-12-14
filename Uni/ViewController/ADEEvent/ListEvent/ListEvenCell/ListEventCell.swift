@@ -14,6 +14,8 @@ class ListEventCell: UICollectionViewCell {
     @IBOutlet weak var dateEvent: UILabel!
     @IBOutlet weak var btUpdate: UIButton!
     @IBOutlet weak var btDelete: UIButton!
+    var delete: (()->Void)? = nil
+    var update: (()->Void)? = nil
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -22,5 +24,11 @@ class ListEventCell: UICollectionViewCell {
         btUpdate.setTitle(AppLanguage.Update.localized, for: .normal)
         btDelete.setTitle(AppLanguage.Delete.localized, for: .normal)
     }
-
+    @IBAction func tapOnUpdateButton(_ sender: Any) {
+        update?()
+    }
+    
+    @IBAction func tapOnDeleteButton(_ sender: Any) {
+        delete?()
+    }
 }

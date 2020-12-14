@@ -45,6 +45,8 @@ class ListEventPresenter: ListEventPresenterProtocol {
     let storageRef = Storage.storage().reference()
     var infoEvent: [Event?] = []
     
+ 
+    
     func checkJoiner(keyEvent: String) {
         let placeRef = self.ref.child("Joiner/\(keyEvent)")
         placeRef.observeSingleEvent(of:.value, with: { [self] snapshot in
@@ -75,7 +77,7 @@ class ListEventPresenter: ListEventPresenterProtocol {
     
     
     func fetchEvent() {
-        
+        infoEvent.removeAll()
         ref.child("Event").observeSingleEvent(of:.value) { [self] (snapshot) in
             if(snapshot.exists()) {
                 for keyEvent in snapshot.children.allObjects as! [DataSnapshot] {
@@ -93,11 +95,10 @@ class ListEventPresenter: ListEventPresenterProtocol {
                             let urrlImage = dict["ImagePortal"] as! String
                             let request = Event(title: title, key: key, date: date, checkout: checkout, checkin: checkin, type: type, urlImage: urrlImage)
                             
-                            
                             infoEvent.append(request)
-                            DispatchQueue.main.async {
+                            //DispatchQueue.main.async {
                                 view?.fetchEventSuccess()
-                            }
+                            //}
                         }
                         else
                         {

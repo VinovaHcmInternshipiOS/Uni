@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -62,7 +61,7 @@
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R6D-nv-h6q">
-                                <rect key="frame" x="13" y="193" width="132" height="33"/>
+                                <rect key="frame" x="13" y="194" width="132" height="33"/>
                                 <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="14"/>
                                 <color key="textColor" name="FAB32A"/>
                                 <nil key="highlightedColor"/>
@@ -77,7 +76,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="  " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9rX-r7-C3i">
-                                <rect key="frame" x="13" y="231" width="133" height="29.5"/>
+                                <rect key="frame" x="13" y="232" width="133" height="28.5"/>
                                 <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="12"/>
                                 <color key="textColor" name="C9C5C5"/>
                                 <nil key="highlightedColor"/>
@@ -103,6 +102,9 @@
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="tapOnUpdateButton:" destination="gTV-IL-0wX" eventType="touchUpInside" id="2sc-gn-esU"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xcL-UQ-edl">
                                         <rect key="frame" x="79.5" y="0.0" width="79.5" height="40"/>
@@ -113,6 +115,9 @@
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="tapOnDeleteButton:" destination="gTV-IL-0wX" eventType="touchUpInside" id="lVy-zg-skN"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -144,9 +149,9 @@
                             <constraint firstItem="9rX-r7-C3i" firstAttribute="top" secondItem="R6D-nv-h6q" secondAttribute="bottom" constant="5" id="DD6-2E-WDj"/>
                             <constraint firstAttribute="trailing" secondItem="ci5-ca-J6y" secondAttribute="trailing" id="FEW-6x-cvd"/>
                             <constraint firstItem="kDQ-wu-kGy" firstAttribute="leading" secondItem="wTH-CI-0C0" secondAttribute="leading" id="H9W-PF-el6"/>
+                            <constraint firstItem="R6D-nv-h6q" firstAttribute="top" secondItem="kDQ-wu-kGy" secondAttribute="bottom" constant="14" id="VlR-4N-Oum"/>
                             <constraint firstAttribute="trailing" secondItem="kDQ-wu-kGy" secondAttribute="trailing" id="bEQ-x4-A8N"/>
-                            <constraint firstItem="R6D-nv-h6q" firstAttribute="top" secondItem="kDQ-wu-kGy" secondAttribute="bottom" constant="13" id="eD8-vo-x7H"/>
-                            <constraint firstItem="ci5-ca-J6y" firstAttribute="top" secondItem="9rX-r7-C3i" secondAttribute="bottom" constant="5" id="eeS-oo-TeO"/>
+                            <constraint firstItem="ci5-ca-J6y" firstAttribute="top" secondItem="9rX-r7-C3i" secondAttribute="bottom" constant="5" id="cuE-DJ-06y"/>
                             <constraint firstItem="kDQ-wu-kGy" firstAttribute="leading" secondItem="wTH-CI-0C0" secondAttribute="leading" id="kpV-Ll-8Ww"/>
                             <constraint firstItem="kDQ-wu-kGy" firstAttribute="top" secondItem="wTH-CI-0C0" secondAttribute="top" id="kyv-0c-orl"/>
                             <constraint firstItem="ci5-ca-J6y" firstAttribute="leading" secondItem="wTH-CI-0C0" secondAttribute="leading" id="u9z-VS-Kcw"/>
