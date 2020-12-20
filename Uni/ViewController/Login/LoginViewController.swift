@@ -134,10 +134,9 @@ extension LoginViewController: LoginViewProtocol {
         presentAlertWithTitle(title: AppLanguage.HandleError.anError.localized, message: AppLanguage.HandleError.userDisabled.localized, options: AppLanguage.Ok.localized) { (Int) in}
     }
     
-    func loginSuccess() {
+    func loginSuccess(uid: String) {
         removeSpinner()
-        
-        presenter.checkAuth { (role) in}
+        presenter.checkAuth(uid: uid) { (role) in}
     }
     
     func loginFailed(error: Error) {

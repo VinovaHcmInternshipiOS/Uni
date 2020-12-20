@@ -15,7 +15,7 @@ import Firebase
 import UIKit
 // MARK: View -
 protocol LoginViewProtocol: class {
-    func loginSuccess()
+    func loginSuccess(uid: String)
     func loginFailed(error: Error)
     func checkAuthSuccess(role:String)
     func checkAuthFailed()
@@ -27,7 +27,7 @@ protocol LoginViewProtocol: class {
 protocol LoginPresenterProtocol: class {
 	var view: LoginViewProtocol? { get set }
     func siginIn(email:String, password: String)
-    func checkAuth(completion: @escaping(String)->Void)
+    func checkAuth(uid: String,completion: @escaping(String)->Void)
     
 }
 
@@ -37,7 +37,7 @@ class LoginPresenter: LoginPresenterProtocol {
     weak var view: LoginViewProtocol?
     var ref = Database.database().reference()
     var databaseHandle = DatabaseHandle()
-    var user = Auth.auth().currentUser
+    //let user = Auth.auth().currentUser
     
     func siginIn(email:String, password: String) {
         //if NetworkState.shared.isConnected {
@@ -48,9 +48,12 @@ class LoginPresenter: LoginPresenterProtocol {
                 }
                 else
                 {
-                    let user = Auth.auth().currentUser
-                    print("User loggin in with data: \(user!.uid)")
-                    self?.view?.loginSuccess()
+                    if let user = Auth.auth().currentUser {
+                        print("User loggin in with data: \(user.uid)")
+                        self?.view?.loginSuccess(uid: user.uid)
+                    } else {return}
+                   
+                    
                 }
             }
        // } else {
@@ -58,9 +61,8 @@ class LoginPresenter: LoginPresenterProtocol {
         //}
     }
     
-    func checkAuth(completion: @escaping (String) -> Void) {
-        if let user = user?.uid {
-            let placeRef = self.ref.child("Users").child("\(user)").child("Auth")
+    func checkAuth(uid: String,completion: @escaping (String) -> Void) {
+            let placeRef = self.ref.child("Users").child("\(uid)").child("Auth")
             placeRef.observeSingleEvent(of:.value, with: { [self] snapshot in
                 if(snapshot.exists())
                 {
@@ -81,7 +83,6 @@ class LoginPresenter: LoginPresenterProtocol {
                 }
                 
             })
-        } else {return}
         
     }
 }
