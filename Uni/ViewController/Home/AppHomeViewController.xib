@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -23,6 +22,7 @@
                 <outlet property="collectionComingSoon" destination="ZIx-kM-VSU" id="SpX-j5-bYg"/>
                 <outlet property="collectionEnded" destination="d3G-X6-EmU" id="ccG-JS-ZlP"/>
                 <outlet property="collectionHappenning" destination="s5J-Lb-Vi3" id="lTH-op-gKV"/>
+                <outlet property="imageBookmart" destination="uyt-sa-RgY" id="SR8-rQ-Idx"/>
                 <outlet property="imgUser" destination="rdt-OV-IMR" id="576-LO-X1N"/>
                 <outlet property="lbAppHome" destination="agw-r8-1O9" id="HpX-yb-DzP"/>
                 <outlet property="lbComingSoon" destination="F2t-ME-TTa" id="PIu-Qq-CTo"/>
@@ -130,7 +130,7 @@
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </label>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icBookmark" translatesAutoresizingMaskIntoConstraints="NO" id="uyt-sa-RgY">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icBookmark-yellow" translatesAutoresizingMaskIntoConstraints="NO" id="uyt-sa-RgY">
                                             <rect key="frame" x="307" y="0.0" width="15" height="27"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="27" id="ALu-q1-S5O"/>
@@ -463,7 +463,7 @@
         </view>
     </objects>
     <resources>
-        <image name="icBookmark" width="15" height="27"/>
+        <image name="icBookmark-yellow" width="15" height="27"/>
         <image name="icHomeBarcode" width="28" height="28"/>
         <image name="icHomeHistory" width="28" height="28"/>
         <image name="icHomeLeaderBoard" width="28" height="28"/>

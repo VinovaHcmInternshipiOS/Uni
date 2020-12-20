@@ -58,6 +58,7 @@ class AppHomePresenter: AppHomePresenterProtocol {
     var endedEvent: [Event?] = []
     
     func getInfoEventHappening() {
+        happeningEvent.removeAll()
         ref.child("Event").queryOrdered(byChild: "Type").queryEqual(toValue:"Happening" ).observeSingleEvent(of: .value) { [self] (snapshot) in
             if(snapshot.exists()) {
                 for keyEvent in snapshot.children.allObjects as! [DataSnapshot] {
@@ -96,6 +97,7 @@ class AppHomePresenter: AppHomePresenterProtocol {
     }
     
     func getInfoEventComingSoon() {
+        comingsoonEvent.removeAll()
         ref.child("Event").queryOrdered(byChild: "Type").queryEqual(toValue:"ComingSoon" ).observeSingleEvent(of: .value) { [self] (snapshot) in
             if(snapshot.exists()) {
                 for keyEvent in snapshot.children.allObjects as! [DataSnapshot] {
@@ -133,6 +135,7 @@ class AppHomePresenter: AppHomePresenterProtocol {
     }
     
     func getInfoEventEnded() {
+        endedEvent.removeAll()
         ref.child("Event").queryOrdered(byChild: "Type").queryEqual(toValue:"Ended" ).observeSingleEvent(of: .value) { [self] (snapshot) in
             if(snapshot.exists()) {
                 for keyEvent in snapshot.children.allObjects as! [DataSnapshot] {

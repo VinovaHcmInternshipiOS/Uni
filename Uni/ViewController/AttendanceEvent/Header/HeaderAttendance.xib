@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Raleway-Medium.ttf">
+            <string>Raleway-Medium</string>
+        </array>
+        <array key="Raleway-Regular.ttf">
+            <string>Raleway-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HeaderAttendance" customModule="Uni" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="U6b-Vx-4bR" customClass="HeaderAttendance" customModule="Uni" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="286"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FEg-ni-per" userLabel="List Attendance">
+                    <rect key="frame" x="12" y="35" width="0.0" height="93.5"/>
+                    <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="40"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0TF-a7-y52">
+                    <rect key="frame" x="10" y="163.5" width="300" height="40"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lr4-Ij-XEJ">
+                            <rect key="frame" x="257" y="0.0" width="21.5" height="40"/>
+                            <color key="backgroundColor" red="0.98039215690000003" green="0.70196078429999997" blue="0.1647058824" alpha="1" colorSpace="calibratedRGB"/>
+                        </view>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder=" " textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="jTA-K3-cja">
+                            <rect key="frame" x="24" y="0.0" width="233" height="40"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="18"/>
+                            <textInputTraits key="textInputTraits" autocorrectionType="no" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                        </textField>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6ai-Sy-56J">
+                            <rect key="frame" x="257" y="0.0" width="43" height="40"/>
+                            <color key="backgroundColor" red="0.98039215690000003" green="0.70196078429999997" blue="0.1647058824" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <state key="normal" image="magnifyingglass" catalog="system"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="20"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="6ai-Sy-56J" secondAttribute="bottom" id="3Af-Ed-KmX"/>
+                        <constraint firstItem="Lr4-Ij-XEJ" firstAttribute="width" secondItem="6ai-Sy-56J" secondAttribute="width" multiplier="0.5" id="5KK-o4-fwE"/>
+                        <constraint firstItem="6ai-Sy-56J" firstAttribute="top" secondItem="0TF-a7-y52" secondAttribute="top" id="7BM-3x-51X"/>
+                        <constraint firstAttribute="height" constant="40" id="ayP-V5-5SB"/>
+                        <constraint firstItem="6ai-Sy-56J" firstAttribute="leading" secondItem="jTA-K3-cja" secondAttribute="trailing" id="bMf-68-iSX"/>
+                        <constraint firstItem="jTA-K3-cja" firstAttribute="leading" secondItem="0TF-a7-y52" secondAttribute="leading" constant="24" id="fXB-JP-fIa"/>
+                        <constraint firstAttribute="trailing" secondItem="6ai-Sy-56J" secondAttribute="trailing" id="ibc-fv-QqR"/>
+                        <constraint firstItem="jTA-K3-cja" firstAttribute="top" secondItem="Lr4-Ij-XEJ" secondAttribute="top" id="jY7-R0-XMT"/>
+                        <constraint firstItem="Lr4-Ij-XEJ" firstAttribute="leading" secondItem="6ai-Sy-56J" secondAttribute="leading" id="kPD-6M-mSF"/>
+                        <constraint firstItem="Lr4-Ij-XEJ" firstAttribute="bottom" secondItem="jTA-K3-cja" secondAttribute="bottom" id="lVE-xf-fDW"/>
+                        <constraint firstItem="6ai-Sy-56J" firstAttribute="leading" secondItem="jTA-K3-cja" secondAttribute="trailing" id="lZS-8d-mbK"/>
+                        <constraint firstItem="Lr4-Ij-XEJ" firstAttribute="bottom" secondItem="6ai-Sy-56J" secondAttribute="bottom" id="m1W-Cb-6ZA"/>
+                        <constraint firstItem="6ai-Sy-56J" firstAttribute="width" secondItem="0TF-a7-y52" secondAttribute="width" multiplier="0.142857" id="msj-nO-R9u"/>
+                        <constraint firstItem="Lr4-Ij-XEJ" firstAttribute="top" secondItem="6ai-Sy-56J" secondAttribute="top" id="zJG-j1-hSf"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                            <size key="value" width="0.0" height="4"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                            <color key="value" name="Color-1"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                            <real key="value" value="15"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="shadowBlur">
+                            <real key="value" value="15"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="20"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="      " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qLi-yc-1HN">
+                    <rect key="frame" x="274.5" y="223.5" width="33.5" height="23.5"/>
+                    <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="20"/>
+                    <color key="textColor" name="FAB32A"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="VXr-Tz-HHm"/>
+            <constraints>
+                <constraint firstItem="FEg-ni-per" firstAttribute="top" secondItem="U6b-Vx-4bR" secondAttribute="top" constant="35" id="2g3-uG-IB5"/>
+                <constraint firstItem="FEg-ni-per" firstAttribute="leading" secondItem="VXr-Tz-HHm" secondAttribute="leading" constant="12" id="MsY-rn-DUt"/>
+                <constraint firstItem="0TF-a7-y52" firstAttribute="top" secondItem="FEg-ni-per" secondAttribute="bottom" constant="35" id="SqH-R9-iVB"/>
+                <constraint firstItem="qLi-yc-1HN" firstAttribute="top" secondItem="0TF-a7-y52" secondAttribute="bottom" constant="20" id="WOi-mT-Lz8"/>
+                <constraint firstItem="0TF-a7-y52" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" constant="10" id="nf0-TW-sX1"/>
+                <constraint firstItem="VXr-Tz-HHm" firstAttribute="trailing" secondItem="qLi-yc-1HN" secondAttribute="trailing" constant="12" id="oMs-zm-aHF"/>
+                <constraint firstItem="VXr-Tz-HHm" firstAttribute="trailing" secondItem="0TF-a7-y52" secondAttribute="trailing" constant="10" id="oUl-vq-oKd"/>
+            </constraints>
+            <connections>
+                <outlet property="btSearch" destination="6ai-Sy-56J" id="fsf-fi-HXh"/>
+                <outlet property="lbHeader" destination="FEg-ni-per" id="zJj-US-WqH"/>
+                <outlet property="lbTotal" destination="qLi-yc-1HN" id="unp-Ir-Pkp"/>
+                <outlet property="txtSearch" destination="jTA-K3-cja" id="SfY-xS-w05"/>
+                <outlet property="viewButton" destination="Lr4-Ij-XEJ" id="X5v-A0-Ecf"/>
+            </connections>
+            <point key="canvasLocation" x="111.59420289855073" y="125.89285714285714"/>
+        </collectionReusableView>
+    </objects>
+    <resources>
+        <image name="magnifyingglass" catalog="system" width="128" height="115"/>
+        <namedColor name="Color-1">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.15000000596046448" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="FAB32A">
+            <color red="0.98000001907348633" green="0.70200002193450928" blue="0.16500000655651093" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

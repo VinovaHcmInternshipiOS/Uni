@@ -34,6 +34,7 @@ class AppHomeViewController:BaseViewController{
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var pageControl: UIPageControl!
     private var pullControl = UIRefreshControl()
+    @IBOutlet weak var imageBookmart: UIImageView!
     var presenter: AppHomePresenterProtocol
     var item = [1,2,3,4,5,6,7,8,9,10]
     var indexPageControl = 0
@@ -76,9 +77,9 @@ class AppHomeViewController:BaseViewController{
     }
     
     func refreshListEvent(){
-        presenter.happeningEvent = []
-        presenter.comingsoonEvent = []
-        presenter.endedEvent = []
+        listEventHappening.removeAll()
+        listEventComingSoon.removeAll()
+        listEventEnded.removeAll()
         presenter.getInfoEventHappening()
         presenter.getInfoEventComingSoon()
         presenter.getInfoEventEnded()
@@ -100,6 +101,7 @@ class AppHomeViewController:BaseViewController{
         lbFaculty.textColor = AppColor.YellowFAB32A
         imgUser.borderColor = AppColor.YellowFAB32A
         pullControl.tintColor = AppColor.YellowFAB32A
+        imageBookmart.image = AppIcon.icBookmartYellow
         scrollView.alwaysBounceVertical = true
         skeletonCollectionView()
         skeletonProfile()
@@ -130,6 +132,9 @@ class AppHomeViewController:BaseViewController{
     
     @objc func pulledRefreshControl(sender:AnyObject) {
         refreshListEvent()
+        collectionHappenning.reloadData()
+        collectionComingSoon.reloadData()
+        collectionEnded.reloadData()
         presenter.loadProfile()
         
     }
@@ -310,7 +315,7 @@ extension AppHomeViewController: UICollectionViewDelegate,UICollectionViewDataSo
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == collectionHappenning {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HappenningCellAppHome", for: indexPath) as? HappenningCellAppHome else {return UICollectionViewCell()}
-                if let profileURL = listEventHappening[indexPath.row]?.urlImage {
+                if let profileURL =  listEventHappening[indexPath.row]?.urlImage {
                     cell.imageCell.loadImage(urlString: profileURL)
                 }
             return cell
@@ -379,8 +384,15 @@ extension AppHomeViewController: AppHomeViewProtocol {
     func fetchInfoEventHappeningSuccess() {
         listEventHappening = presenter.happeningEvent
         collectionHappenning.hideSkeleton()
+        collectionHappenning.insertItems(at: [IndexPath(row: listEventHappening.count - 1, section: 0)])
+        collectionHappenning.performBatchUpdates({
+            collectionHappenning.reloadItems(at: [IndexPath(row: listEventHappening.count - 1, section: 0)])
+        }){_ in
+            // optional closure
+            print("finished updating cell")
+        }
         pullControl.endRefreshing()
-        collectionHappenning.reloadData()
+        //collectionHappenning.reloadData()
         checkEmptyDataHappenning()
     }
     
@@ -394,8 +406,15 @@ extension AppHomeViewController: AppHomeViewProtocol {
     func fetchInfoEventComingSoonSuccess() {
         listEventComingSoon = presenter.comingsoonEvent
         collectionComingSoon.hideSkeleton()
+        collectionComingSoon.insertItems(at: [IndexPath(row: listEventComingSoon.count - 1, section: 0)])
+        collectionComingSoon.performBatchUpdates({
+            collectionComingSoon.reloadItems(at: [IndexPath(row: listEventComingSoon.count - 1, section: 0)])
+        }){_ in
+            // optional closure
+            print("finished updating cell")
+        }
         pullControl.endRefreshing()
-        collectionComingSoon.reloadData()
+        //collectionComingSoon.reloadData()
         checkEmptyDataComingSoon()
     }
     
@@ -409,8 +428,15 @@ extension AppHomeViewController: AppHomeViewProtocol {
     func fetchInfoEventEndedSuccess() {
         listEventEnded = presenter.endedEvent
         collectionEnded.hideSkeleton()
+        collectionEnded.insertItems(at: [IndexPath(row: listEventEnded.count - 1, section: 0)])
+        collectionEnded.performBatchUpdates({
+            collectionEnded.reloadItems(at: [IndexPath(row: listEventEnded.count - 1, section: 0)])
+        }){_ in
+            // optional closure
+            print("finished updating cell")
+        }
         pullControl.endRefreshing()
-        collectionEnded.reloadData()
+       // collectionEnded.reloadData()
         checkEmptyDataEnded()
     }
     

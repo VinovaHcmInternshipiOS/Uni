@@ -8,7 +8,9 @@
 import Foundation
 import UIKit
 class AppIcon {
-    static let icBookmart = UIImage(named: "icBookmart")
+    static var icBookmartYellow = UIImage(named: "icBookmart-yellow")
+    static let icBookmartRed = UIImage(named: "icBookmart-red")
+    static let DefaulticBookmartYellow = UIImage(named: "icBookmart-yellow")
     static let icArrowRightWhite = UIImage(named: "icArrowRight-white")
     static let icCrown1 = UIImage(named: "icCrown1")
     static let isCrown2 = UIImage(named: "isCrown2")
@@ -18,7 +20,9 @@ class AppIcon {
     static let icMagnifyingGlassWhite = UIImage(named: "icMagnifyingGlass-white")
     static let icHomeLeaderBoard = UIImage(named: "icHomeLeaderBoard")
     static let icWreathWhite = UIImage(named: "icWreath-white")
-    static let icWreathYellow = UIImage(named: "icWreathWhite-yellow")
+    static var icWreathYellow = UIImage(named: "icWreath-yellow")
+    static let icWreathRed = UIImage(named: "icWreath-red")
+    static let DefaulticWreathYellow = UIImage(named: "icWreath-yellow")
     static let icMoon = UIImage(named: "icMoon")
     static let icThreeLine = UIImage(named: "icThreeLine")
     static var icArrowLeftYellow = UIImage(named: "icArrowLeft-yellow")
@@ -44,5 +48,6 @@ class AppIcon {
     static var icExportYellow = UIImage(named: "icExport-yellow")
     static let DefaulticExportYellow = UIImage(named: "icExport-yellow")
     static let icExportRed = UIImage(named: "icExport-red")
+    static let defaultImagenil = UIImage(named: "icImageNil")
     
 }

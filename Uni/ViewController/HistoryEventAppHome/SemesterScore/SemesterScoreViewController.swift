@@ -44,7 +44,7 @@ class SemesterScoreViewController: BaseViewController {
         setupUI()
         setupLanguage()
         loadLabel()
-        fetchSemester ()
+        fetchSemester()
         
         
 
@@ -96,13 +96,15 @@ class SemesterScoreViewController: BaseViewController {
     
     func refreshListSemester() {
         skeletonView()
-        presenter.detailHistory = []
+        
         for i in 0..<dataSemester.count {
            presenter.fetchHistoryEvent(keyEvent: (dataSemester[i]?.Key)!)
         }
     }
     
     @objc func pulledRefreshControl(sender:AnyObject) {
+        showSpinner()
+        detailHistory.removeAll()
         refreshListSemester()
         
     }
@@ -119,7 +121,8 @@ class SemesterScoreViewController: BaseViewController {
         tableView.hideSkeleton()
         totalScore.hideSkeleton()
         totalEvent.hideSkeleton()
-        tableView.reloadData()
+
+        
     }
 }
 
@@ -129,7 +132,7 @@ extension SemesterScoreViewController: SkeletonTableViewDataSource {
         
     }
     func collectionSkeletonView(_ skeletonView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6
+        return detailHistory.count
     }
     
     func numSections(in collectionSkeletonView: UITableView) -> Int {
@@ -185,7 +188,18 @@ extension SemesterScoreViewController: SemesterScoreViewProtocol {
             score += (dataSemester[i]?.Score)!
             totalScore.text = AppLanguage.Semester.TotalScore.localized + " \(score)"
         }
-        hideSkeletonView()
+        tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
+        tableView.performBatchUpdates {
+            tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
+        } completion: { [self] (Bool) in
+            hideSkeletonView()
+            removeSpinner()
+        }
+
+//        tableView.beginUpdates()
+//        tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
+//        tableView.endUpdates()
+       
     }
     
     func fetchHistoryEventFailed() {

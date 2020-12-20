@@ -38,7 +38,7 @@ class ListUserPresenter: ListUserPresenterProtocol {
     var infoUsers: [ListUser?] = []
     
     func fetchListUser() {
-        
+        infoUsers.removeAll()
         ref.child("Users").observeSingleEvent(of:.value) { [self] (snapshot) in
             if(snapshot.exists()) {
                 
@@ -70,10 +70,11 @@ class ListUserPresenter: ListUserPresenterProtocol {
                                             
                                             if role != "Admin" {
                                                 infoUsers.append(ListUser(code: code, email: email, uid: uid, role: role, state: state, name: name,urlImage: Image))
+                                                DispatchQueue.main.async {
+                                                    view?.fetchUserSuccess()
+                                                }
                                             }
-                                            DispatchQueue.main.async {
-                                                view?.fetchUserSuccess()
-                                            }
+                                            
                                             
                                         }
                                         else {
@@ -136,10 +137,11 @@ class ListUserPresenter: ListUserPresenterProtocol {
                                             
                                             if role != "Admin" {
                                                 infoUsers.append(ListUser(code: code, email: email, uid: uid, role: role, state: state, name: name,urlImage: Image))
+                                                DispatchQueue.main.async {
+                                                    view?.fetchUserSearchSuccess()
+                                                }
                                             }
-                                            DispatchQueue.main.async {
-                                                view?.fetchUserSearchSuccess()
-                                            }
+                                            
                                             
                                         }
                                         else {

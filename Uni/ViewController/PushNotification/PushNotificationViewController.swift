@@ -10,8 +10,8 @@
 
 import UIKit
 
-class PushNotificationViewController: BaseViewController, PushNotificationViewProtocol {
-
+class PushNotificationViewController: BaseViewController {
+    
     @IBOutlet weak var txtTitle: UITextField!
     @IBOutlet weak var txtContent: UITextView!
     @IBOutlet weak var lbSentNotice: UILabel!
@@ -19,21 +19,19 @@ class PushNotificationViewController: BaseViewController, PushNotificationViewPr
     @IBOutlet weak var lbContent: UILabel!
     @IBOutlet weak var lbTitle: UILabel!
     var presenter: PushNotificationPresenterProtocol
-    let senderPushNotice = PushNotificationSender()
-	init(presenter: PushNotificationPresenterProtocol) {
+    init(presenter: PushNotificationPresenterProtocol) {
         self.presenter = presenter
         super.init(nibName: "PushNotificationViewController", bundle: nil)
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
-	override func viewDidLoad() {
+    
+    override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         presenter.view = self
-        presenter.viewDidLoad()
         setupLanguage()
         setupUI()
         
@@ -53,13 +51,27 @@ class PushNotificationViewController: BaseViewController, PushNotificationViewPr
     
     @IBAction func sentNotice(_ sender: Any) {
         if let title = txtTitle.text, let content = txtContent.text {
-            if title == "" || content == "" {
-                presentAlertWithTitle(title: AppLanguage.HandleError.anError.localized, message: AppLanguage.HandleError.fillIn.localized, options: AppLanguage.Ok.localized) { (Int) in}
+            if removeWhiteSpaceAndLine(text: title) != "" && removeWhiteSpaceAndLine(text: content) != "" {
+                presenter.sendPushNotification(to: "", title: removeWhiteSpaceAndLine(text: title), body: removeWhiteSpaceAndLine(text: content))
+                
             } else {
-                senderPushNotice.sendPushNotification(to: "", title: title, body: content)
+                presentAlertWithTitle(title: AppLanguage.HandleError.anError.localized, message:
+                                        AppLanguage.HandleError.fillIn.localized, options: AppLanguage.Ok.localized) { (Int) in}
             }
         } else { return }
         
     }
+    
+}
+
+extension PushNotificationViewController: PushNotificationViewProtocol {
+    func pushNotificationSuccess() {
+        presentAlertWithTitle(title: AppLanguage.HandleSuccess.Success.localized, message: AppLanguage.HandleSuccess.pushNotification.localized, options: AppLanguage.Ok.localized) { (Int) in}
+    }
+    
+    func pushNotificationFailed() {
+        presentAlertWithTitle(title: AppLanguage.HandleError.anError.localized, message: AppLanguage.HandleError.pushNotification.localized, options: AppLanguage.Ok.localized) { (Int) in}
+    }
+    
     
 }

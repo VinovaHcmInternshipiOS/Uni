@@ -36,7 +36,6 @@ class CreateEventViewController: BaseViewController {
     var imagePicker: ImagePicker!
     var scoreEvent = 0
     var refreshListEvent: (()->Void)? = nil
-    let sender = PushNotificationSender()
 	init(presenter: CreateEventPresenterProtocol) {
         self.presenter = presenter
         super.init(nibName: "CreateEventViewController", bundle: nil)
@@ -143,16 +142,18 @@ class CreateEventViewController: BaseViewController {
     }
     
     @IBAction func btDone(_ sender: Any) {
-        if (btCheckin.titleLabel?.text)! != AppLanguage.CreateEvent.Checkin.localized && (btCheckout.titleLabel?.text)! != AppLanguage.CreateEvent.Checkout.localized && contentTitle.text?.isEmpty == false && contentOverview.text?.isEmpty == false && contentLocation.text?.isEmpty == false {
-            if let title = contentTitle.text, let overview = contentOverview.text, let location = contentLocation.text, let date = btChooseDate.titleLabel?.text,let checkin = btCheckin.titleLabel?.text,let checkout = btCheckout.titleLabel?.text {
-                showSpinner()
-                presenter.createEvent(urlImgLanscape: "", urlImgPortal: "", title: title, overview: overview, location: location, date: date, checkin: checkin.formatDateCreate(), checkout: checkout.formatDateCreate(), score: scoreEvent)
-                
-            } else {return}
+        if let title = contentTitle.text, let overview = contentOverview.text, let location = contentLocation.text, let date = btChooseDate.titleLabel?.text,let checkin = btCheckin.titleLabel?.text,let checkout = btCheckout.titleLabel?.text {
             
-        } else {
-            showAlert(title: AppLanguage.HandleError.anError.localized, message: AppLanguage.HandleError.fillIn.localized, actionTitles: [AppLanguage.Ok.localized], style: [.default], actions: [.none])
-        }
+            if checkin != AppLanguage.CreateEvent.Checkin.localized && checkout != AppLanguage.CreateEvent.Checkout.localized && removeWhiteSpaceAndLine(text: overview) != "" && removeWhiteSpaceAndLine(text: title) != "" && removeWhiteSpaceAndLine(text: location) != "" && date != AppLanguage.CreateEvent.ChooseDate.localized {
+                
+                            showSpinner()
+                            presenter.createEvent(urlImgLanscape: "", urlImgPortal: "", title: removeWhiteSpaceAndLine(text: title), overview: removeWhiteSpaceAndLine(text: overview), location: removeWhiteSpaceAndLine(text: location), date: date, checkin: checkin.formatDateCreate(), checkout: checkout.formatDateCreate(), score: scoreEvent)
+                
+            } else {
+                showAlert(title: AppLanguage.HandleError.anError.localized, message: AppLanguage.HandleError.fillIn.localized, actionTitles: [AppLanguage.Ok.localized], style: [.default], actions: [.none])
+            }
+        } else {return}
+        
     }
     
 }
@@ -172,9 +173,17 @@ extension CreateEventViewController: ImagePickerDelegate {
 }
 
 extension CreateEventViewController: CreateEventViewProtocol {
+    func pushNotificationSuccess() {
+        presentAlertWithTitle(title: AppLanguage.HandleSuccess.Success.localized, message: AppLanguage.HandleSuccess.pushNotification.localized, options: AppLanguage.Ok.localized) { (Int) in}
+    }
+    
+    func pushNotificationFailed() {
+        presentAlertWithTitle(title: AppLanguage.HandleError.anError.localized, message: AppLanguage.HandleError.pushNotification.localized, options: AppLanguage.Ok.localized) { (Int) in}
+    }
+    
     func createEventSuccess(path: String, title: String) {
         removeSpinner()
-        sender.sendPushNotification(to: "", title: "New event!!!", body: "Hi, we have just added \(title) event in the Uni.\nWe will be happy if you join us.\nLets explore.")
+        presenter.sendPushNotification(to: "", title: "New event!!!", body: "Hi, we have just added \(title) event in the Uni.\nWe will be happy if you join us.\nLets explore.")
         presentAlertWithTitle(title: AppLanguage.HandleSuccess.Success.localized, message: AppLanguage.HandleSuccess.createEvent.localized, options: AppLanguage.Ok.localized) { [self] (option) in
             self.navigationController?.popViewController(animated: true)
             refreshListEvent?()

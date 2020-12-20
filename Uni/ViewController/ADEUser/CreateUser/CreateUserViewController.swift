@@ -257,10 +257,11 @@ class CreateUserViewController: BaseViewController {
     @IBAction func btCreate(_ sender: Any) {
         showSpinner()
         if let email = txtEmail.text, let id = txtID.text, let role = txtRole.text, let state = txtState.text,let name = txtName.text, let gender = txtGender.text, let Class = txtClass.text, let course = txtCourse.text, let faculty = txtFaculty.text {
-            if email == "" || id == "" || role == "" || state == "" || name == "" || gender == "" || Class == "" || course == "" || faculty == "" {
-                showAlert(title: AppLanguage.HandleError.anError.localized, message: AppLanguage.HandleError.fillIn.localized, actionTitles: [AppLanguage.Ok.localized], style: [.default], actions: [.none])
-            } else {
+            if removeWhiteSpaceAndLine(text: email) != "" && removeWhiteSpaceAndLine(text: id) != "" && removeWhiteSpaceAndLine(text: role) != "" && removeWhiteSpaceAndLine(text: state) != "" && removeWhiteSpaceAndLine(text: name) != "" && removeWhiteSpaceAndLine(text: gender) != "" && removeWhiteSpaceAndLine(text: Class) != "" && removeWhiteSpaceAndLine(text: course) != "" && removeWhiteSpaceAndLine(text: faculty) != "" {
                 presenter.checkExistEmail(email: email)
+                
+            } else {
+                showAlert(title: AppLanguage.HandleError.anError.localized, message: AppLanguage.HandleError.fillIn.localized, actionTitles: [AppLanguage.Ok.localized], style: [.default], actions: [.none])
             }
         } else {return}
         
@@ -284,7 +285,7 @@ extension CreateUserViewController: CreateUserViewProtocol{
     
     func checkExistEmailFailed() {
         if let code = txtID.text {
-            presenter.checkExistID(code: code)
+            presenter.checkExistID(code: removeWhiteSpaceAndLine(text: code))
         } else {return}
         
     }
@@ -296,13 +297,13 @@ extension CreateUserViewController: CreateUserViewProtocol{
     
     func checkExistIDFailed() {
         if let email = txtEmail.text, let id = txtID.text, let _ = txtRole.text, let _ = txtState.text {
-            presenter.createAccount(email: email, id: id, role: dataRole(), state: Bool(dataState()) ?? true)
+            presenter.createAccount(email: removeWhiteSpaceAndLine(text: email), id: removeWhiteSpaceAndLine(text: id), role: dataRole(), state: Bool(dataState()) ?? true)
         } else {return}
     }
     
     func createAccountSuccess(code: String) {
         if let name = txtName.text, let _ = txtGender.text, let Class = txtClass.text, let course = txtCourse.text, let _ = txtFaculty.text {
-            presenter.createInformation(code: code, name: name, gender: dataGender(), Class: Class, course: course, faculty: dataFaculty())
+            presenter.createInformation(code: removeWhiteSpaceAndLine(text: code), name: removeWhiteSpaceAndLine(text: name), gender: dataGender(), Class: Class, course: course, faculty: dataFaculty())
         } else {return}
         
     }

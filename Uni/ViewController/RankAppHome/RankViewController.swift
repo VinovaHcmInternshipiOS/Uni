@@ -28,8 +28,9 @@ class RankViewController: BaseViewController {
     @IBOutlet weak var heightTableView: NSLayoutConstraint!
     @IBOutlet weak var viewScore: UIView!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var scrollView: UIScrollView!
+    private var pullControl = UIRefreshControl()
     var presenter: RankPresenterProtocol
-    var rankEvent = [RankEvent?]()
 	init(presenter: RankPresenterProtocol) {
         self.presenter = presenter
         super.init(nibName: "RankViewController", bundle: nil)
@@ -41,56 +42,62 @@ class RankViewController: BaseViewController {
 
 	override func viewDidLoad() {
         super.viewDidLoad()
-
         presenter.view = self
-        presenter.fetchRank()
         setupXIB()
         setupLanguage()
+        setupUI()
+        presenter.fetchRank()
+        pullRefreshData()
     }
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         viewScore.roundCorners([.topLeft,.topRight], radius: 20)
     }
     
+    @objc func pullRefreshControl(sender:AnyObject) {
+        presenter.fetchRank()
+        
+    }
+    
+    private func pullRefreshData() {
+        pullControl.addTarget(self, action: #selector(pullRefreshControl), for: UIControl.Event.valueChanged)
+        scrollView.addSubview(pullControl)
+        
+    }
     func setupLanguage(){
         lbRank.text = AppLanguage.Rank.Rank.localized
         lbScore.text = AppLanguage.Rank.Score.localized
+        lbScoreRank1.textColor = AppColor.YellowFAB32A
+        lbScoreRank2.textColor = AppColor.YellowFAB32A
+        lbScoreRank3.textColor = AppColor.YellowFAB32A
+    }
+    
+    func setupUI(){
+        viewScore.backgroundColor = AppColor.YellowFAB32A
+        pullControl.tintColor = AppColor.YellowFAB32A
+        scrollView.alwaysBounceVertical = true
     }
     
     func setupXIB(){
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: "RankTableViewCell", bundle: nil), forCellReuseIdentifier: "RankTableViewCell")
-        
-        
     }
-    
-
 }
 
 extension RankViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if rankEvent.count > 3 {
-            return rankEvent.count - 3
-        } else {
-            return 0
-        }
-        
+        return presenter.rankEvent.count > 3 ? presenter.rankEvent.count - 3 : 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row > 2 {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "RankTableViewCell", for: indexPath) as? RankTableViewCell else { return UITableViewCell()}
-            cell.lbRank.text = "\(indexPath.row + 1)"
-            cell.lbName.text = rankEvent[indexPath.row]?.name
-            cell.lbScore.text = "\(rankEvent[indexPath.row]?.score ?? 0)"
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "RankTableViewCell", for: indexPath) as? RankTableViewCell {
+            cell.lbRank.text = "\(indexPath.row + 4)"
+            cell.lbName.text = presenter.rankEvent[indexPath.row + 3]?.name
+            cell.lbScore.text = "\(presenter.rankEvent[indexPath.row + 3]?.score ?? 0)"
             return cell
-        }
-        return UITableViewCell()
-        
+        } else { return UITableViewCell()}
     }
-    
-    
 }
 
 extension RankViewController: UITableViewDelegate {
@@ -106,48 +113,43 @@ extension RankViewController: UITableViewDelegate {
 }
 
 extension RankViewController: RankViewProtocol {
-    func fetchProfileRankSuccess() {
-        lbNameProfile.text = presenter.nameProfile
-        lbScore.text = "\(AppLanguage.Rank.Score.localized) \(presenter.scoreProfile)"
-        lbRankProfile.text = "\(presenter.searchRankProfile())"
-    }
-    
-    func fetchProfileRankFailed() {
-        lbNameProfile.text = ""
-        lbScore.text = ""
-        print("fetch profile rank failed")
-    }
-    
+
     func fetchRankSuccess() {
-        rankEvent = presenter.rankEvent
-        for i in 0..<rankEvent.count {
-            if i == 0 {
-                lbNameRank1.text = rankEvent[i]?.name ?? ""
-                lbScoreRank1.text = "\(rankEvent[i]?.score ?? 0)"
-                if let eventURL = rankEvent[i]?.imgURL {
-                    imgRank1.loadImage(urlString: eventURL)
-                }
-            } else if i == 1 {
-                lbNameRank2.text = rankEvent[i]?.name ?? ""
-                lbScoreRank2.text = "\(rankEvent[i]?.score ?? 0)"
-                if let eventURL = rankEvent[i]?.imgURL {
-                    imgRank2.loadImage(urlString: eventURL)
-                }
-            } else if i == 2 {
-                lbNameRank3.text = rankEvent[i]?.name ?? ""
-                lbScoreRank3.text = "\(rankEvent[i]?.score ?? 0)"
-                if let eventURL = rankEvent[i]?.imgURL {
-                    imgRank3.loadImage(urlString: eventURL)
-                }
+        if presenter.rankEvent.count > 2 {
+            lbNameRank3.text = presenter.rankEvent[2]?.name ?? ""
+            lbScoreRank3.text = "\(presenter.rankEvent[2]?.score ?? 0)"
+            if let eventURL = presenter.rankEvent[2]?.imgURL {
+                imgRank3.loadImage(urlString: eventURL)
+            }
+            lbNameRank2.text = presenter.rankEvent[1]?.name ?? ""
+            lbScoreRank2.text = "\(presenter.rankEvent[1]?.score ?? 0)"
+            if let eventURL = presenter.rankEvent[1]?.imgURL {
+                imgRank2.loadImage(urlString: eventURL)
+            }
+            lbNameRank1.text = presenter.rankEvent[0]?.name ?? ""
+            lbScoreRank1.text = "\(presenter.rankEvent[0]?.score ?? 0)"
+            if let eventURL = presenter.rankEvent[0]?.imgURL {
+                imgRank1.loadImage(urlString: eventURL)
+            }
+        }
+        if presenter.isFindUserRank {
+            lbNameProfile.text = presenter.nameProfile
+            lbScore.text = "\(AppLanguage.Rank.Score.localized) \(presenter.scoreProfile)"
+            
+        }
+        for (index, value) in presenter.rankEvent.enumerated() {
+            if value?.code == presenter.code {
+                lbRankProfile.text = "\(index + 1)"
+                lbNameProfile.text = presenter.nameProfile
+                lbScore.text = "\(AppLanguage.Rank.Score.localized) \(presenter.scoreProfile)"
             }
         }
         tableView.reloadData()
-        presenter.fetchProfileRank()
+        pullControl.endRefreshing()
     }
     
     func fetchRanhFailed() {
+        
         print("fetch rank failed")
     }
-    
-    
 }

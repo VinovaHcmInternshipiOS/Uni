@@ -157,6 +157,9 @@ extension UIViewController {
         return Int(timeInveral)
     }
     
+    func removeWhiteSpaceAndLine(text: String) -> String {
+        return text.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
 }
 class Switcher {
     

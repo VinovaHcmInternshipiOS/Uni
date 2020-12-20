@@ -37,6 +37,7 @@ class SemesterScorePresenter: SemesterScorePresenterProtocol {
     var user = Auth.auth().currentUser
     var detailHistory: [DetailHistory?] = []
     func fetchHistoryEvent(keyEvent: String) {
+        detailHistory.removeAll()
         guard let user = user else { return }
         let placeRef = self.ref.child("Users").child("\(user.uid)")
         placeRef.observe(.value, with: { [self] snapshot in
@@ -62,11 +63,10 @@ class SemesterScorePresenter: SemesterScorePresenterProtocol {
                                 let dict = snapshot.value as! [String: Any]
                                 let date = dict["Date"] as! String
                                 let checkin = dict["Checkin"] as! String
-                                
-                                detailHistory.append(DetailHistory(title: title, date: date, checkin: checkin, score: score, key: keyEvent, urlImage: urrlImage))
-                                DispatchQueue.main.async {
+                                detailHistory.insert(DetailHistory(title: title, date: date, checkin: checkin, score: score, key: keyEvent, urlImage: urrlImage), at: 0)
+                               // DispatchQueue.main.async {
                                     view?.fetchHistoryEventSuccess()
-                                }
+                               // }
                             }
                             else
                             {

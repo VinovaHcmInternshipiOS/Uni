@@ -37,7 +37,7 @@ class SearchAppHomePresenter: SearchAppHomePresenterProtocol {
     
     func fetchEvent(keyEvent: String) {
        resultsEvent.removeAll()
-        self.ref.child("Event").queryOrdered(byChild: "Title").queryStarting(atValue: "\(keyEvent)").queryEnding(atValue: "\(keyEvent)" + "\u{f8ff}").observe(.value) { [self] snapshot in
+        self.ref.child("Event").queryOrdered(byChild: "Title").queryStarting(atValue: "\(keyEvent)").queryEnding(atValue: "\(keyEvent)" + "\u{f8ff}").observeSingleEvent(of:.value) { [self] snapshot in
             if (snapshot.exists()) {
                 for keyEvent in snapshot.children.allObjects as! [DataSnapshot] {
                     let placeRef = self.ref.child("Event/\(keyEvent.key)")
@@ -55,10 +55,10 @@ class SearchAppHomePresenter: SearchAppHomePresenterProtocol {
                             
                             let request = Event(title: title, key: key, date: date, checkout: checkout, checkin: checkin, type: type, urlImage: urrlImage)
                             
-                            resultsEvent.append(request)
-                            DispatchQueue.main.async {
+                            resultsEvent.insert(request, at: 0)
+                           // DispatchQueue.main.async {
                                 view?.fetchEventSuccess()
-                            }
+                            //}
                         }
                         else
                         {

@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -28,6 +29,7 @@
                 <outlet property="lbScoreRank1" destination="y9N-cC-Em0" id="LzN-vb-7Gv"/>
                 <outlet property="lbScoreRank2" destination="iwm-J6-dVU" id="y2c-DB-n0a"/>
                 <outlet property="lbScoreRank3" destination="T3J-7k-nPz" id="KRn-pA-jFa"/>
+                <outlet property="scrollView" destination="FQJ-lo-DiT" id="hYw-K9-7Fq"/>
                 <outlet property="tableView" destination="LYz-CV-AL3" id="x09-3q-CDr"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="viewScore" destination="Qaa-WR-p2N" id="oFX-Mj-F0h"/>
@@ -54,8 +56,8 @@
                                                 <constraint firstAttribute="width" constant="20" id="hiA-zT-gKO"/>
                                             </constraints>
                                         </imageView>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.crop.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="UVQ-0G-Kmt">
-                                            <rect key="frame" x="16.5" y="20.5" width="56" height="55"/>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icImageNil" translatesAutoresizingMaskIntoConstraints="NO" id="UVQ-0G-Kmt">
+                                            <rect key="frame" x="16.5" y="20" width="56" height="56"/>
                                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="56" id="Ae3-k9-ENb"/>
@@ -134,8 +136,8 @@
                                                 <constraint firstAttribute="height" constant="30" id="XlE-4O-M7A"/>
                                             </constraints>
                                         </imageView>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.crop.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="pAS-Df-elU">
-                                            <rect key="frame" x="20" y="30.5" width="70" height="69"/>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icImageNil" translatesAutoresizingMaskIntoConstraints="NO" id="pAS-Df-elU">
+                                            <rect key="frame" x="20" y="30" width="70" height="70"/>
                                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="70" id="N8K-Yc-Okf"/>
@@ -202,8 +204,8 @@
                                                 <constraint firstAttribute="width" constant="20" id="qc7-Zz-W1z"/>
                                             </constraints>
                                         </imageView>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.crop.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="4tK-eI-4gs">
-                                            <rect key="frame" x="16.5" y="20.5" width="56" height="55"/>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icImageNil" translatesAutoresizingMaskIntoConstraints="NO" id="4tK-eI-4gs">
+                                            <rect key="frame" x="16.5" y="20" width="56" height="56"/>
                                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="56" id="7Rc-d7-qdI"/>
@@ -307,8 +309,8 @@
                                 <constraint firstAttribute="width" constant="40" id="lWP-Cs-a7d"/>
                             </constraints>
                         </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="okd-To-m61">
-                            <rect key="frame" x="46" y="0.0" width="6.5" height="30"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="okd-To-m61">
+                            <rect key="frame" x="42" y="0.0" width="14" height="30"/>
                             <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="25"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
@@ -320,16 +322,16 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zyj-GH-eGz">
-                            <rect key="frame" x="119" y="40.5" width="112" height="17"/>
+                            <rect key="frame" x="119" y="35.5" width="112" height="17"/>
                             <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="14"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
-                    <color key="backgroundColor" red="0.98431372549019602" green="0.76862745098039209" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" name="FBC459"/>
                     <constraints>
                         <constraint firstItem="zyj-GH-eGz" firstAttribute="centerX" secondItem="Qaa-WR-p2N" secondAttribute="centerX" id="4yH-HP-xCb"/>
-                        <constraint firstItem="zyj-GH-eGz" firstAttribute="top" secondItem="YQK-XG-qhf" secondAttribute="bottom" constant="6" id="5Pk-QU-D0G"/>
+                        <constraint firstItem="zyj-GH-eGz" firstAttribute="top" secondItem="YQK-XG-qhf" secondAttribute="bottom" constant="1" id="5Pk-QU-D0G"/>
                         <constraint firstItem="okd-To-m61" firstAttribute="centerX" secondItem="6bh-Zo-iR2" secondAttribute="centerX" id="NqX-H7-SFH"/>
                         <constraint firstItem="YQK-XG-qhf" firstAttribute="top" secondItem="Qaa-WR-p2N" secondAttribute="top" constant="18" id="Rkj-r8-0KJ"/>
                         <constraint firstItem="6bh-Zo-iR2" firstAttribute="top" secondItem="okd-To-m61" secondAttribute="bottom" id="Rpo-Xo-Tew"/>
@@ -344,7 +346,7 @@
                             <size key="value" width="0.0" height="4"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
-                            <color key="value" red="0.98431372549019602" green="0.76862745098039209" blue="0.34901960784313724" alpha="0.5" colorSpace="calibratedRGB"/>
+                            <color key="value" name="FBC459"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
                             <real key="value" value="15"/>
@@ -374,8 +376,11 @@
     <resources>
         <image name="icCrown1" width="30" height="30"/>
         <image name="icCrown2" width="20" height="20"/>
+        <image name="icImageNil" width="400" height="600"/>
         <image name="icWreath-white" width="40" height="40"/>
-        <image name="person.crop.circle" catalog="system" width="128" height="121"/>
+        <namedColor name="FBC459">
+            <color red="0.98400002717971802" green="0.76899999380111694" blue="0.34900000691413879" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

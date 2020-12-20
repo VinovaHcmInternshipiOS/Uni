@@ -19,17 +19,16 @@ class AttendanceEventViewController: BaseViewController,AVCaptureMetadataOutputO
     @IBOutlet weak var viewPlus: UIView!
     @IBOutlet weak var viewBtExport: UIView!
     @IBOutlet weak var btExport: UIButton!
-    @IBOutlet weak var lbListAttendance: UILabel!
     @IBOutlet weak var btScan: UIButton!
     @IBOutlet weak var viewButton: UIView!
-    @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var heightCollectionView: NSLayoutConstraint!
     @IBOutlet weak var collectionView: UICollectionView!
     private var pullControl = UIRefreshControl()
     var presenter: AttendanceEventPresenterProtocol
     var listAttendance = [AttendanceEvent?]()
     var keyDetailEvent = ""
     var getkeySearch: (()->Void)? = nil
+    var countUser: (()->Void)? = nil
+    var clearSearchText: (()->Void)? = nil
     var dataCSV: Data?
     let viewController = BarcodeScannerViewController()
     let systemSoundID: SystemSoundID = 1103 // Tick
@@ -56,7 +55,7 @@ class AttendanceEventViewController: BaseViewController,AVCaptureMetadataOutputO
     
     
     func setupLanguage(){
-        lbListAttendance.text = AppLanguage.ListAttendance.ListAttendance.localized
+        //lbListAttendance.text = AppLanguage.ListAttendance.ListAttendance.localized
         lbNoData.text = AppLanguage.HandleError.noData.localized
     }
     
@@ -70,9 +69,9 @@ class AttendanceEventViewController: BaseViewController,AVCaptureMetadataOutputO
         collectionView.delegate =  self
         collectionView.dataSource = self
         collectionView.register(UINib(nibName: "AttendanceCell", bundle: nil), forCellWithReuseIdentifier: "AttendanceCell")
-        collectionView.register(UINib(nibName: "HeaderSearch", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "HeaderSearch")
+        collectionView.register(UINib(nibName: "HeaderAttendance", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "HeaderAttendance")
         
-        collectionView.register(UINib(nibName: "HeaderSearch", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "HeaderSearch")
+        collectionView.register(UINib(nibName: "HeaderAttendance", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "HeaderAttendance")
         viewButton.shadowColor = AppColor.YellowShadow
         btScan.setImage(AppIcon.icBarcodeYellow, for: .normal)
         
@@ -82,7 +81,8 @@ class AttendanceEventViewController: BaseViewController,AVCaptureMetadataOutputO
         viewPlus.shadowColor = AppColor.YellowShadow
         btPlus.setImage(AppIcon.icPlusYellow, for: .normal)
         pullControl.tintColor = AppColor.YellowFAB32A
-        scrollView.alwaysBounceVertical = true
+        collectionView.alwaysBounceVertical = true
+        collectionView.addSubview(pullControl)
         skeletonView()
     }
     
@@ -110,7 +110,7 @@ class AttendanceEventViewController: BaseViewController,AVCaptureMetadataOutputO
         }
     }
     
-    func createfileCSV(title:String,date:String,location:String,checkin:String,checkout:String,score:Int,Array: [AttendanceEvent?],total:Int,mailString: NSMutableString)
+    func createfileCSV(title:String, date:String, location:String, checkin:String, checkout:String, score:Int,Array: [AttendanceEvent?], total:Int,   mailString: NSMutableString)
     {
         
         
@@ -224,18 +224,17 @@ class AttendanceEventViewController: BaseViewController,AVCaptureMetadataOutputO
     }
     
     func refreshListAttendance() {
-        presenter.infoAttendance = []
         presenter.fetchAttendance(keyEvent: keyDetailEvent)
     }
     
     @objc func pulledRefreshControl(sender:AnyObject) {
         skeletonView()
+        clearSearchText?()
         refreshListAttendance()
     }
     
     private func pullRefreshData() {
         pullControl.addTarget(self, action: #selector(pulledRefreshControl), for: UIControl.Event.valueChanged)
-        scrollView.addSubview(pullControl)
     }
 
     @IBAction func scanBarcode(_ sender: Any) {
@@ -260,14 +259,22 @@ class AttendanceEventViewController: BaseViewController,AVCaptureMetadataOutputO
     
     @objc func actionSearch(sender: UIButton) {
         skeletonView()
+        listAttendance.removeAll()
         lbNoData.isHidden = true
         getkeySearch?()
     }
     
     func remakeData(){
         listAttendance = presenter.infoAttendance
+        print("Count",listAttendance.count)
         collectionView.hideSkeleton()
-        collectionView.reloadData()
+            collectionView.insertItems(at: [IndexPath(row: listAttendance.count - 1, section: 0)])
+                collectionView.performBatchUpdates({
+                collectionView.reloadItems(at: [IndexPath(row: listAttendance.count - 1, section: 0)])
+                }){_ in
+                    // optional closure
+                    print("finished updating cell")
+                }
         checkEmptyData()
         
     }
@@ -280,7 +287,7 @@ class AttendanceEventViewController: BaseViewController,AVCaptureMetadataOutputO
             lbNoData.isHidden = false
         }
     }
-    
+
 }
 
 extension AttendanceEventViewController: UICollectionViewDelegateFlowLayout,UICollectionViewDelegate {
@@ -291,39 +298,43 @@ extension AttendanceEventViewController: UICollectionViewDelegateFlowLayout,UICo
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         switch kind {
-        
-        case UICollectionView.elementKindSectionHeader:
-            
-            if let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "HeaderSearch", for: indexPath) as? HeaderSearch {
-                headerView.lbTotal.text = AppLanguage.ListAttendance.Total.localized + " \(listAttendance.count)"
-                headerView.lbTotal.isHidden = false
-                headerView.txtSearch.placeholder = AppLanguage.SearchEvent.Search.localized
-                headerView.btSearch.addTarget(self, action: #selector(actionSearch(sender:)), for: .touchUpInside)
-                getkeySearch = { [self] in
-                    if let keysearch = headerView.txtSearch.text {
-                        presenter.infoAttendance = []
-                        if(keysearch.isEmpty == true) {
-                            presenter.fetchAttendance(keyEvent: keyDetailEvent)
-                        } else {
-                            presenter.fetchEventResult(keyEvent: keyDetailEvent, keyJoiner: keysearch)
-                        }
-                        
-                    } else {return}
-                    
+            case UICollectionView.elementKindSectionHeader:
+                if let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "HeaderAttendance", for: indexPath) as? HeaderAttendance {
+                    countUser = { [self] in
+                        headerView.lbTotal.text = AppLanguage.ListAttendance.Total.localized + " \(presenter.infoAttendance.count)"
+                    }
+                    headerView.lbHeader.text = AppLanguage.ListAttendance.ListAttendance.localized
+                    headerView.lbTotal.isHidden = false
+                    headerView.txtSearch.placeholder = AppLanguage.SearchEvent.Search.localized
+                    headerView.btSearch.addTarget(self, action: #selector(actionSearch(sender:)), for: .touchUpInside)
+                    clearSearchText = {
+                        headerView.txtSearch.text = ""
+                    }
+
+                    getkeySearch = { [self] in
+                        if let keysearch = headerView.txtSearch.text {
+                            presenter.infoAttendance = []
+                            if(keysearch.isEmpty == true) {
+                                presenter.fetchAttendance(keyEvent: keyDetailEvent)
+                            } else {
+                                presenter.fetchEventResult(keyEvent: keyDetailEvent, keyJoiner: keysearch)
+                            }
+
+                        } else {return}
+
+                    }
+                    return headerView
+                } else {
+                    return UICollectionReusableView()
                 }
-                return headerView
-            } else {
-                return UICollectionReusableView()
-            }
-            
-        case UICollectionView.elementKindSectionFooter:
-            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "HeaderSearch", for: indexPath)
-            
-            return headerView
-            
-        default:
-            
-            assert(false, "Unexpected element kind")
+                
+            case UICollectionView.elementKindSectionFooter:
+                if let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "HeaderAttendance", for: indexPath) as? HeaderAttendance {
+                        return headerView
+                } else {return UICollectionReusableView()}
+            default:
+                
+                assert(false, "Unexpected element kind")
         }
     }
     
@@ -336,7 +347,8 @@ extension AttendanceEventViewController: UICollectionViewDelegateFlowLayout,UICo
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: collectionView.frame.width, height: 128 )
+            return CGSize(width: collectionView.frame.width, height: 258 )
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
@@ -345,10 +357,6 @@ extension AttendanceEventViewController: UICollectionViewDelegateFlowLayout,UICo
 }
 
 extension AttendanceEventViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        self.collectionView.layoutIfNeeded()
-        self.heightCollectionView.constant = self.collectionView.contentSize.height
-    }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -421,11 +429,15 @@ extension AttendanceEventViewController: BarcodeScannerDismissalDelegate {
 extension AttendanceEventViewController: AttendanceEventViewProtocol {
     
     func searchAttendanceEventSuccess() {
+        countUser?()
         remakeData()
     }
     
     func searchAttendanceEventFailed() {
-        remakeData()
+        countUser?()
+        collectionView.hideSkeleton()
+        checkEmptyData()
+        collectionView.reloadData()
     }
     
     func checkFakeCodeSuccess(code: String, type: typeInput) {
@@ -567,13 +579,15 @@ extension AttendanceEventViewController: AttendanceEventViewProtocol {
     }
     
     func fetchAttendanceSuccess() {
+        countUser?()
         remakeData()
         pullControl.endRefreshing()
     }
     
     func fetchAttendanceFailed() {
         print("fetch attendance failed")
-        remakeData()
+        countUser?()
+        checkEmptyData()
         pullControl.endRefreshing()
     }
 }

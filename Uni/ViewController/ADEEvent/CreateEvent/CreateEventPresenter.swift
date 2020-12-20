@@ -14,6 +14,8 @@ import FirebaseDatabase
 import Firebase
 import FirebaseStorage
 import UIKit
+import FirebaseMessaging
+import UserNotifications
 
 // MARK: View -
 protocol CreateEventViewProtocol: class {
@@ -32,6 +34,7 @@ protocol CreateEventPresenterProtocol: class {
     func createEvent(urlImgLanscape: String,urlImgPortal:String,title:String,overview:String,location:String,date:String,checkin:String,checkout:String,score:Int)
     func uploadImage(images: [UIImage],path:String)
     func updateImageEvent(keyRef:String,path:String,type:typeImage)
+    func sendPushNotification(to token: String, title: String, body: String)
 }
 
 class CreateEventPresenter: CreateEventPresenterProtocol {
@@ -42,7 +45,37 @@ class CreateEventPresenter: CreateEventPresenterProtocol {
     var user = Auth.auth().currentUser
     let storageRef = Storage.storage().reference()
     var detailEvent: ADEEvent?
-    
+    func sendPushNotification(to token: String, title: String, body: String) {
+        let urlString = "https://fcm.googleapis.com/fcm/send"
+        let url = NSURL(string: urlString)!
+        let paramString: [String : Any] = ["condition": "'notify' in topics",
+                                           "priority" : "high",
+                                           "notification" : [
+                                             "body" : body,
+                                             "title" : title,
+                                             "sound" : "default"
+                                           ]
+        ]
+        let request = NSMutableURLRequest(url: url as URL)
+        request.httpMethod = "POST"
+        request.httpBody = try? JSONSerialization.data(withJSONObject:paramString, options: [.prettyPrinted])
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue(AppKey.keyPushNotification, forHTTPHeaderField: "Authorization")
+        let task =  URLSession.shared.dataTask(with: request as URLRequest)  {  (data, response, error) in
+            do {
+                if let jsonData = data {
+                    if let jsonDataDict  = try JSONSerialization.jsonObject(with: jsonData, options: JSONSerialization.ReadingOptions.allowFragments) as? [String: AnyObject] {
+                        
+                        NSLog("Received data:\n\(jsonDataDict))")
+                    }
+                }
+            } catch let err as NSError {
+                
+                print(err.debugDescription)
+            }
+        }
+        task.resume()
+    }
     
     
     func createEvent(urlImgLanscape: String, urlImgPortal: String, title: String, overview: String, location: String, date: String, checkin: String, checkout: String, score: Int) {

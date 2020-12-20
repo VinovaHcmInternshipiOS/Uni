@@ -56,7 +56,6 @@ class LoginPresenter: LoginPresenterProtocol {
        // } else {
         //    print("Not connected")
         //}
-      
     }
     
     func checkAuth(completion: @escaping (String) -> Void) {

@@ -58,8 +58,7 @@ class ManageViewController: BaseViewController, ManageViewProtocol {
     }
     
     @objc func notification(){
-        let sender = PushNotificationSender()
-        sender.sendPushNotification(to: "", title: "Notification title", body: "Notification body")
+        
     }
 
 }

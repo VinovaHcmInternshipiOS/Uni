@@ -24,6 +24,7 @@ protocol ListEventViewProtocol: class {
     func removeEventFailed()
     func checkJoinerSuccess()
     func checkJoinerFailed(keyEvent:String)
+    func eventExistUser()
 }
 
 // MARK: Presenter -
@@ -59,19 +60,29 @@ class ListEventPresenter: ListEventPresenterProtocol {
     }
     
     func removeEvent(keyEvent: String) {
-        let placeRef = self.ref.child("Event/\(keyEvent)")
-        placeRef.observeSingleEvent(of:.value, with: { [] snapshot in
+        let placeRef = self.ref.child("Joiner/\(keyEvent)")
+        placeRef.observeSingleEvent(of:.value, with: { [self] snapshot in
             if snapshot.exists()
             {
-                placeRef.removeValue { [self] (error, snapshot) in
-                    if error != nil {
-                        view?.removeEventFailed()
-                    } else {
-                        view?.removeEventSuccess()
+                view?.eventExistUser()
+            } else {
+                let placeRef = self.ref.child("Event/\(keyEvent)")
+                placeRef.observeSingleEvent(of:.value, with: { [] snapshot in
+                    if snapshot.exists()
+                    {
+                        placeRef.removeValue { [self] (error, snapshot) in
+                            if error != nil {
+                                view?.removeEventFailed()
+                            } else {
+                                view?.removeEventSuccess()
+                            }
+                        }
                     }
-                }
+                })
             }
         })
+        
+
     }
     
     
@@ -133,9 +144,9 @@ class ListEventPresenter: ListEventPresenterProtocol {
                             let request = Event(title: title, key: key, date: date, checkout: checkout, checkin: checkin, type: type, urlImage: urrlImage)
                             
                             infoEvent.append(request)
-                            DispatchQueue.main.async {
+
                                 view?.fetchEventSearchSuccess()
-                            }
+                            
                         }
                         else
                         {

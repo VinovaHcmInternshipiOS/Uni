@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -50,7 +49,7 @@
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hrT-m8-npY">
                                 <rect key="frame" x="10" y="10" width="163" height="291"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="z0X-ld-dvh">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="z0X-ld-dvh">
                                         <rect key="frame" x="0.0" y="0.0" width="163" height="170"/>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="tintColor" name="5B5B5B"/>
@@ -62,8 +61,11 @@
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c4t-l6-QJ9">
-                                        <rect key="frame" x="13" y="183" width="137" height="16.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c4t-l6-QJ9">
+                                        <rect key="frame" x="13" y="183" width="137" height="33"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="33" id="Bdj-J6-jjZ"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="14"/>
                                         <color key="textColor" name="FAB32A"/>
                                         <nil key="highlightedColor"/>
@@ -80,8 +82,11 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aVH-i4-psv">
-                                        <rect key="frame" x="13" y="267" width="137" height="14"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aVH-i4-psv">
+                                        <rect key="frame" x="13" y="226" width="137" height="28.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="28.5" id="QvE-1I-Qsm"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="12"/>
                                         <color key="textColor" red="0.78823529410000004" green="0.7725490196" blue="0.7725490196" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -101,8 +106,8 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="aVH-i4-psv" firstAttribute="top" secondItem="c4t-l6-QJ9" secondAttribute="bottom" constant="10" id="4Bx-WR-DY9"/>
                                     <constraint firstItem="z0X-ld-dvh" firstAttribute="top" secondItem="hrT-m8-npY" secondAttribute="top" id="8aX-p0-Z1z"/>
-                                    <constraint firstAttribute="bottom" secondItem="aVH-i4-psv" secondAttribute="bottom" constant="10" id="Jnk-gg-wEi"/>
                                     <constraint firstAttribute="trailing" secondItem="c4t-l6-QJ9" secondAttribute="trailing" constant="13" id="Lpg-Ma-KXu"/>
                                     <constraint firstItem="c4t-l6-QJ9" firstAttribute="leading" secondItem="hrT-m8-npY" secondAttribute="leading" constant="13" id="RuY-gU-atj"/>
                                     <constraint firstAttribute="trailing" secondItem="aVH-i4-psv" secondAttribute="trailing" constant="13" id="Swf-cm-eOz"/>

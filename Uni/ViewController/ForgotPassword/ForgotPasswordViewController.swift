@@ -59,8 +59,6 @@ class ForgotPasswordViewController: BaseViewController{
         spinner.isHidden = false
         btSend.isEnabled = false
         presenter.sendEmailResetPassword(email: txtEmail.text!)
-        
-        
     }
 }
 

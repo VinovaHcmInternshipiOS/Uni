@@ -31,13 +31,14 @@ protocol UpdateEventViewProtocol: class {
 
 // MARK: Presenter -
 protocol UpdateEventPresenterProtocol: class {
-	var view: UpdateEventViewProtocol? { get set }
+    var view: UpdateEventViewProtocol? { get set }
     var detailEvent: DetailEvent? {get set}
     var keyEvent: String {get set}
     func getDetailEvent()
     func updateEvent(urlImgLanscape: String,urlImgPortal:String,title:String,overview:String,location:String,date:String,checkin:String,checkout:String,score:Int)
     func uploadImage(image: UIImage,type:typeImage)
     func updateImageEvent(keyRef:String,type:typeImage)
+    func updateScoreUser(score: Int)
 }
 
 class UpdateEventPresenter: UpdateEventPresenterProtocol {
@@ -68,7 +69,7 @@ class UpdateEventPresenter: UpdateEventPresenterProtocol {
                 let urlImageLandscape = dict["ImageLandscape"] as! String
                 
                 detailEvent = DetailEvent(title: title, content: content, address: address, score: score, date: date, checkin: checkin, checkout: checkout, urlImageLandscape:urlImageLandscape,urlImagePortal: urlImagePortal)
-
+                
                 view?.fetchDetailSuccess()
             }
             else
@@ -87,39 +88,101 @@ class UpdateEventPresenter: UpdateEventPresenterProtocol {
                 view?.updateEventFailed()
             }
             else
-            {
+            {   
                 view?.updateEventSuccess()
+                updateScoreUser(score: score)
             }
         }
     }
-    
-    func uploadImage(image:UIImage,type:typeImage) {
-            let storedImage = storageRef.child("Event/\(keyEvent)/\(image.hashValue)")
-            if let uploadData = image.jpegData(compressionQuality: 1)
-            {
-                let metaData = StorageMetadata()
-                metaData.contentType = "image/jpg"
-                storedImage.putData(uploadData, metadata: metaData, completion: { [self]  (metadata, error) in
-                    if error != nil {
-                        switch type {
-                        case .Landscape:
-                            view?.uploadImageLandscapeFailed()
-                        case .Portal:
-                            view?.uploadImagePortalFailed()
-
+    func updateScoreUser(score: Int) {
+        ref.child("Data").observeSingleEvent(of: .value) { [self] (snapshot) in
+            if(snapshot.exists()) {
+                for keyUser in snapshot.children.allObjects as! [DataSnapshot] {
+                    
+                    let placeRef = ref.child("Data/\(keyUser.key)")
+                    placeRef.observeSingleEvent(of:.value, with: { [self] snapshot in
+                        if snapshot.exists()
+                        {
+                            let dict = snapshot.value as! [String: Any]
+                            let scoreUser = dict["Score"] as? Int ?? 0
+                            
+                            
+                            let placeRef = self.ref.child("Data/\(keyUser.key)/List/\(keyEvent)")
+                            placeRef.observeSingleEvent(of:.value, with: { [] snapshot in
+                                if snapshot.exists()
+                                {
+                                    
+                                    let dict = snapshot.value as! [String: Any]
+                                    let scoreEvent = dict["Score"] as? Int ?? 0
+                                    
+                                    ref.child("Data/\(keyUser.key)/List/\(keyEvent)/Score").setValue(score) { []
+                                        (error:Error?, ref:DatabaseReference) in
+                                        if error != nil {
+                                            
+                                        }
+                                        else
+                                        {
+                                            self.ref.child("Data/\(keyUser.key)/Score").setValue(scoreUser - scoreEvent + score) { []
+                                                (error:Error?, ref:DatabaseReference) in
+                                                if error != nil {
+                                                    
+                                                }
+                                                else
+                                                {
+                                                    
+                                                }
+                                            }
+                                        }
+                                    }
+                                    
+                                    
+                                    
+                                }
+                                else
+                                {
+                                    
+                                }
+                            })
+                            
+                        } else {
+                            
                         }
-                    }
-                    else {
-                        switch type {
-                        case .Landscape:
-                            view?.uploadImageLandscapeSuccess(keyRef: storedImage.fullPath)
-                        case .Portal:
-                            view?.uploadImagePortalSuccess(keyRef: storedImage.fullPath)
-                        }
-                    }
-                })
-                
+                    })
+                    
+                    
+                    
+                }
             }
+        }
+        
+    }
+    func uploadImage(image:UIImage,type:typeImage) {
+        let storedImage = storageRef.child("Event/\(keyEvent)/\(image.hashValue)")
+        if let uploadData = image.jpegData(compressionQuality: 1)
+        {
+            let metaData = StorageMetadata()
+            metaData.contentType = "image/jpg"
+            storedImage.putData(uploadData, metadata: metaData, completion: { [self]  (metadata, error) in
+                if error != nil {
+                    switch type {
+                    case .Landscape:
+                        view?.uploadImageLandscapeFailed()
+                    case .Portal:
+                        view?.uploadImagePortalFailed()
+                        
+                    }
+                }
+                else {
+                    switch type {
+                    case .Landscape:
+                        view?.uploadImageLandscapeSuccess(keyRef: storedImage.fullPath)
+                    case .Portal:
+                        view?.uploadImagePortalSuccess(keyRef: storedImage.fullPath)
+                    }
+                }
+            })
+            
+        }
     }
     
     func updateImageEvent(keyRef: String, type: typeImage) {
@@ -138,5 +201,5 @@ class UpdateEventPresenter: UpdateEventPresenterProtocol {
             }
         }
     }
-
+    
 }

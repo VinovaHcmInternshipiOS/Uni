@@ -19,8 +19,6 @@ import UIKit
 protocol RankViewProtocol: class {
     func fetchRankSuccess()
     func fetchRanhFailed()
-    func fetchProfileRankSuccess()
-    func fetchProfileRankFailed()
 }
 
 // MARK: Presenter -
@@ -29,17 +27,17 @@ protocol RankPresenterProtocol: class {
     var rankEvent: [RankEvent?] { get set}
     var nameProfile: String {get set}
     var scoreProfile: String {get set}
+    var isFindUserRank: Bool {get set}
+    var code: String? {get set}
     func fetchRank()
-    func fetchProfileRank()
-    func searchRankProfile() -> Int
-    
 }
 
 class RankPresenter: RankPresenterProtocol {
+    var rankProfile: Int = 0
+    var isFindUserRank: Bool = false
     var code: String?
     var nameProfile = ""
     var scoreProfile = ""
-    
     weak var view: RankViewProtocol?
     var ref = Database.database().reference()
     var databaseHandle = DatabaseHandle()
@@ -52,61 +50,39 @@ class RankPresenter: RankPresenterProtocol {
     }
     
     func fetchRank() {
-        databaseHandle = ref.child("Data").observe(.childAdded, with: {(DataSnapshot) in
-            let actualPost =  DataSnapshot.key
-            print(DataSnapshot.key)
-            let placeRef = self.ref.child("Data/\(actualPost)")
-            placeRef.observeSingleEvent(of: .value, with: { [self] snapshot in
-                if snapshot.exists()
-                {
-                    let placeDict = snapshot.value as! [String: Any]
-                    let name = placeDict["Name"] as! String
-                    let score = placeDict["Score"] as! Int
-                    let imgURL = placeDict["Image"] as? String ?? ""
-                    if score != 0 {
-                        rankEvent.append(RankEvent(name: name, score: score,code: actualPost,imgURL: imgURL))
-                        //print(name,score)
-                        rankEvent.sort(by: {(($0?.score)! >= ($1?.score)!)})
-                        DispatchQueue.main.async {
-                            view?.fetchRankSuccess()
-                        }
-                    }
+        rankEvent.removeAll()
+        ref.child("Data").observeSingleEvent(of:.value, with: { [self](snapshot) in
+            if(snapshot.exists()) {
+                for keyUser in snapshot.children.allObjects as! [DataSnapshot] {
                     
+                    let placeRef = self.ref.child("Data/\(keyUser.key)")
+                    placeRef.observeSingleEvent(of: .value, with: { [self] snapshot in
+                        if snapshot.exists()
+                        {
+                            let placeDict = snapshot.value as! [String: Any]
+                            let name = placeDict["Name"] as? String ?? ""
+                            let score = placeDict["Score"] as? Int ?? 0
+                            let imgURL = placeDict["Image"] as? String ?? ""
+                            if score != 0 {
+                                if (!isFindUserRank) {rankProfile += 1}
+                                rankEvent.insert(RankEvent(name: name, score: score, code: keyUser.key ,imgURL: imgURL), at: 0)
+                                if (keyUser.key == code) {
+                                    isFindUserRank = true
+                                    nameProfile = name
+                                    scoreProfile = String(score)
+                                }
+                                rankEvent.sort(by: {(($0?.score)! >= ($1?.score)!)})
+                                view?.fetchRankSuccess()
+                            }
+                        }
+                        else {
+                            view?.fetchRanhFailed()
+                        }
+                    })
                 }
-                else {
-                    view?.fetchRanhFailed()
-                }
-                
-            })
+            } else {
+                view?.fetchRanhFailed()
+            }
         })
-    }
-    
-    func fetchProfileRank() {
-        if let code = code {
-            let placeRef = self.ref.child("Data/\(code)")
-            placeRef.observe(.value, with: { [self] snapshot in
-                if snapshot.exists()
-                {
-                    let placeDict = snapshot.value as! [String: Any]
-                    let name = placeDict["Name"] as! String
-                    let score = placeDict["Score"] as! Int
-                    nameProfile = name
-                    scoreProfile = "\(score)"
-                    DispatchQueue.main.async {
-                        view?.fetchProfileRankSuccess()
-                    }
-                }
-                else {
-                    view?.fetchProfileRankFailed()
-                }
-            })
-        } else {return}
-        
-    }
-    
-    func searchRankProfile() -> Int {
-        if let code = code, let rankProfile = rankEvent.firstIndex(where: { $0?.code == code }) {
-            return rankProfile + 1
-        } else {return 0 }
     }
 }

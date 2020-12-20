@@ -15,13 +15,12 @@ class ListUserViewController: BaseViewController {
     @IBOutlet weak var lbNoData: UILabel!
     @IBOutlet weak var viewPlus: UIView!
     @IBOutlet weak var btPlus: UIButton!
-    @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var heightCollectionView: NSLayoutConstraint!
-    @IBOutlet weak var lbListUser: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     var getkeySearch: (()->Void)? = nil
     var listUser = [ListUser?]()
     var presenter: ListUserPresenterProtocol
+    var countUser: (()->Void)? = nil
+    var clearSearchText: (()->Void)? = nil
     var stateActionHandler: ((UIAlertAction) -> Void)? = nil
     var cancelActionHandler: ((UIAlertAction) -> Void)? = nil
     private var pullControl = UIRefreshControl()
@@ -47,7 +46,6 @@ class ListUserViewController: BaseViewController {
     }
     
     func setupLanguage(){
-        lbListUser.text = AppLanguage.ListUser.ListUser.localized
         lbNoData.text = AppLanguage.HandleError.noData.localized
     }
     
@@ -55,12 +53,13 @@ class ListUserViewController: BaseViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(UINib(nibName: "ListUserCell", bundle: nil), forCellWithReuseIdentifier: "ListUserCell")
-        collectionView.register(UINib(nibName: "HeaderSearch", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "HeaderSearch")
+        collectionView.register(UINib(nibName: "HeaderAttendance", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "HeaderAttendance")
         
-        collectionView.register(UINib(nibName: "HeaderSearch", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "HeaderSearch")
+        collectionView.register(UINib(nibName: "HeaderAttendance", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "HeaderAttendance")
         viewPlus.shadowColor = AppColor.YellowShadow
         btPlus.setTitleColor(AppColor.YellowFAB32A, for: .normal)
         pullControl.tintColor = AppColor.YellowFAB32A
+        collectionView.alwaysBounceVertical = true
         btPlus.setImage(AppIcon.icPlusYellow, for: .normal)
     }
     
@@ -71,28 +70,27 @@ class ListUserViewController: BaseViewController {
     
     func refreshListUser(){
         skeletonView()
-        presenter.infoUsers = []
         presenter.fetchListUser()
     }
     
     @objc func pulledRefreshControl(sender:AnyObject) {
+        clearSearchText?()
         refreshListUser()
     }
     
     private func pullRefreshData() {
         pullControl.addTarget(self, action: #selector(pulledRefreshControl), for: UIControl.Event.valueChanged)
-        scrollView.alwaysBounceVertical = true
-        scrollView.addSubview(pullControl)
-
+        collectionView.addSubview(pullControl)
+        
     }
     
     @objc func actionSearch(sender: UIButton) {
         skeletonView()
         lbNoData.isHidden = true
-        sender.isEnabled = false
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-            sender.isEnabled = true
-        }
+        //        sender.isEnabled = false
+        //        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+        //            sender.isEnabled = true
+        //        }
         getkeySearch?()
     }
     
@@ -107,7 +105,15 @@ class ListUserViewController: BaseViewController {
     func remakeData(){
         listUser = presenter.infoUsers
         collectionView.hideSkeleton()
-        collectionView.reloadData()
+        if listUser.count > 0 {
+            collectionView.insertItems(at: [IndexPath(row: listUser.count - 1, section: 0)])
+            collectionView.performBatchUpdates({
+                collectionView.reloadItems(at: [IndexPath(row: listUser.count - 1, section: 0)])
+            }){_ in
+                // optional closure
+                print("finished updating cell")
+            }
+        }
         checkEmptyData()
     }
     
@@ -121,21 +127,21 @@ class ListUserViewController: BaseViewController {
     
 }
 extension ListUserViewController: SkeletonCollectionViewDataSource {
-  func collectionSkeletonView(_ skeletonView: UICollectionView, cellIdentifierForItemAt indexPath: IndexPath) -> ReusableCellIdentifier {
-    return "ListUserCell"
-  }
-  func collectionSkeletonView(_ skeletonView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return 6
-  }
-  func collectionSkeletonView(_ skeletonView: UICollectionView, supplementaryViewIdentifierOfKind: String, at indexPath: IndexPath) -> ReusableCellIdentifier? {
-    return "HeaderSearch"
-  }
-  func numSections(in collectionSkeletonView: UICollectionView) -> Int {
-    return 1
-  }
+    func collectionSkeletonView(_ skeletonView: UICollectionView, cellIdentifierForItemAt indexPath: IndexPath) -> ReusableCellIdentifier {
+        return "ListUserCell"
+    }
+    func collectionSkeletonView(_ skeletonView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return listUser.count
+    }
+    func collectionSkeletonView(_ skeletonView: UICollectionView, supplementaryViewIdentifierOfKind: String, at indexPath: IndexPath) -> ReusableCellIdentifier? {
+        return "HeaderAttendance"
+    }
+    func numSections(in collectionSkeletonView: UICollectionView) -> Int {
+        return 1
+    }
     
 }
-    
+
 extension ListUserViewController: UICollectionViewDelegateFlowLayout,UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -147,8 +153,11 @@ extension ListUserViewController: UICollectionViewDelegateFlowLayout,UICollectio
         
         case UICollectionView.elementKindSectionHeader:
             
-            if let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "HeaderSearch", for: indexPath) as? HeaderSearch {
-                headerView.lbTotal.text = AppLanguage.ListAttendance.Total.localized + " \(listUser.count)"
+            if let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "HeaderAttendance", for: indexPath) as? HeaderAttendance {
+                countUser = { [self] in
+                    headerView.lbTotal.text = AppLanguage.ListAttendance.Total.localized + " \(presenter.infoUsers.count)"
+                }
+                headerView.lbHeader.text = AppLanguage.ListUser.ListUser.localized
                 headerView.lbTotal.isHidden = false
                 headerView.txtSearch.placeholder = AppLanguage.SearchEvent.Search.localized
                 headerView.backgroundColor = .none
@@ -156,7 +165,10 @@ extension ListUserViewController: UICollectionViewDelegateFlowLayout,UICollectio
                     if let keysearch = headerView.txtSearch.text {
                         presenter.fetchUsersResult(keyUser: keysearch)
                     } else {return}
-
+                    
+                }
+                clearSearchText = {
+                    headerView.txtSearch.text = ""
                 }
                 headerView.btSearch.addTarget(self, action: #selector(actionSearch(sender:)), for: .touchUpInside)
                 
@@ -167,9 +179,12 @@ extension ListUserViewController: UICollectionViewDelegateFlowLayout,UICollectio
             }
             
         case UICollectionView.elementKindSectionFooter:
-            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "HeaderSearch", for: indexPath)
+            if let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "HeaderAttendance", for: indexPath) as? HeaderAttendance {  return headerView}
+            else {
+                return UICollectionReusableView()
+            }
             
-            return headerView
+            
             
         default:
             
@@ -178,15 +193,15 @@ extension ListUserViewController: UICollectionViewDelegateFlowLayout,UICollectio
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 0.000000
+        return 0.0000001
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 0.0000000
+        return 0.0000001
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: collectionView.frame.width, height: 118 )
+        return CGSize(width: collectionView.frame.width, height: 258 )
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
@@ -196,10 +211,6 @@ extension ListUserViewController: UICollectionViewDelegateFlowLayout,UICollectio
 }
 
 extension ListUserViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        self.collectionView.layoutIfNeeded()
-        self.heightCollectionView.constant = self.collectionView.contentSize.height
-    }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -245,29 +256,40 @@ extension ListUserViewController: UICollectionViewDataSource {
 extension ListUserViewController: ListUserViewProtocol{
     func fetchUserSearchSuccess() {
         remakeData()
-  
+        countUser?()
+        pullControl.endRefreshing()
+        removeSpinner()
+        
     }
     
     func fetchUserSearchFailed() {
         print("search user failed")
-        remakeData()
-  
+        listUser.removeAll()
+        countUser?()
+        collectionView.hideSkeleton()
+        checkEmptyData()
+        pullControl.endRefreshing()
+        
     }
     
     
     func fetchUserSuccess() {
         remakeData()
+        countUser?()
         pullControl.endRefreshing()
- 
+        removeSpinner()
+        
     }
     
     func fetchUserFailed() {
         print("fetch list user failed")
-        pullControl.endRefreshing()
         collectionView.hideSkeleton()
-        collectionView.reloadData()
         checkEmptyData()
-
+        pullControl.endRefreshing()
+        //        collectionView.hideSkeleton()
+        //        collectionView.reloadData()
+        //        checkEmptyData()
+        
     }
     
     

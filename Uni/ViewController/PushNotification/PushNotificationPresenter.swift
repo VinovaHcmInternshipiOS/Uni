@@ -9,23 +9,60 @@
 //
 
 import Foundation
-
+import FirebaseMessaging
+import UserNotifications
 // MARK: View -
 protocol PushNotificationViewProtocol: class {
-
+    func pushNotificationSuccess()
+    func pushNotificationFailed()
 }
 
 // MARK: Presenter -
 protocol PushNotificationPresenterProtocol: class {
 	var view: PushNotificationViewProtocol? { get set }
-    func viewDidLoad()
+    func sendPushNotification(to token: String, title: String, body: String)
 }
 
 class PushNotificationPresenter: PushNotificationPresenterProtocol {
 
     weak var view: PushNotificationViewProtocol?
-
-    func viewDidLoad() {
-
+    func sendPushNotification(to token: String, title: String, body: String) {
+        let urlString = "https://fcm.googleapis.com/fcm/send"
+        let url = NSURL(string: urlString)!
+        let paramString: [String : Any] = ["condition": "'notify' in topics",
+                                           "priority" : "high",
+                                           "notification" : [
+                                             "body" : body,
+                                             "title" : title,
+                                             "sound" : "default"
+                                           ]
+        ]
+        let request = NSMutableURLRequest(url: url as URL)
+        request.httpMethod = "POST"
+        request.httpBody = try? JSONSerialization.data(withJSONObject:paramString, options: [.prettyPrinted])
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue(AppKey.keyPushNotification, forHTTPHeaderField: "Authorization")
+        let task =  URLSession.shared.dataTask(with: request as URLRequest)  {  (data, response, error) in
+            do {
+                if let jsonData = data {
+                    if let jsonDataDict  = try JSONSerialization.jsonObject(with: jsonData, options: JSONSerialization.ReadingOptions.allowFragments) as? [String: AnyObject] {
+                        
+                        NSLog("Received data:\n\(jsonDataDict))")
+                        DispatchQueue.main.async { [self] in
+                            view?.pushNotificationSuccess()
+                        }
+                    }
+                }
+            } catch let err as NSError {
+                DispatchQueue.main.async { [self] in
+                    view?.pushNotificationFailed()
+                }
+                
+                print(err.debugDescription)
+            }
+        }
+        task.resume()
     }
+
+    
 }

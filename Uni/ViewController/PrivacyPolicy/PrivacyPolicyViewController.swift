@@ -12,6 +12,7 @@ import UIKit
 
 class PrivacyPolicyViewController: BaseViewController, PrivacyPolicyViewProtocol {
 
+    @IBOutlet weak var contentPrivacyPolicy: UILabel!
     @IBOutlet weak var privacypolicy: UILabel!
     var presenter: PrivacyPolicyPresenterProtocol
 
@@ -35,6 +36,7 @@ class PrivacyPolicyViewController: BaseViewController, PrivacyPolicyViewProtocol
     
     func setupLanguage(){
         privacypolicy.text = AppLanguage.Privacy.PrivacyPolicy.localized
+        contentPrivacyPolicy.text = AppLanguage.Privacy.ContentPrivacyPolicy.localized
     }
     
     func addNav() {

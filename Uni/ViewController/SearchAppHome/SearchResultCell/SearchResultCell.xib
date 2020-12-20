@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -26,7 +25,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Dc-MD-XlZ">
-                        <rect key="frame" x="32" y="10" width="306" height="89"/>
+                        <rect key="frame" x="12" y="10" width="346" height="89"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
@@ -51,7 +50,7 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dRa-H0-pXh">
-                        <rect key="frame" x="32" y="10" width="306" height="89"/>
+                        <rect key="frame" x="12" y="10" width="346" height="89"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sDX-WX-W6r">
                                 <rect key="frame" x="0.0" y="0.0" width="65" height="89"/>
@@ -60,7 +59,7 @@
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rSo-4i-4YG">
-                                <rect key="frame" x="93" y="13" width="178" height="23.5"/>
+                                <rect key="frame" x="93" y="13" width="218" height="23.5"/>
                                 <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -72,7 +71,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RFk-WO-Qad">
-                                <rect key="frame" x="93" y="46.5" width="178" height="16.5"/>
+                                <rect key="frame" x="93" y="46.5" width="218" height="16.5"/>
                                 <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -114,12 +113,12 @@
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="7Dc-MD-XlZ" secondAttribute="bottom" constant="21" id="CMz-vm-kT4"/>
-                    <constraint firstItem="dRa-H0-pXh" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="32" id="Uwx-Kd-f8N"/>
+                    <constraint firstItem="dRa-H0-pXh" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="Uwx-Kd-f8N"/>
                     <constraint firstAttribute="bottom" secondItem="dRa-H0-pXh" secondAttribute="bottom" constant="21" id="ZY3-BO-Maj"/>
-                    <constraint firstAttribute="trailing" secondItem="dRa-H0-pXh" secondAttribute="trailing" constant="32" id="jVQ-3q-vX4"/>
-                    <constraint firstAttribute="trailing" secondItem="7Dc-MD-XlZ" secondAttribute="trailing" constant="32" id="jzW-Am-VqB"/>
+                    <constraint firstAttribute="trailing" secondItem="dRa-H0-pXh" secondAttribute="trailing" constant="12" id="jVQ-3q-vX4"/>
+                    <constraint firstAttribute="trailing" secondItem="7Dc-MD-XlZ" secondAttribute="trailing" constant="12" id="jzW-Am-VqB"/>
                     <constraint firstItem="7Dc-MD-XlZ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="n7l-4r-1ep"/>
-                    <constraint firstItem="7Dc-MD-XlZ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="32" id="rY2-uH-Dnp"/>
+                    <constraint firstItem="7Dc-MD-XlZ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="rY2-uH-Dnp"/>
                     <constraint firstItem="dRa-H0-pXh" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="tAV-K0-M6a"/>
                 </constraints>
                 <userDefinedRuntimeAttributes>

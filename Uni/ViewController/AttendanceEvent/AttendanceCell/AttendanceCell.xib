@@ -26,7 +26,7 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X9g-EG-BnO">
-                        <rect key="frame" x="10" y="49" width="165" height="105"/>
+                        <rect key="frame" x="12" y="49" width="161" height="105"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -47,10 +47,10 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uhy-Yb-naD">
-                        <rect key="frame" x="10" y="54" width="165" height="105"/>
+                        <rect key="frame" x="12" y="54" width="161" height="105"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nguyễn Gia Huy" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jYr-8M-sfM">
-                                <rect key="frame" x="10" y="47" width="145" height="16.5"/>
+                                <rect key="frame" x="10" y="47" width="141" height="16.5"/>
                                 <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="14"/>
                                 <color key="textColor" name="FAB32A"/>
                                 <nil key="highlightedColor"/>
@@ -65,7 +65,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="175050032" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bBk-2r-J9s">
-                                <rect key="frame" x="10" y="67.5" width="145" height="14"/>
+                                <rect key="frame" x="10" y="67.5" width="141" height="14"/>
                                 <fontDescription key="fontDescription" name="Raleway-ExtraLight" family="Raleway" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -80,7 +80,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aug 15, 12:30AM" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M2B-sP-Yg5">
-                                <rect key="frame" x="10" y="85.5" width="145" height="12"/>
+                                <rect key="frame" x="10" y="85.5" width="141" height="12"/>
                                 <fontDescription key="fontDescription" name="Raleway-ExtraLight" family="Raleway" pointSize="10"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -142,13 +142,13 @@
             <constraints>
                 <constraint firstItem="X9g-EG-BnO" firstAttribute="height" secondItem="Uhy-Yb-naD" secondAttribute="height" id="03n-Kf-rCo"/>
                 <constraint firstItem="6Rp-kA-gMb" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="15" id="4ga-wX-3E8"/>
-                <constraint firstItem="Uhy-Yb-naD" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="5Xh-z1-QfI"/>
+                <constraint firstItem="Uhy-Yb-naD" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="12" id="5Xh-z1-QfI"/>
                 <constraint firstAttribute="bottom" secondItem="X9g-EG-BnO" secondAttribute="bottom" constant="15" id="III-6h-fmG"/>
                 <constraint firstItem="6Rp-kA-gMb" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="IvP-Vm-zMV"/>
-                <constraint firstAttribute="trailing" secondItem="Uhy-Yb-naD" secondAttribute="trailing" constant="10" id="L91-gO-sGB"/>
+                <constraint firstAttribute="trailing" secondItem="Uhy-Yb-naD" secondAttribute="trailing" constant="12" id="L91-gO-sGB"/>
                 <constraint firstAttribute="bottom" secondItem="Uhy-Yb-naD" secondAttribute="bottom" constant="10" id="drF-lW-cyz"/>
-                <constraint firstAttribute="trailing" secondItem="X9g-EG-BnO" secondAttribute="trailing" constant="10" id="oAX-iS-zv7"/>
-                <constraint firstItem="X9g-EG-BnO" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="wau-sC-Gup"/>
+                <constraint firstAttribute="trailing" secondItem="X9g-EG-BnO" secondAttribute="trailing" constant="12" id="oAX-iS-zv7"/>
+                <constraint firstItem="X9g-EG-BnO" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="12" id="wau-sC-Gup"/>
             </constraints>
             <size key="customSize" width="374" height="257"/>
             <userDefinedRuntimeAttributes>

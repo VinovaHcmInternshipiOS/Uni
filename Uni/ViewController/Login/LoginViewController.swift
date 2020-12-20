@@ -96,19 +96,28 @@ class LoginViewController: UIViewController {
 
 extension LoginViewController: LoginViewProtocol {
 
-    
-    
     func checkAuthSuccess(role: String) {
         print(role,"Change")
         AppColor.YellowFAB32A = role == "Admin" ? AppColor.RedFF7C75 : AppColor.DefaultYellowFAB32A
+        
         AppColor.YellowFBC459 = role == "Admin" ? AppColor.RedFF6961 : AppColor.DefaultYellowFBC459
+        
         AppColor.YellowShadow = role == "Admin" ? AppColor.RedShadow : AppColor.DefaultYellowShadow
+        
         AppIcon.icPlusYellow = role == "Admin" ? AppIcon.icPlusRed : AppIcon.DefaulticPlusYellow
+        
         AppIcon.icBarcodeYellow = role == "Admin" ? AppIcon.icBarcodeRed : AppIcon.DefaulticBarcodeYellow
+        
         AppIcon.icEditImageYellow = role == "Admin" ? AppIcon.icEditImageRed : AppIcon.DefaulticEditImageYellow
+        
         AppIcon.icBellYellow = role == "Admin" ? AppIcon.icBellRed : AppIcon.DefaulticBellYellow
         AppIcon.icArrowLeftYellow = role == "Admin" ? AppIcon.icArrowLeftRed : AppIcon.DefaulticArrowLeftYellow
-        AppIcon.icExportYellow = role == "Admin" ? AppIcon.icExportRed : AppIcon.DefaulticExportYellow 
+        
+        AppIcon.icExportYellow = role == "Admin" ? AppIcon.icExportRed : AppIcon.DefaulticExportYellow
+        
+        AppIcon.icWreathYellow = role == "Admin" ? AppIcon.icWreathRed : AppIcon.DefaulticWreathYellow
+        
+        AppIcon.icBookmartYellow = role == "Admin" ? AppIcon.icBookmartRed : AppIcon.DefaulticBookmartYellow
         
         UserDefaults.standard.set(false, forKey: "status")
         let AppHomeVC = AppHomeViewController(presenter: AppHomePresenter())

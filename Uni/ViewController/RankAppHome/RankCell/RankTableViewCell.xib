@@ -3,7 +3,9 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -21,6 +23,27 @@
                 <rect key="frame" x="0.0" y="0.0" width="370" height="100"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ohS-1Q-CiB">
+                        <rect key="frame" x="12" y="12" width="346" height="76"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                <size key="value" width="0.0" height="4"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="20"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                <color key="value" name="Color-1"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                <real key="value" value="15"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="shadowBlur">
+                                <real key="value" value="15"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MJR-t1-1PV">
                         <rect key="frame" x="10" y="10" width="350" height="80"/>
                         <subviews>
@@ -30,8 +53,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WVX-h2-viR">
-                                <rect key="frame" x="44.5" y="8" width="9" height="22"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WVX-h2-viR">
+                                <rect key="frame" x="42" y="8" width="14.5" height="21"/>
                                 <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="18"/>
                                 <color key="textColor" red="0.98039215690000003" green="0.70196078429999997" blue="0.1647058824" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -42,14 +65,14 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icWreath-yellow" translatesAutoresizingMaskIntoConstraints="NO" id="pM5-I8-r9w">
-                                <rect key="frame" x="29" y="30" width="40" height="40"/>
+                                <rect key="frame" x="29" y="29" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="4Oh-C4-80H"/>
                                     <constraint firstAttribute="width" constant="40" id="EKu-CW-tab"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HwC-2P-wgh">
-                                <rect key="frame" x="124.5" y="19" width="205.5" height="19"/>
+                                <rect key="frame" x="127.5" y="19" width="202.5" height="19"/>
                                 <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -72,24 +95,16 @@
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                 <real key="value" value="20"/>
                             </userDefinedRuntimeAttribute>
-                            <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
-                                <size key="value" width="0.0" height="2"/>
-                            </userDefinedRuntimeAttribute>
-                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
-                                <real key="value" value="15"/>
-                            </userDefinedRuntimeAttribute>
-                            <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
-                                <color key="value" red="0.0" green="0.0" blue="0.0" alpha="0.14999999999999999" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                            </userDefinedRuntimeAttribute>
-                            <userDefinedRuntimeAttribute type="number" keyPath="shadowBlur">
-                                <real key="value" value="15"/>
-                            </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="MJR-t1-1PV" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="0mA-eg-Psa"/>
+                    <constraint firstItem="ohS-1Q-CiB" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="1Hj-Hc-TaB"/>
+                    <constraint firstAttribute="bottom" secondItem="ohS-1Q-CiB" secondAttribute="bottom" constant="12" id="M2I-FV-Qvb"/>
+                    <constraint firstItem="ohS-1Q-CiB" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="P8Y-Vd-vgT"/>
                     <constraint firstAttribute="bottom" secondItem="MJR-t1-1PV" secondAttribute="bottom" constant="10" id="RQg-VA-jJ8"/>
+                    <constraint firstAttribute="trailing" secondItem="ohS-1Q-CiB" secondAttribute="trailing" constant="12" id="rBM-RZ-G1F"/>
                     <constraint firstItem="MJR-t1-1PV" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="rUv-rC-SVw"/>
                     <constraint firstAttribute="trailing" secondItem="MJR-t1-1PV" secondAttribute="trailing" constant="10" id="yu9-4U-zog"/>
                 </constraints>
@@ -104,6 +119,7 @@
                 </userDefinedRuntimeAttribute>
             </userDefinedRuntimeAttributes>
             <connections>
+                <outlet property="imageRank" destination="pM5-I8-r9w" id="km5-9e-JNc"/>
                 <outlet property="lbName" destination="HwC-2P-wgh" id="Qhk-fR-15N"/>
                 <outlet property="lbRank" destination="WVX-h2-viR" id="CGr-RO-amn"/>
                 <outlet property="lbScore" destination="RBm-Lb-Vtb" id="ZCs-aA-S42"/>
@@ -113,5 +129,11 @@
     </objects>
     <resources>
         <image name="icWreath-yellow" width="40" height="39"/>
+        <namedColor name="Color-1">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.15000000596046448" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

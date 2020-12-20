@@ -196,6 +196,7 @@ class AttendanceEventPresenter: AttendanceEventPresenterProtocol {
     }
     
     func fetchAttendance(keyEvent:String) {
+        infoAttendance.removeAll()
         ref.child("Joiner/\(keyEvent)").observeSingleEvent(of: .value) { (snapshot) in
             if(snapshot.exists()) {
                 for keyJoiner in snapshot.children.allObjects as! [DataSnapshot] {
@@ -215,15 +216,9 @@ class AttendanceEventPresenter: AttendanceEventPresenterProtocol {
                                     let name = placeDict["Name"] as! String
                                     let urlImage = placeDict["Image"] as! String
                                     
-                                    if infoAttendance.contains(where: {$0?.code == keyJoiner.key}) == false {                           infoAttendance.append(AttendanceEvent(code: keyJoiner.key, name: name, checkin: checkin, date: date, urlImage: urlImage))
-                                        
-                                    }
-                    
-                                    
-                                    DispatchQueue.main.async {
+                                    if infoAttendance.contains(where: {$0?.code == keyJoiner.key}) == false {              infoAttendance.append(AttendanceEvent(code: keyJoiner.key, name: name, checkin: checkin, date: date, urlImage: urlImage))
                                         view?.fetchAttendanceSuccess()
                                     }
-                                   
                                     
                                 }
                                 else
@@ -260,11 +255,12 @@ class AttendanceEventPresenter: AttendanceEventPresenterProtocol {
                                     let name = placeDict["Name"] as! String
                                     let urlImage = placeDict["Image"] as! String
         
-                                    if infoAttendance.contains(where: {$0?.code == keyJoiner}) == false {                           infoAttendance.append(AttendanceEvent(code: keyJoiner, name: name, checkin: checkin, date: date, urlImage: urlImage))
+                                    if infoAttendance.contains(where: {$0?.code == keyJoiner}) == false {                           infoAttendance.insert(AttendanceEvent(code: keyJoiner, name: name, checkin: checkin, date: date, urlImage: urlImage), at: 0)
+                                        
+                                        view?.searchAttendanceEventSuccess()
                                         
                                     }
-                                    view?.searchAttendanceEventSuccess()
-        
+
                                 }
                                 else
                                 {

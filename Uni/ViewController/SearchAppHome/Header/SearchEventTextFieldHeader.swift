@@ -8,6 +8,7 @@
 import UIKit
 
 class SearchEventTextFieldHeader: UITableViewHeaderFooterView {
+    @IBOutlet weak var lbHeader: UILabel!
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var txtSearch: UITextField!
     @IBOutlet weak var btSearch: UIButton!

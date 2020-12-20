@@ -14,12 +14,10 @@ import SkeletonView
 class SearchAppHomeViewController: BaseViewController {
     
     @IBOutlet weak var lbNoData: UILabel!
-    @IBOutlet weak var lbSearchEvent: UILabel!
-    @IBOutlet weak var heightTableView: NSLayoutConstraint!
-    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var tableView: UITableView!
     private var pullControl = UIRefreshControl()
     var getkeySearch: (()->Void)? = nil
+    var clearSearchTextField: (()->Void)? = nil
     var presenter: SearchAppHomePresenterProtocol
     var listResultsEvent = [Event?]()
     init(presenter: SearchAppHomePresenterProtocol) {
@@ -40,21 +38,18 @@ class SearchAppHomeViewController: BaseViewController {
     }
     
     func setupLanguage() {
-        lbSearchEvent.text = AppLanguage.SearchEvent.SearchEvent.localized
         lbNoData.text = AppLanguage.HandleError.noData.localized
     }
     func setupUI(){
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(UINib(nibName: "SearchResultCell", bundle: nil), forCellReuseIdentifier: "SearchResultCell")
-        tableView.register(UINib(nibName: "SearchEventLabelCell", bundle: nil), forCellReuseIdentifier: "SearchEventLabelCell")
+        tableView.register(UINib(nibName: "SearchEventTextFieldHeader", bundle: nil), forCellReuseIdentifier: "SearchEventTextFieldHeader")
         
         tableView.register(UINib(nibName: "SearchEventTextFieldHeader", bundle: nil), forHeaderFooterViewReuseIdentifier: "SearchEventTextFieldHeader")
         pullControl.tintColor = AppColor.YellowFAB32A
-        scrollView.alwaysBounceVertical = true
-        tableView.keyboardDismissMode = .onDrag
-        scrollView.keyboardDismissMode = .onDrag
-        
+        tableView.alwaysBounceVertical = true
+        lbNoData.isHidden = true
         pullRefreshData()
     }
     
@@ -63,14 +58,17 @@ class SearchAppHomeViewController: BaseViewController {
         tableView.showAnimatedSkeleton(usingColor: UIColor.clouds, animation: nil, transition:.crossDissolve(0.25))
     }
     
-    @objc func pulledRefreshControl(sender:AnyObject) {
+    @objc func pullRefreshControl(sender:AnyObject) {
+        lbNoData.isHidden = true
+        listResultsEvent.removeAll()
         getkeySearch?()
+        clearSearchTextField?()
         
     }
     
     private func pullRefreshData() {
-        pullControl.addTarget(self, action: #selector(pulledRefreshControl), for: UIControl.Event.valueChanged)
-        scrollView.addSubview(pullControl)
+        pullControl.addTarget(self, action: #selector(pullRefreshControl), for: UIControl.Event.valueChanged)
+        tableView.addSubview(pullControl)
         
     }
     
@@ -83,14 +81,21 @@ class SearchAppHomeViewController: BaseViewController {
     
     @objc func actionSearch(sender: UIButton) {
         lbNoData.isHidden = true
+        showSpinner()
+        listResultsEvent.removeAll()
         getkeySearch?()
     }
     
     func remakeData(){
         listResultsEvent = presenter.resultsEvent
-        pullControl.endRefreshing()
+        tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
+        tableView.performBatchUpdates {
+            tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
+        } completion: { [self] (Bool) in
+            removeSpinner()
+            pullControl.endRefreshing()
+        }
         tableView.hideSkeleton()
-        tableView.reloadData()
         checkEmptyData()
     }
     
@@ -109,7 +114,7 @@ extension SearchAppHomeViewController: SkeletonTableViewDataSource {
         
     }
     func collectionSkeletonView(_ skeletonView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6
+        return listResultsEvent.count
     }
 
     func collectionSkeletonView(_ skeletonView: UITableView, identifierForHeaderInSection section: Int) -> ReusableHeaderFooterIdentifier? {
@@ -126,6 +131,7 @@ extension SearchAppHomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "SearchEventTextFieldHeader") as? SearchEventTextFieldHeader {
             headerView.contentView.backgroundColor = .white
+            headerView.lbHeader.text = AppLanguage.SearchEvent.SearchEvent.localized
             headerView.txtSearch.placeholder = AppLanguage.SearchEvent.Search.localized
             headerView.btSearch.backgroundColor = AppColor.YellowFAB32A
             headerView.viewButton.backgroundColor = AppColor.YellowFAB32A
@@ -133,15 +139,16 @@ extension SearchAppHomeViewController: UITableViewDelegate {
                 skeletonView()
                 presenter.fetchEvent(keyEvent: headerView.txtSearch.text!)
             }
+            clearSearchTextField = {
+                headerView.txtSearch.text = ""
+            }
             headerView.btSearch.addTarget(self, action: #selector(actionSearch(sender:)), for: .touchUpInside)
             return headerView
         } else { return UIView()}
     }
     
-    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        
-        return 153
+        return 230
         
     }
     
@@ -149,10 +156,6 @@ extension SearchAppHomeViewController: UITableViewDelegate {
         return 150
     }
     
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        self.tableView.layoutIfNeeded()
-        self.heightTableView.constant = self.tableView.contentSize.height
-    }
 }
 
 extension SearchAppHomeViewController: UITableViewDataSource {
@@ -197,7 +200,11 @@ extension SearchAppHomeViewController: SearchAppHomeViewProtocol{
     }
     
     func fetchEventFailed() {
-        remakeData()
+        //listResultsEvent.removeAll()
+        removeSpinner()
+        tableView.hideSkeleton()
+        checkEmptyData()
+        pullControl.endRefreshing()
     }
     
     

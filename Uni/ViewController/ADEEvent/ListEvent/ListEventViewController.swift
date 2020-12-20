@@ -14,11 +14,8 @@ import SkeletonView
 class ListEventViewController: BaseViewController {
 
     @IBOutlet weak var lbNoData: UILabel!
-    @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var lbListEvent: UILabel!
     @IBOutlet weak var btCreate: UIButton!
     @IBOutlet weak var viewButton: UIView!
-    @IBOutlet weak var heightCollectionView: NSLayoutConstraint!
     @IBOutlet weak var collectionView: UICollectionView!
     var presenter: ListEventPresenterProtocol
     var ListEvent = [Event?]()
@@ -50,7 +47,6 @@ class ListEventViewController: BaseViewController {
     }
     
     func setupLanguage(){
-        lbListEvent.text = AppLanguage.ListEvent.ListEvent.localized
         lbNoData.text = AppLanguage.HandleError.noData.localized
     }
     
@@ -58,12 +54,13 @@ class ListEventViewController: BaseViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(UINib(nibName: "ListEventCell", bundle: nil), forCellWithReuseIdentifier: "ListEventCell")
-        collectionView.register(UINib(nibName: "HeaderSearch", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "HeaderSearch")
+        collectionView.register(UINib(nibName: "HeaderAttendance", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "HeaderAttendance")
         
-        collectionView.register(UINib(nibName: "HeaderSearch", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "HeaderSearch")
+        collectionView.register(UINib(nibName: "HeaderAttendance", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "HeaderAttendance")
         viewButton.shadowColor = AppColor.YellowShadow
         btCreate.setImage(AppIcon.icPlusYellow, for: .normal)
         pullControl.tintColor = AppColor.YellowFAB32A
+        collectionView.alwaysBounceVertical = true
         skeletonView()
         pullRefreshData()
         
@@ -88,8 +85,8 @@ class ListEventViewController: BaseViewController {
     
     private func pullRefreshData() {
         pullControl.addTarget(self, action: #selector(pulledRefreshControl), for: UIControl.Event.valueChanged)
-        scrollView.alwaysBounceVertical = true
-        scrollView.addSubview(pullControl)
+        
+        collectionView.addSubview(pullControl)
 
     }
     
@@ -137,10 +134,10 @@ extension ListEventViewController: SkeletonCollectionViewDataSource {
     return "ListEventCell"
   }
   func collectionSkeletonView(_ skeletonView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return 6
+    return ListEvent.count
   }
   func collectionSkeletonView(_ skeletonView: UICollectionView, supplementaryViewIdentifierOfKind: String, at indexPath: IndexPath) -> ReusableCellIdentifier? {
-    return "HeaderSearch"
+    return "HeaderAttendance"
   }
   func numSections(in collectionSkeletonView: UICollectionView) -> Int {
     return 1
@@ -159,9 +156,11 @@ extension ListEventViewController: UICollectionViewDelegateFlowLayout,UICollecti
         
         case UICollectionView.elementKindSectionHeader:
             
-            if let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "HeaderSearch", for: indexPath) as? HeaderSearch {
+            if let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "HeaderAttendance", for: indexPath) as? HeaderAttendance {
                 headerView.txtSearch.placeholder = AppLanguage.SearchEvent.Search.localized
                 headerView.backgroundColor = .none
+                headerView.lbTotal.isHidden = true
+                headerView.lbHeader.text = AppLanguage.ListEvent.ListEvent.localized
                 getkeySearch = { [self] in
                     presenter.fetchEventResult(keyEvent: headerView.txtSearch.text!)
                 }
@@ -177,9 +176,9 @@ extension ListEventViewController: UICollectionViewDelegateFlowLayout,UICollecti
             }
             
         case UICollectionView.elementKindSectionFooter:
-            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "HeaderSearch", for: indexPath)
-            
-            return headerView
+            if let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "HeaderAttendance", for: indexPath) as? HeaderAttendance {
+                    return headerView
+            } else {return UICollectionReusableView()}
             
         default:
             
@@ -188,15 +187,15 @@ extension ListEventViewController: UICollectionViewDelegateFlowLayout,UICollecti
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 0.000000
+        return 0.0000001
       }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 0.0000000
+        return 0.0000001
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: collectionView.frame.width, height: 118 )
+        return CGSize(width: collectionView.frame.width, height: 230 )
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
@@ -206,10 +205,6 @@ extension ListEventViewController: UICollectionViewDelegateFlowLayout,UICollecti
 }
 
 extension ListEventViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        self.collectionView.layoutIfNeeded()
-        self.heightCollectionView.constant = self.collectionView.contentSize.height
-    }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -294,7 +289,6 @@ extension ListEventViewController: ListEventViewProtocol{
         remakeData()
         pullControl.endRefreshing()
         removeSpinner()
-        
     }
     
     func fetchEventFailed() {
@@ -305,6 +299,9 @@ extension ListEventViewController: ListEventViewProtocol{
         //collectionView.reloadData()
     }
     
+    func eventExistUser() {
+        presentAlertWithTitle(title: AppLanguage.HandleError.anError.localized, message: AppLanguage.HandleError.eventExistUser.localized, options: AppLanguage.Ok.localized) { (Int) in}
+    }
     
 }
     

@@ -10,7 +10,7 @@
 
 import UIKit
 
-class UpdateEventViewController: UIViewController {
+class UpdateEventViewController: BaseViewController {
     @IBOutlet weak var lbUpdateEvent: UILabel!
     @IBOutlet weak var lbTitle: UILabel!
     @IBOutlet weak var lbOverview: UILabel!
@@ -53,7 +53,6 @@ class UpdateEventViewController: UIViewController {
 
 	override func viewDidLoad() {
         super.viewDidLoad()
-
         presenter.view = self
         presenter.getDetailEvent()
         setupUI()
@@ -78,7 +77,7 @@ class UpdateEventViewController: UIViewController {
         tableViewScore.delegate = self
         tableViewScore.dataSource = self
         tableViewScore.register(UINib(nibName: "TableViewScoreCell", bundle: nil), forCellReuseIdentifier: "TableViewScoreCell")
-        
+        addBackToNavigation()
         self.imagePicker = ImagePicker(presentationController: self, delegate: self)
         lbTitle.textColor = AppColor.YellowFAB32A
         lbOverview.textColor = AppColor.YellowFAB32A
@@ -146,16 +145,17 @@ class UpdateEventViewController: UIViewController {
     }
     
     @IBAction func btDone(_ sender: Any) {
-        if (btCheckin.titleLabel?.text)! != AppLanguage.UpdateEvent.Checkin.localized && (btCheckout.titleLabel?.text)! != AppLanguage.UpdateEvent.Checkout.localized && contentTitle.text?.isEmpty == false && contentOverview.text?.isEmpty == false && contentLocation.text?.isEmpty == false {
-            if let title = contentTitle.text, let overview = contentOverview.text, let location = contentLocation.text, let date = btChooseDate.titleLabel?.text,let checkin = btCheckin.titleLabel?.text,let checkout = btCheckout.titleLabel?.text {
+        if let title = contentTitle.text, let overview = contentOverview.text, let location = contentLocation.text, let date = btChooseDate.titleLabel?.text,let checkin = btCheckin.titleLabel?.text,let checkout = btCheckout.titleLabel?.text {
+            
+            if checkin != AppLanguage.CreateEvent.Checkin.localized && checkout != AppLanguage.CreateEvent.Checkout.localized && removeWhiteSpaceAndLine(text: overview) != "" && removeWhiteSpaceAndLine(text: title) != "" && removeWhiteSpaceAndLine(text: location) != "" && date != AppLanguage.CreateEvent.ChooseDate.localized {
+                
                 showSpinner()
-                presenter.updateEvent(urlImgLanscape: urlImageLandscape, urlImgPortal: urlImagePortal, title: title, overview: overview, location: location, date: date, checkin: checkin.formatDateCreate(), checkout: checkout.formatDateCreate(), score: scoreEvent)
-
-            } else {return}
-
-        } else {
-            showAlert(title: AppLanguage.HandleError.anError.localized, message: AppLanguage.HandleError.fillIn.localized, actionTitles: [AppLanguage.Ok.localized], style: [.default], actions: [.none])
-        }
+                presenter.updateEvent(urlImgLanscape: urlImageLandscape, urlImgPortal: urlImagePortal, title: removeWhiteSpaceAndLine(text: title), overview: removeWhiteSpaceAndLine(text: overview), location: removeWhiteSpaceAndLine(text: location), date: date, checkin: checkin.formatDateCreate(), checkout: checkout.formatDateCreate(), score: scoreEvent)
+                
+            } else {
+                showAlert(title: AppLanguage.HandleError.anError.localized, message: AppLanguage.HandleError.fillIn.localized, actionTitles: [AppLanguage.Ok.localized], style: [.default], actions: [.none])
+            }
+        } else {return}
     }
     
 }

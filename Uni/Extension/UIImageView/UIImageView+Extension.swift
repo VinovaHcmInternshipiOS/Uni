@@ -17,7 +17,7 @@ public enum typeImage {
 
 extension UIImageView {
     func loadImage(urlString: String) {
-        self.image = .none
+        self.image = AppIcon.defaultImagenil
         let url = NSURL(string: urlString)
         if let cachedImage = imageCache.object(forKey: url!) as? UIImage {
             self.image = cachedImage
