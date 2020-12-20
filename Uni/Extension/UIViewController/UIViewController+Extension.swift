@@ -156,6 +156,7 @@ extension UIViewController {
         let timeInveral = date.timeIntervalSince1970
         return Int(timeInveral)
     }
+
     
     func removeWhiteSpaceAndLine(text: String) -> String {
         return text.trimmingCharacters(in: .whitespacesAndNewlines)

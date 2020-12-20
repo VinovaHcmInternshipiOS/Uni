@@ -40,7 +40,6 @@ class TimePickerViewController: BaseViewController, TimePickerViewProtocol {
 
 	override func viewDidLoad() {
         super.viewDidLoad()
-
         presenter.view = self
         presenter.viewDidLoad()
         TimeInPicker.setDate(dateCheckin.toDateTime(), animated: true)

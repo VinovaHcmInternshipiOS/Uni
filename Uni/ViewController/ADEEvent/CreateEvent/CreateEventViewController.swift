@@ -134,7 +134,6 @@ class CreateEventViewController: BaseViewController {
             btCheckin.setTitle(timePicker.dateCheckin, for: .normal)
             btCheckout.setTitle(timePicker.dateCheckout, for: .normal)
         }
-        
         timePicker.dateCheckin = (btCheckin.titleLabel?.text)!
         timePicker.dateCheckout = (btCheckout.titleLabel?.text)!
         timePicker.modalPresentationStyle = .overCurrentContext

@@ -30,6 +30,8 @@ class DatePickerViewViewController: BaseViewController, DatePickerViewViewProtoc
         super.viewDidLoad()
         presenter.view = self
         presenter.viewDidLoad()
+        let currentDate = Date()
+        datePicker.minimumDate = currentDate
         lbCurrentDate.text = currentPickerDate(pickerDate: datePicker)
         datePicker.setDate(dataPicker.toDateDate(), animated: true)
         lbCurrentDate.textColor = AppColor.YellowFAB32A
