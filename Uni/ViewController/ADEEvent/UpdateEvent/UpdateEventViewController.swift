@@ -137,24 +137,47 @@ class UpdateEventViewController: BaseViewController {
             btCheckin.setTitle(timePicker.dateCheckin, for: .normal)
             btCheckout.setTitle(timePicker.dateCheckout, for: .normal)
         }
+        timePicker.timePick = (btChooseDate.titleLabel?.text)!
         timePicker.dateCheckin = (btCheckin.titleLabel?.text)!
         timePicker.dateCheckout = (btCheckout.titleLabel?.text)!
         timePicker.modalPresentationStyle = .overCurrentContext
         
         present(timePicker, animated: false, completion: nil)
     }
+    func checkTime24h() -> [String] {
+        return [is12hClockFormat() == true ? formatterTime12h(time: presenter.checkinEvent ?? "") : presenter.checkinEvent ?? "",is12hClockFormat() == true ? formatterTime12h(time: presenter.checkoutEvent ?? "") : presenter.checkoutEvent ?? ""]
+    }
+    
+    func checkTimeUpdateEvent() -> Bool {
+        let formatDate = checkFormatDateTime12h()
+        if let dateCurrent = transformStringDate(getCurrentDateTime12h(), fromDateFormat: formatDate, toDateFormat: formatDate), let dateCheckinEvent = transformStringDate("\(presenter.dateEvent ?? "") \(checkTime24h()[0])", fromDateFormat: formatDate, toDateFormat: formatDate),let dateCheckoutEvent = transformStringDate("\(presenter.dateEvent ?? "") \(checkTime24h()[1])", fromDateFormat: formatDate, toDateFormat: formatDate) {
+            
+            if Int(dateCurrent.toDateTimeFormat(format: formatDate).timeIntervalSince1970) >= Int(dateCheckinEvent.toDateTimeFormat(format: formatDate).timeIntervalSince1970)  && Int(dateCurrent.toDateTimeFormat(format: formatDate).timeIntervalSince1970) <= Int(dateCheckoutEvent.toDateTimeFormat(format: formatDate).timeIntervalSince1970){
+                presentAlertWithTitle(title: AppLanguage.HandleError.anError.localized, message: AppLanguage.HandleError.updateOngoingEvent.localized, options: AppLanguage.Ok.localized) { (Int) in}
+                return false
+            } else if Int(dateCurrent.toDateTimeFormat(format: formatDate).timeIntervalSince1970) > Int(dateCheckoutEvent.toDateTimeFormat(format: formatDate).timeIntervalSince1970) {
+                presentAlertWithTitle(title: AppLanguage.HandleError.anError.localized, message: AppLanguage.HandleError.updateEndedEvent.localized, options: AppLanguage.Ok.localized) { (Int) in
+                    
+                }
+                return false
+            } else {
+                return true
+            }
+        } else {return false }
+    }
     
     @IBAction func btDone(_ sender: Any) {
         if let title = contentTitle.text, let overview = contentOverview.text, let location = contentLocation.text, let date = btChooseDate.titleLabel?.text,let checkin = btCheckin.titleLabel?.text,let checkout = btCheckout.titleLabel?.text {
-            
-            if checkin != AppLanguage.CreateEvent.Checkin.localized && checkout != AppLanguage.CreateEvent.Checkout.localized && removeWhiteSpaceAndLine(text: overview) != "" && removeWhiteSpaceAndLine(text: title) != "" && removeWhiteSpaceAndLine(text: location) != "" && date != AppLanguage.CreateEvent.ChooseDate.localized {
-                
-                showSpinner()
-                presenter.updateEvent(urlImgLanscape: urlImageLandscape, urlImgPortal: urlImagePortal, title: removeWhiteSpaceAndLine(text: title), overview: removeWhiteSpaceAndLine(text: overview), location: removeWhiteSpaceAndLine(text: location), date: date, checkin: checkin.formatDateCreate(), checkout: checkout.formatDateCreate(), score: scoreEvent)
-                
-            } else {
-                showAlert(title: AppLanguage.HandleError.anError.localized, message: AppLanguage.HandleError.fillIn.localized, actionTitles: [AppLanguage.Ok.localized], style: [.default], actions: [.none])
+            if checkTimeUpdateEvent() {
+                if checkin != AppLanguage.CreateEvent.Checkin.localized && checkout != AppLanguage.CreateEvent.Checkout.localized && removeWhiteSpaceAndLine(text: overview) != "" && removeWhiteSpaceAndLine(text: title) != "" && removeWhiteSpaceAndLine(text: location) != "" && date != AppLanguage.CreateEvent.ChooseDate.localized {
+                    showSpinner()
+                    presenter.updateEvent(urlImgLanscape: urlImageLandscape, urlImgPortal: urlImagePortal, title: removeWhiteSpaceAndLine(text: title), overview: removeWhiteSpaceAndLine(text: overview), location: removeWhiteSpaceAndLine(text: location), date: date, checkin: checkin.formatDateCreate(), checkout: checkout.formatDateCreate(), score: scoreEvent)
+                    
+                } else {
+                    showAlert(title: AppLanguage.HandleError.anError.localized, message: AppLanguage.HandleError.fillIn.localized, actionTitles: [AppLanguage.Ok.localized], style: [.default], actions: [.none])
+                }
             }
+            
         } else {return}
     }
     
@@ -207,7 +230,7 @@ extension UpdateEventViewController: UITableViewDataSource {
 
 extension UpdateEventViewController: UpdateEventViewProtocol {
     func updateImageEventSuccess() {
-        updateListEvent?()
+        //updateListEvent?()
     }
     
     func updateImageEventFailed() {
@@ -238,8 +261,8 @@ extension UpdateEventViewController: UpdateEventViewProtocol {
             contentLocation.text = detail.address
             scoreEvent = detail.score ?? 0
             btChooseDate.setTitle(detail.date, for: .normal)
-            btCheckin.setTitle(formatterTime(time: detail.checkin ?? ""), for: .normal)
-            btCheckout.setTitle(formatterTime(time: detail.checkout ?? ""), for: .normal)
+            btCheckin.setTitle(formatterTime12h(time: detail.checkin ?? ""), for: .normal)
+            btCheckout.setTitle(formatterTime12h(time: detail.checkout ?? ""), for: .normal)
             imgLandscape.loadImage(urlString: detail.urlImageLandscape ?? "")
             imgPortal.loadImage(urlString: detail.urlImagePortal ?? "")
             urlImagePortal = detail.urlImagePortal ?? ""
@@ -254,7 +277,9 @@ extension UpdateEventViewController: UpdateEventViewProtocol {
     }
     
     func updateEventSuccess() {
+        presenter.sendPushNotification()
         presentAlertWithTitle(title: AppLanguage.HandleSuccess.Success.localized, message: AppLanguage.HandleSuccess.updateEvent.localized, options: AppLanguage.Ok.localized) { [self] (option) in
+            
             if imagePortalIsChanged == false {
                 updateListEvent?()
             }

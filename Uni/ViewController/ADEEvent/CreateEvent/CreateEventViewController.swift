@@ -120,12 +120,28 @@ class CreateEventViewController: BaseViewController {
         present(datePicker, animated: false, completion: nil)
     }
     
+    func checkEmptyDate() -> Bool {
+        if let date = btChooseDate.titleLabel?.text {
+            if date == AppLanguage.CreateEvent.ChooseDate.localized {
+                presentAlertWithTitle(title: AppLanguage.HandleError.anError.localized, message: AppLanguage.HandleError.noDate.localized, options: AppLanguage.Ok.localized) { (Int) in}
+                return false
+            } else {
+                return true
+            }
+        } else { return false}
+    }
+    
     @IBAction func btCheckin(_ sender: Any) {
-        getTime()
+        if checkEmptyDate() {
+            getTime()
+        }
+        
     }
     
     @IBAction func btCheckout(_ sender: Any) {
-        getTime()
+        if checkEmptyDate() {
+            getTime()
+        }
     }
     
     func getTime() {
@@ -134,6 +150,7 @@ class CreateEventViewController: BaseViewController {
             btCheckin.setTitle(timePicker.dateCheckin, for: .normal)
             btCheckout.setTitle(timePicker.dateCheckout, for: .normal)
         }
+        timePicker.timePick = (btChooseDate.titleLabel?.text)!
         timePicker.dateCheckin = (btCheckin.titleLabel?.text)!
         timePicker.dateCheckout = (btCheckout.titleLabel?.text)!
         timePicker.modalPresentationStyle = .overCurrentContext
@@ -144,7 +161,6 @@ class CreateEventViewController: BaseViewController {
         if let title = contentTitle.text, let overview = contentOverview.text, let location = contentLocation.text, let date = btChooseDate.titleLabel?.text,let checkin = btCheckin.titleLabel?.text,let checkout = btCheckout.titleLabel?.text {
             
             if checkin != AppLanguage.CreateEvent.Checkin.localized && checkout != AppLanguage.CreateEvent.Checkout.localized && removeWhiteSpaceAndLine(text: overview) != "" && removeWhiteSpaceAndLine(text: title) != "" && removeWhiteSpaceAndLine(text: location) != "" && date != AppLanguage.CreateEvent.ChooseDate.localized {
-                
                             showSpinner()
                             presenter.createEvent(urlImgLanscape: "", urlImgPortal: "", title: removeWhiteSpaceAndLine(text: title), overview: removeWhiteSpaceAndLine(text: overview), location: removeWhiteSpaceAndLine(text: location), date: date, checkin: checkin.formatDateCreate(), checkout: checkout.formatDateCreate(), score: scoreEvent)
                 
@@ -182,7 +198,7 @@ extension CreateEventViewController: CreateEventViewProtocol {
     
     func createEventSuccess(path: String, title: String) {
         removeSpinner()
-        presenter.sendPushNotification(to: "", title: "New event!!!", body: "Hi, we have just added \(title) event in the Uni.\nWe will be happy if you join us.\nLets explore.")
+        presenter.sendPushNotification(to: "", title: AppLanguage.CreateEvent.newEvent.localized, body: "\(AppLanguage.CreateEvent.havejustAdded.localized) \(title) \(AppLanguage.CreateEvent.letExlore.localized)")
         presentAlertWithTitle(title: AppLanguage.HandleSuccess.Success.localized, message: AppLanguage.HandleSuccess.createEvent.localized, options: AppLanguage.Ok.localized) { [self] (option) in
             self.navigationController?.popViewController(animated: true)
             refreshListEvent?()

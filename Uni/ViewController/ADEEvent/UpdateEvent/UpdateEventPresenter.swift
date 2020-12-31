@@ -34,11 +34,15 @@ protocol UpdateEventPresenterProtocol: class {
     var view: UpdateEventViewProtocol? { get set }
     var detailEvent: DetailEvent? {get set}
     var keyEvent: String {get set}
+    var dateEvent: String? {get set}
+    var checkinEvent: String? {get set}
+    var checkoutEvent: String? {get set}
     func getDetailEvent()
     func updateEvent(urlImgLanscape: String,urlImgPortal:String,title:String,overview:String,location:String,date:String,checkin:String,checkout:String,score:Int)
     func uploadImage(image: UIImage,type:typeImage)
     func updateImageEvent(keyRef:String,type:typeImage)
     func updateScoreUser(score: Int)
+    func sendPushNotification()
 }
 
 class UpdateEventPresenter: UpdateEventPresenterProtocol {
@@ -48,9 +52,46 @@ class UpdateEventPresenter: UpdateEventPresenterProtocol {
     var databaseHandle = DatabaseHandle()
     var detailEvent: DetailEvent?
     let storageRef = Storage.storage().reference()
+    var checkinEvent: String?
+    var checkoutEvent: String?
+    var dateEvent: String?
+    
     init(keyEvent: String) {
         self.keyEvent = keyEvent
     }
+    
+    func sendPushNotification() {
+        let urlString = "https://fcm.googleapis.com/fcm/send"
+        let url = NSURL(string: urlString)!
+        let paramString: [String : Any] = ["condition": "'notify' in topics",
+                                           "priority" : "high",
+                                           "notification" : [
+                                            "body" : "\(AppLanguage.UpdateEvent.havejustUpdate.localized) \(detailEvent?.title ?? "") \(AppLanguage.UpdateEvent.letCheck.localized)",
+                                            "title" : AppLanguage.UpdateEvent.editEvent.localized,
+                                             "sound" : "default"
+                                           ]
+        ]
+        let request = NSMutableURLRequest(url: url as URL)
+        request.httpMethod = "POST"
+        request.httpBody = try? JSONSerialization.data(withJSONObject:paramString, options: [.prettyPrinted])
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue(AppKey.keyPushNotification, forHTTPHeaderField: "Authorization")
+        let task =  URLSession.shared.dataTask(with: request as URLRequest)  {  (data, response, error) in
+            do {
+                if let jsonData = data {
+                    if let jsonDataDict  = try JSONSerialization.jsonObject(with: jsonData, options: JSONSerialization.ReadingOptions.allowFragments) as? [String: AnyObject] {
+                        
+                        NSLog("Received data:\n\(jsonDataDict))")
+                    }
+                }
+            } catch let err as NSError {
+                
+                print(err.debugDescription)
+            }
+        }
+        task.resume()
+    }
+    
     func getDetailEvent() {
         let placeRef = self.ref.child("Event/\(keyEvent)")
         placeRef.observe(.value, with: { [self] snapshot in
@@ -69,7 +110,9 @@ class UpdateEventPresenter: UpdateEventPresenterProtocol {
                 let urlImageLandscape = dict["ImageLandscape"] as! String
                 
                 detailEvent = DetailEvent(title: title, content: content, address: address, score: score, date: date, checkin: checkin, checkout: checkout, urlImageLandscape:urlImageLandscape,urlImagePortal: urlImagePortal)
-                
+                dateEvent = date
+                checkinEvent = checkin
+                checkoutEvent = checkout
                 view?.fetchDetailSuccess()
             }
             else

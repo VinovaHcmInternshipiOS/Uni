@@ -31,7 +31,7 @@ protocol CreateUserViewProtocol: class {
 protocol CreateUserPresenterProtocol: class {
     var view: CreateUserViewProtocol? { get set }
     var detailUser: ADEUser? { get set}
-    func createAccount(email:String,id:String,role:String,state:Bool)
+    func createAccount(email:String,id:String,role:String,state:Bool,created:String)
     func createInformation(code:String,name:String,gender:String,Class:String,course:String,faculty:String)
     func checkExistEmail(email:String)
     func checkExistID(code:String)
@@ -68,7 +68,7 @@ class CreateUserPresenter: CreateUserPresenterProtocol {
         }
     }
     
-    func createAccount(email:String,id:String,role:String,state:Bool) {
+    func createAccount(email:String,id:String,role:String,state:Bool,created:String) {
         Auth.auth().createUser(withEmail: email, password: "\(email.hashValue)") { [self] UserInfo, error in
             
             if(error != nil)
@@ -80,7 +80,7 @@ class CreateUserPresenter: CreateUserPresenterProtocol {
             else
             {
                 if let getUID = UserInfo {
-                    let contenttitleNoti = ["Users/\(getUID.user.uid)/Email":"\(email)","Users/\(getUID.user.uid)/Uid":"\(getUID.user.uid)","Users/\(getUID.user.uid)/Code":"\(id)","Users/\(getUID.user.uid)/Auth/Role":"\(role)","Users/\(getUID.user.uid)/Auth/State":state] as [String : Any]
+                    let contenttitleNoti = ["Users/\(getUID.user.uid)/Email":"\(email)","Users/\(getUID.user.uid)/Uid":"\(getUID.user.uid)","Users/\(getUID.user.uid)/Code":"\(id)","Users/\(getUID.user.uid)/Auth/Role":"\(role)","Users/\(getUID.user.uid)/Auth/State":state,"Users/\(getUID.user.uid)/Created":created,"Users/\(getUID.user.uid)/SignedIn":"nil"] as [String : Any]
                     self.ref.updateChildValues(contenttitleNoti as [AnyHashable : Any]){ [self](error, ref) in
                         if(error != nil){
                             view?.createAccoutnFailed(error: error!)

@@ -46,6 +46,7 @@ class AttendanceEventViewController: BaseViewController,AVCaptureMetadataOutputO
         
         presenter.view = self
         presenter.fetchAttendance(keyEvent: keyDetailEvent)
+        presenter.getDateTimeEvent(keyEvent: keyDetailEvent)
         setupUI()
         setupLanguage()
         pullRefreshData()
@@ -135,7 +136,7 @@ class AttendanceEventViewController: BaseViewController,AVCaptureMetadataOutputO
                     let firstName = components.joined(separator: " ")
                     debugPrint(lastName, "",firstName)
                     if let code = Array[n]?.code, let checkin = Array[n]?.checkin, let date = Array[n]?.date {
-                        mailString.append("\(n+1),\(code),\(firstName),\(lastName),\(formatterTime(time: checkin)),\(date)\n")
+                        mailString.append("\(n+1),\(code),\(firstName),\(lastName),\(formatterTime12h(time: checkin)),\(date)\n")
                     } else { return }
                     
                 }
@@ -236,6 +237,27 @@ class AttendanceEventViewController: BaseViewController,AVCaptureMetadataOutputO
     private func pullRefreshData() {
         pullControl.addTarget(self, action: #selector(pulledRefreshControl), for: UIControl.Event.valueChanged)
     }
+    
+    func checkTime24h() -> [String] {
+        return [is12hClockFormat() == true ? formatterTime12h(time: presenter.checkinEvent ?? "") : presenter.checkinEvent ?? "",is12hClockFormat() == true ? formatterTime12h(time: presenter.checkoutEvent ?? "") : presenter.checkoutEvent ?? ""]
+    }
+    
+    func checkTimeAttendance() -> Bool {
+        let formatDate = checkFormatDateTime12h()
+        if let dateCurrent = transformStringDate(getCurrentDateTime12h(), fromDateFormat: formatDate, toDateFormat: formatDate), let dateCheckinEvent = transformStringDate("\(presenter.dateEvent ?? "") \(checkTime24h()[0])", fromDateFormat: formatDate, toDateFormat: formatDate),let dateCheckoutEvent = transformStringDate("\(presenter.dateEvent ?? "") \(checkTime24h()[1])", fromDateFormat: formatDate, toDateFormat: formatDate) {
+            
+            if Int(dateCurrent.toDateTimeFormat(format: formatDate).timeIntervalSince1970) < Int(dateCheckinEvent.toDateTimeFormat(format: formatDate).timeIntervalSince1970) {
+                presentAlertWithTitle(title: AppLanguage.HandleError.anError.localized, message: AppLanguage.HandleError.timeInCheckin.localized, options: AppLanguage.Ok.localized) { (Int) in}
+                return false
+            } else if Int(dateCurrent.toDateTimeFormat(format: formatDate).timeIntervalSince1970) > Int(dateCheckoutEvent.toDateTimeFormat(format: formatDate).timeIntervalSince1970) {
+                presentAlertWithTitle(title: AppLanguage.HandleError.anError.localized, message: AppLanguage.HandleError.timeOutCheckout.localized, options: AppLanguage.Ok.localized) { (Int) in}
+                return false
+           
+            } else {
+                return true
+            }
+        } else {return false}
+    }
 
     @IBAction func scanBarcode(_ sender: Any) {
         viewController.headerViewController.closeButton.tintColor = .red
@@ -245,7 +267,9 @@ class AttendanceEventViewController: BaseViewController,AVCaptureMetadataOutputO
         viewController.messageViewController.messages.processingText = AppLanguage.Checking.localized
         viewController.headerViewController.titleLabel.text = AppLanguage.titleCamera.localized
         viewController.messageViewController.messages.scanningText = AppLanguage.FooterCamera.localized
-        present(viewController, animated: false, completion: nil)
+        if checkTimeAttendance() {
+            present(viewController, animated: true, completion: nil)
+        }
     }
     
     
@@ -258,8 +282,6 @@ class AttendanceEventViewController: BaseViewController,AVCaptureMetadataOutputO
     
     
     @objc func actionSearch(sender: UIButton) {
-        skeletonView()
-        listAttendance.removeAll()
         lbNoData.isHidden = true
         getkeySearch?()
     }
@@ -268,9 +290,9 @@ class AttendanceEventViewController: BaseViewController,AVCaptureMetadataOutputO
         listAttendance = presenter.infoAttendance
         print("Count",listAttendance.count)
         collectionView.hideSkeleton()
-            collectionView.insertItems(at: [IndexPath(row: listAttendance.count - 1, section: 0)])
+        collectionView.insertItems(at: [IndexPath(row: 0, section: 0)])
                 collectionView.performBatchUpdates({
-                collectionView.reloadItems(at: [IndexPath(row: listAttendance.count - 1, section: 0)])
+                    collectionView.reloadItems(at: [IndexPath(row: 0, section: 0)])
                 }){_ in
                     // optional closure
                     print("finished updating cell")
@@ -281,9 +303,10 @@ class AttendanceEventViewController: BaseViewController,AVCaptureMetadataOutputO
     
     func checkEmptyData(){
         print(listAttendance.count)
-        if listAttendance.count != 0 {
+        if presenter.infoAttendance.count != 0 {
             lbNoData.isHidden = true
         } else {
+            listAttendance.removeAll()
             lbNoData.isHidden = false
         }
     }
@@ -313,11 +336,13 @@ extension AttendanceEventViewController: UICollectionViewDelegateFlowLayout,UICo
 
                     getkeySearch = { [self] in
                         if let keysearch = headerView.txtSearch.text {
-                            presenter.infoAttendance = []
-                            if(keysearch.isEmpty == true) {
+                            //presenter.infoAttendance = []
+                            if(removeWhiteSpaceAndLine(text: keysearch) == "") {
                                 presenter.fetchAttendance(keyEvent: keyDetailEvent)
                             } else {
-                                presenter.fetchEventResult(keyEvent: keyDetailEvent, keyJoiner: keysearch)
+                                skeletonView()
+                                showSpinner()
+                                presenter.fetchEventResult(keyEvent: keyDetailEvent, keySearch: keysearch.lowercased())
                             }
 
                         } else {return}
@@ -374,12 +399,13 @@ extension AttendanceEventViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AttendanceCell", for: indexPath) as? AttendanceCell {
-            cell.dateCheckin.text = "\(getFormattedDate(date: listAttendance[indexPath.row]!.date ?? ""))-\(formatterTime(time: listAttendance[indexPath.row]!.checkin ?? ""))"
-            cell.codeUser.text = listAttendance[indexPath.row]?.code
-            cell.nameUser.text = listAttendance[indexPath.row]?.name
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AttendanceCell", for: indexPath) as? AttendanceCell, let listAttendance = listAttendance[indexPath.row] {
+
+            cell.dateCheckin.text = "\(getFormattedDate(date: listAttendance.date ?? ""))-\((listAttendance.checkin ?? "").toTimeFormat(format: checkFormatTime12h()))"
+            cell.codeUser.text = listAttendance.code
+            cell.nameUser.text = listAttendance.name
             
-            if let profileURL = listAttendance[indexPath.row]?.urlImage {
+            if let profileURL = listAttendance.urlImage {
                 cell.imageUser.loadImage(urlString: profileURL)
             }
             
@@ -399,16 +425,24 @@ extension AttendanceEventViewController: BarcodeScannerCodeDelegate {
         print("Barcode Data: \(code)")
         print("Symbology Type: \(type)")
         let charactersetTextView = CharacterSet(charactersIn: ",[]:;<>,+=-_|!@%^&?$/.{()*&^%#`~'} ")
-        if (code.rangeOfCharacter(from: charactersetTextView.intersection(charactersetTextView)) != nil){
+        if checkTimeAttendance() {
+            if (code.rangeOfCharacter(from: charactersetTextView.intersection(charactersetTextView)) != nil){
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                    controller.messageViewController.errorTintColor = UIColor.systemRed
+                    controller.resetWithError(message: AppLanguage.HandleError.invalidID.localized)
+                }
+            }
+            else
+            {
+                presenter.checkFakeCode(fakeCode: code, type: .scan)
+            }
+        } else {
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                 controller.messageViewController.errorTintColor = UIColor.systemRed
-                controller.resetWithError(message: AppLanguage.HandleError.invalidID.localized)
+                controller.resetWithError(message: AppLanguage.HandleError.scanBarcodeEndedEvent.localized)
             }
         }
-        else
-        {
-            presenter.checkFakeCode(fakeCode: code, type: .scan)
-        }
+
     }
 }
 // MARK: - BarcodeScannerErrorDelegate
@@ -431,12 +465,14 @@ extension AttendanceEventViewController: AttendanceEventViewProtocol {
     func searchAttendanceEventSuccess() {
         countUser?()
         remakeData()
+        removeSpinner()
     }
     
     func searchAttendanceEventFailed() {
+        checkEmptyData()
         countUser?()
         collectionView.hideSkeleton()
-        checkEmptyData()
+        removeSpinner()
         collectionView.reloadData()
     }
     
@@ -454,7 +490,7 @@ extension AttendanceEventViewController: AttendanceEventViewProtocol {
         let mailString = NSMutableString()
         let detail = presenter.detailEvent
         if let detail = detail {
-            createfileCSV(title: detail.title ?? "", date: detail.date ?? "",location: detail.address ?? "", checkin: formatterTime(time: detail.checkin ?? "") , checkout: formatterTime(time: detail.checkout ?? ""), score: detail.score ?? 0, Array: listAttendance, total: listAttendance.count, mailString: mailString)
+            createfileCSV(title: detail.title ?? "", date: detail.date ?? "",location: detail.address ?? "", checkin: formatterTime12h(time: detail.checkin ?? "") , checkout: formatterTime12h(time: detail.checkout ?? ""), score: detail.score ?? 0, Array: listAttendance, total: listAttendance.count, mailString: mailString)
             //joinEvent.text = detail.joinEvent
             
         } else { return }

@@ -46,7 +46,6 @@ class DetailAccountViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         presenter.view = self
         presenter.fetchDetailAccount(uid: keyUID)
         setupLanguage()
@@ -114,8 +113,8 @@ extension DetailAccountViewController: DetailAccountViewProtocol {
         btState.isHidden = false
         let detail = presenter.detailAccount
         if let detail = detail {
-            created.text = detail.created
-            signedin.text = detail.signedin
+            created.text = is12hClockFormat() == true ? formatterDateTime12h(time: detail.created ?? "") : formatterDateTime24h(time: detail.created ?? "")
+            signedin.text = is12hClockFormat() == true ? formatterDateTime12h(time: detail.signedin ?? "") : formatterDateTime24h(time: detail.signedin ?? "")
             uid.text = detail.uid
             id.text = detail.id
             email.text = detail.email

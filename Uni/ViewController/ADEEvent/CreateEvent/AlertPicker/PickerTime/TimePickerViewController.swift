@@ -19,6 +19,7 @@ class TimePickerViewController: BaseViewController, TimePickerViewProtocol {
     @IBOutlet weak var TimeInPicker: UIDatePicker!
     @IBOutlet weak var TimeOutPicker: UIDatePicker!
     var dataTimePicker: (()->Void)? = nil
+    var timePick = ""
     var dateCheckin = "Check-in" {
         didSet {
             print(dateCheckin)
@@ -42,6 +43,10 @@ class TimePickerViewController: BaseViewController, TimePickerViewProtocol {
         super.viewDidLoad()
         presenter.view = self
         presenter.viewDidLoad()
+        if timePick == getCurrentDate() {
+            TimeInPicker.minimumDate = Date() + 1
+            TimeOutPicker.minimumDate = Date() + 1
+        }
         TimeInPicker.setDate(dateCheckin.toDateTime(), animated: true)
         TimeOutPicker.setDate(dateCheckout.toDateTime(), animated: true)
         lbTimeCheckIn.textColor = AppColor.YellowFAB32A

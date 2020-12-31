@@ -19,6 +19,7 @@ protocol DetailAccountViewProtocol: class {
     func fetchDetailAccountFailed()
     func changeStateUserSuccess()
     func changeStateUserFailed()
+    
 }
 
 // MARK: Presenter -
@@ -37,7 +38,6 @@ class DetailAccountPresenter: DetailAccountPresenterProtocol {
     var databaseHandle = DatabaseHandle()
     var user = Auth.auth().currentUser
     var detailAccount: DetailAccount?
-    
     func fetchDetailAccount(uid: String) {
         let placeRef = self.ref.child("Users/\(uid)")
         placeRef.observe(.value, with: { [self] snapshot in
@@ -46,6 +46,9 @@ class DetailAccountPresenter: DetailAccountPresenterProtocol {
                 let dict = snapshot.value as! [String: Any]
                 let code = dict["Code"] as! String
                 let email   = dict["Email"] as! String
+                let created = dict["Created"] as! String
+                let signedin   = dict["SignedIn"] as! String
+                
                 let placeRef = self.ref.child("Users/\(uid)/Auth")
                 placeRef.observe(.value, with: { [self] snapshot in
                     if snapshot.exists()
@@ -55,7 +58,7 @@ class DetailAccountPresenter: DetailAccountPresenterProtocol {
                         let state   = dict["State"] as! Bool
                         //"\(user.metadata.creationDate ?? Date())"
                         //"\(user.metadata.lastSignInDate ?? Date())"
-                        detailAccount = DetailAccount(created: "", signedin: "", state: state, uid: uid, id: code, email: email, role: role)
+                        detailAccount = DetailAccount(created: created, signedin: signedin, state: state, uid: uid, id: code, email: email, role: role)
                         view?.fetchDetailAccountSuccess()
                     } else {
                         view?.fetchDetailAccountFailed()

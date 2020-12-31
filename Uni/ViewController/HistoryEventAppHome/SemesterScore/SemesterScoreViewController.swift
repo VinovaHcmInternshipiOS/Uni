@@ -163,15 +163,15 @@ extension SemesterScoreViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "SemesterCell", for: indexPath) as? SemesterCell {
-            cell.lbTitle.text = detailHistory[indexPath.row]?.title ?? ""
-            cell.lbDate.text = getFormattedDate(date: detailHistory[indexPath.row]?.date ?? "")
-            cell.lbTime.text = formatterTime(time: detailHistory[indexPath.row]?.checkin ?? "")
-            cell.lbScore.text = "+\(detailHistory[indexPath.row]?.score ?? 0)"
-            if let eventURL = detailHistory[indexPath.row]?.urlImage {
-                cell.imgView.loadImage(urlString: eventURL)
-            }
-            return cell
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "SemesterCell", for: indexPath) as? SemesterCell,let detailHistory = detailHistory[indexPath.row] {
+                cell.lbTitle.text = detailHistory.title ?? ""
+                cell.lbDate.text = getFormattedDate(date: detailHistory.date ?? "")
+                cell.lbTime.text = (detailHistory.checkin ?? "").toTimeFormat(format: checkFormatTime12h())
+                cell.lbScore.text = "+\(detailHistory.score ?? 0)"
+                if let eventURL = detailHistory.urlImage {
+                    cell.imgView.loadImage(urlString: eventURL)
+                }
+                return cell
         } else { return UITableViewCell()}
     }
     

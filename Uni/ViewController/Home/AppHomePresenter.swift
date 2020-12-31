@@ -37,9 +37,9 @@ protocol AppHomePresenterProtocol: class {
     var comingsoonEvent: [Event?] {get set}
     var endedEvent: [Event?] {get set}
     func loadProfile()
-    func getInfoEventHappening()
-    func getInfoEventComingSoon()
-    func getInfoEventEnded()
+    func getInfoEventHappening(currentDateTime:Date)
+    func getInfoEventComingSoon(currentDateTime:Date)
+    func getInfoEventEnded(currentDateTime: Date)
     func checkStateLive()
     
     
@@ -57,9 +57,9 @@ class AppHomePresenter: AppHomePresenterProtocol {
     var comingsoonEvent: [Event?] = []
     var endedEvent: [Event?] = []
     
-    func getInfoEventHappening() {
+    func getInfoEventHappening(currentDateTime: Date) {
         happeningEvent.removeAll()
-        ref.child("Event").queryOrdered(byChild: "Type").queryEqual(toValue:"Happening" ).observeSingleEvent(of: .value) { [self] (snapshot) in
+        ref.child("Event").observeSingleEvent(of: .value) { [self] (snapshot) in
             if(snapshot.exists()) {
                 for keyEvent in snapshot.children.allObjects as! [DataSnapshot] {
                     let placeRef = self.ref.child("Event/\(keyEvent.key)")
@@ -75,11 +75,12 @@ class AppHomePresenter: AppHomePresenterProtocol {
                             let type = dict["Type"] as! String
                             let urrlImage = dict["ImageLandscape"] as! String
                             let request = Event(title: title, key: key, date: date, checkout: checkout, checkin: checkin, type: type, urlImage: urrlImage)
-                            
-                            happeningEvent.append(request)
-                            //  DispatchQueue.main.async {
-                            view?.fetchInfoEventHappeningSuccess()
-                            //  }
+                            if "\(date) \(checkin)".formatStringToDateTime24h() >= currentDateTime && "\(date) \(checkin)".formatStringToDateTime24h() <= currentDateTime{
+                                happeningEvent.append(request)
+                                view?.fetchInfoEventHappeningSuccess()
+                            } else {
+                                view?.fetchInfoEventHappeningFailed()
+                            }
                         }
                         else
                         {
@@ -96,9 +97,9 @@ class AppHomePresenter: AppHomePresenterProtocol {
         }
     }
     
-    func getInfoEventComingSoon() {
+    func getInfoEventComingSoon(currentDateTime:Date) {
         comingsoonEvent.removeAll()
-        ref.child("Event").queryOrdered(byChild: "Type").queryEqual(toValue:"ComingSoon" ).observeSingleEvent(of: .value) { [self] (snapshot) in
+        ref.child("Event").observeSingleEvent(of: .value) { [self] (snapshot) in
             if(snapshot.exists()) {
                 for keyEvent in snapshot.children.allObjects as! [DataSnapshot] {
                     let placeRef = self.ref.child("Event/\(keyEvent.key)")
@@ -114,11 +115,12 @@ class AppHomePresenter: AppHomePresenterProtocol {
                             let type = dict["Type"] as! String
                             let urrlImage = dict["ImagePortal"] as! String
                             let request = Event(title: title, key: key, date: date, checkout: checkout, checkin: checkin, type: type, urlImage: urrlImage)
-                            
-                            comingsoonEvent.append(request)
-                            // DispatchQueue.main.async {
-                            view?.fetchInfoEventComingSoonSuccess()
-                            // }
+                            if "\(date) \(checkin)".formatStringToDateTime24h() > currentDateTime {
+                                comingsoonEvent.append(request)
+                                view?.fetchInfoEventComingSoonSuccess()
+                            } else {
+                                view?.fetchInfoEventComingSoonFailed()
+                            }
                         }
                         else
                         {
@@ -134,9 +136,9 @@ class AppHomePresenter: AppHomePresenterProtocol {
         }
     }
     
-    func getInfoEventEnded() {
+    func getInfoEventEnded(currentDateTime: Date) {
         endedEvent.removeAll()
-        ref.child("Event").queryOrdered(byChild: "Type").queryEqual(toValue:"Ended" ).observeSingleEvent(of: .value) { [self] (snapshot) in
+        ref.child("Event").observeSingleEvent(of: .value) { [self] (snapshot) in
             if(snapshot.exists()) {
                 for keyEvent in snapshot.children.allObjects as! [DataSnapshot] {
                     let placeRef = self.ref.child("Event/\(keyEvent.key)")
@@ -152,11 +154,12 @@ class AppHomePresenter: AppHomePresenterProtocol {
                             let type = dict["Type"] as! String
                             let urrlImage = dict["ImagePortal"] as! String
                             let request = Event(title: title, key: key, date: date, checkout: checkout, checkin: checkin, type: type, urlImage: urrlImage)
-                            
-                            endedEvent.append(request)
-                            //DispatchQueue.main.async {
-                            view?.fetchInfoEventEndedSuccess()
-                            // }
+                            if "\(date) \(checkout)".formatStringToDateTime24h() < currentDateTime {
+                                endedEvent.append(request)
+                                view?.fetchInfoEventEndedSuccess()
+                            } else {
+                                view?.fetchInfoEventEndedFailed()
+                            }
                         }
                         else
                         {

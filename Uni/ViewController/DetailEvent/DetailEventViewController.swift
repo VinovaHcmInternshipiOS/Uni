@@ -79,7 +79,7 @@ extension DetailEventViewController: DetailEventViewProtocol {
             titleEvent.text = detail.title
             contentEvent.text = detail.content
             scoreEvent.text = "\(detail.score ?? 0)"
-            dateEvent.text = "\(getFormattedDate(date: detail.date ?? ""))\n\(formatterTime(time: detail.checkin ?? ""))-\(formatterTime(time: detail.checkout ?? ""))"
+            dateEvent.text = "\(getFormattedDate(date: detail.date ?? ""))\n\((detail.checkin ?? "").toTimeFormat(format: checkFormatTime12h()))-\((detail.checkout ?? "").toTimeFormat(format: checkFormatTime12h()))"
             addressEvent.text = detail.address
             //joinEvent.text = detail.joinEvent
            

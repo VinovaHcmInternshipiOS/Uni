@@ -38,7 +38,7 @@
                                 <size key="value" width="0.0" height="4"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
-                                <color key="value" name="Color-5"/>
+                                <color key="value" name="Color-1"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
                                 <real key="value" value="15"/>
@@ -66,7 +66,7 @@
                                 <rect key="frame" x="116" y="0.0" width="234" height="33"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="7:57 PM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z8N-gD-A47">
-                                        <rect key="frame" x="19" y="8" width="50" height="17"/>
+                                        <rect key="frame" x="18.999999999999996" y="8" width="52.666666666666657" height="17"/>
                                         <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="14"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -102,7 +102,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NBH-0f-3XK">
-                                <rect key="frame" x="318.66666666666669" y="94" width="19.333333333333314" height="25"/>
+                                <rect key="frame" x="314.66666666666669" y="94" width="23.333333333333314" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="kz3-QQ-BOR"/>
                                 </constraints>
@@ -193,7 +193,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <namedColor name="Color-5">
+        <namedColor name="Color-1">
             <color red="0.0" green="0.0" blue="0.0" alpha="0.15000000596046448" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>

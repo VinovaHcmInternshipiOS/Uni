@@ -297,7 +297,7 @@ extension CreateUserViewController: CreateUserViewProtocol{
     
     func checkExistIDFailed() {
         if let email = txtEmail.text, let id = txtID.text, let _ = txtRole.text, let _ = txtState.text {
-            presenter.createAccount(email: removeWhiteSpaceAndLine(text: email), id: removeWhiteSpaceAndLine(text: id), role: dataRole(), state: Bool(dataState()) ?? true)
+            presenter.createAccount(email: removeWhiteSpaceAndLine(text: email), id: removeWhiteSpaceAndLine(text: id), role: dataRole(), state: Bool(dataState()) ?? true,created: getCurrentDateTime24h())
         } else {return}
     }
     
