@@ -97,6 +97,9 @@
 "Check-in" = "Check-in";
 "Check-out" = "Check-out";
 "Done" = "Done";
+"New event!!!" = "New event!!!";
+"Hi, we have just added" = "Hi, we have just added event";
+"in the Uni.\nWe will be happy if you join us.\nLets explore." = "in the Uni.\nWe will be happy if you join us.\nLets explore.";
 
 //MARK: -- UpdateEvent
 "Update\nEvent" = "Update\nEvent";
@@ -109,6 +112,9 @@
 "Check-in" = "Check-in";
 "Check-out" = "Check-out";
 "Done" = "Done";
+"Update event!!!" = "Update event!!!";
+"Hi, we have just update event information" = "Hi, we have just update event information";
+"in the Uni.\nPlease check the event information to avoid being missed." = "in the Uni.\nPlease check the event information to avoid being missed.";
 
 //MARK: -- Rank
 "Rank" = "Rank";
@@ -131,7 +137,7 @@
 "Phone:" = "Phone:";
 
 //MARK: -- Manage
-"Event\nManage" = "Event\nManage";
+"Events\nManage" = "Events\nManage";
 "Users\nManage" = "Users\nManage";
 "Hi,\nAdmin" = "Hi,\nAdmin";
 "Send\nNotification" = "Send\nNotification";
@@ -217,6 +223,15 @@
 "no event has ended." = "no event has ended.";
 "Already exists ID in event list." = "Already exists ID in event list.";
 "Invalid ID." = "Invalid ID.";
+"The event could not be deleted because a user already exists in the list." = "The event could not be deleted because a user already exists in the list.";
+"Please select an event date." = "Please select an event date.";
+"It's not time to take attendance yet, please come back later." = "It's not time to take attendance yet, please come back later.";
+"It's time to take attendance has passed." = "It's time to take attendance has passed.";
+"Ongoing events cannot be updated information." = "Ongoing events cannot be updated.";
+"The event has ended cannot be updated information." = "The event has ended cannot be updated.";
+"Cannot scan the code at this time because the event has not taken place yet or the event has ended." = "Cannot scan the code at this time because the event has not taken place yet or the event has ended.";
+"Updated avatar failed." = "Updated avatar failed.";
+"Delete failed message." = "Delete failed message.";
 
 
 //MARK: -- HandleSuccess
@@ -231,7 +246,10 @@
 "Checking..." = "Checking...";
 "Place the barcode within the window to scan.\nThe search will start automatically." = "Place the barcode within the window to scan.\nThe search will start automatically.";
 "Scan Barcode" = "Scan Barcode";
-"Please check your email to change your password."; = "Please check your email to change your password.";
+"Please check your email to change your password." = "Please check your email to change your password.";
+"Successful avatar update." = "Successful avatar update.";
+"Successfully deleted message." = "Successfully deleted message.";
+
 
 //MARK: -- DetailAccount
 "Detail\nAccount" = "Detail\nAccount";
@@ -244,13 +262,22 @@
 "Do you want to enable account?" = "Do you want to enable account?";
 "Do you want to disable account?" = "Do you want to disable account?";
 "Confirm" = "Confirm";
+"Do you want to delete this message?" = "Do you want to delete this message?";
 
 //MARK: -- ResetPassword
 "Please enter your Email" = "Please enter your Email";
+
+//MARK: -- ListNotification
+"List\nNotifications" = "List\nNotifications";
 
 "Title" = "Title";
 "Content" = "Content";
 
 "Send failure notification." = "Send failure notification.";
 "Notification has been sent." = "Notification has been sent.";
-"The event could not be deleted because a user already exists in the list." = "The event could not be deleted because a user already exists in the list."
+"Do you want to delete this event?" = "Do you want to delete this event?";
+
+"Notifications" = "Notifications";
+"just now" = "just now";
+"Seen" = "Seen";
+"Total" = "Total";

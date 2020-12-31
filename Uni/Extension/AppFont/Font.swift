@@ -53,4 +53,10 @@ struct AppFont {
     static let Raleway_Bold_12 = UIFont(name: "Raleway-Bold", size: 12)!
     static let Raleway_Medium_12 = UIFont(name: "Raleway-Medium", size: 12)!
     
+    //Size 40
+    static let Raleway_Regular_40 = UIFont(name: "Raleway-Regular", size: 40)!
+    static let Raleway_Bold_40 = UIFont(name: "Raleway-Bold", size: 40)!
+    static let Raleway_Medium_40 = UIFont(name: "Raleway-Medium", size: 40)!
+    static let Raleway_Light_40 = UIFont(name: "Raleway-Light", size: 40)!
+    
 }

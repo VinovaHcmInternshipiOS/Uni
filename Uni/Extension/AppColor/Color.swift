@@ -20,4 +20,7 @@ class AppColor {
     static let RedShadow = #colorLiteral(red: 1, green: 0.4862745098, blue: 0.4588235294, alpha: 0.4970645526)
     static let RedFF6961 = #colorLiteral(red: 1, green: 0.4117647059, blue: 0.3803921569, alpha: 1)
     static let RedFF7C75 = #colorLiteral(red: 1, green: 0.4862745098, blue: 0.4588235294, alpha: 1)
+    static let BlueADEAFE = #colorLiteral(red: 0.6784313725, green: 0.9176470588, blue: 0.9960784314, alpha: 1)
+    static let OrangeF3D08E = #colorLiteral(red: 0.9529411765, green: 0.8156862745, blue: 0.5568627451, alpha: 1)
+    static let SilverE5E5E5 = #colorLiteral(red: 0.8980392157, green: 0.8980392157, blue: 0.8980392157, alpha: 1)
 }

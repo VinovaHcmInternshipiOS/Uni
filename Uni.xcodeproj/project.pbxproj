@@ -21,6 +21,16 @@
 		F51260672566783100B517DC /* CreateEventPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51260642566783000B517DC /* CreateEventPresenter.swift */; };
 		F51260682566783100B517DC /* CreateEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51260652566783000B517DC /* CreateEventViewController.swift */; };
 		F51260692566783100B517DC /* CreateEventViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F51260662566783000B517DC /* CreateEventViewController.xib */; };
+		F52B88192595D981004D9ABC /* NotificationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52B88162595D981004D9ABC /* NotificationPresenter.swift */; };
+		F52B881A2595D981004D9ABC /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52B88172595D981004D9ABC /* NotificationViewController.swift */; };
+		F52B881B2595D981004D9ABC /* NotificationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F52B88182595D981004D9ABC /* NotificationViewController.xib */; };
+		F52B88212595DCEF004D9ABC /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52B881F2595DCEF004D9ABC /* NotificationCell.swift */; };
+		F52B88222595DCEF004D9ABC /* NotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F52B88202595DCEF004D9ABC /* NotificationCell.xib */; };
+		F52B884725985740004D9ABC /* ListNotificationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52B884425985740004D9ABC /* ListNotificationPresenter.swift */; };
+		F52B884825985740004D9ABC /* ListNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52B884525985740004D9ABC /* ListNotificationViewController.swift */; };
+		F52B884925985740004D9ABC /* ListNotificationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F52B884625985740004D9ABC /* ListNotificationViewController.xib */; };
+		F52B8889259866CB004D9ABC /* ListNotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52B8887259866CB004D9ABC /* ListNotificationCell.swift */; };
+		F52B888A259866CB004D9ABC /* ListNotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F52B8888259866CB004D9ABC /* ListNotificationCell.xib */; };
 		F52CD26525788157009C7188 /* ConfirmPasswordPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52CD26225788157009C7188 /* ConfirmPasswordPresenter.swift */; };
 		F52CD26625788157009C7188 /* ConfirmPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52CD26325788157009C7188 /* ConfirmPasswordViewController.swift */; };
 		F52CD26725788157009C7188 /* ConfirmPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F52CD26425788157009C7188 /* ConfirmPasswordViewController.xib */; };
@@ -34,8 +44,10 @@
 		F52E42C9256BC27E0044A03C /* AttendanceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F52E42C7256BC27E0044A03C /* AttendanceCell.xib */; };
 		F52FBAAB2589A69500E7096A /* HeaderAttendance.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52FBAA92589A69500E7096A /* HeaderAttendance.swift */; };
 		F52FBAAC2589A69500E7096A /* HeaderAttendance.xib in Resources */ = {isa = PBXBuildFile; fileRef = F52FBAAA2589A69500E7096A /* HeaderAttendance.xib */; };
+		F531FCEB2599958F00CE6689 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = F531FCEA2599958F00CE6689 /* Notification.swift */; };
 		F53481A025709850001C3FAC /* UINavigation+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F534819F25709850001C3FAC /* UINavigation+Extension.swift */; };
 		F53481A62570DBE5001C3FAC /* SearchAppHomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F53481A52570DBE5001C3FAC /* SearchAppHomeViewController.xib */; };
+		F563381B259C1F5700A874EC /* NotificationAdmin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F563381A259C1F5700A874EC /* NotificationAdmin.swift */; };
 		F5694E712574CEFF00C1D14D /* AboutPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5694E6E2574CEFF00C1D14D /* AboutPresenter.swift */; };
 		F5694E722574CEFF00C1D14D /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5694E6F2574CEFF00C1D14D /* AboutViewController.swift */; };
 		F5694E732574CEFF00C1D14D /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5694E702574CEFF00C1D14D /* AboutViewController.xib */; };
@@ -129,6 +141,9 @@
 		F5A2AF01255A768B00502E0F /* SlideInTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A2AF00255A768B00502E0F /* SlideInTransition.swift */; };
 		F5A2AF07255A7C7800502E0F /* SlideMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A2AF05255A7C7800502E0F /* SlideMenuCell.swift */; };
 		F5A2AF08255A7C7800502E0F /* SlideMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5A2AF06255A7C7800502E0F /* SlideMenuCell.xib */; };
+		F5ACA055259C86B100CCF09D /* ContentNotificationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5ACA052259C86B100CCF09D /* ContentNotificationPresenter.swift */; };
+		F5ACA056259C86B100CCF09D /* ContentNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5ACA053259C86B100CCF09D /* ContentNotificationViewController.swift */; };
+		F5ACA057259C86B100CCF09D /* ContentNotificationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5ACA054259C86B100CCF09D /* ContentNotificationViewController.xib */; };
 		F5B1A69225553C9300CC0C1A /* HistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B1A69025553C9300CC0C1A /* HistoryCell.swift */; };
 		F5B1A69325553C9300CC0C1A /* HistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5B1A69125553C9300CC0C1A /* HistoryCell.xib */; };
 		F5B1A698255553F300CC0C1A /* HeaderHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B1A696255553F300CC0C1A /* HeaderHistory.swift */; };
@@ -199,6 +214,16 @@
 		F51260642566783000B517DC /* CreateEventPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventPresenter.swift; sourceTree = "<group>"; };
 		F51260652566783000B517DC /* CreateEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventViewController.swift; sourceTree = "<group>"; };
 		F51260662566783000B517DC /* CreateEventViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateEventViewController.xib; sourceTree = "<group>"; };
+		F52B88162595D981004D9ABC /* NotificationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationPresenter.swift; sourceTree = "<group>"; };
+		F52B88172595D981004D9ABC /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
+		F52B88182595D981004D9ABC /* NotificationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationViewController.xib; sourceTree = "<group>"; };
+		F52B881F2595DCEF004D9ABC /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
+		F52B88202595DCEF004D9ABC /* NotificationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationCell.xib; sourceTree = "<group>"; };
+		F52B884425985740004D9ABC /* ListNotificationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListNotificationPresenter.swift; sourceTree = "<group>"; };
+		F52B884525985740004D9ABC /* ListNotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListNotificationViewController.swift; sourceTree = "<group>"; };
+		F52B884625985740004D9ABC /* ListNotificationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListNotificationViewController.xib; sourceTree = "<group>"; };
+		F52B8887259866CB004D9ABC /* ListNotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListNotificationCell.swift; sourceTree = "<group>"; };
+		F52B8888259866CB004D9ABC /* ListNotificationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListNotificationCell.xib; sourceTree = "<group>"; };
 		F52CD26225788157009C7188 /* ConfirmPasswordPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmPasswordPresenter.swift; sourceTree = "<group>"; };
 		F52CD26325788157009C7188 /* ConfirmPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmPasswordViewController.swift; sourceTree = "<group>"; };
 		F52CD26425788157009C7188 /* ConfirmPasswordViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConfirmPasswordViewController.xib; sourceTree = "<group>"; };
@@ -212,8 +237,10 @@
 		F52E42C7256BC27E0044A03C /* AttendanceCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AttendanceCell.xib; sourceTree = "<group>"; };
 		F52FBAA92589A69500E7096A /* HeaderAttendance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderAttendance.swift; sourceTree = "<group>"; };
 		F52FBAAA2589A69500E7096A /* HeaderAttendance.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderAttendance.xib; sourceTree = "<group>"; };
+		F531FCEA2599958F00CE6689 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		F534819F25709850001C3FAC /* UINavigation+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigation+Extension.swift"; sourceTree = "<group>"; };
 		F53481A52570DBE5001C3FAC /* SearchAppHomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchAppHomeViewController.xib; sourceTree = "<group>"; };
+		F563381A259C1F5700A874EC /* NotificationAdmin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationAdmin.swift; sourceTree = "<group>"; };
 		F5694E6E2574CEFF00C1D14D /* AboutPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutPresenter.swift; sourceTree = "<group>"; };
 		F5694E6F2574CEFF00C1D14D /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		F5694E702574CEFF00C1D14D /* AboutViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutViewController.xib; sourceTree = "<group>"; };
@@ -311,6 +338,9 @@
 		F5A2AF00255A768B00502E0F /* SlideInTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInTransition.swift; sourceTree = "<group>"; };
 		F5A2AF05255A7C7800502E0F /* SlideMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideMenuCell.swift; sourceTree = "<group>"; };
 		F5A2AF06255A7C7800502E0F /* SlideMenuCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SlideMenuCell.xib; sourceTree = "<group>"; };
+		F5ACA052259C86B100CCF09D /* ContentNotificationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentNotificationPresenter.swift; sourceTree = "<group>"; };
+		F5ACA053259C86B100CCF09D /* ContentNotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentNotificationViewController.swift; sourceTree = "<group>"; };
+		F5ACA054259C86B100CCF09D /* ContentNotificationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContentNotificationViewController.xib; sourceTree = "<group>"; };
 		F5B1A69025553C9300CC0C1A /* HistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCell.swift; sourceTree = "<group>"; };
 		F5B1A69125553C9300CC0C1A /* HistoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryCell.xib; sourceTree = "<group>"; };
 		F5B1A696255553F300CC0C1A /* HeaderHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderHistory.swift; sourceTree = "<group>"; };
@@ -470,6 +500,55 @@
 			path = CreateEvent;
 			sourceTree = "<group>";
 		};
+		F52B88152595CE70004D9ABC /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				F5ACA051259C869200CCF09D /* ContentNotification */,
+				F52B881E2595DCC7004D9ABC /* NotificationCell */,
+				F52B88162595D981004D9ABC /* NotificationPresenter.swift */,
+				F52B88172595D981004D9ABC /* NotificationViewController.swift */,
+				F52B88182595D981004D9ABC /* NotificationViewController.xib */,
+			);
+			path = Notification;
+			sourceTree = "<group>";
+		};
+		F52B881E2595DCC7004D9ABC /* NotificationCell */ = {
+			isa = PBXGroup;
+			children = (
+				F52B881F2595DCEF004D9ABC /* NotificationCell.swift */,
+				F52B88202595DCEF004D9ABC /* NotificationCell.xib */,
+			);
+			path = NotificationCell;
+			sourceTree = "<group>";
+		};
+		F52B884225985716004D9ABC /* ADENotification */ = {
+			isa = PBXGroup;
+			children = (
+				F52B888625986693004D9ABC /* ListNotificationCell */,
+				F52B88432598571E004D9ABC /* ListNotification */,
+			);
+			path = ADENotification;
+			sourceTree = "<group>";
+		};
+		F52B88432598571E004D9ABC /* ListNotification */ = {
+			isa = PBXGroup;
+			children = (
+				F52B884425985740004D9ABC /* ListNotificationPresenter.swift */,
+				F52B884525985740004D9ABC /* ListNotificationViewController.swift */,
+				F52B884625985740004D9ABC /* ListNotificationViewController.xib */,
+			);
+			path = ListNotification;
+			sourceTree = "<group>";
+		};
+		F52B888625986693004D9ABC /* ListNotificationCell */ = {
+			isa = PBXGroup;
+			children = (
+				F52B8887259866CB004D9ABC /* ListNotificationCell.swift */,
+				F52B8888259866CB004D9ABC /* ListNotificationCell.xib */,
+			);
+			path = ListNotificationCell;
+			sourceTree = "<group>";
+		};
 		F52CD26125788141009C7188 /* ConfirmPassword */ = {
 			isa = PBXGroup;
 			children = (
@@ -518,6 +597,15 @@
 				F52FBAAA2589A69500E7096A /* HeaderAttendance.xib */,
 			);
 			path = Header;
+			sourceTree = "<group>";
+		};
+		F531FCE92599957E00CE6689 /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				F531FCEA2599958F00CE6689 /* Notification.swift */,
+				F563381A259C1F5700A874EC /* NotificationAdmin.swift */,
+			);
+			path = Notification;
 			sourceTree = "<group>";
 		};
 		F5694E6D2574CED900C1D14D /* About */ = {
@@ -646,6 +734,8 @@
 		F582EA7F254FEE75002BF86F /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				F52B884225985716004D9ABC /* ADENotification */,
+				F52B88152595CE70004D9ABC /* Notification */,
 				F57DD1542583703E00B70728 /* PushNotification */,
 				F5CF0CF6257601B700D3BBF8 /* ADEUser */,
 				F5CF0CEE2575F39D00D3BBF8 /* PrivacyPolicy */,
@@ -857,6 +947,7 @@
 		F593CCAA255E401F005D4F15 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				F531FCE92599957E00CE6689 /* Notification */,
 				F57FCE582577420400158A35 /* ADEUser */,
 				F5940FA1257623D000427480 /* ListUser */,
 				F5C17C16256CC27900A467E2 /* AttendanceEvent */,
@@ -962,6 +1053,16 @@
 				F5A2AF06255A7C7800502E0F /* SlideMenuCell.xib */,
 			);
 			path = SlideMenuCell;
+			sourceTree = "<group>";
+		};
+		F5ACA051259C869200CCF09D /* ContentNotification */ = {
+			isa = PBXGroup;
+			children = (
+				F5ACA052259C86B100CCF09D /* ContentNotificationPresenter.swift */,
+				F5ACA053259C86B100CCF09D /* ContentNotificationViewController.swift */,
+				F5ACA054259C86B100CCF09D /* ContentNotificationViewController.xib */,
+			);
+			path = ContentNotification;
 			sourceTree = "<group>";
 		};
 		F5B1A68425553C3400CC0C1A /* TotalHistoryCell */ = {
@@ -1277,6 +1378,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F5C26FF1256BA8370015576A /* ListEventCell.xib in Resources */,
+				F52B888A259866CB004D9ABC /* ListNotificationCell.xib in Resources */,
 				F57DD15A2583705600B70728 /* PushNotificationViewController.xib in Resources */,
 				F58527B125510B3700F888E8 /* HappenningCellAppHome.xib in Resources */,
 				F5CF0D032576020C00D3BBF8 /* ListUserCell.xib in Resources */,
@@ -1319,12 +1421,14 @@
 				F5940FAC25763B8C00427480 /* CreateUserViewController.xib in Resources */,
 				F58527C5255157E900F888E8 /* DetailEventViewController.xib in Resources */,
 				F5694E732574CEFF00C1D14D /* AboutViewController.xib in Resources */,
+				F52B884925985740004D9ABC /* ListNotificationViewController.xib in Resources */,
 				F59221D02553FD8D002F3F50 /* RankViewController.xib in Resources */,
 				F5A04E342555054200DB396C /* SearchResultCell.xib in Resources */,
 				F582EABC254FF1D1002BF86F /* Raleway-Black.ttf in Resources */,
 				F52CD26725788157009C7188 /* ConfirmPasswordViewController.xib in Resources */,
 				F50D639C25545317007509D0 /* RankTableViewCell.xib in Resources */,
 				F5A2AF08255A7C7800502E0F /* SlideMenuCell.xib in Resources */,
+				F52B88222595DCEF004D9ABC /* NotificationCell.xib in Resources */,
 				F5A2AEFD255A74C400502E0F /* SlideMenuViewController.xib in Resources */,
 				F5B1A699255553F300CC0C1A /* HeaderHistory.xib in Resources */,
 				F5B1A6A22559157000CC0C1A /* SemesterScoreViewController.xib in Resources */,
@@ -1336,6 +1440,7 @@
 				F5C26FF7256BB2AB0015576A /* HeaderSearch.xib in Resources */,
 				F52CD28A2578C65E009C7188 /* DetailAccountViewController.xib in Resources */,
 				F582EAB4254FF1D1002BF86F /* Raleway-Medium.ttf in Resources */,
+				F5ACA057259C86B100CCF09D /* ContentNotificationViewController.xib in Resources */,
 				F5A04E292555016100DB396C /* SearchEventTextFieldHeader.xib in Resources */,
 				F53481A62570DBE5001C3FAC /* SearchAppHomeViewController.xib in Resources */,
 				F582EAB9254FF1D1002BF86F /* Raleway-ExtraLightItalic.ttf in Resources */,
@@ -1345,6 +1450,7 @@
 				F582EABE254FF1D1002BF86F /* Raleway-LightItalic.ttf in Resources */,
 				F5B1A69325553C9300CC0C1A /* HistoryCell.xib in Resources */,
 				F582EABB254FF1D1002BF86F /* Raleway-Light.ttf in Resources */,
+				F52B881B2595D981004D9ABC /* NotificationViewController.xib in Resources */,
 				F582EAAF254FF1D1002BF86F /* Raleway-Italic-VariableFont_wght.ttf in Resources */,
 				F582EABF254FF1D1002BF86F /* Raleway-Thin.ttf in Resources */,
 			);
@@ -1405,13 +1511,16 @@
 				F58527B025510B3700F888E8 /* HappenningCellAppHome.swift in Sources */,
 				F5940FA3257623F000427480 /* ListUser.swift in Sources */,
 				F56E7B06256D084E00F8EC23 /* UpdateEventViewController.swift in Sources */,
+				F52B88212595DCEF004D9ABC /* NotificationCell.swift in Sources */,
 				F51260482566560C00B517DC /* ProfileTableViewCell.swift in Sources */,
 				F5FAAF4F256287BA0036EA95 /* DetailEvent.swift in Sources */,
+				F52B884825985740004D9ABC /* ListNotificationViewController.swift in Sources */,
 				F5CF0CFC257601D800D3BBF8 /* ListUserViewController.swift in Sources */,
 				F593CBF3255BE863005D4F15 /* UIButton+Extension.swift in Sources */,
 				F57FCE5A2577422D00158A35 /* ADEUser.swift in Sources */,
 				F5FAAF4B256254AB0036EA95 /* UIImageView+Extension.swift in Sources */,
 				F58527C3255157E900F888E8 /* DetailEventPresenter.swift in Sources */,
+				F52B88192595D981004D9ABC /* NotificationPresenter.swift in Sources */,
 				F5C26FE1256B9D440015576A /* ListEventPresenter.swift in Sources */,
 				F56E7B05256D084E00F8EC23 /* UpdateEventPresenter.swift in Sources */,
 				F5694E712574CEFF00C1D14D /* AboutPresenter.swift in Sources */,
@@ -1421,6 +1530,7 @@
 				F56DFF62256909820080A31F /* DatePickerViewPresenter.swift in Sources */,
 				F582EAE025505693002BF86F /* AppHomePresenter.swift in Sources */,
 				F512603D25664A6F00B517DC /* ProfileViewController.swift in Sources */,
+				F52B8889259866CB004D9ABC /* ListNotificationCell.swift in Sources */,
 				F5A04E3F255533B800DB396C /* HistoryEventViewController.swift in Sources */,
 				F5A04E332555054200DB396C /* SearchResultCell.swift in Sources */,
 				F5694E722574CEFF00C1D14D /* AboutViewController.swift in Sources */,
@@ -1430,6 +1540,7 @@
 				F59221CE2553FD8D002F3F50 /* RankPresenter.swift in Sources */,
 				F5CF0CF22575F3DB00D3BBF8 /* PrivacyPolicyPresenter.swift in Sources */,
 				F58527C4255157E900F888E8 /* DetailEventViewController.swift in Sources */,
+				F5ACA055259C86B100CCF09D /* ContentNotificationPresenter.swift in Sources */,
 				F57821CA255E857000222FCA /* Event.swift in Sources */,
 				F5785E3625776F7000EBEE8F /* PickerDataPresenter.swift in Sources */,
 				F59EE1122589E4E100ABF26D /* AppKey.swift in Sources */,
@@ -1450,6 +1561,8 @@
 				F56DFF63256909820080A31F /* DatePickerViewViewController.swift in Sources */,
 				F57DD1592583705600B70728 /* PushNotificationViewController.swift in Sources */,
 				F50D63A62554EDCC007509D0 /* SearchAppHomeViewController.swift in Sources */,
+				F563381B259C1F5700A874EC /* NotificationAdmin.swift in Sources */,
+				F52B884725985740004D9ABC /* ListNotificationPresenter.swift in Sources */,
 				F50D639B25545317007509D0 /* RankTableViewCell.swift in Sources */,
 				F52CD26525788157009C7188 /* ConfirmPasswordPresenter.swift in Sources */,
 				F5B29F5525748E84007822F4 /* SettingViewController.swift in Sources */,
@@ -1460,6 +1573,7 @@
 				F5BEFDF0255A3B6C005A1A2E /* BarcodeViewController.swift in Sources */,
 				F5CF0CEA2575EA9A00D3BBF8 /* ManageCell.swift in Sources */,
 				F52CD2892578C65E009C7188 /* DetailAccountViewController.swift in Sources */,
+				F5ACA056259C86B100CCF09D /* ContentNotificationViewController.swift in Sources */,
 				F5C26FF6256BB2AB0015576A /* HeaderSearch.swift in Sources */,
 				F582EAD625503B11002BF86F /* ForgotPasswordPresenter.swift in Sources */,
 				F52CD2882578C65E009C7188 /* DetailAccountPresenter.swift in Sources */,
@@ -1478,6 +1592,7 @@
 				F5B1A6B02559224200CC0C1A /* AppIcon.swift in Sources */,
 				F5A04E252555015700DB396C /* SearchEventTextFieldHeader.swift in Sources */,
 				F593CC9C255D36DB005D4F15 /* UIAlertController.swift in Sources */,
+				F52B881A2595D981004D9ABC /* NotificationViewController.swift in Sources */,
 				F5C26FE2256B9D440015576A /* ListEventViewController.swift in Sources */,
 				F52FBAAB2589A69500E7096A /* HeaderAttendance.swift in Sources */,
 				F5B1A6C9255939BA00CC0C1A /* SemesterCell.swift in Sources */,
@@ -1489,6 +1604,7 @@
 				F5B1A69225553C9300CC0C1A /* HistoryCell.swift in Sources */,
 				F5B1A6B7255928FF00CC0C1A /* Font.swift in Sources */,
 				F5A2AF07255A7C7800502E0F /* SlideMenuCell.swift in Sources */,
+				F531FCEB2599958F00CE6689 /* Notification.swift in Sources */,
 				F5C26FF0256BA8370015576A /* ListEventCell.swift in Sources */,
 				F5DF01F2256B56CE00B5E444 /* TimePickerPresenter.swift in Sources */,
 				F582EAD725503B11002BF86F /* ForgotPasswordViewController.swift in Sources */,

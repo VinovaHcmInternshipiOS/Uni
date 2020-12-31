@@ -76,12 +76,14 @@ class SettingViewController: BaseViewController, SettingViewProtocol {
         alert.addAction(UIAlertAction(title: "Vietnamese", style: .default , handler:{ [self] (UIAlertAction)in
                 UserDefaults.standard.set("vi", forKey: "AppleLanguage")
             chooseLanguage.text = "\(UserDefaults.standard.value(forKey: "AppleLanguage") ?? "vi")"
+            viewDidLoad()
    
             }))
             
         alert.addAction(UIAlertAction(title: "English", style: .default , handler:{ [self] (UIAlertAction)in
                 UserDefaults.standard.set("en", forKey: "AppleLanguage")
             chooseLanguage.text = "\(UserDefaults.standard.value(forKey: "AppleLanguage") ?? "en")"
+            viewDidLoad()
             }))
             
         alert.addAction(UIAlertAction(title: AppLanguage.Cancel.localized, style: .destructive , handler:{ (UIAlertAction)in
@@ -89,6 +91,7 @@ class SettingViewController: BaseViewController, SettingViewProtocol {
             self.present(alert, animated: true, completion: {
                 print("completion block")
             })
+        
     }
     
     @objc func changePassword(_ recognizer: UIGestureRecognizer) {

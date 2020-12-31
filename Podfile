@@ -15,6 +15,7 @@ target 'Uni' do
   pod 'ShimmerSwift'
   pod 'BarcodeScanner'
   pod 'SkeletonView'
+  pod 'Charts'
   # Pods for Uni
 post_install do |installer|
      installer.pods_project.targets.each do |target|

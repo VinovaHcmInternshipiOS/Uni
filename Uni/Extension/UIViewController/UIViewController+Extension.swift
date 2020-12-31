@@ -100,17 +100,43 @@ extension UIViewController {
         dateFormatter.dateFormat = "dd-MM-yyyy"
         let dateTime = dateFormatter.date(from: date)
         dateFormatter.dateFormat = "dd MMM"
-        return dateFormatter.string(from: dateTime!)
+        return dateFormatter.string(from: dateTime ?? Date())
       }
 
+    func formatterDateTime12h(time: String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd-MM-yyyy HH:mm"
+        let date = dateFormatter.date(from: time)
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.dateFormat = "dd-MM-yyyy hh:mma"
+        return dateFormatter.string(from: date ?? Date())
+    }
     
-    func formatterTime(time: String) -> String {
+    func formatterDateTime24h(time: String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd-MM-yyyy hh:mma"
+        let date = dateFormatter.date(from: time)
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.dateFormat = "dd-MM-yyyy HH:mm"
+        return dateFormatter.string(from: date ?? Date())
+    }
+    
+    func formatterTime12h(time: String) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm"
         let date = dateFormatter.date(from: time)
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         dateFormatter.dateFormat = "hh:mma"
-        return dateFormatter.string(from: date!)
+        return dateFormatter.string(from: date ?? Date())
+    }
+    
+    func formatterTime24h(time: String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "hh:mma"
+        let date = dateFormatter.date(from: time)
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.dateFormat = "HH:mm"
+        return dateFormatter.string(from: date ?? Date())
     }
     
     func formatterYear(date: String) -> String {
@@ -118,7 +144,7 @@ extension UIViewController {
         dateFormatter.dateFormat = "dd-MM-yyyy"
         let dateTime = dateFormatter.date(from: date)
         dateFormatter.dateFormat = "yyyy"
-        return dateFormatter.string(from: dateTime!)
+        return dateFormatter.string(from: dateTime ?? Date())
     }
     
     func currentPickerDate(pickerDate: UIDatePicker) ->String {
@@ -140,7 +166,8 @@ extension UIViewController {
     func getCurrentTime() -> String{
         let date = Date()
         let formatter = DateFormatter()
-        formatter.dateFormat = "hh:mm"
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        formatter.dateFormat = "HH:mm"
         return formatter.string(from: date)
     }
     
@@ -151,15 +178,79 @@ extension UIViewController {
         return formatter.string(from: date)
     }
     
+    func transformStringDate(_ dateString: String,
+                             fromDateFormat: String,
+                             toDateFormat: String) -> String? {
+
+        let initalFormatter = DateFormatter()
+        initalFormatter.dateFormat = fromDateFormat
+
+        guard let initialDate = initalFormatter.date(from: dateString) else {
+            print ("Error in dateString or in fromDateFormat")
+            return nil
+        }
+
+        let resultFormatter = DateFormatter()
+        resultFormatter.dateFormat = toDateFormat
+
+        return resultFormatter.string(from: initialDate)
+    }
+
+    
+    func getCurrentDateTime12h() -> String{
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd-MM-yyyy hh:mma"
+        return formatter.string(from: date)
+    }
+    
+    func getCurrentDateTime24h() -> String{
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd-MM-yyyy HH:mm"
+        return formatter.string(from: date)
+    }
+    
     func getTimeInveral() -> Int {
         let date = Date()
         let timeInveral = date.timeIntervalSince1970
         return Int(timeInveral)
     }
-
     
+    func is12hClockFormat() -> Bool {
+        let formatString = DateFormatter.dateFormat(
+            fromTemplate: "j",
+            options: 0,
+            locale: Locale.current
+        )!
+        return formatString.contains("a")
+    }
+    
+    func checkFormatDateTime12h() -> String {
+        return is12hClockFormat() == true ? "dd-MM-yyyy hh:mma" : "dd-MM-yyyy HH:mm"
+    }
+    
+    func checkFormatTime12h() -> String {
+        return is12hClockFormat() == true ? "hh:mma" : "HH:mm"
+    }
+
     func removeWhiteSpaceAndLine(text: String) -> String {
         return text.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+    
+    func headerTableView(numberOfLine:Int,labelColor: UIColor,labelFont:UIFont,titleHeader:String,leftAnchor:Int,topAnchor:Int) -> UIView {
+        let label = UILabel()
+        let headerView = UIView()
+        label.font = labelFont
+        label.text = titleHeader
+        label.textColor = labelColor
+        label.numberOfLines = numberOfLine
+        headerView.backgroundColor = .none
+        headerView.addSubview(label)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.leftAnchor.constraint(equalTo: headerView.leftAnchor, constant: CGFloat(leftAnchor)).isActive = true
+        label.topAnchor.constraint(equalTo: headerView.topAnchor, constant: CGFloat(topAnchor)).isActive = true
+        return headerView
     }
 }
 class Switcher {

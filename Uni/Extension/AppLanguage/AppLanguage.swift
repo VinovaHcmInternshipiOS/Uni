@@ -29,7 +29,11 @@ class AppLanguage {
     static let Opps = "Opps"
     static let Title = "Title"
     static let Content = "Content"
-    
+    static let DeleteEvent = "Do you want to delete this event?"
+    static let Notifications = "Notifications"
+    static let JustNow = "just now"
+    static let Seen = "Seen"
+    static let Total = "Total"
     //MARK: -- HandleError
     class HandleError {
         static let anError = "An Error"
@@ -57,6 +61,15 @@ class AppLanguage {
         static let invalidID = "Invalid ID."
         static let pushNotification = "Send failure notification."
         static let eventExistUser = "The event could not be deleted because a user already exists in the list."
+        static let noDate = "Please select an event date."
+        static let timeInCheckin = "It's not time to take attendance yet, please come back later."
+        static let timeOutCheckout = "It's time to take attendance has passed."
+        static let updateOngoingEvent = "Ongoing events cannot be updated information."
+        static let updateEndedEvent = "The event has ended cannot be updated information."
+        static let scanBarcodeEndedEvent = "Cannot scan the code at this time because the event has not taken place yet or the event has ended."
+        static let updateAvatar = "Updated avatar failed."
+        static let deleteNotification = "Delete failed message."
+        
     }
     //MARK: -- HandleSuccess
     class HandleSuccess {
@@ -70,6 +83,10 @@ class AppLanguage {
         static let attendance = "Attendance success for ID."
         static let sendMailPassword = "Please check your email to change your password."
         static let pushNotification = "Notification has been sent."
+        static let updateAvatar = "Successful avatar update."
+        static let deleteNotification = "Successfully deleted message."
+        
+        
 
     }
     
@@ -77,6 +94,7 @@ class AppLanguage {
     class HandleConfirm {
         static let Enable = "Do you want to enable account?"
         static let Disable = "Do you want to disable account?"
+        static let DeleteNotification = "Do you want to delete this message?"
     }
     
     
@@ -122,6 +140,7 @@ class AppLanguage {
         static let Class = "Class"
         static let Course = "Course"
         static let Faculty = "Faculty"
+        
     }
     
     //MARK:-- Barcode
@@ -194,6 +213,9 @@ class AppLanguage {
         static let Checkin = "Check-in"
         static let Checkout = "Check-out"
         static let btDone = "Done"
+        static let newEvent = "New event!!!"
+        static let havejustAdded = "Hi, we have just added event"
+        static let letExlore = "in the Uni.\nWe will be happy if you join us.\nLets explore."
         
     }
     
@@ -210,6 +232,9 @@ class AppLanguage {
         static let Checkin = "Check-in"
         static let Checkout = "Check-out"
         static let btDone = "Done"
+        static let editEvent = "Update event!!!"
+        static let havejustUpdate = "Hi, we have just update event information"
+        static let letCheck = "in the Uni.\nPlease check the event information to avoid being missed."
         
     }
     
@@ -243,10 +268,11 @@ class AppLanguage {
     
     //MARK:-- Manage
     class Manage {
-        static let EventManage = "Event\nManage"
+        static let EventManage = "Events\nManage"
         static let UserManage = "Users\nManage"
         static let HiAdmin = "Hi,\nAdmin"
-        static let SendNotice = "Send\nNotification"
+        static let NotificationManage = "Notifications\nManage"
+        
     }
     
     //MARK:-- Privacy
@@ -321,4 +347,13 @@ class AppLanguage {
         static let EnterYourEmail = "Please enter your Email"
     }
     
+    //MARK: -- Send Notification
+    class SendNotification {
+        static let SendNotification = "Send\nNotification"
+    }
+    
+    //MARK: -- List Notification
+    class ListNotification {
+        static let ListNotification = "List\nNotifications"
+    }
 }

@@ -210,12 +210,14 @@ extension ProfileViewController: ProfileViewProtocol {
     func updateImageSuccess() {
         imgBaner.hideSkeleton()
         imgProfile.hideSkeleton()
+        presentAlertWithTitle(title: AppLanguage.HandleSuccess.Success.localized, message: AppLanguage.HandleSuccess.updateAvatar.localized, options: AppLanguage.Ok.localized) { (Int) in}
         print("update image success")
     }
     
     func updateImageFailed() {
         imgBaner.hideSkeleton()
         imgProfile.hideSkeleton()
+        presentAlertWithTitle(title: AppLanguage.HandleError.anError.localized, message: AppLanguage.HandleError.updateAvatar.localized, options: AppLanguage.Ok.localized) { (Int) in}
         print("update image failed")
     }
     

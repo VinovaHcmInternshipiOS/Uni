@@ -49,5 +49,8 @@ class AppIcon {
     static let DefaulticExportYellow = UIImage(named: "icExport-yellow")
     static let icExportRed = UIImage(named: "icExport-red")
     static let defaultImagenil = UIImage(named: "icImageNil")
+    static var icRemoveYellow = UIImage(named: "icRemove-yellow")
+    static let DefaulticRemoveYellow = UIImage(named: "icRemove-yellow")
+    static let icRemoveRed = UIImage(named: "icRemove-red")
     
 }

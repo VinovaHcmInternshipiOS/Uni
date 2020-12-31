@@ -16,6 +16,22 @@ extension String {
         return dateFormatter.date(from: self) ?? Date()
     }
     
+    func toDateTimeFormat(format: String) -> Date {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = format
+        //dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        return dateFormatter.date(from: self) ?? Date()
+    }
+    
+    func toTimeFormat(format: String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+        let date = dateFormatter.date(from: self)
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.dateFormat = format
+        return dateFormatter.string(from: date ?? Date())
+    }
+    
     func toDateDate() ->Date {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd-MM-yyyy"
@@ -28,12 +44,19 @@ extension String {
         dateFormatter.dateFormat = "hh:mma"
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         let date = dateFormatter.date(from: self)
-        dateFormatter.dateFormat = "hh:mm"
+        dateFormatter.dateFormat = "HH:mm"
         return dateFormatter.string(from: date ?? Date())
     }
     
     func formatStringToDate() -> Date {
         let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd-MM-yyyy"
+        return dateFormatter.date(from: self) ?? Date()
+    }
+    
+    func formatStringToDateTime24h() -> Date {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd-MM-yyyy HH:mm"
         return dateFormatter.date(from: self) ?? Date()
     }
 

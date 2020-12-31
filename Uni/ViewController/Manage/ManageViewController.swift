@@ -32,7 +32,7 @@ class ManageViewController: BaseViewController, ManageViewProtocol {
     
 	override func viewDidLoad() {
         super.viewDidLoad()
-        listFunction = [AppLanguage.Manage.EventManage.localized,AppLanguage.Manage.UserManage.localized,AppLanguage.Manage.SendNotice.localized]
+        listFunction = [AppLanguage.Manage.EventManage.localized,AppLanguage.Manage.UserManage.localized,AppLanguage.Manage.NotificationManage.localized]
         presenter.view = self
         presenter.viewDidLoad()
         setupUI()
@@ -58,7 +58,7 @@ class ManageViewController: BaseViewController, ManageViewProtocol {
     }
     
     @objc func notification(){
-        
+
     }
 
 }
@@ -101,8 +101,10 @@ extension ManageViewController: UICollectionViewDataSource {
             let ListUser = ListUserViewController(presenter: ListUserPresenter())
             navigationController?.pushViewController(ListUser, animated: true)
         default:
-            let SendNotice = PushNotificationViewController(presenter: PushNotificationPresenter())
-            navigationController?.pushViewController(SendNotice, animated: true)
+//            let sendNoti = PushNotificationViewController(presenter: PushNotificationPresenter())
+//            navigationController?.pushViewController(sendNoti, animated: true)
+            let ListNotification = ListNotificationViewController(presenter: ListNotificationPresenter())
+            navigationController?.pushViewController(ListNotification, animated: true)
         }
 
     }

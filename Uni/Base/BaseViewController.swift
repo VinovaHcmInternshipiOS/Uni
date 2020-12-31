@@ -16,6 +16,7 @@ enum StyleNavigation {
 
 class BaseViewController: UIViewController,UIViewControllerTransitioningDelegate, UIGestureRecognizerDelegate{
     let transition = SlideInTransition()
+    var reloadHomeVC: (()->Void)? = nil
     var isUseMenuButton: Bool = false {
         didSet {
             if isUseMenuButton {
@@ -55,8 +56,6 @@ class BaseViewController: UIViewController,UIViewControllerTransitioningDelegate
     func addBackToNavigation(icon: UIImage = AppIcon.icArrowLeftYellow!) {
         addButtonImageToNavigation(image: icon, style: .left, action: #selector(btnBackTapped))
     }
-    
-    
     
     func addButtonImageToNavigation(image: UIImage, style: StyleNavigation, action: Selector?) {
         showNavigation(bottomLine: false)
