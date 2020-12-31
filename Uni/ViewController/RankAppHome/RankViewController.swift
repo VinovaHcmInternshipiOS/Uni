@@ -50,7 +50,7 @@ class RankViewController: BaseViewController {
         pullRefreshData()
     }
     override func viewWillAppear(_ animated: Bool) {
-        viewScore.roundCorners([.topLeft,.topRight], radius: 20)
+        //viewScore.roundCorners([.topLeft,.topRight], radius: 20)
     }
     
     @objc func pullRefreshControl(sender:AnyObject) {
@@ -73,6 +73,7 @@ class RankViewController: BaseViewController {
     
     func setupUI(){
         viewScore.backgroundColor = AppColor.YellowFAB32A
+        viewScore.shadowColor = AppColor.YellowShadow
         pullControl.tintColor = AppColor.YellowFAB32A
         scrollView.alwaysBounceVertical = true
     }
