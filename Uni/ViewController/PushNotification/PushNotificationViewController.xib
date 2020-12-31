@@ -21,6 +21,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PushNotificationViewController" customModule="Uni" customModuleProvider="target">
             <connections>
+                <outlet property="SpinerLoading" destination="R9v-fi-RY4" id="xka-TS-3iZ"/>
                 <outlet property="btSentNotice" destination="DvV-eW-V7q" id="J8Q-Oe-cQ8"/>
                 <outlet property="lbContent" destination="vh8-7k-Hfl" id="2nB-IN-P60"/>
                 <outlet property="lbSentNotice" destination="kuC-qm-mLS" id="AuT-jG-xcg"/>
@@ -47,28 +48,6 @@
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DvV-eW-V7q">
-                                    <rect key="frame" x="107" y="616.5" width="200" height="38"/>
-                                    <color key="backgroundColor" name="FBC459"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="200" id="5x3-6U-iuf"/>
-                                    </constraints>
-                                    <fontDescription key="fontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="22"/>
-                                    <state key="normal" title="Done">
-                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </state>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                            <real key="value" value="0.0"/>
-                                        </userDefinedRuntimeAttribute>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                            <real key="value" value="20"/>
-                                        </userDefinedRuntimeAttribute>
-                                    </userDefinedRuntimeAttributes>
-                                    <connections>
-                                        <action selector="sentNotice:" destination="-1" eventType="touchUpInside" id="8tx-Of-BPw"/>
-                                    </connections>
-                                </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fvx-Wi-F65">
                                     <rect key="frame" x="32" y="174.5" width="34" height="21"/>
                                     <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="18"/>
@@ -163,20 +142,56 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                 </view>
+                                <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bJ0-Jh-y7m">
+                                    <rect key="frame" x="107" y="616.5" width="200" height="38"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DvV-eW-V7q">
+                                            <rect key="frame" x="0.0" y="0.0" width="180" height="38"/>
+                                            <color key="backgroundColor" name="FBC459"/>
+                                            <fontDescription key="fontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="22"/>
+                                            <state key="normal" title="Done">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </state>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                    <real key="value" value="0.0"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                    <real key="value" value="20"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="sentNotice:" destination="-1" eventType="touchUpInside" id="8tx-Of-BPw"/>
+                                            </connections>
+                                        </button>
+                                        <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="R9v-fi-RY4">
+                                            <rect key="frame" x="180" y="0.0" width="20" height="38"/>
+                                        </activityIndicatorView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="200" id="41G-fO-sJQ"/>
+                                        <constraint firstAttribute="height" constant="38" id="Cbb-ra-evj"/>
+                                    </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <real key="value" value="20"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </stackView>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
                                 <constraint firstItem="Fvx-Wi-F65" firstAttribute="leading" secondItem="uZ6-HM-lG7" secondAttribute="leading" constant="32" id="09h-DY-os9"/>
-                                <constraint firstItem="DvV-eW-V7q" firstAttribute="centerX" secondItem="uZ6-HM-lG7" secondAttribute="centerX" id="CAS-dR-WnA"/>
                                 <constraint firstItem="kuC-qm-mLS" firstAttribute="top" secondItem="uZ6-HM-lG7" secondAttribute="top" constant="35" id="Cdg-yy-d8V"/>
                                 <constraint firstAttribute="trailing" secondItem="H6s-ca-sGf" secondAttribute="trailing" constant="32" id="GQN-Jj-ygM"/>
                                 <constraint firstAttribute="trailing" secondItem="3bp-J1-wEa" secondAttribute="trailing" constant="32" id="Miv-bf-NCH"/>
                                 <constraint firstItem="vh8-7k-Hfl" firstAttribute="top" secondItem="H6s-ca-sGf" secondAttribute="bottom" constant="25" id="U4c-j9-NfI"/>
                                 <constraint firstItem="3bp-J1-wEa" firstAttribute="top" secondItem="vh8-7k-Hfl" secondAttribute="bottom" constant="15" id="Vyo-rq-i2u"/>
+                                <constraint firstItem="bJ0-Jh-y7m" firstAttribute="centerX" secondItem="uZ6-HM-lG7" secondAttribute="centerX" id="XVM-gR-03E"/>
                                 <constraint firstItem="vh8-7k-Hfl" firstAttribute="leading" secondItem="uZ6-HM-lG7" secondAttribute="leading" constant="32" id="YZA-rZ-rab"/>
+                                <constraint firstItem="bJ0-Jh-y7m" firstAttribute="top" secondItem="3bp-J1-wEa" secondAttribute="bottom" constant="35" id="bfs-nh-cgW"/>
                                 <constraint firstItem="H6s-ca-sGf" firstAttribute="leading" secondItem="uZ6-HM-lG7" secondAttribute="leading" constant="32" id="giM-S8-f1n"/>
                                 <constraint firstItem="kuC-qm-mLS" firstAttribute="leading" secondItem="uZ6-HM-lG7" secondAttribute="leading" constant="32" id="kcu-fH-jrP"/>
-                                <constraint firstItem="DvV-eW-V7q" firstAttribute="top" secondItem="3bp-J1-wEa" secondAttribute="bottom" constant="35" id="khR-dK-zyd"/>
                                 <constraint firstItem="3bp-J1-wEa" firstAttribute="leading" secondItem="uZ6-HM-lG7" secondAttribute="leading" constant="32" id="poB-OA-UUN"/>
                                 <constraint firstItem="Fvx-Wi-F65" firstAttribute="top" secondItem="kuC-qm-mLS" secondAttribute="bottom" constant="46" id="pqw-XO-KPr"/>
                                 <constraint firstItem="H6s-ca-sGf" firstAttribute="top" secondItem="Fvx-Wi-F65" secondAttribute="bottom" constant="15" id="zxk-aU-dpg"/>

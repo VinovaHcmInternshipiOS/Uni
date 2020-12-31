@@ -12,6 +12,7 @@ import UIKit
 
 class PushNotificationViewController: BaseViewController {
     
+    @IBOutlet weak var SpinerLoading: UIActivityIndicatorView!
     @IBOutlet weak var txtTitle: UITextField!
     @IBOutlet weak var txtContent: UITextView!
     @IBOutlet weak var lbSentNotice: UILabel!
@@ -19,6 +20,7 @@ class PushNotificationViewController: BaseViewController {
     @IBOutlet weak var lbContent: UILabel!
     @IBOutlet weak var lbTitle: UILabel!
     var presenter: PushNotificationPresenterProtocol
+    var refreshlistNotification: (()->Void)? = nil
     init(presenter: PushNotificationPresenterProtocol) {
         self.presenter = presenter
         super.init(nibName: "PushNotificationViewController", bundle: nil)
@@ -40,19 +42,25 @@ class PushNotificationViewController: BaseViewController {
     func setupLanguage() {
         lbTitle.text = AppLanguage.Title.localized
         lbContent.text = AppLanguage.Content.localized
-        lbSentNotice.text = AppLanguage.Manage.SendNotice.localized
+        lbSentNotice.text = AppLanguage.SendNotification.SendNotification.localized
     }
     
     func setupUI() {
         btSentNotice.setTitle(AppLanguage.CreateUser.Done.localized, for: .normal)
         btSentNotice.backgroundColor = AppColor.YellowFAB32A
         btSentNotice.shadowColor = AppColor.YellowShadow
+        SpinerLoading.isHidden = true
+        SpinerLoading.backgroundColor = AppColor.YellowFAB32A
     }
     
     @IBAction func sentNotice(_ sender: Any) {
+
         if let title = txtTitle.text, let content = txtContent.text {
             if removeWhiteSpaceAndLine(text: title) != "" && removeWhiteSpaceAndLine(text: content) != "" {
-                presenter.sendPushNotification(to: "", title: removeWhiteSpaceAndLine(text: title), body: removeWhiteSpaceAndLine(text: content))
+                btSentNotice.isHidden = true
+                SpinerLoading.isHidden = false
+                SpinerLoading.startAnimating()
+                presenter.createNotification(title: removeWhiteSpaceAndLine(text: title), content: removeWhiteSpaceAndLine(text: content), date: "\(getCurrentDate()) \(getCurrentTime())")
                 
             } else {
                 presentAlertWithTitle(title: AppLanguage.HandleError.anError.localized, message:
@@ -65,11 +73,28 @@ class PushNotificationViewController: BaseViewController {
 }
 
 extension PushNotificationViewController: PushNotificationViewProtocol {
+    func createNotificationSuccess() {
+        presenter.sendPushNotification(to: "", title: "You have", body: "new notification.")
+    }
+    
+    func createNotificationFailed() {
+        presentAlertWithTitle(title: AppLanguage.HandleError.anError.localized, message: AppLanguage.HandleError.pushNotification.localized, options: AppLanguage.Ok.localized) { (Int) in}
+    }
+    
     func pushNotificationSuccess() {
-        presentAlertWithTitle(title: AppLanguage.HandleSuccess.Success.localized, message: AppLanguage.HandleSuccess.pushNotification.localized, options: AppLanguage.Ok.localized) { (Int) in}
+        btSentNotice.isHidden = false
+        SpinerLoading.isHidden = true
+        SpinerLoading.stopAnimating()
+        presentAlertWithTitle(title: AppLanguage.HandleSuccess.Success.localized, message: AppLanguage.HandleSuccess.pushNotification.localized, options: AppLanguage.Ok.localized) {[self](Int) in
+            refreshlistNotification?()
+            navigationController?.popViewController(animated: true)
+        }
     }
     
     func pushNotificationFailed() {
+        btSentNotice.isHidden = false
+        SpinerLoading.isHidden = true
+        SpinerLoading.stopAnimating()
         presentAlertWithTitle(title: AppLanguage.HandleError.anError.localized, message: AppLanguage.HandleError.pushNotification.localized, options: AppLanguage.Ok.localized) { (Int) in}
     }
     
