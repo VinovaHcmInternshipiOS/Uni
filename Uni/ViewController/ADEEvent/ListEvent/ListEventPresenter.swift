@@ -25,16 +25,22 @@ protocol ListEventViewProtocol: class {
     func checkJoinerSuccess()
     func checkJoinerFailed(keyEvent:String)
     func eventExistUser()
+    func getDateTimeEventSuccess(keyEvent: String)
+    func getDateTimeEventFailed()
 }
 
 // MARK: Presenter -
 protocol ListEventPresenterProtocol: class {
     var view: ListEventViewProtocol? { get set }
     var infoEvent: [Event?] {get set}
+    var dateEvent: String? {get set}
+    var checkinEvent: String? {get set}
+    var checkoutEvent: String? {get set}
     func fetchEvent()
-    func fetchEventResult(keyEvent: String)
+    func fetchEventResult(keySearch: String)
     func removeEvent(keyEvent: String)
     func checkJoiner(keyEvent: String)
+    func getDateTimeEvent(keyEvent: String)
     
 }
 
@@ -45,6 +51,9 @@ class ListEventPresenter: ListEventPresenterProtocol {
     var user = Auth.auth().currentUser
     let storageRef = Storage.storage().reference()
     var infoEvent: [Event?] = []
+    var checkinEvent: String?
+    var checkoutEvent: String?
+    var dateEvent: String?
     
  
     
@@ -55,6 +64,25 @@ class ListEventPresenter: ListEventPresenterProtocol {
                 view?.checkJoinerSuccess()
             } else {
                 view?.checkJoinerFailed(keyEvent: keyEvent)
+            }
+        })
+    }
+    
+    func getDateTimeEvent(keyEvent: String) {
+        let placeRef = self.ref.child("Event/\(keyEvent)")
+        placeRef.observeSingleEvent(of:.value, with: { [self] snapshot in
+            if snapshot.exists()
+            {
+                let dict = snapshot.value as! [String: Any]
+                let date = dict["Date"] as! String
+                let checkout = dict["Checkout"] as! String
+                let checkin = dict["Checkin"] as! String
+                dateEvent = date
+                checkinEvent = checkin
+                checkoutEvent = checkout
+                view?.getDateTimeEventSuccess(keyEvent: keyEvent)
+            } else {
+                view?.getDateTimeEventFailed()
             }
         })
     }
@@ -75,6 +103,7 @@ class ListEventPresenter: ListEventPresenterProtocol {
                                 view?.removeEventFailed()
                             } else {
                                 view?.removeEventSuccess()
+                                
                             }
                         }
                     }
@@ -84,8 +113,6 @@ class ListEventPresenter: ListEventPresenterProtocol {
         
 
     }
-    
-    
     
     func fetchEvent() {
         infoEvent.removeAll()
@@ -105,11 +132,9 @@ class ListEventPresenter: ListEventPresenterProtocol {
                             let type = dict["Type"] as! String
                             let urrlImage = dict["ImagePortal"] as! String
                             let request = Event(title: title, key: key, date: date, checkout: checkout, checkin: checkin, type: type, urlImage: urrlImage)
-                            
                             infoEvent.append(request)
-                            //DispatchQueue.main.async {
-                                view?.fetchEventSuccess()
-                            //}
+                            //infoEvent.insert(request, at: 0)
+                            view?.fetchEventSuccess()
                         }
                         else
                         {
@@ -123,9 +148,10 @@ class ListEventPresenter: ListEventPresenterProtocol {
             }
         }
     }
-    func fetchEventResult(keyEvent: String) {
+    
+    func fetchEventResult(keySearch: String) {
         infoEvent.removeAll()
-        self.ref.child("Event").queryOrdered(byChild: "Title").queryStarting(atValue: "\(keyEvent)").queryEnding(atValue: "\(keyEvent)" + "\u{f8ff}").observeSingleEvent(of:.value) { [self] snapshot in
+        ref.child("Event").observeSingleEvent(of:.value) { [self] snapshot in
             if (snapshot.exists()) {
                 for keyEvent in snapshot.children.allObjects as! [DataSnapshot] {
                     let placeRef = self.ref.child("Event/\(keyEvent.key)")
@@ -140,12 +166,16 @@ class ListEventPresenter: ListEventPresenterProtocol {
                             let key = dict["Key"] as! String
                             let type = dict["Type"] as! String
                             let urrlImage = dict["ImagePortal"] as! String
-                            
-                            let request = Event(title: title, key: key, date: date, checkout: checkout, checkin: checkin, type: type, urlImage: urrlImage)
-                            
-                            infoEvent.append(request)
 
+                            let request = Event(title: title, key: key, date: date, checkout: checkout, checkin: checkin, type: type, urlImage: urrlImage)
+                             
+                            if  title.lowercased().contains(keySearch) || date.lowercased().contains(keySearch) || checkin.lowercased().contains(keySearch) || checkout.lowercased().contains(keySearch){
+                                //infoEvent.insert(request, at: 0)
+                                infoEvent.append(request)
                                 view?.fetchEventSearchSuccess()
+                            } else {
+                                view?.fetchEventSearchFailed()
+                            }
                             
                         }
                         else
@@ -157,7 +187,7 @@ class ListEventPresenter: ListEventPresenterProtocol {
             } else {
                 view?.fetchEventSearchFailed()
             }
-            
+
         }
     }
 }

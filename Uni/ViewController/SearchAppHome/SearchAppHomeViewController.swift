@@ -11,7 +11,7 @@
 import UIKit
 import SkeletonView
 
-class SearchAppHomeViewController: BaseViewController {
+class SearchAppHomeViewController: BaseViewController, UITextFieldDelegate {
     
     @IBOutlet weak var lbNoData: UILabel!
     @IBOutlet weak var tableView: UITableView!
@@ -50,7 +50,7 @@ class SearchAppHomeViewController: BaseViewController {
         pullControl.tintColor = AppColor.YellowFAB32A
         tableView.alwaysBounceVertical = true
         lbNoData.isHidden = true
-        pullRefreshData()
+        // pullRefreshData()
     }
     
     func skeletonView() {
@@ -62,7 +62,7 @@ class SearchAppHomeViewController: BaseViewController {
         lbNoData.isHidden = true
         listResultsEvent.removeAll()
         getkeySearch?()
-        clearSearchTextField?()
+        //clearSearchTextField?()
         
     }
     
@@ -106,6 +106,19 @@ class SearchAppHomeViewController: BaseViewController {
             lbNoData.isHidden = false
         }
     }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange,
+                   replacementString string: String) -> Bool {
+        NSObject.cancelPreviousPerformRequests(
+            withTarget: self,
+            selector: #selector(actionSearch(sender:)),
+            object: textField)
+        self.perform(
+            #selector(actionSearch(sender:)),
+            with: textField,
+            afterDelay: 1)
+        return true
+    }
 }
 
 extension SearchAppHomeViewController: SkeletonTableViewDataSource {
@@ -116,7 +129,7 @@ extension SearchAppHomeViewController: SkeletonTableViewDataSource {
     func collectionSkeletonView(_ skeletonView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return listResultsEvent.count
     }
-
+    
     func collectionSkeletonView(_ skeletonView: UITableView, identifierForHeaderInSection section: Int) -> ReusableHeaderFooterIdentifier? {
         return "SearchEventTextFieldHeader"
     }
@@ -135,14 +148,18 @@ extension SearchAppHomeViewController: UITableViewDelegate {
             headerView.txtSearch.placeholder = AppLanguage.SearchEvent.Search.localized
             headerView.btSearch.backgroundColor = AppColor.YellowFAB32A
             headerView.viewButton.backgroundColor = AppColor.YellowFAB32A
+            headerView.txtSearch.delegate = self
             getkeySearch = { [self] in
                 skeletonView()
-                presenter.fetchEvent(keyEvent: headerView.txtSearch.text!)
+                if let keySearch = headerView.txtSearch.text {
+                    presenter.fetchEvent(keySearch: keySearch.lowercased())
+                } else {return}
+                
             }
             clearSearchTextField = {
                 headerView.txtSearch.text = ""
             }
-            headerView.btSearch.addTarget(self, action: #selector(actionSearch(sender:)), for: .touchUpInside)
+            // headerView.btSearch.addTarget(self, action: #selector(actionSearch(sender:)), for: .touchUpInside)
             return headerView
         } else { return UIView()}
     }
@@ -175,12 +192,12 @@ extension SearchAppHomeViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "SearchResultCell", for: indexPath) as? SearchResultCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "SearchResultCell", for: indexPath) as? SearchResultCell, let listResultsEvent = listResultsEvent[indexPath.row] {
             cell.contentView.layer.cornerRadius = 20
+            cell.titleEvent.text = listResultsEvent.title ?? ""
             
-            cell.titleEvent.text = listResultsEvent[indexPath.row]?.title ?? ""
-            cell.dateEvent.text = "\(getFormattedDate(date: listResultsEvent[indexPath.row]?.date ?? "")) \(formatterTime(time: listResultsEvent[indexPath.row]?.checkin ?? ""))-\(formatterTime(time: listResultsEvent[indexPath.row]?.checkout ?? ""))"
-            if let eventURL = listResultsEvent[indexPath.row]?.urlImage {
+            cell.dateEvent.text = "\(getFormattedDate(date: listResultsEvent.date ?? "")) \((listResultsEvent.checkin ?? "").toTimeFormat(format: checkFormatTime12h()))-\((listResultsEvent.checkout ?? "").toTimeFormat(format: checkFormatTime12h()))"
+            if let eventURL = listResultsEvent.urlImage {
                 cell.imgEvent.loadImage(urlString: eventURL)
             }
             return cell

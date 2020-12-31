@@ -25,7 +25,8 @@ protocol SearchAppHomeViewProtocol: class {
 protocol SearchAppHomePresenterProtocol: class {
     var view: SearchAppHomeViewProtocol? { get set }
     var resultsEvent: [Event?] {get set}
-    func fetchEvent(keyEvent: String)
+    //func fetchEvent(keyEvent: String)
+    func fetchEvent(keySearch: String)
 }
 
 class SearchAppHomePresenter: SearchAppHomePresenterProtocol {
@@ -35,9 +36,9 @@ class SearchAppHomePresenter: SearchAppHomePresenterProtocol {
     let storageRef = Storage.storage().reference()
     var resultsEvent: [Event?] = []
     
-    func fetchEvent(keyEvent: String) {
+    func fetchEvent(keySearch: String) {
        resultsEvent.removeAll()
-        self.ref.child("Event").queryOrdered(byChild: "Title").queryStarting(atValue: "\(keyEvent)").queryEnding(atValue: "\(keyEvent)" + "\u{f8ff}").observeSingleEvent(of:.value) { [self] snapshot in
+        ref.child("Event").observeSingleEvent(of:.value) { [self] snapshot in
             if (snapshot.exists()) {
                 for keyEvent in snapshot.children.allObjects as! [DataSnapshot] {
                     let placeRef = self.ref.child("Event/\(keyEvent.key)")
@@ -52,13 +53,16 @@ class SearchAppHomePresenter: SearchAppHomePresenterProtocol {
                             let key = dict["Key"] as! String
                             let type = dict["Type"] as! String
                             let urrlImage = dict["ImagePortal"] as! String
-                            
+
                             let request = Event(title: title, key: key, date: date, checkout: checkout, checkin: checkin, type: type, urlImage: urrlImage)
-                            
-                            resultsEvent.insert(request, at: 0)
-                           // DispatchQueue.main.async {
+                             
+                            if  title.lowercased().contains(keySearch) || date.lowercased().contains(keySearch) || checkin.lowercased().contains(keySearch) || checkout.lowercased().contains(keySearch){
+                                resultsEvent.insert(request, at: 0)
                                 view?.fetchEventSuccess()
-                            //}
+                            } else {
+                                view?.fetchEventFailed()
+                            }
+                            
                         }
                         else
                         {
@@ -72,5 +76,43 @@ class SearchAppHomePresenter: SearchAppHomePresenterProtocol {
 
         }
     }
+    
+//    func fetchEvent(keyEvent: String) {
+//       resultsEvent.removeAll()
+//        self.ref.child("Event").queryOrdered(byChild: "Title").queryStarting(atValue: "\(keyEvent)").queryEnding(atValue:"\(keyEvent)" + "\u{f8ff}").observeSingleEvent(of:.value) { [self] snapshot in
+//            if (snapshot.exists()) {
+//                for keyEvent in snapshot.children.allObjects as! [DataSnapshot] {
+//                    let placeRef = self.ref.child("Event/\(keyEvent.key)")
+//                    placeRef.observeSingleEvent(of:.value, with: { [self] snapshot in
+//                        if snapshot.exists()
+//                        {
+//                            let dict = snapshot.value as! [String: Any]
+//                            let title = dict["Title"] as! String
+//                            let date = dict["Date"] as! String
+//                            let checkin = dict["Checkin"] as! String
+//                            let checkout = dict["Checkout"] as! String
+//                            let key = dict["Key"] as! String
+//                            let type = dict["Type"] as! String
+//                            let urrlImage = dict["ImagePortal"] as! String
+//
+//                            let request = Event(title: title, key: key, date: date, checkout: checkout, checkin: checkin, type: type, urlImage: urrlImage)
+//
+//                            resultsEvent.insert(request, at: 0)
+//                           // DispatchQueue.main.async {
+//                                view?.fetchEventSuccess()
+//                            //}
+//                        }
+//                        else
+//                        {
+//                            view?.fetchEventFailed()
+//                        }
+//                    })
+//                }
+//            } else {
+//                view?.fetchEventFailed()
+//            }
+//
+//        }
+//    }
     
 }

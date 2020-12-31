@@ -99,7 +99,7 @@ class ListEventViewController: BaseViewController {
     }
     
     @objc func actionSearch(sender: UIButton) {
-        skeletonView()
+        
         lbNoData.isHidden = true
         getkeySearch?()
     }
@@ -108,9 +108,9 @@ class ListEventViewController: BaseViewController {
     func remakeData(){
         ListEvent = presenter.infoEvent
         collectionView.hideSkeleton()
-        collectionView.insertItems(at: [IndexPath(row: ListEvent.count - 1, section: 0)])
+        collectionView.insertItems(at: [IndexPath(row: presenter.infoEvent.count - 1, section: 0)])
         collectionView.performBatchUpdates({
-            collectionView.reloadItems(at: [IndexPath(row: ListEvent.count - 1, section: 0)])
+            collectionView.reloadItems(at: [IndexPath(row: presenter.infoEvent.count - 1, section: 0)])
         }){_ in
             // optional closure
             print("finished updating cell")
@@ -120,11 +120,16 @@ class ListEventViewController: BaseViewController {
     }
     
     func checkEmptyData(){
-        if ListEvent.count != 0 {
+        if presenter.infoEvent.count != 0 {
             lbNoData.isHidden = true
         } else {
+            ListEvent.removeAll()
             lbNoData.isHidden = false
         }
+    }
+    
+    func checkTime24h() -> [String] {
+        return [is12hClockFormat() == true ? formatterTime12h(time: presenter.checkinEvent ?? "") : presenter.checkinEvent ?? "",is12hClockFormat() == true ? formatterTime12h(time: presenter.checkoutEvent ?? "") : presenter.checkoutEvent ?? ""]
     }
 
 }
@@ -162,7 +167,18 @@ extension ListEventViewController: UICollectionViewDelegateFlowLayout,UICollecti
                 headerView.lbTotal.isHidden = true
                 headerView.lbHeader.text = AppLanguage.ListEvent.ListEvent.localized
                 getkeySearch = { [self] in
-                    presenter.fetchEventResult(keyEvent: headerView.txtSearch.text!)
+                    if let keySearch = headerView.txtSearch.text {
+                        if removeWhiteSpaceAndLine(text: keySearch) == "" {
+                            presenter.fetchEvent()
+                        }
+                        else {
+                            skeletonView()
+                            showSpinner()
+                            presenter.fetchEventResult(keySearch: keySearch.lowercased())
+                        }
+                        
+                    } else {return}
+                    
                 }
                 clearSearchText = {
                     headerView.txtSearch.text = ""
@@ -221,22 +237,27 @@ extension ListEventViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ListEventCell", for: indexPath) as? ListEventCell {
-            cell.dateEvent.text = "\(getFormattedDate(date: ListEvent[indexPath.row]!.date ?? ""))\n\(formatterTime(time: ListEvent[indexPath.row]!.checkin ?? ""))-\(formatterTime(time: ListEvent[indexPath.row]!.checkout ?? ""))"
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ListEventCell", for: indexPath) as? ListEventCell, let ListEvent = ListEvent[indexPath.row] {
+            cell.dateEvent.text = "\(getFormattedDate(date: ListEvent.date ?? ""))\n\((ListEvent.checkin ?? "").toTimeFormat(format: checkFormatTime12h()))-\((ListEvent.checkout ?? "").toTimeFormat(format: checkFormatTime12h()))"
 
-            cell.titleEvent.text = ListEvent[indexPath.row]?.title
-            if let profileURL = ListEvent[indexPath.row]?.urlImage {
+            cell.titleEvent.text = ListEvent.title
+            if let profileURL = ListEvent.urlImage {
                 cell.imgEvent.loadImage(urlString: profileURL)
             }
             cell.delete = { [self] in
-                presenter.removeEvent(keyEvent: (ListEvent[indexPath.row]?.key)!)
+                presentAlertWithTitle(title: AppLanguage.Confirm.localized, message: AppLanguage.DeleteEvent.localized, options: AppLanguage.Cancel.localized,AppLanguage.Ok.localized) { (Int) in
+                    switch Int {
+                    case 0: break
+                    default:
+                        presenter.removeEvent(keyEvent: (ListEvent.key)!)
+                    }
+                    
+                }
             }
             cell.update = { [self] in
-                let updateEvent = UpdateEventViewController(presenter: UpdateEventPresenter(keyEvent: (ListEvent[indexPath.row]?.key)!))
-                updateEvent.updateListEvent = { [self] in
-                    refreshListEvent()
-                }
-                navigationController?.pushViewController(updateEvent, animated: true)
+                _ = UpdateEventViewController(presenter: UpdateEventPresenter(keyEvent: (ListEvent.key)!))
+                presenter.getDateTimeEvent(keyEvent: (ListEvent.key)!)
+
             }
             return cell
         }
@@ -249,6 +270,29 @@ extension ListEventViewController: UICollectionViewDataSource {
 }
 
 extension ListEventViewController: ListEventViewProtocol{
+    func getDateTimeEventSuccess(keyEvent: String) {
+        let formatDate = checkFormatDateTime12h()
+        if let dateCurrent = transformStringDate(getCurrentDateTime12h(), fromDateFormat: formatDate, toDateFormat: formatDate), let dateCheckinEvent = transformStringDate("\(presenter.dateEvent ?? "") \(checkTime24h()[0])", fromDateFormat: formatDate, toDateFormat: formatDate),let dateCheckoutEvent = transformStringDate("\(presenter.dateEvent ?? "") \(checkTime24h()[1])", fromDateFormat: formatDate, toDateFormat: formatDate) {
+            
+            if Int(dateCurrent.toDateTimeFormat(format: formatDate).timeIntervalSince1970) >= Int(dateCheckinEvent.toDateTimeFormat(format: formatDate).timeIntervalSince1970)  && Int(dateCurrent.toDateTimeFormat(format: formatDate).timeIntervalSince1970) <= Int(dateCheckoutEvent.toDateTimeFormat(format: formatDate).timeIntervalSince1970){
+                presentAlertWithTitle(title: AppLanguage.HandleError.anError.localized, message: AppLanguage.HandleError.updateOngoingEvent.localized, options: AppLanguage.Ok.localized) { (Int) in}
+            } else if Int(dateCurrent.toDateTimeFormat(format: formatDate).timeIntervalSince1970) > Int(dateCheckoutEvent.toDateTimeFormat(format: formatDate).timeIntervalSince1970) {
+                presentAlertWithTitle(title: AppLanguage.HandleError.anError.localized, message: AppLanguage.HandleError.updateEndedEvent.localized, options: AppLanguage.Ok.localized) { (Int) in}
+           
+            } else {
+                let updateEvent = UpdateEventViewController(presenter: UpdateEventPresenter(keyEvent:keyEvent))
+                updateEvent.updateListEvent = { [self] in
+                    refreshListEvent()
+                }
+                navigationController?.pushViewController(updateEvent, animated: true)
+            }
+        } else {return}
+    }
+    
+    func getDateTimeEventFailed() {
+        
+    }
+    
     func checkJoinerSuccess() {
         removeSpinner()
         checkEmptyData()
@@ -258,7 +302,6 @@ extension ListEventViewController: ListEventViewProtocol{
     func checkJoinerFailed(keyEvent:String) {
         
         removeSpinner()
-        showAlert(title: "Confirm", message: "Do you want to delete this event", actionTitles: ["Cancel","Delete"], style: [.default,.destructive], actions: [cancelActionHandler,deleteActionHandler])
         checkEmptyData()
     }
     
@@ -280,9 +323,11 @@ extension ListEventViewController: ListEventViewProtocol{
     
     func fetchEventSearchFailed() {
         //remakeData()
-        ListEvent.removeAll()
+        removeSpinner()
         collectionView.hideSkeleton()
         checkEmptyData()
+        collectionView.reloadData()
+
     }
     
     func fetchEventSuccess() {

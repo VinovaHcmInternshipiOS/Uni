@@ -27,7 +27,7 @@ protocol ListUserPresenterProtocol: class {
     var view: ListUserViewProtocol? { get set }
     var infoUsers: [ListUser?] {get set}
     func fetchListUser()
-    func fetchUsersResult(keyUser: String)
+    func fetchUsersResult(keySearch: String)
 }
 
 class ListUserPresenter: ListUserPresenterProtocol {
@@ -70,9 +70,9 @@ class ListUserPresenter: ListUserPresenterProtocol {
                                             
                                             if role != "Admin" {
                                                 infoUsers.append(ListUser(code: code, email: email, uid: uid, role: role, state: state, name: name,urlImage: Image))
-                                                DispatchQueue.main.async {
+                                              //  DispatchQueue.main.async {
                                                     view?.fetchUserSuccess()
-                                                }
+                                              //  }
                                             }
                                             
                                             
@@ -105,9 +105,9 @@ class ListUserPresenter: ListUserPresenterProtocol {
     }
     
     
-    func fetchUsersResult(keyUser: String) {
+    func fetchUsersResult(keySearch: String) {
         infoUsers.removeAll()
-        self.ref.child("Users").queryOrdered(byChild: "Code").queryStarting(atValue: "\(keyUser)").queryEnding(atValue: "\(keyUser)" + "\u{f8ff}").observeSingleEvent(of:.value) { [self] snapshot in
+        self.ref.child("Users").observeSingleEvent(of:.value) { [self] snapshot in
             if (snapshot.exists()) {
                 for keyUser in snapshot.children.allObjects as! [DataSnapshot] {
                     let placeRef = self.ref.child("Users/\(keyUser.key)")
@@ -134,15 +134,14 @@ class ListUserPresenter: ListUserPresenterProtocol {
                                             let dict = snapshot.value as! [String: Any]
                                             let role = dict["Role"] as! String
                                             let state = dict["State"] as! Bool
-                                            
-                                            if role != "Admin" {
-                                                infoUsers.append(ListUser(code: code, email: email, uid: uid, role: role, state: state, name: name,urlImage: Image))
-                                                DispatchQueue.main.async {
-                                                    view?.fetchUserSearchSuccess()
+                                            if name.lowercased().contains(keySearch) || email.lowercased().contains(keySearch) || code.lowercased().contains(keySearch) {
+                                                if role != "Admin" {
+                                                    infoUsers.append(ListUser(code: code, email: email, uid: uid, role: role, state: state, name: name,urlImage: Image))
+                                                        view?.fetchUserSearchSuccess()
                                                 }
+                                            } else {
+                                                view?.fetchUserSearchFailed()
                                             }
-                                            
-                                            
                                         }
                                         else {
                                             view?.fetchUserSearchFailed()

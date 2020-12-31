@@ -85,12 +85,9 @@ class ListUserViewController: BaseViewController {
     }
     
     @objc func actionSearch(sender: UIButton) {
+        showSpinner()
         skeletonView()
         lbNoData.isHidden = true
-        //        sender.isEnabled = false
-        //        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-        //            sender.isEnabled = true
-        //        }
         getkeySearch?()
     }
     
@@ -106,9 +103,9 @@ class ListUserViewController: BaseViewController {
         listUser = presenter.infoUsers
         collectionView.hideSkeleton()
         if listUser.count > 0 {
-            collectionView.insertItems(at: [IndexPath(row: listUser.count - 1, section: 0)])
+            collectionView.insertItems(at: [IndexPath(row: presenter.infoUsers.count - 1, section: 0)])
             collectionView.performBatchUpdates({
-                collectionView.reloadItems(at: [IndexPath(row: listUser.count - 1, section: 0)])
+                collectionView.reloadItems(at: [IndexPath(row: presenter.infoUsers.count - 1, section: 0)])
             }){_ in
                 // optional closure
                 print("finished updating cell")
@@ -118,7 +115,7 @@ class ListUserViewController: BaseViewController {
     }
     
     func checkEmptyData(){
-        if listUser.count != 0 {
+        if presenter.infoUsers.count != 0 {
             lbNoData.isHidden = true
         } else {
             lbNoData.isHidden = false
@@ -163,7 +160,7 @@ extension ListUserViewController: UICollectionViewDelegateFlowLayout,UICollectio
                 headerView.backgroundColor = .none
                 getkeySearch = { [self] in
                     if let keysearch = headerView.txtSearch.text {
-                        presenter.fetchUsersResult(keyUser: keysearch)
+                        presenter.fetchUsersResult(keySearch: keysearch.lowercased())
                     } else {return}
                     
                 }
@@ -268,6 +265,7 @@ extension ListUserViewController: ListUserViewProtocol{
         countUser?()
         collectionView.hideSkeleton()
         checkEmptyData()
+        removeSpinner()
         pullControl.endRefreshing()
         
     }
