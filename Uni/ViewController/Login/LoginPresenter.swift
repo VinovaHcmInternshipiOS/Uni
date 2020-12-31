@@ -28,6 +28,7 @@ protocol LoginPresenterProtocol: class {
 	var view: LoginViewProtocol? { get set }
     func siginIn(email:String, password: String)
     func checkAuth(uid: String,completion: @escaping(String)->Void)
+    func checkSigned(uid:String,timeSignedIn:String)
     
 }
 
@@ -59,6 +60,18 @@ class LoginPresenter: LoginPresenterProtocol {
        // } else {
         //    print("Not connected")
         //}
+    }
+    func checkSigned(uid:String,timeSignedIn:String){
+        ref.child("Users/\(uid)/SignedIn").setValue(timeSignedIn) { []
+            (error:Error?, ref:DatabaseReference) in
+            if error != nil {
+                
+            }
+            else
+            {
+        
+            }
+        }
     }
     
     func checkAuth(uid: String,completion: @escaping (String) -> Void) {

@@ -13,6 +13,8 @@ import UIKit
 class LoginViewController: UIViewController {
 
 
+    @IBOutlet weak var imgSignIn: UIImageView!
+    @IBOutlet weak var spinnerLoading: UIActivityIndicatorView!
     @IBOutlet weak var lbSignUp: UILabel!
     @IBOutlet weak var lbDontAccount: UILabel!
     @IBOutlet weak var lbLogin: UILabel!
@@ -40,7 +42,6 @@ class LoginViewController: UIViewController {
         presenter.view = self
         setupUI()
         customNav()
-       
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -69,6 +70,7 @@ class LoginViewController: UIViewController {
         let rightTap = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.gotoForgotPasswordVC(_:)))
         btForgotPassword.isUserInteractionEnabled = true
         btForgotPassword.addGestureRecognizer(rightTap)
+        spinnerLoading.isHidden = true
     }
     
     @objc func gotoForgotPasswordVC(_ recognizer: UIGestureRecognizer) {
@@ -78,6 +80,10 @@ class LoginViewController: UIViewController {
     
     @IBAction func gotoAppHomeVC(_ sender: Any) {
         self.showSpinner()
+        btSignup.isEnabled = false
+        imgSignIn.isHidden = true
+        spinnerLoading.isHidden = false
+        spinnerLoading.startAnimating()
         if let email = txtEmail.text, let password = txtPassword.text {
             presenter.siginIn(email: email, password: password)
         } else {return}
@@ -119,11 +125,17 @@ extension LoginViewController: LoginViewProtocol {
         
         AppIcon.icBookmartYellow = role == "Admin" ? AppIcon.icBookmartRed : AppIcon.DefaulticBookmartYellow
         
+        AppIcon.icRemoveYellow = role == "Admin" ? AppIcon.icRemoveRed : AppIcon.DefaulticRemoveYellow
+        
         UserDefaults.standard.set(false, forKey: "status")
         let AppHomeVC = AppHomeViewController(presenter: AppHomePresenter())
         UserDefaults.standard.setValue(0, forKey: "caseMenu")
         navigationController?.pushViewController(AppHomeVC, animated: true)
         Switcher.updateRootVC()
+        imgSignIn.isHidden = false
+        spinnerLoading.isHidden = true
+        spinnerLoading.stopAnimating()
+        removeSpinner()
     }
     
     func checkAuthFailed() {
@@ -135,11 +147,15 @@ extension LoginViewController: LoginViewProtocol {
     }
     
     func loginSuccess(uid: String) {
-        removeSpinner()
+        presenter.checkSigned(uid: uid, timeSignedIn: getCurrentDateTime24h())
         presenter.checkAuth(uid: uid) { (role) in}
+        
     }
     
     func loginFailed(error: Error) {
+        imgSignIn.isHidden = false
+        spinnerLoading.isHidden = true
+        spinnerLoading.stopAnimating()
         removeSpinner()
         handleError(error)
     }
