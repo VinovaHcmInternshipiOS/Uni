@@ -29,6 +29,8 @@ class ListNotificationCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         setupUI()
+        btHide.setTitle(AppLanguage.Less.localized, for: .normal)
+        btShow.setTitle(AppLanguage.More.localized, for: .normal)
 
         
     }

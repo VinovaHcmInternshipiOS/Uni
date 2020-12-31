@@ -250,7 +250,7 @@
 "Checking..." = "Đang kiểm tra...";
 "Place the barcode within the window to scan.\nThe search will start automatically." = "Đặt mã vạch trong cửa sổ để quét.\nTìm kiếm sẽ tự động bắt đầu.";
 "Scan Barcode" = "Quét mã vạch";
-"Please check your email to change your password."; = "Vui lòng kiểm tra email để tiến hành đổi mật khẩu.";
+"Please check your email to change your password." = "Vui lòng kiểm tra email để tiến hành đổi mật khẩu.";
 "Successful avatar update." = "Cập nhật ảnh đại diện thành công.";
 "Successfully deleted message." = "Đã xoá thông báo thành công.";
 
@@ -287,4 +287,7 @@
 
 "Seen" = "Đã xem";
 "Total" = "Toàn bộ";
+
+"less" = "thu gọn";
+"more" = "xem thêm";
 

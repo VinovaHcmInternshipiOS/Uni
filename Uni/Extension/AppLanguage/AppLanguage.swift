@@ -34,6 +34,8 @@ class AppLanguage {
     static let JustNow = "just now"
     static let Seen = "Seen"
     static let Total = "Total"
+    static let Less = "less"
+    static let More = "more"
     //MARK: -- HandleError
     class HandleError {
         static let anError = "An Error"

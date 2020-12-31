@@ -34,7 +34,7 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </tableView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bt5-jm-nbX">
-                    <rect key="frame" x="132" y="782" width="150" height="60"/>
+                    <rect key="frame" x="132" y="742" width="150" height="60"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ise-c7-htS">
                             <rect key="frame" x="90" y="0.0" width="60" height="60"/>
@@ -145,7 +145,7 @@
                 <constraint firstItem="GZr-32-ecy" firstAttribute="leading" secondItem="Wxz-VT-Fa5" secondAttribute="leading" constant="22" id="IPQ-zz-V7i"/>
                 <constraint firstItem="6zu-Jx-BH3" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="Xj4-t8-hkY"/>
                 <constraint firstAttribute="bottom" secondItem="GZr-32-ecy" secondAttribute="bottom" id="g6L-eD-T9Z"/>
-                <constraint firstItem="Wxz-VT-Fa5" firstAttribute="bottom" secondItem="bt5-jm-nbX" secondAttribute="bottom" constant="20" id="qYX-ki-qMf"/>
+                <constraint firstItem="Wxz-VT-Fa5" firstAttribute="bottom" secondItem="bt5-jm-nbX" secondAttribute="bottom" constant="60" id="qYX-ki-qMf"/>
             </constraints>
             <point key="canvasLocation" x="84" y="110.19490254872565"/>
         </view>
