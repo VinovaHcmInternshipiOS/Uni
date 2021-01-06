@@ -75,7 +75,7 @@ class AppHomePresenter: AppHomePresenterProtocol {
                             let type = dict["Type"] as! String
                             let urrlImage = dict["ImageLandscape"] as! String
                             let request = Event(title: title, key: key, date: date, checkout: checkout, checkin: checkin, type: type, urlImage: urrlImage)
-                            if "\(date) \(checkin)".formatStringToDateTime24h() >= currentDateTime && "\(date) \(checkin)".formatStringToDateTime24h() <= currentDateTime{
+                            if  currentDateTime >=  "\(date) \(checkin)".formatStringToDateTime24h() && currentDateTime <= "\(date) \(checkout)".formatStringToDateTime24h(){
                                 happeningEvent.append(request)
                                 view?.fetchInfoEventHappeningSuccess()
                             } else {

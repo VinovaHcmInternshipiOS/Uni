@@ -34,10 +34,10 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </tableView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bt5-jm-nbX">
-                    <rect key="frame" x="132" y="742" width="150" height="60"/>
+                    <rect key="frame" x="122" y="742" width="170" height="60"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ise-c7-htS">
-                            <rect key="frame" x="90" y="0.0" width="60" height="60"/>
+                            <rect key="frame" x="110" y="0.0" width="60" height="60"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wce-vT-BLs">
                                     <rect key="frame" x="15" y="15" width="30" height="30"/>
@@ -120,7 +120,7 @@
                     <constraints>
                         <constraint firstItem="7WV-jZ-xae" firstAttribute="leading" secondItem="bt5-jm-nbX" secondAttribute="leading" id="02a-Y8-XxU"/>
                         <constraint firstAttribute="trailing" secondItem="ise-c7-htS" secondAttribute="trailing" id="R6j-ij-phe"/>
-                        <constraint firstAttribute="width" constant="150" id="XnA-xi-DZA"/>
+                        <constraint firstAttribute="width" constant="170" id="XnA-xi-DZA"/>
                         <constraint firstItem="7WV-jZ-xae" firstAttribute="top" secondItem="bt5-jm-nbX" secondAttribute="top" id="gPm-z1-ohY"/>
                         <constraint firstItem="ise-c7-htS" firstAttribute="top" secondItem="bt5-jm-nbX" secondAttribute="top" id="gz4-OD-IJH"/>
                         <constraint firstAttribute="bottom" secondItem="7WV-jZ-xae" secondAttribute="bottom" id="qL1-TL-8aM"/>

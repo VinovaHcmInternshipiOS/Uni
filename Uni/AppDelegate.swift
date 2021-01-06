@@ -21,14 +21,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         IQKeyboardManager.shared.enable = true
         Switcher.updateRootVC()
-        Messaging.messaging().subscribe(toTopic: "notify") { error in
-            
-            if error != nil {
-                print("Subscribed to notify topic failed")
-            } else {
-                print("Subscribed to notify topic success")
-            }
-        }
         if #available(iOS 10.0, *) {
             UNUserNotificationCenter.current().delegate = self
             Messaging.messaging().delegate = self

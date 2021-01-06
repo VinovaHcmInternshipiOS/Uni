@@ -9,7 +9,8 @@
 //
 
 import UIKit
-
+import UserNotifications
+import Firebase
 class LoginViewController: UIViewController {
 
 
@@ -104,6 +105,17 @@ extension LoginViewController: LoginViewProtocol {
 
     func checkAuthSuccess(role: String) {
         print(role,"Change")
+        if role == "Admin" {
+            Messaging.messaging().subscribe(toTopic: "notify") { error in
+                
+                if error != nil {
+                    print("Subscribed to notify topic failed")
+                } else {
+                    print("Subscribed to notify topic success")
+                }
+            }
+        }
+
         AppColor.YellowFAB32A = role == "Admin" ? AppColor.RedFF7C75 : AppColor.DefaultYellowFAB32A
         
         AppColor.YellowFBC459 = role == "Admin" ? AppColor.RedFF6961 : AppColor.DefaultYellowFBC459

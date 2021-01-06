@@ -400,7 +400,7 @@ extension AppHomeViewController: AppHomeViewProtocol {
             print("finished updating cell")
         }
         pullControl.endRefreshing()
-        //collectionHappenning.reloadData()
+        collectionHappenning.reloadData()
         checkEmptyDataHappenning()
     }
     
