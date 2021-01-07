@@ -27,7 +27,7 @@ protocol NotificationPresenterProtocol: class {
     var view: NotificationViewProtocol? { get set }
     var code:String? {get set}
     var infoNotification: [NotificationUser?] {get set}
-    func fetchNotification()
+    func fetchNotification(dateCurrent:Date,isClockFormat12h:Bool)
     func seenNotification(keyNotification:String,date:String)
 }
 
@@ -43,7 +43,7 @@ class NotificationPresenter: NotificationPresenterProtocol {
         self.code = code
     }
     
-    func fetchNotification() {
+    func fetchNotification(dateCurrent:Date,isClockFormat12h:Bool) {
         infoNotification.removeAll()
         ref.child("Notification").observeSingleEvent(of:.value) { [self] (snapshot) in
             if snapshot.exists() {
@@ -56,10 +56,16 @@ class NotificationPresenter: NotificationPresenterProtocol {
                             let title = dict["Title"] as! String
                             let content = dict["Content"] as! String
                             let date = dict["Date"] as! String
+                            let calendar = Calendar.current
+                            let componentsTime = calendar.dateComponents([.day,.month,.year,.hour,.minute,.second], from: isClockFormat12h == true ? ((date.formatterDateTime12h()).toDateTimeFormat(format: "dd-MM-yyyy hh:mma")) : ((date.formatterDateTime24h()).toDateTimeFormat(format: "dd-MM-yyyy HH:mm")), to: dateCurrent)
                             let placeRef = self.ref.child("Notification/\(keyNotification.key)/List/\(code ?? "")")
                             placeRef.observeSingleEvent(of:.value, with: { [self] snapshot in
-                                snapshot.exists() == true ? infoNotification.insert(NotificationUser(keyNotification: keyNotification.key,title: title, content: content, date: date,state: true), at: 0) : infoNotification.insert(NotificationUser(keyNotification: keyNotification.key,title: title, content: content, date: date,state: false), at: 0)
-                                view?.fetchNotificationSuccess()
+                                if componentsTime.day ?? 0 <= 7 {
+                                    snapshot.exists() == true ? infoNotification.insert(NotificationUser(keyNotification: keyNotification.key,title: title, content: content, date: date,state: true), at: 0) : infoNotification.insert(NotificationUser(keyNotification: keyNotification.key,title: title, content: content, date: date,state: false), at: 0)
+                                    view?.fetchNotificationSuccess()
+                                } else {
+                                    view?.fetchNotificationFailed()
+                                }
                             })
                             
                         }

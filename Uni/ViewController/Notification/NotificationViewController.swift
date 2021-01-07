@@ -36,7 +36,7 @@ class NotificationViewController: BaseViewController {
         presenter.view = self
         setupLanguage()
         setupUI()
-        presenter.fetchNotification()
+        presenter.fetchNotification(dateCurrent: is12hClockFormat() == true ? (formatterDateTime12h(time: getCurrentDateTime12h()).toDateTimeFormat(format: "dd-MM-yyyy hh:mma")) : (formatterDateTime24h(time: getCurrentDateTime12h()).toDateTimeFormat(format: "dd-MM-yyyy HH:mm")), isClockFormat12h: is12hClockFormat())
     }
 
     
@@ -72,7 +72,7 @@ class NotificationViewController: BaseViewController {
     
     func refreshListNotification() {
         skeletonView()
-        presenter.fetchNotification()
+        presenter.fetchNotification(dateCurrent: is12hClockFormat() == true ? (formatterDateTime12h(time: getCurrentDateTime12h()).toDateTimeFormat(format: "dd-MM-yyyy hh:mma")) : (formatterDateTime24h(time: getCurrentDateTime12h()).toDateTimeFormat(format: "dd-MM-yyyy HH:mm")), isClockFormat12h: is12hClockFormat())
         
     }
     
@@ -173,9 +173,9 @@ extension NotificationViewController: UITableViewDataSource {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "NotificationCell", for: indexPath) as? NotificationCell {
             let calendar = Calendar.current
             let componentsTime = calendar.dateComponents([.day,.month,.year,.hour,.minute,.second], from: is12hClockFormat() == true ? (formatterDateTime12h(time: listNotification[indexPath.row]?.date ?? "").toDateTimeFormat(format: "dd-MM-yyyy hh:mma")) : (formatterDateTime24h(time: listNotification[indexPath.row]?.date ?? "").toDateTimeFormat(format: "dd-MM-yyyy HH:mm")) , to: is12hClockFormat() == true ? (formatterDateTime12h(time: getCurrentDateTime12h()).toDateTimeFormat(format: "dd-MM-yyyy hh:mma")) : (formatterDateTime24h(time: getCurrentDateTime12h()).toDateTimeFormat(format: "dd-MM-yyyy HH:mm")))
-            cell.lbTitle.text = "\(listNotification[indexPath.row]?.title ?? "")"
-            cell.lbDate.text = "\(componentsTime.day == 0 ? (componentsTime.hour == 0 ? (componentsTime.minute == 0 ? AppLanguage.JustNow.localized : "\(componentsTime.minute ?? 0)m ago") : "\(componentsTime.hour ?? 0)h ago") : "\(componentsTime.day ?? 0)d ago")"
-            cell.viewState.backgroundColor = listNotification[indexPath.row]?.state == true ? AppColor.SilverE5E5E5 : AppColor.YellowFAB32A
+                cell.lbTitle.text = "\(listNotification[indexPath.row]?.title ?? "")"
+                cell.lbDate.text = "\(componentsTime.day == 0 ? (componentsTime.hour == 0 ? (componentsTime.minute == 0 ? AppLanguage.JustNow.localized : "\(componentsTime.minute ?? 0)m ago") : "\(componentsTime.hour ?? 0)h ago") : "\(componentsTime.day ?? 0)d ago")"
+                cell.viewState.backgroundColor = listNotification[indexPath.row]?.state == true ? AppColor.SilverE5E5E5 : AppColor.YellowFAB32A
             return cell
         } else { return UITableViewCell()}
     }

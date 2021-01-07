@@ -59,6 +59,24 @@ extension String {
         dateFormatter.dateFormat = "dd-MM-yyyy HH:mm"
         return dateFormatter.date(from: self) ?? Date()
     }
+    
+    func formatterDateTime12h() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd-MM-yyyy HH:mm"
+        let date = dateFormatter.date(from: self)
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.dateFormat = "dd-MM-yyyy hh:mma"
+        return dateFormatter.string(from: date ?? Date())
+    }
+    
+    func formatterDateTime24h() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd-MM-yyyy hh:mma"
+        let date = dateFormatter.date(from: self)
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.dateFormat = "dd-MM-yyyy HH:mm"
+        return dateFormatter.string(from: date ?? Date())
+    }
 
     var localized: String {
            guard let currentLanguages = UserDefaults.standard.string(forKey: "AppleLanguage"), let bundlePath = Bundle.main.path(forResource: currentLanguages, ofType: "lproj"), let bundle = Bundle(path: bundlePath) else {

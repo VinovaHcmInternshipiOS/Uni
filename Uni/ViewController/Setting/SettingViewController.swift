@@ -67,7 +67,9 @@ class SettingViewController: BaseViewController, SettingViewProtocol {
     }
     
     @objc func notification(){
-
+        let appHome = AppHomeViewController(presenter: AppHomePresenter())
+        let notification = NotificationViewController(presenter: NotificationPresenter(code: appHome.code))
+        navigationController?.pushViewController(notification, animated: true)
     }
     
     @objc func changeLanguage(_ recognizer: UIGestureRecognizer) {

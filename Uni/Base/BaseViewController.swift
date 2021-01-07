@@ -147,6 +147,10 @@ class BaseViewController: UIViewController,UIViewControllerTransitioningDelegate
             print(1,MenuType.rawValue)
             self.transitionToNewContent(MenuType)
         }
+        let SlideMenu = SlideInTransition()
+        SlideMenu.closeSlideMenu = {
+            self.dismiss(animated: true, completion: nil)
+        }
         menu.modalPresentationStyle = .overCurrentContext
         menu.transitioningDelegate = self
         self.present(menu,animated: true, completion: nil)

@@ -143,7 +143,7 @@ extension SemesterScoreViewController: SkeletonTableViewDataSource {
 extension SemesterScoreViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 120
+        return 130
     }
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         self.tableView.layoutIfNeeded()

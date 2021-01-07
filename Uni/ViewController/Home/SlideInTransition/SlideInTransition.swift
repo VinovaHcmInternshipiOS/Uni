@@ -11,6 +11,7 @@ class SlideInTransition: NSObject, UIViewControllerAnimatedTransitioning {
     
     var isPresenting = false
     let dimingView = UIView()
+    var closeSlideMenu : (()->Void)?
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return 0.3
     }
@@ -21,6 +22,8 @@ class SlideInTransition: NSObject, UIViewControllerAnimatedTransitioning {
         
         let finalWidth = toViewController.view.bounds.width * 0.8
         let finalHeight = UIScreen.main.bounds.height
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTapCloseMenu(_:)))
+        dimingView.addGestureRecognizer(tap)
         
         if isPresenting {
             //add dimingview
@@ -54,6 +57,8 @@ class SlideInTransition: NSObject, UIViewControllerAnimatedTransitioning {
         
     }
     
-    
+    @objc func handleTapCloseMenu(_ sender: UITapGestureRecognizer? = nil) {
+        closeSlideMenu?()
+    }
     
 }

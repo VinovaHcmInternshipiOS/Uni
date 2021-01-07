@@ -105,7 +105,7 @@ extension LoginViewController: LoginViewProtocol {
 
     func checkAuthSuccess(role: String) {
         print(role,"Change")
-        if role == "Admin" {
+        if role != "Admin" {
             Messaging.messaging().subscribe(toTopic: "notify") { error in
                 
                 if error != nil {

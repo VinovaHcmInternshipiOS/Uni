@@ -22,6 +22,7 @@ class SlideMenuViewController: BaseViewController {
     @IBOutlet weak var lbNameApp: UILabel!
     @IBOutlet weak var btLogout: UIButton!
     @IBOutlet weak var tableView: UITableView!
+
     var presenter: SlideMenuPresenterProtocol
     var arrayFeature = [String]()
     var didTapMenuType: ((MenuType) -> Void)?
@@ -53,7 +54,13 @@ class SlideMenuViewController: BaseViewController {
             tableView.reloadData()
             
         }
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
+        outsideSlideMenu.addGestureRecognizer(tap)
     }
+    @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
+        dismiss(animated: true, completion: nil)
+    }
+    
     func setupLanguage(){
         btLogout.setTitle(AppLanguage.SlideMenu.btLogout.localized, for: .normal)
     }
@@ -89,6 +96,7 @@ extension SlideMenuViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         return UIView(frame: .zero)
     }
+    
 }
 
 extension SlideMenuViewController: UITableViewDataSource {

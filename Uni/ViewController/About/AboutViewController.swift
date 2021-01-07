@@ -72,7 +72,10 @@ class AboutViewController: BaseViewController, AboutViewProtocol {
     }
     
     @objc func notification(){
-
+        let appHome = AppHomeViewController(presenter: AppHomePresenter())
+        let notification = NotificationViewController(presenter: NotificationPresenter(code: appHome.code))
+        navigationController?.pushViewController(notification, animated: true)
+        
     }
 
 }
