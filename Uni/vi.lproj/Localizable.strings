@@ -238,7 +238,7 @@
 
 
 //MARK: -- HandleSuccess
-"Your Password has been changed." = "Mật khẩu của bạn đã được thay đổi.";
+"Your password has been changed." = "Mật khẩu của bạn đã được thay đổi.";
 "Success" = "Thành công";
 "Account status changed successfully." = "Thay đổi trạng thái tài khoản thành công.";
 "Account status change failed." = "Thay đổi trạng thái tài khoản thất bại.";
@@ -267,6 +267,7 @@
 "Do you want to disable account?" = "Bạn có muốn vô hiệu hóa tài khoản?";
 "Confirm" = "Xác nhận";
 "Do you want to delete this message?" = "Bạn có muốn xoá thông báo này?";
+"Do you want to delete all notifications 7 days ago?" = "Bạn có muốn xóa tất cả thông báo 7 ngày trước?";
 
 //MARK: -- ResetPassword
 "Please enter your Email" = "Vui lòng nhập email";

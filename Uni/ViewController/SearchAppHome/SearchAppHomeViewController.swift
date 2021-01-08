@@ -184,11 +184,11 @@ extension SearchAppHomeViewController: UITableViewDataSource {
         return 1
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section != 0 {
+       // if indexPath.section != 0 {
             let detailEvent = DetailEventViewController(presenter: DetailEventPresenter())
             detailEvent.keyDetailEvent = (listResultsEvent[indexPath.row]?.key)!
             self.navigationController?.pushViewController(detailEvent, animated: true)
-        }
+        //}
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

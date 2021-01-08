@@ -49,6 +49,7 @@ class PickerDataViewController: UIViewController, PickerDataViewProtocol{
         checkView()
         pickerView.dataSource = self
         pickerView.delegate = self
+        view.backgroundColor = AppColor.ColorPresentView
     }
     func addData(){
         let date = Date()
@@ -109,7 +110,7 @@ class PickerDataViewController: UIViewController, PickerDataViewProtocol{
         dismiss(animated: false, completion: nil)
     }
     @IBAction func btCancel(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: false, completion: nil)
     }
     
 }

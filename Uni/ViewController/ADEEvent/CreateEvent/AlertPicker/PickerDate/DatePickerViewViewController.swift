@@ -28,14 +28,20 @@ class DatePickerViewViewController: BaseViewController, DatePickerViewViewProtoc
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupUI()
         presenter.view = self
         presenter.viewDidLoad()
         let currentDate = Date()
         datePicker.minimumDate = currentDate
         lbCurrentDate.text = currentPickerDate(pickerDate: datePicker)
         datePicker.setDate(dataPicker.toDateDate(), animated: true)
-        lbCurrentDate.textColor = AppColor.YellowFAB32A
+        
 
+    }
+    
+    func setupUI() {
+        lbCurrentDate.textColor = AppColor.YellowFAB32A
+        view.backgroundColor = AppColor.ColorPresentView
     }
     
     @IBAction func datePicker(_ sender: Any) {

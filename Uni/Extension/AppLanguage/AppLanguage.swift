@@ -76,7 +76,7 @@ class AppLanguage {
     //MARK: -- HandleSuccess
     class HandleSuccess {
         static let Success = "Success"
-        static let changePassword = "Your Password has been changed."
+        static let changePassword = "Your password has been changed."
         static let changeStateAccount = "Account status changed successfully."
         static let createAccount = "Account created successfully."
         static let createEvent = "The event has been successfully created."
@@ -97,6 +97,7 @@ class AppLanguage {
         static let Enable = "Do you want to enable account?"
         static let Disable = "Do you want to disable account?"
         static let DeleteNotification = "Do you want to delete this message?"
+        static let DeleteNotification7Days = "Do you want to delete all notifications 7 days ago?"
     }
     
     

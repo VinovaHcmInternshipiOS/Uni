@@ -23,4 +23,5 @@ class AppColor {
     static let BlueADEAFE = #colorLiteral(red: 0.6784313725, green: 0.9176470588, blue: 0.9960784314, alpha: 1)
     static let OrangeF3D08E = #colorLiteral(red: 0.9529411765, green: 0.8156862745, blue: 0.5568627451, alpha: 1)
     static let SilverE5E5E5 = #colorLiteral(red: 0.8980392157, green: 0.8980392157, blue: 0.8980392157, alpha: 1)
+    static let ColorPresentView = #colorLiteral(red: 0.809979856, green: 0.8100972176, blue: 0.8117647059, alpha: 0.5)
 }

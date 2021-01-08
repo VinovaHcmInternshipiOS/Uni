@@ -32,6 +32,7 @@ protocol ListNotificationPresenterProtocol: class {
     func fetchNotification()
     func countUser()
     func removeNotification(keyNotification: String)
+    func deleteNotiAfter7day(dateCurrent:Date,isClockFormat12h:Bool)
 }
 
 class ListNotificationPresenter: ListNotificationPresenterProtocol {
@@ -84,6 +85,33 @@ class ListNotificationPresenter: ListNotificationPresenterProtocol {
             }
         }
     }
+    
+    func deleteNotiAfter7day(dateCurrent:Date,isClockFormat12h:Bool) {
+        ref.child("Notification").observeSingleEvent(of:.value) { [self] (snapshot) in
+            if(snapshot.exists()) {
+                for keyNotification in snapshot.children.allObjects as! [DataSnapshot] {
+                    let placeRef = self.ref.child("Notification/\(keyNotification.key)")
+                    placeRef.observeSingleEvent(of:.value, with: { [self] snapshot in
+                        if snapshot.exists()
+                        {
+                            let dict = snapshot.value as! [String: Any]
+                            let date = dict["Date"] as! String
+                            let calendar = Calendar.current
+                            let componentsTime = calendar.dateComponents([.day,.month,.year,.hour,.minute,.second], from: isClockFormat12h == true ? ((date.formatterDateTime12h()).toDateTimeFormat(format: "dd-MM-yyyy hh:mma")) : ((date.formatterDateTime24h()).toDateTimeFormat(format: "dd-MM-yyyy HH:mm")), to: dateCurrent)
+                            if componentsTime.day ?? 0 > 7 {
+                                removeNotification(keyNotification: keyNotification.key)
+                            } else {
+                                view?.removeNotificationSuccess()
+                            }
+                            
+                        }
+                    })
+                    
+                }
+            }
+        }
+    }
+    
     
     func removeNotification(keyNotification: String) {
         let placeRef = self.ref.child("Notification/\(keyNotification)")

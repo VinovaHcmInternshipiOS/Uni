@@ -20,6 +20,7 @@ class ChangePasswordViewController: BaseViewController {
     @IBOutlet weak var txtNewPassword: UITextField!
     @IBOutlet weak var txtConfỉrmPassword: UITextField!
     @IBOutlet weak var btSave: UIButton!
+    @IBOutlet weak var stackViewSave: UIStackView!
     var presenter: ChangePasswordPresenterProtocol
 
 	init(presenter: ChangePasswordPresenterProtocol) {
@@ -53,7 +54,10 @@ class ChangePasswordViewController: BaseViewController {
     func setupUI(){
         btSave.backgroundColor = AppColor.YellowFAB32A
         btSave.shadowColor = AppColor.YellowFBC459
+        spinner.backgroundColor = AppColor.YellowFAB32A
         lbEnterYour.textColor = AppColor.YellowFAB32A
+        stackViewSave.borderColor = AppColor.YellowFAB32A
+        stackViewSave.backgroundColor = AppColor.YellowFAB32A
         spinner.isHidden = true
     }
     @IBAction func btSave(_ sender: Any) {

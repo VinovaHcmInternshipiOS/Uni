@@ -113,6 +113,17 @@ class ListNotificationViewController: BaseViewController {
         }
     }
     @IBAction func actionDelete(_ sender: Any) {
+        presentAlertWithTitle(title: AppLanguage.Confirm.localized, message: AppLanguage.HandleConfirm.DeleteNotification7Days.localized, options: AppLanguage.Cancel.localized,AppLanguage.Ok.localized) { [self](Int) in
+            switch Int {
+            case 0: break
+            default:
+                presenter.deleteNotiAfter7day(dateCurrent: is12hClockFormat() == true ? (formatterDateTime12h(time: getCurrentDateTime12h()).toDateTimeFormat(format: "dd-MM-yyyy hh:mma")) : (formatterDateTime24h(time: getCurrentDateTime12h()).toDateTimeFormat(format: "dd-MM-yyyy HH:mm")), isClockFormat12h: is12hClockFormat())
+            }
+            
+        }
+
+        
+        
     }
     @IBAction func actionCreate(_ sender: Any) {
         let pushNoti = PushNotificationViewController(presenter: PushNotificationPresenter())

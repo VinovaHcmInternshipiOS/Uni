@@ -47,12 +47,15 @@ class TimePickerViewController: BaseViewController, TimePickerViewProtocol {
             TimeInPicker.minimumDate = Date() + 1
             TimeOutPicker.minimumDate = Date() + 1
         }
+        setupUI()
         TimeInPicker.setDate(dateCheckin.toDateTime(), animated: true)
         TimeOutPicker.setDate(dateCheckout.toDateTime(), animated: true)
+    }
+    
+    func setupUI(){
         lbTimeCheckIn.textColor = AppColor.YellowFAB32A
         lbTimeCheckOut.textColor = AppColor.YellowFAB32A
-
-        
+        view.backgroundColor = AppColor.ColorPresentView
     }
     
     @IBAction func PickerTimeIn(_ sender: Any) {
