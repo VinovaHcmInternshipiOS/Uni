@@ -34,6 +34,10 @@ class PrivacyPolicyViewController: BaseViewController, PrivacyPolicyViewProtocol
         addNav()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+    }
+    
     func setupLanguage(){
         privacypolicy.text = AppLanguage.Privacy.PrivacyPolicy.localized
         contentPrivacyPolicy.text = AppLanguage.Privacy.ContentPrivacyPolicy.localized

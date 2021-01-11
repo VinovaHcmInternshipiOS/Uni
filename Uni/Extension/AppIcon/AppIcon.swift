@@ -52,5 +52,9 @@ class AppIcon {
     static var icRemoveYellow = UIImage(named: "icRemove-yellow")
     static let DefaulticRemoveYellow = UIImage(named: "icRemove-yellow")
     static let icRemoveRed = UIImage(named: "icRemove-red")
+    static let icUnLove = UIImage(named: "icUnLove")
+    static let icLove = UIImage(named: "icLove")
+    static let icUnLove30 = UIImage(named: "icUnLove30")
+    static let icLove30 = UIImage(named: "icLove30")
     
 }

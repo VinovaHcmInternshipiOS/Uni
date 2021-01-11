@@ -10,10 +10,11 @@ import UIKit
 class SearchResultCell: UITableViewCell {
 
 
+    @IBOutlet weak var btLike: UIButton!
     @IBOutlet weak var imgEvent: UIImageView!
     @IBOutlet weak var titleEvent: UILabel!
     @IBOutlet weak var dateEvent: UILabel!
-    @IBOutlet weak var btDetail: UIButton!
+    var likeEvent: (()->Void)? = nil
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -23,6 +24,9 @@ class SearchResultCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    @IBAction func btLike(_ sender: Any) {
+        likeEvent?()
     }
     
 }

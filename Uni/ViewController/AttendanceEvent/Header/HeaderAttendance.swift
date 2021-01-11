@@ -10,6 +10,7 @@ import UIKit
 class HeaderAttendance: UICollectionReusableView {
 
 
+    @IBOutlet weak var viewSearch: UIView!
     @IBOutlet weak var filterData: UISegmentedControl!
     @IBOutlet weak var lbHeader: UILabel!
     @IBOutlet weak var viewButton: UIView!

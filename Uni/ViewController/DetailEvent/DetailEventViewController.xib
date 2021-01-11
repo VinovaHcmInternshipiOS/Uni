@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -18,6 +17,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailEventViewController" customModule="Uni" customModuleProvider="target">
             <connections>
                 <outlet property="addressEvent" destination="tC1-BJ-gol" id="Hga-Sb-xW6"/>
+                <outlet property="btLike" destination="v4T-1b-dRU" id="3sq-sQ-ibP"/>
                 <outlet property="contentEvent" destination="Yly-1T-qH9" id="08z-UW-9Sj"/>
                 <outlet property="dateEvent" destination="XjE-sq-k1X" id="OnP-aG-OsM"/>
                 <outlet property="iconPerson" destination="62F-IG-4O0" id="QLQ-gp-s2C"/>
@@ -54,7 +54,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="350" height="475.5"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xqm-ex-VNu">
-                                                    <rect key="frame" x="35" y="13" width="281" height="35.5"/>
+                                                    <rect key="frame" x="35" y="13" width="239" height="35.5"/>
                                                     <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="30"/>
                                                     <color key="textColor" red="0.98039215686274506" green="0.70196078431372544" blue="0.16470588235294117" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -127,12 +127,24 @@ Time</string>
                                                     <color key="tintColor" red="0.98039215686274506" green="0.70196078431372544" blue="0.16470588235294117" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <state key="normal" image="person" catalog="system"/>
                                                 </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v4T-1b-dRU">
+                                                    <rect key="frame" x="284" y="13" width="30" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="30" id="AAb-Vd-8oe"/>
+                                                        <constraint firstAttribute="height" constant="30" id="MOn-rk-GdB"/>
+                                                    </constraints>
+                                                    <state key="normal" image="icUnLove30"/>
+                                                    <connections>
+                                                        <action selector="btLike:" destination="-1" eventType="touchUpInside" id="jYZ-p8-1hZ"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             <constraints>
                                                 <constraint firstItem="Xqm-ex-VNu" firstAttribute="top" secondItem="7Kt-yS-O7G" secondAttribute="top" constant="13" id="1Qk-qk-nLP"/>
                                                 <constraint firstItem="AfG-9w-mEi" firstAttribute="top" secondItem="Yly-1T-qH9" secondAttribute="bottom" constant="6" id="2kF-Kn-72U"/>
                                                 <constraint firstAttribute="trailing" secondItem="AfG-9w-mEi" secondAttribute="trailing" id="6S5-4L-Q8g"/>
+                                                <constraint firstItem="v4T-1b-dRU" firstAttribute="leading" secondItem="Xqm-ex-VNu" secondAttribute="trailing" constant="10" id="91t-nP-zmB"/>
                                                 <constraint firstItem="aoP-X7-9qS" firstAttribute="top" secondItem="Xqm-ex-VNu" secondAttribute="bottom" constant="41" id="9Oz-vk-t0J"/>
                                                 <constraint firstAttribute="bottom" secondItem="AfG-9w-mEi" secondAttribute="bottom" id="C1e-hh-flw"/>
                                                 <constraint firstItem="Yly-1T-qH9" firstAttribute="leading" secondItem="7Kt-yS-O7G" secondAttribute="leading" constant="34" id="MPY-5u-Q9B"/>
@@ -140,14 +152,15 @@ Time</string>
                                                 <constraint firstItem="62F-IG-4O0" firstAttribute="top" secondItem="Xqm-ex-VNu" secondAttribute="bottom" constant="38" id="UmM-UL-26D"/>
                                                 <constraint firstItem="Xqm-ex-VNu" firstAttribute="leading" secondItem="7Kt-yS-O7G" secondAttribute="leading" constant="35" id="awx-VX-Hmb"/>
                                                 <constraint firstAttribute="trailing" secondItem="Yly-1T-qH9" secondAttribute="trailing" constant="34" id="cMo-O0-e3f"/>
+                                                <constraint firstItem="v4T-1b-dRU" firstAttribute="top" secondItem="7Kt-yS-O7G" secondAttribute="top" constant="13" id="dO4-8z-wsM"/>
                                                 <constraint firstItem="62F-IG-4O0" firstAttribute="leading" secondItem="7Kt-yS-O7G" secondAttribute="leading" constant="35" id="hSp-HD-m7d"/>
                                                 <constraint firstItem="pUj-95-hTa" firstAttribute="top" secondItem="62F-IG-4O0" secondAttribute="bottom" constant="19" id="lKT-he-k8O"/>
                                                 <constraint firstItem="pUj-95-hTa" firstAttribute="leading" secondItem="7Kt-yS-O7G" secondAttribute="leading" constant="35" id="leI-jN-IAI"/>
                                                 <constraint firstItem="JVE-tn-sUq" firstAttribute="leading" secondItem="62F-IG-4O0" secondAttribute="trailing" constant="2" id="o3h-ge-4Kb"/>
+                                                <constraint firstAttribute="trailing" secondItem="v4T-1b-dRU" secondAttribute="trailing" constant="36" id="pY1-6y-pbz"/>
                                                 <constraint firstItem="JVE-tn-sUq" firstAttribute="centerY" secondItem="62F-IG-4O0" secondAttribute="centerY" id="tFg-h5-5uX"/>
                                                 <constraint firstItem="Yly-1T-qH9" firstAttribute="top" secondItem="pUj-95-hTa" secondAttribute="bottom" constant="19" id="ths-Lt-ErH"/>
                                                 <constraint firstItem="AfG-9w-mEi" firstAttribute="leading" secondItem="7Kt-yS-O7G" secondAttribute="leading" id="wCS-G7-AL4"/>
-                                                <constraint firstAttribute="trailing" secondItem="Xqm-ex-VNu" secondAttribute="trailing" constant="34" id="xpg-Oj-UPY"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -234,6 +247,7 @@ Time</string>
         </view>
     </objects>
     <resources>
+        <image name="icUnLove30" width="30" height="30"/>
         <image name="person" catalog="system" width="128" height="117"/>
         <namedColor name="Color-1">
             <color red="0.0" green="0.0" blue="0.0" alpha="0.15000000596046448" colorSpace="custom" customColorSpace="sRGB"/>

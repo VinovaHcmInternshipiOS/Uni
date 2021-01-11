@@ -43,6 +43,10 @@ class AboutViewController: BaseViewController, AboutViewProtocol {
         
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+    }
+    
     func setupLanguage(){
         lbAboutUs.text = AppLanguage.About.About.localized
         titleVersion.text = AppLanguage.About.Versison.localized

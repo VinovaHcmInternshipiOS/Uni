@@ -102,7 +102,7 @@ class AttendanceEventPresenter: AttendanceEventPresenterProtocol {
                 let urlImagePortal = dict["ImagePortal"] as! String
                 let urlImageLandscape = dict["ImageLandscape"] as! String
                 
-                detailEvent = DetailEvent(title: title, content: content, address: address, score: score, date: date, checkin: checkin, checkout: checkout, urlImageLandscape:urlImageLandscape,urlImagePortal: urlImagePortal)
+                detailEvent = DetailEvent(title: title, content: content, address: address, score: score, date: date, checkin: checkin, checkout: checkout, urlImageLandscape:urlImageLandscape,urlImagePortal: urlImagePortal, stateLike: false)
                 
                 view?.fetchDetailSuccess()
             }

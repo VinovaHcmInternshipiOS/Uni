@@ -41,7 +41,9 @@
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wce-vT-BLs">
                                     <rect key="frame" x="15" y="15" width="30" height="30"/>
-                                    <state key="normal" image="icRemove-yellow"/>
+                                    <state key="normal" image="icRemove-yellow">
+                                        <color key="titleColor" red="0.91126972439999998" green="0.2903312743" blue="0.3749110699" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </state>
                                     <connections>
                                         <action selector="actionDelete:" destination="-1" eventType="touchUpInside" id="cl6-mZ-hXz"/>
                                     </connections>

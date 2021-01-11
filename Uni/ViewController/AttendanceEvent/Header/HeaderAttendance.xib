@@ -111,6 +111,7 @@
                 <outlet property="lbTotal" destination="qLi-yc-1HN" id="unp-Ir-Pkp"/>
                 <outlet property="txtSearch" destination="jTA-K3-cja" id="SfY-xS-w05"/>
                 <outlet property="viewButton" destination="Lr4-Ij-XEJ" id="X5v-A0-Ecf"/>
+                <outlet property="viewSearch" destination="0TF-a7-y52" id="3Tc-oa-zkb"/>
             </connections>
             <point key="canvasLocation" x="111.59420289855073" y="125.89285714285714"/>
         </collectionReusableView>

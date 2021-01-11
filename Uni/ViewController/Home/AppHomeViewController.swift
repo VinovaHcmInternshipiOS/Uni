@@ -35,6 +35,11 @@ class AppHomeViewController:BaseViewController{
     @IBOutlet weak var pageControl: UIPageControl!
     private var pullControl = UIRefreshControl()
     @IBOutlet weak var imageBookmart: UIImageView!
+    @IBOutlet weak var lbRank: UILabel!
+    @IBOutlet weak var lbSearch: UILabel!
+    @IBOutlet weak var lbHistory: UILabel!
+    @IBOutlet weak var lbBarcode: UILabel!
+    
     var presenter: AppHomePresenterProtocol
     var item = [1,2,3,4,5,6,7,8,9,10]
     var indexPageControl = 0
@@ -45,7 +50,6 @@ class AppHomeViewController:BaseViewController{
     var listEventHappening = [Event?]()
     var listEventComingSoon = [Event?]()
     var listEventEnded = [Event?]()
-    
     init(presenter: AppHomePresenterProtocol) {
         self.presenter = presenter
         super.init(nibName: "AppHomeViewController", bundle: nil)
@@ -61,18 +65,23 @@ class AppHomeViewController:BaseViewController{
         addNav()
         setupXIB()
         setupUI()
-        
+        presenter.checkStateLive()
         presenter.loadProfile()
         presenter.getInfoEventHappening(currentDateTime:getCurrentDateTime24h().formatStringToDateTime24h())
         presenter.getInfoEventComingSoon(currentDateTime:getCurrentDateTime24h().formatStringToDateTime24h())
         presenter.getInfoEventEnded(currentDateTime:getCurrentDate().formatStringToDate())
-        presenter.checkStateLive()
         movetoProfile()
         pullRefreshData()
         _ = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(moveToNextPage), userInfo: nil, repeats: true)
         
     }
+    override func viewDidAppear(_ animated: Bool) {
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+    }
+    
+    
     override func viewWillAppear(_ animated: Bool) {
+      
         setupLanguage()
     }
     
@@ -82,7 +91,7 @@ class AppHomeViewController:BaseViewController{
         listEventEnded.removeAll()
         presenter.getInfoEventHappening(currentDateTime:getCurrentDateTime24h().formatStringToDateTime24h())
         presenter.getInfoEventComingSoon(currentDateTime:getCurrentDateTime24h().formatStringToDateTime24h())
-        presenter.getInfoEventEnded(currentDateTime:getCurrentDateTime24h().formatStringToDateTime24h())
+        presenter.getInfoEventEnded(currentDateTime:getCurrentDate().formatStringToDate())
     }
     
     func setupLanguage(){
@@ -94,6 +103,9 @@ class AppHomeViewController:BaseViewController{
         lbNoDataHappening.text = AppLanguage.HandleError.noHappenning.localized
         lbNoDataComingSoon.text = AppLanguage.HandleError.noComingSoon.localized
         lbNoDataEnded.text = AppLanguage.HandleError.noEnded.localized
+        lbRank.text = AppLanguage.Rank.Rank.localized
+        lbSearch.text = AppLanguage.SearchEvent.Search.localized
+        lbHistory.text = AppLanguage.History.History.localized
     }
     
     func setupUI(){
@@ -105,7 +117,7 @@ class AppHomeViewController:BaseViewController{
         scrollView.alwaysBounceVertical = true
         skeletonCollectionView()
         skeletonProfile()
-        
+        btRank.alignTextBelow()
         reloadHomeVC = { [self] in
             refreshListEvent()
             collectionHappenning.reloadData()
@@ -236,6 +248,26 @@ class AppHomeViewController:BaseViewController{
     @IBAction func btSearchEvent(_ sender: UIButton) {
         sender.animationScale()
         let searchEvent = SearchAppHomeViewController(presenter: SearchAppHomePresenter())
+        searchEvent.updateLikeHomeVC = { [self] keyEvent,stateLike in
+            if listEventHappening.contains(where: {$0?.key == keyEvent}) {
+                if let i = listEventHappening.firstIndex(where: { $0!.key == keyEvent }) {
+                    listEventHappening[i]?.stateLike = stateLike
+                    collectionHappenning.reloadItems(at: [IndexPath(row: i, section: 0)])
+                } else {return}
+                
+                
+            } else if listEventComingSoon.contains(where: {$0?.key == keyEvent}) {
+                if let i = listEventComingSoon.firstIndex(where: { $0!.key == keyEvent }) {
+                    listEventComingSoon[i]?.stateLike = stateLike
+                    collectionComingSoon.reloadItems(at: [IndexPath(row: i, section: 0)])
+                } else {return}
+            } else {
+                if let i = listEventEnded.firstIndex(where: { $0!.key == keyEvent }) {
+                    listEventEnded[i]?.stateLike = stateLike
+                    collectionEnded.reloadItems(at: [IndexPath(row: i, section: 0)])
+                } else {return}
+            }
+        }
         self.navigationController?.pushViewController(searchEvent, animated: true)
     }
     @IBAction func btHistoryEvent(_ sender: UIButton) {
@@ -298,14 +330,30 @@ extension AppHomeViewController: UICollectionViewDelegate,UICollectionViewDataSo
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let detailEvent = DetailEventViewController(presenter: DetailEventPresenter())
+
         if collectionView == collectionHappenning {
             detailEvent.keyDetailEvent = (listEventHappening[indexPath.row]?.key)!
+            detailEvent.stateLike = (listEventHappening[indexPath.row]?.stateLike)!
+            detailEvent.updateStateLike = { [self] state in
+                listEventHappening[indexPath.row]?.stateLike = state
+                collectionView.reloadItems(at: [IndexPath(row: indexPath.row, section: 0)])
+            }
             
         } else if collectionView == collectionComingSoon {
             detailEvent.keyDetailEvent = (listEventComingSoon[indexPath.row]?.key)!
+            detailEvent.stateLike = (listEventComingSoon[indexPath.row]?.stateLike)!
+            detailEvent.updateStateLike = { [self] state in
+                listEventComingSoon[indexPath.row]?.stateLike = state
+                collectionView.reloadItems(at: [IndexPath(row: indexPath.row, section: 0)])
+            }
             
         } else {
             detailEvent.keyDetailEvent = (listEventEnded[indexPath.row]?.key)!
+            detailEvent.stateLike = (listEventEnded[indexPath.row]?.stateLike)!
+            detailEvent.updateStateLike = { [self] state in
+                listEventEnded[indexPath.row]?.stateLike = state
+                collectionView.reloadItems(at: [IndexPath(row: indexPath.row, section: 0)])
+            }
             
         }
         self.navigationController?.pushViewController(detailEvent, animated: true)
@@ -323,18 +371,47 @@ extension AppHomeViewController: UICollectionViewDelegate,UICollectionViewDataSo
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == collectionHappenning {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HappenningCellAppHome", for: indexPath) as? HappenningCellAppHome else {return UICollectionViewCell()}
-            if let profileURL =  listEventHappening[indexPath.row]?.urlImage {
-                cell.imageCell.loadImage(urlString: profileURL)
-            }
-            return cell
+            if let listEventHappening = listEventHappening[indexPath.row] {
+                listEventHappening.stateLike == true ? cell.btLike.setImage(AppIcon.icLove, for: .normal) : cell.btLike.setImage(AppIcon.icUnLove, for: .normal)
+                cell.like = { [self] in
+                    switch listEventHappening.stateLike {
+                    case true:
+                        cell.btLike.setImage(AppIcon.icUnLove, for: .normal)
+                        listEventHappening.stateLike = false
+                        presenter.isLikeEvent(keyEvent: listEventHappening.key ?? "", stateLike: false)
+                    default:
+                        cell.btLike.setImage(AppIcon.icLove, for: .normal)
+                        listEventHappening.stateLike = true
+                        presenter.isLikeEvent(keyEvent: listEventHappening.key ?? "", stateLike: true)
+                    }
+                }
+                if let imageURL = listEventHappening.urlImage {
+                    cell.imageCell.loadImage(urlString: imageURL)
+                }
+                return cell
+            } else {return UICollectionViewCell()}
+
         }
         else if collectionView == collectionComingSoon {
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ComingSoonEndedCellAppHome", for: indexPath) as? ComingSoonEndedCellAppHome,let listEventComingSoon = listEventComingSoon[indexPath.row]{
                 cell.timeEvent.text = "\(getFormattedDate(date: listEventComingSoon.date ?? ""))\n\((listEventComingSoon.checkin ?? "").toTimeFormat(format: checkFormatTime12h()))-\((listEventComingSoon.checkout ?? "").toTimeFormat(format: checkFormatTime12h()))"
                 cell.titleEvent.text = listEventComingSoon.title
-                //cell.setData(event: listEventEnded[indexPath.row])
-                if let profileURL = listEventComingSoon.urlImage {
-                    cell.imageView.loadImage(urlString: profileURL)
+                listEventComingSoon.stateLike == true ? cell.btLike.setImage(AppIcon.icLove, for: .normal) : cell.btLike.setImage(AppIcon.icUnLove, for: .normal)
+                cell.like = { [self] in
+                    switch listEventComingSoon.stateLike {
+                    case true:
+                        cell.btLike.setImage(AppIcon.icUnLove, for: .normal)
+                        listEventComingSoon.stateLike = false
+                        presenter.isLikeEvent(keyEvent: listEventComingSoon.key ?? "", stateLike: false)
+                    default:
+                        cell.btLike.setImage(AppIcon.icLove, for: .normal)
+                        listEventComingSoon.stateLike = true
+                        presenter.isLikeEvent(keyEvent: listEventComingSoon.key ?? "", stateLike: true)
+                    }
+                }
+                
+                if let imageURL = listEventComingSoon.urlImage {
+                    cell.imageView.loadImage(urlString: imageURL)
                 }
                 return cell
             } else {return UICollectionViewCell()}
@@ -343,9 +420,21 @@ extension AppHomeViewController: UICollectionViewDelegate,UICollectionViewDataSo
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ComingSoonEndedCellAppHome", for: indexPath) as? ComingSoonEndedCellAppHome,let listEventEnded = listEventEnded[indexPath.row] {
                 cell.timeEvent.text = "\(getFormattedDate(date: listEventEnded.date ?? ""))\n\((listEventEnded.checkin ?? "").toTimeFormat(format: checkFormatTime12h()))-\((listEventEnded.checkout ?? "").toTimeFormat(format: checkFormatTime12h()))"
                 cell.titleEvent.text = listEventEnded.title
-                //cell.setData(event: listEventEnded[indexPath.row])
-                if let profileURL = listEventEnded.urlImage {
-                    cell.imageView.loadImage(urlString: profileURL)
+                listEventEnded.stateLike == true ? cell.btLike.setImage(AppIcon.icLove, for: .normal) : cell.btLike.setImage(AppIcon.icUnLove, for: .normal)
+                cell.like = { [self] in
+                    switch listEventEnded.stateLike {
+                    case true:
+                        cell.btLike.setImage(AppIcon.icUnLove, for: .normal)
+                        listEventEnded.stateLike = false
+                        presenter.isLikeEvent(keyEvent: listEventEnded.key ?? "", stateLike: false)
+                    default:
+                        cell.btLike.setImage(AppIcon.icLove, for: .normal)
+                        listEventEnded.stateLike = true
+                        presenter.isLikeEvent(keyEvent: listEventEnded.key ?? "", stateLike: true)
+                    }
+                }
+                if let imageURL = listEventEnded.urlImage {
+                    cell.imageView.loadImage(urlString: imageURL)
                 }
                 return cell
             } else {return UICollectionViewCell()}
@@ -387,7 +476,13 @@ extension AppHomeViewController: UICollectionViewDelegate,UICollectionViewDataSo
 }
 
 extension AppHomeViewController: AppHomeViewProtocol {
+    func likeEventSuccess() {
+
+    }
     
+    func likeEventFailed() {
+
+    }
     
     func fetchInfoEventHappeningSuccess() {
         listEventHappening = presenter.happeningEvent
@@ -472,6 +567,7 @@ extension AppHomeViewController: AppHomeViewProtocol {
                 imgUser.borderColor = .clear
             }
         } else { return }
+        
         lbName.hideSkeleton()
         lbID.hideSkeleton()
         lbFaculty.hideSkeleton()

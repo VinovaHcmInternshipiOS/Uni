@@ -78,25 +78,9 @@
             filePath = "Uni/ViewController/Notification/NotificationViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
+            startingLineNumber = "61"
+            endingLineNumber = "61"
             landmarkName = "setupLanguage()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "7F0DB37F-B178-40B3-ACD6-D67473E91547"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Uni/ViewController/Home/AppHomeViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "393"
-            endingLineNumber = "393"
-            landmarkName = "fetchInfoEventHappeningSuccess()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -114,54 +98,6 @@
             endingLineNumber = "207"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "5B67212A-9677-44DD-8B8B-431CD8DC2253"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Uni/Base/BaseViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "151"
-            endingLineNumber = "151"
-            landmarkName = "presentLeftMenu()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "5B67212A-9677-44DD-8B8B-431CD8DC2253 - 76e731d305a21e0c"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Uni.BaseViewController.presentLeftMenu() -&gt; ()"
-                  moduleName = "Uni"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/giahuy/Documents/Project%20IOS/Uni/Uni/Base/BaseViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "151"
-                  endingLineNumber = "151"
-                  offsetFromSymbolStart = "453">
-               </Location>
-               <Location
-                  uuid = "5B67212A-9677-44DD-8B8B-431CD8DC2253 - 25ac513ac280ea7a"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 () -&gt; () in Uni.BaseViewController.presentLeftMenu() -&gt; ()"
-                  moduleName = "Uni"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/giahuy/Documents/Project%20IOS/Uni/Uni/Base/BaseViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "152"
-                  endingLineNumber = "152"
-                  offsetFromSymbolStart = "20">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

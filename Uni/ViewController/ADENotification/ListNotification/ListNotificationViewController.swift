@@ -39,8 +39,10 @@ class ListNotificationViewController: BaseViewController {
         presenter.countUser()
         presenter.fetchNotification()
         setupUI()
-        
-        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = false
     }
     
     func setupUI() {
@@ -119,11 +121,9 @@ class ListNotificationViewController: BaseViewController {
             default:
                 presenter.deleteNotiAfter7day(dateCurrent: is12hClockFormat() == true ? (formatterDateTime12h(time: getCurrentDateTime12h()).toDateTimeFormat(format: "dd-MM-yyyy hh:mma")) : (formatterDateTime24h(time: getCurrentDateTime12h()).toDateTimeFormat(format: "dd-MM-yyyy HH:mm")), isClockFormat12h: is12hClockFormat())
             }
-            
+
         }
 
-        
-        
     }
     @IBAction func actionCreate(_ sender: Any) {
         let pushNoti = PushNotificationViewController(presenter: PushNotificationPresenter())

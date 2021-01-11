@@ -17,6 +17,7 @@ enum StyleNavigation {
 class BaseViewController: UIViewController,UIViewControllerTransitioningDelegate, UIGestureRecognizerDelegate{
     let transition = SlideInTransition()
     var reloadHomeVC: (()->Void)? = nil
+    var backTapped : (() -> Void)? = nil
     var isUseMenuButton: Bool = false {
         didSet {
             if isUseMenuButton {
@@ -49,8 +50,13 @@ class BaseViewController: UIViewController,UIViewControllerTransitioningDelegate
         addBackToNavigation()
         //navigationController?.interactivePopGestureRecognizer?.delegate = self
         //navigationItem.titleView = lbTitleVC
+        navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = true
+    }
     
     
     func addBackToNavigation(icon: UIImage = AppIcon.icArrowLeftYellow!) {
@@ -111,6 +117,9 @@ class BaseViewController: UIViewController,UIViewControllerTransitioningDelegate
         }
     }
     @objc func btnBackTapped() {
+        if let complete = self.backTapped {
+            complete()
+        }
         self.navigationController?.popViewController(animated: true)
     }
     
@@ -170,12 +179,15 @@ class BaseViewController: UIViewController,UIViewControllerTransitioningDelegate
         case .Setting:
             let Setting = SettingViewController(presenter: SettingPresenter())
             navigationController?.pushViewController(Setting, animated: true)
-        case .Manage:
-            let Setting = ManageViewController(presenter: ManagePresenter())
-            navigationController?.pushViewController(Setting, animated: true)
+        case .FavoriteEvent:
+            let Favorite = FavoriteEventViewController(presenter: FavoriteEventPresenter())
+            navigationController?.pushViewController(Favorite, animated: true)
         case .PrivacyPolicy:
             let Privacy = PrivacyPolicyViewController(presenter: PrivacyPolicyPresenter())
             navigationController?.pushViewController(Privacy, animated: true)
+        case .Manage:
+            let Setting = ManageViewController(presenter: ManagePresenter())
+            navigationController?.pushViewController(Setting, animated: true)
         }
         
         

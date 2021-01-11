@@ -13,8 +13,9 @@ enum MenuType: Int {
     case Home
     case About
     case Setting
-    case Manage
+    case FavoriteEvent
     case PrivacyPolicy
+    case Manage
 }
 class SlideMenuViewController: BaseViewController {
 
@@ -46,10 +47,10 @@ class SlideMenuViewController: BaseViewController {
         btLogout.setTitleColor(AppColor.YellowFAB32A, for: .normal)
         presenter.checkAuth { [self] (role) in
             if role == "Admin" {
-                arrayFeature = ["Home","About","Setting","Manage","Privacy Policy"]
+                arrayFeature = [AppLanguage.SlideMenu.Home.localized,AppLanguage.SlideMenu.About.localized,AppLanguage.SlideMenu.Setting.localized,AppLanguage.SlideMenu.Favorite.localized,AppLanguage.SlideMenu.Privacy.localized,AppLanguage.SlideMenu.Manage.localized]
                 
             } else {
-                arrayFeature = ["Home","About","Setting","Privacy Policy"]
+                arrayFeature = [AppLanguage.SlideMenu.Home.localized,AppLanguage.SlideMenu.About.localized,AppLanguage.SlideMenu.Setting.localized,AppLanguage.SlideMenu.Favorite.localized,AppLanguage.SlideMenu.Privacy.localized]
             }
             tableView.reloadData()
             

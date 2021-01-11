@@ -20,6 +20,7 @@ class SearchAppHomeViewController: BaseViewController, UITextFieldDelegate {
     var clearSearchTextField: (()->Void)? = nil
     var presenter: SearchAppHomePresenterProtocol
     var listResultsEvent = [Event?]()
+    var updateLikeHomeVC: ((_ keyEvent: String,_ stateLike:Bool)->Void)? = nil
     init(presenter: SearchAppHomePresenterProtocol) {
         self.presenter = presenter
         super.init(nibName: "SearchAppHomeViewController", bundle: nil)
@@ -186,8 +187,18 @@ extension SearchAppHomeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
        // if indexPath.section != 0 {
             let detailEvent = DetailEventViewController(presenter: DetailEventPresenter())
-            detailEvent.keyDetailEvent = (listResultsEvent[indexPath.row]?.key)!
+        if let listResultsEvent = listResultsEvent[indexPath.row] {
+            detailEvent.keyDetailEvent = listResultsEvent.key ?? ""
+            detailEvent.stateLike = listResultsEvent.stateLike ?? false
+            detailEvent.updateStateLike = { [self] state in
+                listResultsEvent.stateLike = state
+                tableView.reloadRows(at: [IndexPath(row: indexPath.row, section: 0)], with: .automatic)
+                tableView.hideSkeleton()
+                updateLikeHomeVC?(listResultsEvent.key ?? "",state)
+            }
             self.navigationController?.pushViewController(detailEvent, animated: true)
+        } else {return}
+            
         //}
     }
     
@@ -197,6 +208,21 @@ extension SearchAppHomeViewController: UITableViewDataSource {
             cell.titleEvent.text = listResultsEvent.title ?? ""
             
             cell.dateEvent.text = "\(getFormattedDate(date: listResultsEvent.date ?? "")) \((listResultsEvent.checkin ?? "").toTimeFormat(format: checkFormatTime12h()))-\((listResultsEvent.checkout ?? "").toTimeFormat(format: checkFormatTime12h()))"
+            listResultsEvent.stateLike == true ? cell.btLike.setImage(AppIcon.icLove, for: .normal) : cell.btLike.setImage(AppIcon.icUnLove, for: .normal)
+            cell.likeEvent = { [self] in
+                switch listResultsEvent.stateLike {
+                case true:
+                    cell.btLike.setImage(AppIcon.icUnLove, for: .normal)
+                    listResultsEvent.stateLike = false
+                    presenter.isLikeEvent(keyEvent: listResultsEvent.key ?? "", stateLike: false)
+                    updateLikeHomeVC?(listResultsEvent.key ?? "",false)
+                default:
+                    cell.btLike.setImage(AppIcon.icLove, for: .normal)
+                    listResultsEvent.stateLike = true
+                    presenter.isLikeEvent(keyEvent: listResultsEvent.key ?? "", stateLike: true)
+                    updateLikeHomeVC?(listResultsEvent.key ?? "",true)
+                }
+            }
             if let eventURL = listResultsEvent.urlImage {
                 cell.imgEvent.loadImage(urlString: eventURL)
             }
@@ -212,12 +238,19 @@ extension SearchAppHomeViewController: UITableViewDataSource {
 }
 
 extension SearchAppHomeViewController: SearchAppHomeViewProtocol{
+    func likeEventSuccess() {
+        
+    }
+    
+    func likeEventFailed() {
+        
+    }
+    
     func fetchEventSuccess() {
         remakeData()
     }
     
     func fetchEventFailed() {
-        //listResultsEvent.removeAll()
         removeSpinner()
         tableView.hideSkeleton()
         checkEmptyData()

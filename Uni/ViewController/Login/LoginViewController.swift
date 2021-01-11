@@ -103,17 +103,12 @@ class LoginViewController: UIViewController {
 
 extension LoginViewController: LoginViewProtocol {
 
-    func checkAuthSuccess(role: String) {
+    func checkAuthSuccess(role: String,code:String) {
         print(role,"Change")
         if role != "Admin" {
-            Messaging.messaging().subscribe(toTopic: "notify") { error in
-                
-                if error != nil {
-                    print("Subscribed to notify topic failed")
-                } else {
-                    print("Subscribed to notify topic success")
-                }
-            }
+            Messaging.messaging().subscribe(toTopic: "notify")
+        } else {
+            Messaging.messaging().unsubscribe(fromTopic: "notify")
         }
 
         AppColor.YellowFAB32A = role == "Admin" ? AppColor.RedFF7C75 : AppColor.DefaultYellowFAB32A
@@ -143,6 +138,7 @@ extension LoginViewController: LoginViewProtocol {
         let AppHomeVC = AppHomeViewController(presenter: AppHomePresenter())
         UserDefaults.standard.setValue(0, forKey: "caseMenu")
         navigationController?.pushViewController(AppHomeVC, animated: true)
+        AppHomeVC.code = code
         Switcher.updateRootVC()
         imgSignIn.isHidden = false
         spinnerLoading.isHidden = true
@@ -161,7 +157,6 @@ extension LoginViewController: LoginViewProtocol {
     func loginSuccess(uid: String) {
         presenter.checkSigned(uid: uid, timeSignedIn: getCurrentDateTime24h())
         presenter.checkAuth(uid: uid) { (role) in}
-        
     }
     
     func loginFailed(error: Error) {

@@ -33,6 +33,7 @@
 "Manage" = "Manage";
 "Privacy Policy" = "Privacy Policy";
 "Logout" = "Logout";
+"Favorite Event" = "Favorite Event";
 
 //MARK: -- Profile
 "Gender" = "Gender";
@@ -57,6 +58,7 @@
 "Total Event:" = "Total Event:";
 "Total Score:" = "Total Score:";
 "SEMESTER" = "SEMESTER";
+"History" = "History";
 
 //MARK: -- Semester
 "Total Event:" = "Total Event:";
@@ -271,6 +273,10 @@
 //MARK: -- ListNotification
 "List\nNotifications" = "List\nNotifications";
 
+//MARK: -- Favorite Event
+"Favorite\nEvents" = "Favorite\nEvents";
+
+
 "Title" = "Title";
 "Content" = "Content";
 
@@ -285,3 +291,6 @@
 
 "less" = "less";
 "more" = "more";
+
+"Vietnamese" = "Vietnamese";
+"English" = "English";

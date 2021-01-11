@@ -15,8 +15,9 @@ class Event {
     var type: String?
     var title: String?
     var urlImage: String?
+    var stateLike: Bool?
     
-    init(title: String,key: String, date:String,checkout:String, checkin:String, type: String, urlImage: String) {
+    init(title: String,key: String, date:String,checkout:String, checkin:String, type: String, urlImage: String, stateLike: Bool) {
         self.title = title
         self.key = key
         self.date = date
@@ -24,6 +25,7 @@ class Event {
         self.checkin = checkin
         self.type = type
         self.urlImage = urlImage
+        self.stateLike = stateLike
     }
     
 

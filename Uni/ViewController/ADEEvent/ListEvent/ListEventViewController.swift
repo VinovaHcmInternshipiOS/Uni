@@ -43,7 +43,7 @@ class ListEventViewController: BaseViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        //showSpinner()
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = false
     }
     
     func setupLanguage(){

@@ -85,6 +85,18 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iJi-vD-B0e">
+                                <rect key="frame" x="316" y="10" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="TgF-re-hk1"/>
+                                    <constraint firstAttribute="height" constant="20" id="fWh-tJ-jSe"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="icUnLove"/>
+                                <connections>
+                                    <action selector="btLike:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="OfR-vZ-lGZ"/>
+                                    <action selector="btLike:" destination="-1" eventType="touchUpInside" id="wQn-cD-RnM"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -96,7 +108,9 @@
                             <constraint firstAttribute="trailing" secondItem="RFk-WO-Qad" secondAttribute="trailing" constant="35" id="Qsu-So-N6O"/>
                             <constraint firstItem="sDX-WX-W6r" firstAttribute="width" secondItem="dRa-H0-pXh" secondAttribute="height" multiplier="73:100" id="Y91-40-huQ"/>
                             <constraint firstItem="RFk-WO-Qad" firstAttribute="top" secondItem="rSo-4i-4YG" secondAttribute="bottom" constant="10" id="eQy-C6-6OJ"/>
+                            <constraint firstItem="iJi-vD-B0e" firstAttribute="top" secondItem="dRa-H0-pXh" secondAttribute="top" constant="10" id="gep-7i-6Pj"/>
                             <constraint firstItem="RFk-WO-Qad" firstAttribute="leading" secondItem="sDX-WX-W6r" secondAttribute="trailing" constant="28" id="jx2-J8-z9W"/>
+                            <constraint firstAttribute="trailing" secondItem="iJi-vD-B0e" secondAttribute="trailing" constant="10" id="sTQ-xt-A9T"/>
                             <constraint firstAttribute="trailing" secondItem="rSo-4i-4YG" secondAttribute="trailing" constant="35" id="wnI-Q9-zvR"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
@@ -129,6 +143,7 @@
                 <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
             </userDefinedRuntimeAttributes>
             <connections>
+                <outlet property="btLike" destination="iJi-vD-B0e" id="jQ0-yR-eJu"/>
                 <outlet property="dateEvent" destination="RFk-WO-Qad" id="jxq-EK-8gC"/>
                 <outlet property="imgEvent" destination="sDX-WX-W6r" id="nZI-xb-fpJ"/>
                 <outlet property="titleEvent" destination="rSo-4i-4YG" id="z0f-m1-hL4"/>
@@ -137,6 +152,7 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="icUnLove" width="20" height="20"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

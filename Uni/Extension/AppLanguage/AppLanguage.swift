@@ -36,6 +36,8 @@ class AppLanguage {
     static let Total = "Total"
     static let Less = "less"
     static let More = "more"
+    static let Vietnamese = "Vietnamese"
+    static let English = "English"
     //MARK: -- HandleError
     class HandleError {
         static let anError = "An Error"
@@ -133,7 +135,8 @@ class AppLanguage {
         static let About = "About"
         static let Setting = "Setting"
         static let Manage = "Manage"
-        static let Privacy = "Privacy"
+        static let Favorite = "Favorite Event"
+        static let Privacy = "Privacy Policy"
         static let btLogout = "Logout"
     }
     
@@ -170,6 +173,7 @@ class AppLanguage {
         static let TotalEvent = "Total Event:"
         static let TotalScore = "Total Score:"
         static let Semester = "SEMESTER"
+        static let History = "History"
     }
     
     //MARK:-- Semester
@@ -358,5 +362,10 @@ class AppLanguage {
     //MARK: -- List Notification
     class ListNotification {
         static let ListNotification = "List\nNotifications"
+    }
+    
+    //MARK: -- Favorite Event
+    class FavoriteEvent {
+        static let FavoriteEvent = "Favorite\nEvents"
     }
 }

@@ -18,8 +18,9 @@ class DetailEvent {
     var checkout: String?
     var urlImageLandscape: String?
     var urlImagePortal: String?
+    var stateLike:Bool?
     
-    init(title: String,content: String, address:String,score: Int,date: String,checkin:String,checkout: String, urlImageLandscape: String,urlImagePortal: String) {
+    init(title: String,content: String, address:String,score: Int,date: String,checkin:String,checkout: String, urlImageLandscape: String,urlImagePortal: String,stateLike:Bool) {
         self.title = title
         self.content = content
         self.address = address
@@ -29,6 +30,7 @@ class DetailEvent {
         self.checkin = checkin
         self.urlImageLandscape = urlImageLandscape
         self.urlImagePortal = urlImagePortal
+        self.stateLike = stateLike
     }
     
 

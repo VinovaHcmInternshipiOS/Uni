@@ -9,9 +9,11 @@ import UIKit
 
 class ComingSoonEndedCellAppHome: UICollectionViewCell {
 
+    @IBOutlet weak var btLike: UIButton!
     @IBOutlet weak var timeEvent: UILabel!
     @IBOutlet weak var titleEvent: UILabel!
     @IBOutlet weak var imageView: UIImageView!
+    var like: (()->Void)? = nil
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -26,5 +28,8 @@ class ComingSoonEndedCellAppHome: UICollectionViewCell {
         dateFormatter.dateFormat = "dd MMM"
         titleEvent.text = model.title
         timeEvent.text = "\(dateFormatter.string(from: dateTime!))\n\(model.checkin ?? "")-\(model.checkout ?? "")"
+    }
+    @IBAction func btLike(_ sender: Any) {
+        like?()
     }
 }

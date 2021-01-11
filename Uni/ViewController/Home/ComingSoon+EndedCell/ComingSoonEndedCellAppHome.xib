@@ -44,6 +44,7 @@
                                     <userDefinedRuntimeAttribute type="number" keyPath="shadowBlur">
                                         <real key="value" value="15"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hrT-m8-npY">
@@ -103,6 +104,20 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aDO-un-jTE">
+                                        <rect key="frame" x="133" y="10" width="20" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="SHy-9I-S70"/>
+                                            <constraint firstAttribute="width" constant="20" id="fbe-J8-8hj"/>
+                                        </constraints>
+                                        <state key="normal" image="icUnLove"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="btLike:" destination="gTV-IL-0wX" eventType="touchUpInside" id="O3U-fV-R3a"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -115,6 +130,8 @@
                                     <constraint firstItem="z0X-ld-dvh" firstAttribute="leading" secondItem="hrT-m8-npY" secondAttribute="leading" id="XKG-zF-f1h"/>
                                     <constraint firstAttribute="trailing" secondItem="z0X-ld-dvh" secondAttribute="trailing" id="e6l-Z0-dHD"/>
                                     <constraint firstItem="c4t-l6-QJ9" firstAttribute="top" secondItem="z0X-ld-dvh" secondAttribute="bottom" constant="13" id="jYg-or-JdF"/>
+                                    <constraint firstAttribute="trailing" secondItem="aDO-un-jTE" secondAttribute="trailing" constant="10" id="mOA-DR-0a5"/>
+                                    <constraint firstItem="aDO-un-jTE" firstAttribute="top" secondItem="hrT-m8-npY" secondAttribute="top" constant="10" id="nJa-85-le1"/>
                                     <constraint firstItem="aVH-i4-psv" firstAttribute="leading" secondItem="hrT-m8-npY" secondAttribute="leading" constant="13" id="oHM-08-S3J"/>
                                     <constraint firstAttribute="trailing" secondItem="z0X-ld-dvh" secondAttribute="trailing" id="tzj-ne-QWb"/>
                                     <constraint firstItem="z0X-ld-dvh" firstAttribute="top" secondItem="hrT-m8-npY" secondAttribute="top" id="vgC-sA-iUo"/>
@@ -161,6 +178,7 @@
                 <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
             </userDefinedRuntimeAttributes>
             <connections>
+                <outlet property="btLike" destination="aDO-un-jTE" id="uRe-b6-het"/>
                 <outlet property="imageView" destination="z0X-ld-dvh" id="Uaa-Oz-2sc"/>
                 <outlet property="timeEvent" destination="aVH-i4-psv" id="dHA-Mf-mXf"/>
                 <outlet property="titleEvent" destination="c4t-l6-QJ9" id="xRY-5D-m8l"/>
@@ -169,6 +187,7 @@
         </collectionViewCell>
     </objects>
     <resources>
+        <image name="icUnLove" width="20" height="20"/>
         <namedColor name="5B5B5B">
             <color red="0.35699999332427979" green="0.35699999332427979" blue="0.35699999332427979" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

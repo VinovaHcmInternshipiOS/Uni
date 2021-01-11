@@ -131,7 +131,7 @@ class ListEventPresenter: ListEventPresenterProtocol {
                             let key = dict["Key"] as! String
                             let type = dict["Type"] as! String
                             let urrlImage = dict["ImagePortal"] as! String
-                            let request = Event(title: title, key: key, date: date, checkout: checkout, checkin: checkin, type: type, urlImage: urrlImage)
+                            let request = Event(title: title, key: key, date: date, checkout: checkout, checkin: checkin, type: type, urlImage: urrlImage, stateLike: false)
                             infoEvent.append(request)
                             //infoEvent.insert(request, at: 0)
                             view?.fetchEventSuccess()
@@ -167,7 +167,7 @@ class ListEventPresenter: ListEventPresenterProtocol {
                             let type = dict["Type"] as! String
                             let urrlImage = dict["ImagePortal"] as! String
 
-                            let request = Event(title: title, key: key, date: date, checkout: checkout, checkin: checkin, type: type, urlImage: urrlImage)
+                            let request = Event(title: title, key: key, date: date, checkout: checkout, checkin: checkin, type: type, urlImage: urrlImage, stateLike: false)
                              
                             if  title.lowercased().contains(keySearch) || date.lowercased().contains(keySearch) || checkin.lowercased().contains(keySearch) || checkout.lowercased().contains(keySearch){
                                 //infoEvent.insert(request, at: 0)

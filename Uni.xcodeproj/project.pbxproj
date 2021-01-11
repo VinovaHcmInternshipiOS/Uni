@@ -127,6 +127,9 @@
 		F5940FAA25763B8C00427480 /* CreateUserPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5940FA725763B8C00427480 /* CreateUserPresenter.swift */; };
 		F5940FAB25763B8C00427480 /* CreateUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5940FA825763B8C00427480 /* CreateUserViewController.swift */; };
 		F5940FAC25763B8C00427480 /* CreateUserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5940FA925763B8C00427480 /* CreateUserViewController.xib */; };
+		F59EC42425AAB51100388558 /* FavoriteEventPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59EC42125AAB51100388558 /* FavoriteEventPresenter.swift */; };
+		F59EC42525AAB51100388558 /* FavoriteEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59EC42225AAB51100388558 /* FavoriteEventViewController.swift */; };
+		F59EC42625AAB51100388558 /* FavoriteEventViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F59EC42325AAB51100388558 /* FavoriteEventViewController.xib */; };
 		F59EE1122589E4E100ABF26D /* AppKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59EE1112589E4E100ABF26D /* AppKey.swift */; };
 		F5A04E252555015700DB396C /* SearchEventTextFieldHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A04E242555015700DB396C /* SearchEventTextFieldHeader.swift */; };
 		F5A04E292555016100DB396C /* SearchEventTextFieldHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5A04E282555016100DB396C /* SearchEventTextFieldHeader.xib */; };
@@ -324,6 +327,9 @@
 		F5940FA725763B8C00427480 /* CreateUserPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUserPresenter.swift; sourceTree = "<group>"; };
 		F5940FA825763B8C00427480 /* CreateUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUserViewController.swift; sourceTree = "<group>"; };
 		F5940FA925763B8C00427480 /* CreateUserViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateUserViewController.xib; sourceTree = "<group>"; };
+		F59EC42125AAB51100388558 /* FavoriteEventPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteEventPresenter.swift; sourceTree = "<group>"; };
+		F59EC42225AAB51100388558 /* FavoriteEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteEventViewController.swift; sourceTree = "<group>"; };
+		F59EC42325AAB51100388558 /* FavoriteEventViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteEventViewController.xib; sourceTree = "<group>"; };
 		F59EE1112589E4E100ABF26D /* AppKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppKey.swift; sourceTree = "<group>"; };
 		F5A04E242555015700DB396C /* SearchEventTextFieldHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchEventTextFieldHeader.swift; sourceTree = "<group>"; };
 		F5A04E282555016100DB396C /* SearchEventTextFieldHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchEventTextFieldHeader.xib; sourceTree = "<group>"; };
@@ -734,6 +740,7 @@
 		F582EA7F254FEE75002BF86F /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				F59EC42025AAB4F200388558 /* FavoriteEvent */,
 				F52B884225985716004D9ABC /* ADENotification */,
 				F52B88152595CE70004D9ABC /* Notification */,
 				F57DD1542583703E00B70728 /* PushNotification */,
@@ -986,6 +993,16 @@
 				F5940FA925763B8C00427480 /* CreateUserViewController.xib */,
 			);
 			path = CreateUser;
+			sourceTree = "<group>";
+		};
+		F59EC42025AAB4F200388558 /* FavoriteEvent */ = {
+			isa = PBXGroup;
+			children = (
+				F59EC42125AAB51100388558 /* FavoriteEventPresenter.swift */,
+				F59EC42225AAB51100388558 /* FavoriteEventViewController.swift */,
+				F59EC42325AAB51100388558 /* FavoriteEventViewController.xib */,
+			);
+			path = FavoriteEvent;
 			sourceTree = "<group>";
 		};
 		F59EE10A2589E05A00ABF26D /* AppKey */ = {
@@ -1426,6 +1443,7 @@
 				F5A04E342555054200DB396C /* SearchResultCell.xib in Resources */,
 				F582EABC254FF1D1002BF86F /* Raleway-Black.ttf in Resources */,
 				F52CD26725788157009C7188 /* ConfirmPasswordViewController.xib in Resources */,
+				F59EC42625AAB51100388558 /* FavoriteEventViewController.xib in Resources */,
 				F50D639C25545317007509D0 /* RankTableViewCell.xib in Resources */,
 				F5A2AF08255A7C7800502E0F /* SlideMenuCell.xib in Resources */,
 				F52B88222595DCEF004D9ABC /* NotificationCell.xib in Resources */,
@@ -1514,6 +1532,7 @@
 				F52B88212595DCEF004D9ABC /* NotificationCell.swift in Sources */,
 				F51260482566560C00B517DC /* ProfileTableViewCell.swift in Sources */,
 				F5FAAF4F256287BA0036EA95 /* DetailEvent.swift in Sources */,
+				F59EC42425AAB51100388558 /* FavoriteEventPresenter.swift in Sources */,
 				F52B884825985740004D9ABC /* ListNotificationViewController.swift in Sources */,
 				F5CF0CFC257601D800D3BBF8 /* ListUserViewController.swift in Sources */,
 				F593CBF3255BE863005D4F15 /* UIButton+Extension.swift in Sources */,
@@ -1558,6 +1577,7 @@
 				F5CF0D022576020C00D3BBF8 /* ListUserCell.swift in Sources */,
 				F5937D3B2578D3F6007EA398 /* DetailAccount.swift in Sources */,
 				F5940FAB25763B8C00427480 /* CreateUserViewController.swift in Sources */,
+				F59EC42525AAB51100388558 /* FavoriteEventViewController.swift in Sources */,
 				F56DFF63256909820080A31F /* DatePickerViewViewController.swift in Sources */,
 				F57DD1592583705600B70728 /* PushNotificationViewController.swift in Sources */,
 				F50D63A62554EDCC007509D0 /* SearchAppHomeViewController.swift in Sources */,

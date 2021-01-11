@@ -38,7 +38,6 @@ class NotificationViewController: BaseViewController {
         setupUI()
         presenter.fetchNotification(dateCurrent: is12hClockFormat() == true ? (formatterDateTime12h(time: getCurrentDateTime12h()).toDateTimeFormat(format: "dd-MM-yyyy hh:mma")) : (formatterDateTime24h(time: getCurrentDateTime12h()).toDateTimeFormat(format: "dd-MM-yyyy HH:mm")), isClockFormat12h: is12hClockFormat())
     }
-
     
     func setupUI(){
         tableView.delegate = self
@@ -49,7 +48,6 @@ class NotificationViewController: BaseViewController {
         pullRefreshData()
         pullControl.tintColor = AppColor.YellowFAB32A
         skeletonView()
-        
     }
     
     func skeletonView(){

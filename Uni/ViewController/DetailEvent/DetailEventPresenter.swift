@@ -20,6 +20,8 @@ protocol DetailEventViewProtocol: class {
     func fetchDetailFailed()
     func fetchJoinerEventSuccess()
     func fetchJoinerEventFailed()
+    func likeEventSuccess(stateLike:Bool)
+    func likeEventFailed()
 }
 
 // MARK: Presenter -
@@ -29,12 +31,14 @@ protocol DetailEventPresenterProtocol: class {
     var joinerEvent: Int? {get set}
     func getDetailEvent(keyEvent: String)
     func getJoinerEvent(keyEvent: String)
+    func isLikeEvent(keyEvent: String, stateLike: Bool)
 }
 
 class DetailEventPresenter: DetailEventPresenterProtocol {
 
     weak var view: DetailEventViewProtocol?
     var ref = Database.database().reference()
+    var user = Auth.auth().currentUser
     var databaseHandle = DatabaseHandle()
     var detailEvent: DetailEvent?
     var joinerEvent: Int?
@@ -57,9 +61,20 @@ class DetailEventPresenter: DetailEventPresenterProtocol {
                 let urlImagePortal = dict["ImagePortal"] as! String
                 let urlImageLandscape = dict["ImageLandscape"] as! String
                 
-                detailEvent = DetailEvent(title: title, content: content, address: address, score: score, date: date, checkin: checkin, checkout: checkout, urlImageLandscape:urlImageLandscape,urlImagePortal: urlImagePortal)
-
-                view?.fetchDetailSuccess()
+                let placeRef = self.ref.child("Event/\(keyEvent)/Like/\(user?.uid ?? "")")
+                placeRef.observeSingleEvent(of:.value, with: { [self] snapshot in
+                    if snapshot.exists()
+                    {
+                        let dict = snapshot.value as! [String: Any]
+                        let like = dict["StateLike"] as! Bool
+                        detailEvent = DetailEvent(title: title, content: content, address: address, score: score, date: date, checkin: checkin, checkout: checkout, urlImageLandscape:urlImageLandscape,urlImagePortal: urlImagePortal,stateLike: like)
+                        view?.fetchDetailSuccess()
+                    } else {
+                        detailEvent = DetailEvent(title: title, content: content, address: address, score: score, date: date, checkin: checkin, checkout: checkout, urlImageLandscape:urlImageLandscape,urlImagePortal: urlImagePortal,stateLike: false)
+                        view?.fetchDetailSuccess()
+                    }
+                    
+                })
             }
             else
             {
@@ -85,6 +100,19 @@ class DetailEventPresenter: DetailEventPresenterProtocol {
         })
     }
     
+    func isLikeEvent(keyEvent: String, stateLike: Bool) {
+        let path = self.ref.child("Event/\(keyEvent)/Like/\(user?.uid ?? "")/").child("StateLike")
+        path.setValue(stateLike) { [self]
+            (error:Error?, ref:DatabaseReference) in
+            if error != nil {
+                view?.likeEventFailed()
+            }
+            else
+            {
+                view?.likeEventSuccess(stateLike:stateLike)
+            }
+        }
+    }
 
    
     

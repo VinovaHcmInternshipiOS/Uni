@@ -50,6 +50,10 @@ class SettingViewController: BaseViewController, SettingViewProtocol {
         
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+    }
+    
     func setupLanguage(){
         lbSetting.text = AppLanguage.Setting.Setting.localized
         lbLanguage.text = AppLanguage.Setting.Language.localized
@@ -75,14 +79,14 @@ class SettingViewController: BaseViewController, SettingViewProtocol {
     @objc func changeLanguage(_ recognizer: UIGestureRecognizer) {
         let alert = UIAlertController(title: AppLanguage.Setting.Language.localized, message: nil, preferredStyle: .actionSheet)
             
-        alert.addAction(UIAlertAction(title: "Vietnamese", style: .default , handler:{ [self] (UIAlertAction)in
+        alert.addAction(UIAlertAction(title: AppLanguage.Vietnamese.localized, style: .default , handler:{ [self] (UIAlertAction)in
                 UserDefaults.standard.set("vi", forKey: "AppleLanguage")
             chooseLanguage.text = "\(UserDefaults.standard.value(forKey: "AppleLanguage") ?? "vi")"
             viewDidLoad()
    
             }))
             
-        alert.addAction(UIAlertAction(title: "English", style: .default , handler:{ [self] (UIAlertAction)in
+        alert.addAction(UIAlertAction(title: AppLanguage.English.localized, style: .default , handler:{ [self] (UIAlertAction)in
                 UserDefaults.standard.set("en", forKey: "AppleLanguage")
             chooseLanguage.text = "\(UserDefaults.standard.value(forKey: "AppleLanguage") ?? "en")"
             viewDidLoad()

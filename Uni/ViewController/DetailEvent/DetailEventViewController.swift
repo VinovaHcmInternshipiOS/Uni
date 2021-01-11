@@ -14,6 +14,7 @@ class DetailEventViewController: BaseViewController {
 
 	var presenter: DetailEventPresenterProtocol
     @IBOutlet weak var lbDetail: UILabel!
+    @IBOutlet weak var btLike: UIButton!
     @IBOutlet weak var lbOverview: UILabel!
     @IBOutlet weak var iconPerson: UIButton!
     @IBOutlet weak var viewTimeLocation: UIView!
@@ -24,6 +25,8 @@ class DetailEventViewController: BaseViewController {
     @IBOutlet weak var dateEvent: UILabel!
     @IBOutlet weak var addressEvent: UILabel!
     var keyDetailEvent = ""
+    var stateLike = false
+    var updateStateLike: ((_ state:Bool)->Void)? = nil
 	init(presenter: DetailEventPresenterProtocol) {
         self.presenter = presenter
         super.init(nibName: "DetailEventViewController", bundle: nil)
@@ -57,10 +60,30 @@ class DetailEventViewController: BaseViewController {
         lbDetail.text = AppLanguage.DetailEvent.Detail.localized
         lbOverview.text = AppLanguage.DetailEvent.Overview.localized
     }
+    @IBAction func btLike(_ sender: Any) {
+        switch stateLike {
+        case true:
+            presenter.isLikeEvent(keyEvent: keyDetailEvent, stateLike: false)
+        default:
+            presenter.isLikeEvent(keyEvent: keyDetailEvent, stateLike: true)
+        }
+        
+    }
     
 }
 
 extension DetailEventViewController: DetailEventViewProtocol {
+    func likeEventSuccess(stateLike:Bool) {
+        self.stateLike = stateLike
+        stateLike == true ? btLike.setImage(AppIcon.icLove30, for: .normal) : btLike.setImage(AppIcon.icUnLove30, for: .normal)
+        updateStateLike?(stateLike)
+        
+    }
+    
+    func likeEventFailed() {
+        
+    }
+    
     func fetchJoinerEventSuccess() {
         let joiner = presenter.joinerEvent
         if let joiner = joiner {
@@ -81,6 +104,7 @@ extension DetailEventViewController: DetailEventViewProtocol {
             scoreEvent.text = "\(detail.score ?? 0)"
             dateEvent.text = "\(getFormattedDate(date: detail.date ?? ""))\n\((detail.checkin ?? "").toTimeFormat(format: checkFormatTime12h()))-\((detail.checkout ?? "").toTimeFormat(format: checkFormatTime12h()))"
             addressEvent.text = detail.address
+            detail.stateLike == true ? btLike.setImage(AppIcon.icLove30, for: .normal) : btLike.setImage(AppIcon.icUnLove30, for: .normal)
             //joinEvent.text = detail.joinEvent
            
         } else { return }

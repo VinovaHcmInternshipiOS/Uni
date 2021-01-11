@@ -25,6 +25,8 @@ protocol AppHomeViewProtocol: class {
     func fetchInfoEventEndedSuccess()
     func fetchInfoEventEndedFailed()
     func checkStateLiveSuccess()
+    func likeEventSuccess()
+    func likeEventFailed()
 }
 
 // MARK: Presenter -
@@ -41,6 +43,7 @@ protocol AppHomePresenterProtocol: class {
     func getInfoEventComingSoon(currentDateTime:Date)
     func getInfoEventEnded(currentDateTime: Date)
     func checkStateLive()
+    func isLikeEvent(keyEvent:String,stateLike:Bool)
     
     
 }
@@ -48,6 +51,7 @@ protocol AppHomePresenterProtocol: class {
 class AppHomePresenter: AppHomePresenterProtocol {
     
     weak var view: AppHomeViewProtocol?
+    var code = ""
     var ref = Database.database().reference()
     var databaseHandle = DatabaseHandle()
     var user = Auth.auth().currentUser
@@ -56,7 +60,7 @@ class AppHomePresenter: AppHomePresenterProtocol {
     var happeningEvent: [Event?] = []
     var comingsoonEvent: [Event?] = []
     var endedEvent: [Event?] = []
-    
+
     func getInfoEventHappening(currentDateTime: Date) {
         happeningEvent.removeAll()
         ref.child("Event").observeSingleEvent(of: .value) { [self] (snapshot) in
@@ -74,7 +78,7 @@ class AppHomePresenter: AppHomePresenterProtocol {
                             let key = dict["Key"] as! String
                             let type = dict["Type"] as! String
                             let urrlImage = dict["ImageLandscape"] as! String
-                            let request = Event(title: title, key: key, date: date, checkout: checkout, checkin: checkin, type: type, urlImage: urrlImage)
+                            let request = Event(title: title, key: key, date: date, checkout: checkout, checkin: checkin, type: type, urlImage: urrlImage, stateLike: true)
                             if  currentDateTime >=  "\(date) \(checkin)".formatStringToDateTime24h() && currentDateTime <= "\(date) \(checkout)".formatStringToDateTime24h(){
                                 happeningEvent.append(request)
                                 view?.fetchInfoEventHappeningSuccess()
@@ -114,13 +118,31 @@ class AppHomePresenter: AppHomePresenterProtocol {
                             let key = dict["Key"] as! String
                             let type = dict["Type"] as! String
                             let urrlImage = dict["ImagePortal"] as! String
-                            let request = Event(title: title, key: key, date: date, checkout: checkout, checkin: checkin, type: type, urlImage: urrlImage)
-                            if "\(date) \(checkin)".formatStringToDateTime24h() > currentDateTime {
-                                comingsoonEvent.append(request)
-                                view?.fetchInfoEventComingSoonSuccess()
-                            } else {
-                                view?.fetchInfoEventComingSoonFailed()
-                            }
+    
+                            let placeRef = self.ref.child("Event/\(keyEvent.key)/Like/\(user?.uid ?? "")")
+                            placeRef.observeSingleEvent(of:.value, with: { [self] snapshot in
+                                if snapshot.exists()
+                                {
+                                    let dict = snapshot.value as! [String: Any]
+                                    let like = dict["StateLike"] as! Bool
+                                    let request = Event(title: title, key: key, date: date, checkout: checkout, checkin: checkin, type: type, urlImage: urrlImage, stateLike: like)
+                                    if "\(date) \(checkin)".formatStringToDateTime24h() > currentDateTime {
+                                        comingsoonEvent.append(request)
+                                        view?.fetchInfoEventComingSoonSuccess()
+                                    } else {
+                                        view?.fetchInfoEventComingSoonFailed()
+                                    }
+                                } else {
+                                    let request = Event(title: title, key: key, date: date, checkout: checkout, checkin: checkin, type: type, urlImage: urrlImage, stateLike: false)
+                                    if "\(date) \(checkin)".formatStringToDateTime24h() > currentDateTime {
+                                        comingsoonEvent.append(request)
+                                        view?.fetchInfoEventComingSoonSuccess()
+                                    } else {
+                                        view?.fetchInfoEventComingSoonFailed()
+                                    }
+                                }
+                                
+                            })
                         }
                         else
                         {
@@ -153,13 +175,31 @@ class AppHomePresenter: AppHomePresenterProtocol {
                             let key = dict["Key"] as! String
                             let type = dict["Type"] as! String
                             let urrlImage = dict["ImagePortal"] as! String
-                            let request = Event(title: title, key: key, date: date, checkout: checkout, checkin: checkin, type: type, urlImage: urrlImage)
-                            if "\(date) \(checkout)".formatStringToDateTime24h() < currentDateTime {
-                                endedEvent.append(request)
-                                view?.fetchInfoEventEndedSuccess()
-                            } else {
-                                view?.fetchInfoEventEndedFailed()
-                            }
+                            let placeRef = self.ref.child("Event/\(keyEvent.key)/Like/\(user?.uid ?? "")")
+                            placeRef.observeSingleEvent(of:.value, with: { [self] snapshot in
+                                if snapshot.exists()
+                                {
+                                    let dict = snapshot.value as! [String: Any]
+                                    let like = dict["StateLike"] as! Bool
+                                    let request = Event(title: title, key: key, date: date, checkout: checkout, checkin: checkin, type: type, urlImage: urrlImage, stateLike: like)
+                                    if "\(date) \(checkout)".formatStringToDateTime24h() < currentDateTime {
+                                        endedEvent.append(request)
+                                        view?.fetchInfoEventEndedSuccess()
+                                    } else {
+                                        view?.fetchInfoEventEndedFailed()
+                                    }
+                                } else {
+                                    let request = Event(title: title, key: key, date: date, checkout: checkout, checkin: checkin, type: type, urlImage: urrlImage, stateLike: false)
+                                    if "\(date) \(checkout)".formatStringToDateTime24h() < currentDateTime {
+                                        endedEvent.append(request)
+                                        view?.fetchInfoEventEndedSuccess()
+                                    } else {
+                                        view?.fetchInfoEventEndedFailed()
+                                    }
+                                }
+                                
+                            })
+
                         }
                         else
                         {
@@ -227,5 +267,18 @@ class AppHomePresenter: AppHomePresenterProtocol {
         } else {return}
     }
     
+    func isLikeEvent(keyEvent: String, stateLike: Bool) {
+        let path = self.ref.child("Event/\(keyEvent)/Like/\(user?.uid ?? "")/").child("StateLike")
+        path.setValue(stateLike) { [self]
+            (error:Error?, ref:DatabaseReference) in
+            if error != nil {
+                view?.likeEventFailed()
+            }
+            else
+            {
+                view?.likeEventSuccess()
+            }
+        }
+    }
 }
 

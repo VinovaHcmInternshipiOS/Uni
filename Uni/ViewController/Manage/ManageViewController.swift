@@ -38,7 +38,10 @@ class ManageViewController: BaseViewController, ManageViewProtocol {
         setupUI()
         setupLanguage()
         addNav()
-        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = false
     }
     
     func setupLanguage(){

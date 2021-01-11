@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -26,12 +25,25 @@
                             <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                         </userDefinedRuntimeAttributes>
                     </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="art-0U-yJJ">
+                        <rect key="frame" x="336" y="10" width="20" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="20" id="ics-V2-CVh"/>
+                            <constraint firstAttribute="height" constant="20" id="rM2-pU-I3y"/>
+                        </constraints>
+                        <state key="normal" image="icUnLove"/>
+                        <connections>
+                            <action selector="btLike:" destination="gTV-IL-0wX" eventType="touchUpInside" id="wk9-Oj-VA6"/>
+                        </connections>
+                    </button>
                 </subviews>
             </view>
             <constraints>
                 <constraint firstItem="KbR-be-Jwy" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="7QV-dz-IQd"/>
                 <constraint firstAttribute="trailing" secondItem="KbR-be-Jwy" secondAttribute="trailing" constant="2" id="E2n-RE-VHI"/>
                 <constraint firstItem="KbR-be-Jwy" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="2" id="T86-Le-Oms"/>
+                <constraint firstItem="art-0U-yJJ" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="cRb-uQ-NIZ"/>
+                <constraint firstAttribute="trailing" secondItem="art-0U-yJJ" secondAttribute="trailing" constant="10" id="g9Y-UY-Fce"/>
                 <constraint firstAttribute="bottom" secondItem="KbR-be-Jwy" secondAttribute="bottom" id="mdl-he-IB0"/>
             </constraints>
             <size key="customSize" width="236" height="248"/>
@@ -39,9 +51,13 @@
                 <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
             </userDefinedRuntimeAttributes>
             <connections>
+                <outlet property="btLike" destination="art-0U-yJJ" id="Kmr-Qr-20n"/>
                 <outlet property="imageCell" destination="KbR-be-Jwy" id="s50-ey-apw"/>
             </connections>
             <point key="canvasLocation" x="224.63768115942031" y="139.62053571428569"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="icUnLove" width="20" height="20"/>
+    </resources>
 </document>

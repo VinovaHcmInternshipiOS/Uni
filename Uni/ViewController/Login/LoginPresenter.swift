@@ -17,7 +17,7 @@ import UIKit
 protocol LoginViewProtocol: class {
     func loginSuccess(uid: String)
     func loginFailed(error: Error)
-    func checkAuthSuccess(role:String)
+    func checkAuthSuccess(role:String,code:String)
     func checkAuthFailed()
     func checkStateUser()
     
@@ -82,14 +82,26 @@ class LoginPresenter: LoginPresenterProtocol {
                     let placeDict = snapshot.value as! [String: Any]
                     let role = placeDict["Role"] as! String
                     let state = placeDict["State"] as! Bool
-                    if (state == true) {
-                        completion(role)
-                        view?.checkAuthSuccess(role: role)
-                    } else {
-                        do { try Auth.auth().signOut()
-                        } catch _ {}
-                        view?.checkStateUser()
-                    }
+                    let placeRef = self.ref.child("Users").child("\(uid)")
+                    placeRef.observeSingleEvent(of:.value, with: { [self] snapshot in
+                        if(snapshot.exists())
+                        {
+                            let placeDict = snapshot.value as! [String: Any]
+                            let code = placeDict["Code"] as! String
+                            
+                            if (state == true) {
+                                completion(role)
+                                view?.checkAuthSuccess(role: role, code: code)
+                            } else {
+                                do { try Auth.auth().signOut()
+                                } catch _ {}
+                                view?.checkStateUser()
+                            }
+                        } else {
+                            view?.checkAuthFailed()
+                        }
+                    })
+                    
                     
                 } else {
                     view?.checkAuthFailed()
