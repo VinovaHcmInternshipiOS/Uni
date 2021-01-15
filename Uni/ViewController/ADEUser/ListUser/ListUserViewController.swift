@@ -233,7 +233,7 @@ extension ListUserViewController: UICollectionViewDataSource {
             cell.lbID.text = listUser[indexPath.row]?.code
             cell.lbName.text = listUser[indexPath.row]?.name
             if let profileURL = listUser[indexPath.row]?.urlImage {
-                cell.imgProfile.loadImage(urlString: profileURL)
+                cell.imgProfile.sd_setImage(with: URL(string: profileURL), completed: nil)
             }
             if listUser[indexPath.row]?.state == true {
                 cell.viewState.backgroundColor = .systemGreen

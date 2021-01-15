@@ -10,6 +10,8 @@
 
 import UIKit
 import SkeletonView
+import SDWebImage
+import FirebaseStorage
 
 class AppHomeViewController:BaseViewController{
     @IBOutlet weak var lbNoDataEnded: UILabel!
@@ -69,7 +71,7 @@ class AppHomeViewController:BaseViewController{
         presenter.loadProfile()
         presenter.getInfoEventHappening(currentDateTime:getCurrentDateTime24h().formatStringToDateTime24h())
         presenter.getInfoEventComingSoon(currentDateTime:getCurrentDateTime24h().formatStringToDateTime24h())
-        presenter.getInfoEventEnded(currentDateTime:getCurrentDate().formatStringToDate())
+        presenter.getInfoEventEnded(currentDateTime:getCurrentDateTime24h().formatStringToDateTime24h())
         movetoProfile()
         pullRefreshData()
         _ = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(moveToNextPage), userInfo: nil, repeats: true)
@@ -91,7 +93,7 @@ class AppHomeViewController:BaseViewController{
         listEventEnded.removeAll()
         presenter.getInfoEventHappening(currentDateTime:getCurrentDateTime24h().formatStringToDateTime24h())
         presenter.getInfoEventComingSoon(currentDateTime:getCurrentDateTime24h().formatStringToDateTime24h())
-        presenter.getInfoEventEnded(currentDateTime:getCurrentDate().formatStringToDate())
+        presenter.getInfoEventEnded(currentDateTime:getCurrentDateTime24h().formatStringToDateTime24h())
     }
     
     func setupLanguage(){
@@ -386,7 +388,7 @@ extension AppHomeViewController: UICollectionViewDelegate,UICollectionViewDataSo
                     }
                 }
                 if let imageURL = listEventHappening.urlImage {
-                    cell.imageCell.loadImage(urlString: imageURL)
+                    cell.imageCell.sd_setImage(with: URL(string: imageURL), completed: nil)
                 }
                 return cell
             } else {return UICollectionViewCell()}
@@ -411,7 +413,7 @@ extension AppHomeViewController: UICollectionViewDelegate,UICollectionViewDataSo
                 }
                 
                 if let imageURL = listEventComingSoon.urlImage {
-                    cell.imageView.loadImage(urlString: imageURL)
+                    cell.imageView.sd_setImage(with: URL(string: imageURL), completed: nil)
                 }
                 return cell
             } else {return UICollectionViewCell()}
@@ -433,8 +435,9 @@ extension AppHomeViewController: UICollectionViewDelegate,UICollectionViewDataSo
                         presenter.isLikeEvent(keyEvent: listEventEnded.key ?? "", stateLike: true)
                     }
                 }
+                
                 if let imageURL = listEventEnded.urlImage {
-                    cell.imageView.loadImage(urlString: imageURL)
+                cell.imageView.sd_setImage(with: URL(string: imageURL), completed: nil)
                 }
                 return cell
             } else {return UICollectionViewCell()}
@@ -560,7 +563,7 @@ extension AppHomeViewController: AppHomeViewProtocol {
             lbID.text = profile.code
             code = profile.code ?? ""
             lbFaculty.text = profile.faculty?.localized
-            imgUser.loadImage(urlString: profile.urlImage!)
+            imgUser.sd_setImage(with: URL(string: profile.urlImage!), completed: nil)
             if profile.urlImage! == "" {
                 imgUser.borderColor = AppColor.YellowFAB32A
             } else {

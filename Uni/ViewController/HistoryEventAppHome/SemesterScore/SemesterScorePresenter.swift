@@ -36,6 +36,7 @@ class SemesterScorePresenter: SemesterScorePresenterProtocol {
     var databaseHandle = DatabaseHandle()
     var user = Auth.auth().currentUser
     var detailHistory: [DetailHistory?] = []
+    
     func fetchHistoryEvent(keyEvent: String) {
         detailHistory.removeAll()
         guard let user = user else { return }
@@ -55,7 +56,7 @@ class SemesterScorePresenter: SemesterScorePresenterProtocol {
                         let score = dict["Score"] as! Int
                         let urrlImage = dict["ImagePortal"] as! String
                         
-                        //let placeRef = ref.child("Event/\(keyEvent)/Joiner/\(code)")
+
                         let placeRef = ref.child("Joiner/\(keyEvent)/\(code)")
                         placeRef.observeSingleEvent(of:.value, with: { [self] snapshot in
                             if snapshot.exists()
@@ -64,9 +65,7 @@ class SemesterScorePresenter: SemesterScorePresenterProtocol {
                                 let date = dict["Date"] as! String
                                 let checkin = dict["Checkin"] as! String
                                 detailHistory.insert(DetailHistory(title: title, date: date, checkin: checkin, score: score, key: keyEvent, urlImage: urrlImage), at: 0)
-                               // DispatchQueue.main.async {
                                     view?.fetchHistoryEventSuccess()
-                               // }
                             }
                             else
                             {

@@ -225,8 +225,8 @@ extension ProfileViewController: ProfileViewProtocol {
         profileUser = presenter.profileUser!
         lbName.text = profileUser.name
         if let profileURL = profileUser.urlImage {
-            imgBaner.loadImage(urlString: profileURL)
-            imgProfile.loadImage(urlString: profileURL)
+            imgBaner.sd_setImage(with: URL(string: profileURL), completed: nil)
+            imgProfile.sd_setImage(with: URL(string: profileURL), completed: nil)
         }
         pullControl.endRefreshing()
         tableView.hideSkeleton()

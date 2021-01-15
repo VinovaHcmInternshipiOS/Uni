@@ -221,7 +221,7 @@ extension FavoriteEventViewController: UICollectionViewDataSource {
 
                 }
                 if let imageURL = listEvent.urlImage {
-                    cell.imageView.loadImage(urlString: imageURL)
+                    cell.imageView.sd_setImage(with: URL(string: imageURL), completed: nil)
                 }
                 return cell
             } else {return UICollectionViewCell()}

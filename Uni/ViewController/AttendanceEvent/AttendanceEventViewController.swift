@@ -406,7 +406,8 @@ extension AttendanceEventViewController: UICollectionViewDataSource {
             cell.nameUser.text = listAttendance.name
             
             if let profileURL = listAttendance.urlImage {
-                cell.imageUser.loadImage(urlString: profileURL)
+                cell.imageUser.sd_setImage(with: URL(string: profileURL), completed: nil)
+                
             }
             
             return cell

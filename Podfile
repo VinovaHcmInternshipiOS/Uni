@@ -16,6 +16,7 @@ target 'Uni' do
   pod 'BarcodeScanner'
   pod 'SkeletonView'
   pod 'Charts'
+  pod 'SDWebImage', '~> 5.0'	
   # Pods for Uni
 post_install do |installer|
      installer.pods_project.targets.each do |target|

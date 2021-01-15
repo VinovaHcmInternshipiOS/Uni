@@ -121,7 +121,7 @@ extension HistoryEventViewController: UICollectionViewDataSource {
         dataEvent.removeAll()
         switch indexPath.row {
         case 0:
-            for i in 0..<totalSemester.count {
+            for i in 0..<infoEvents.count {
                 if (infoEvents[i]?.Year == totalSemester[indexPath.section]) {
                     if (infoEvents[i]?.Month == "01" || infoEvents[i]?.Month == "02" || infoEvents[i]?.Month == "03" || infoEvents[i]?.Month == "04" || infoEvents[i]?.Month == "05" || infoEvents[i]?.Month == "06") {
                         dataEvent.append(History(Year: infoEvents[i]!.Year, Month: infoEvents[i]!.Month, Score: infoEvents[i]!.Score, Key: infoEvents[i]!.Key))

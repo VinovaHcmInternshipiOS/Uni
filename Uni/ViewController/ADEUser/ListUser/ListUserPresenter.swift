@@ -73,6 +73,8 @@ class ListUserPresenter: ListUserPresenterProtocol {
                                               //  DispatchQueue.main.async {
                                                     view?.fetchUserSuccess()
                                               //  }
+                                            } else {
+                                                view?.fetchUserFailed()
                                             }
                                             
                                             

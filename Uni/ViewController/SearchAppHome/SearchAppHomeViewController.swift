@@ -224,7 +224,7 @@ extension SearchAppHomeViewController: UITableViewDataSource {
                 }
             }
             if let eventURL = listResultsEvent.urlImage {
-                cell.imgEvent.loadImage(urlString: eventURL)
+                cell.imgEvent.sd_setImage(with: URL(string: eventURL), completed: nil)
             }
             return cell
         } else {

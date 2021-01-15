@@ -32,7 +32,7 @@ class UpdateEventViewController: BaseViewController {
     @IBOutlet weak var btDone: UIButton!
     @IBOutlet weak var tableViewScore: UITableView!
     var pickerDate: UIDatePicker?
-	var presenter: UpdateEventPresenterProtocol
+    var presenter: UpdateEventPresenterProtocol
     var imagePicker: ImagePicker!
     var scoreEvent = 0
     //var keyDetailEvent = ""
@@ -40,18 +40,18 @@ class UpdateEventViewController: BaseViewController {
     var imagePortalIsChanged = false
     var urlImageLandscape = ""
     var urlImagePortal = ""
-
+    
     var updateListEvent: (()->Void)? = nil
-	init(presenter: UpdateEventPresenterProtocol) {
+    init(presenter: UpdateEventPresenterProtocol) {
         self.presenter = presenter
         super.init(nibName: "UpdateEventViewController", bundle: nil)
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
-	override func viewDidLoad() {
+    
+    override func viewDidLoad() {
         super.viewDidLoad()
         presenter.view = self
         presenter.getDetailEvent()
@@ -196,7 +196,7 @@ extension UpdateEventViewController: ImagePickerDelegate {
             
         }
     }
-
+    
 }
 
 extension UpdateEventViewController: UITableViewDelegate {
@@ -230,7 +230,14 @@ extension UpdateEventViewController: UITableViewDataSource {
 
 extension UpdateEventViewController: UpdateEventViewProtocol {
     func updateImageEventSuccess() {
-        //updateListEvent?()
+        removeSpinner()
+        presentAlertWithTitle(title: AppLanguage.HandleSuccess.Success.localized, message: AppLanguage.HandleSuccess.updateEvent.localized, options: AppLanguage.Ok.localized) { [self] (option) in
+            if imagePortalIsChanged == true {
+                updateListEvent?()
+            }
+            self.navigationController?.popViewController(animated: true)
+        }
+        
     }
     
     func updateImageEventFailed() {
@@ -239,10 +246,12 @@ extension UpdateEventViewController: UpdateEventViewProtocol {
     
     func uploadImageLandscapeSuccess(keyRef: String) {
         presenter.updateImageEvent(keyRef: keyRef, type: .Landscape)
+        print(1111,keyRef)
     }
     
     func uploadImagePortalSuccess(keyRef: String) {
         presenter.updateImageEvent(keyRef: keyRef, type: .Portal)
+        print(1111,keyRef)
     }
     
     func uploadImageLandscapeFailed() {
@@ -263,8 +272,8 @@ extension UpdateEventViewController: UpdateEventViewProtocol {
             btChooseDate.setTitle(detail.date, for: .normal)
             btCheckin.setTitle(formatterTime12h(time: detail.checkin ?? ""), for: .normal)
             btCheckout.setTitle(formatterTime12h(time: detail.checkout ?? ""), for: .normal)
-            imgLandscape.loadImage(urlString: detail.urlImageLandscape ?? "")
-            imgPortal.loadImage(urlString: detail.urlImagePortal ?? "")
+            imgLandscape.sd_setImage(with: URL(string: detail.urlImageLandscape ?? ""), completed: nil)
+            imgPortal.sd_setImage(with: URL(string: detail.urlImagePortal ?? ""), completed: nil)
             urlImagePortal = detail.urlImagePortal ?? ""
             urlImageLandscape = detail.urlImageLandscape ?? ""
             tableViewScore.scrollToRow(at: IndexPath(row: detail.score ?? 0, section: 0), at: .middle, animated: true)
@@ -278,26 +287,23 @@ extension UpdateEventViewController: UpdateEventViewProtocol {
     
     func updateEventSuccess() {
         presenter.sendPushNotification()
-        presentAlertWithTitle(title: AppLanguage.HandleSuccess.Success.localized, message: AppLanguage.HandleSuccess.updateEvent.localized, options: AppLanguage.Ok.localized) { [self] (option) in
-            
-            if imagePortalIsChanged == false {
-                updateListEvent?()
-            }
-            self.navigationController?.popViewController(animated: true)
-    }
-        removeSpinner()
-            if imageLandscapeIsChanged == true {
-                if let imageLanscape = imgLandscape.image {
+        if imageLandscapeIsChanged == true {
+            if let imageLanscape = imgLandscape.image {
+                DispatchQueue.main.async { [self] in
                     presenter.uploadImage(image: imageLanscape, type: .Landscape)
-                   
-                } else { return }
-                
-            } else if imagePortalIsChanged == true {
-                if let imagePortal = imgPortal.image {
+                }
+            } else { return }
+            
+        }
+        if imagePortalIsChanged == true {
+            if let imagePortal = imgPortal.image {
+                DispatchQueue.main.async { [self] in
                     presenter.uploadImage(image: imagePortal, type: .Portal)
-                } else { return }
-               
-            }
+                }
+                
+        } else { return }
+            
+        }
     }
     
     func updateEventFailed() {
@@ -306,7 +312,7 @@ extension UpdateEventViewController: UpdateEventViewProtocol {
         }
     }
     
-
+    
     
     
 }

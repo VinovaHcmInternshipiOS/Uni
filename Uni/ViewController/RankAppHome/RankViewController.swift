@@ -119,18 +119,18 @@ extension RankViewController: RankViewProtocol {
         if presenter.rankEvent.count > 2 {
             lbNameRank3.text = presenter.rankEvent[2]?.name ?? ""
             lbScoreRank3.text = "\(presenter.rankEvent[2]?.score ?? 0)"
-            if let eventURL = presenter.rankEvent[2]?.imgURL {
-                imgRank3.loadImage(urlString: eventURL)
+            if let imageURL = presenter.rankEvent[2]?.imgURL {
+                imgRank3.sd_setImage(with: URL(string: imageURL), completed: nil)
             }
             lbNameRank2.text = presenter.rankEvent[1]?.name ?? ""
             lbScoreRank2.text = "\(presenter.rankEvent[1]?.score ?? 0)"
-            if let eventURL = presenter.rankEvent[1]?.imgURL {
-                imgRank2.loadImage(urlString: eventURL)
+            if let imageURL = presenter.rankEvent[1]?.imgURL {
+                imgRank2.sd_setImage(with: URL(string: imageURL), completed: nil)
             }
             lbNameRank1.text = presenter.rankEvent[0]?.name ?? ""
             lbScoreRank1.text = "\(presenter.rankEvent[0]?.score ?? 0)"
-            if let eventURL = presenter.rankEvent[0]?.imgURL {
-                imgRank1.loadImage(urlString: eventURL)
+            if let imageURL = presenter.rankEvent[0]?.imgURL {
+                imgRank1.sd_setImage(with: URL(string: imageURL), completed: nil)
             }
         }
         if presenter.isFindUserRank {
@@ -150,7 +150,7 @@ extension RankViewController: RankViewProtocol {
     }
     
     func fetchRanhFailed() {
-        
+        pullControl.endRefreshing()
         print("fetch rank failed")
     }
 }

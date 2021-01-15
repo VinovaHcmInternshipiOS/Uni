@@ -169,7 +169,8 @@ extension SemesterScoreViewController: UITableViewDataSource {
                 cell.lbTime.text = (detailHistory.checkin ?? "").toTimeFormat(format: checkFormatTime12h())
                 cell.lbScore.text = "+\(detailHistory.score ?? 0)"
                 if let eventURL = detailHistory.urlImage {
-                    cell.imgView.loadImage(urlString: eventURL)
+                    cell.imgView.sd_setImage(with: URL(string: eventURL), completed: nil)
+                    
                 }
                 return cell
         } else { return UITableViewCell()}

@@ -97,28 +97,32 @@ class ProfilePresenter: ProfilePresenterProtocol {
                 if error != nil {
                     view?.updateImageFailed()
                 } else {
-                    
-                    let placeRef = self.ref.child("Users").child("\(user.uid)")
-                    placeRef.observe(.value, with: { [self] snapshot in
-                        if(snapshot.exists())
-                        {
-                            let placeDict = snapshot.value as! [String: Any]
-                            let code = placeDict["Code"] as! String
-                            let imageData = ["Data/\(code)/Image":(storedImage.fullPath)] as [String : Any]
-                            ref.updateChildValues(imageData as [AnyHashable : Any]) { (error, snapshot) in
-                                if error != nil {
-                                    view?.updateImageFailed()
-                                } else {
-                                    view?.updateImageSuccess()
-                                    
+                    storedImage.downloadURL { (url, error) in
+                        if error == nil {
+                            let placeRef = self.ref.child("Users").child("\(user.uid)")
+                            placeRef.observe(.value, with: { [self] snapshot in
+                                if(snapshot.exists())
+                                {
+                                    let placeDict = snapshot.value as! [String: Any]
+                                    let code = placeDict["Code"] as! String
+                                    let imageData = ["Data/\(code)/Image": "\(url!)"] as [String : Any]
+                                    ref.updateChildValues(imageData as [AnyHashable : Any]) { (error, snapshot) in
+                                        if error != nil {
+                                            view?.updateImageFailed()
+                                        } else {
+                                            view?.updateImageSuccess()
+                                        }
+                                    }
                                 }
-                            }
-                            
-                        }
-                        else {
+                                else {
+                                    view?.updateImageFailed()
+                                }
+                            })
+                        } else {
                             view?.updateImageFailed()
                         }
-                    })
+                    }
+
                 }
             })
         }

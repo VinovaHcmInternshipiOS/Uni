@@ -188,6 +188,14 @@ extension CreateEventViewController: ImagePickerDelegate {
 }
 
 extension CreateEventViewController: CreateEventViewProtocol {
+    func updateImageEventSuccess() {
+
+    }
+    
+    func updateImageEventFailed() {
+        //refreshListEvent?()
+    }
+    
     func pushNotificationSuccess() {
         presentAlertWithTitle(title: AppLanguage.HandleSuccess.Success.localized, message: AppLanguage.HandleSuccess.pushNotification.localized, options: AppLanguage.Ok.localized) { (Int) in}
     }
@@ -204,8 +212,12 @@ extension CreateEventViewController: CreateEventViewProtocol {
             refreshListEvent?()
     }
        
-        if let imageLanscape = imgLandscape.image, let imagePortal = imgPortal.image{
-            presenter.uploadImage(images: [imageLanscape,imagePortal],path: path)
+        if let imageLanscape = imgLandscape.image {
+            presenter.uploadImage(images: [imageLanscape],path: path)
+        } else {return}
+        
+        if let imagePortal = imgPortal.image {
+            presenter.uploadImage(images: [UIImage(),imagePortal],path: path)
         } else {return}
         
         

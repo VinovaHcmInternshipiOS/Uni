@@ -241,8 +241,9 @@ extension ListEventViewController: UICollectionViewDataSource {
             cell.dateEvent.text = "\(getFormattedDate(date: ListEvent.date ?? ""))\n\((ListEvent.checkin ?? "").toTimeFormat(format: checkFormatTime12h()))-\((ListEvent.checkout ?? "").toTimeFormat(format: checkFormatTime12h()))"
 
             cell.titleEvent.text = ListEvent.title
-            if let profileURL = ListEvent.urlImage {
-                cell.imgEvent.loadImage(urlString: profileURL)
+            if let imageEvent = ListEvent.urlImage {
+                cell.imgEvent.sd_setImage(with: URL(string: imageEvent), completed: nil)
+                //cell.imgEvent.loadImage(urlString: profileURL)
             }
             cell.delete = { [self] in
                 presentAlertWithTitle(title: AppLanguage.Confirm.localized, message: AppLanguage.DeleteEvent.localized, options: AppLanguage.Cancel.localized,AppLanguage.Ok.localized) { (Int) in

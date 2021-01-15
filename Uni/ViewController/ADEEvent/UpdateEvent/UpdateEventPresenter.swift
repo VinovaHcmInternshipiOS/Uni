@@ -216,12 +216,20 @@ class UpdateEventPresenter: UpdateEventPresenterProtocol {
                     }
                 }
                 else {
-                    switch type {
-                    case .Landscape:
-                        view?.uploadImageLandscapeSuccess(keyRef: storedImage.fullPath)
-                    case .Portal:
-                        view?.uploadImagePortalSuccess(keyRef: storedImage.fullPath)
+                    storedImage.downloadURL { (url, error) in
+                        if error == nil {
+                            if let url = url {
+                                switch type {
+                                case .Landscape:
+                                    view?.uploadImageLandscapeSuccess(keyRef: "\(url)")
+                                case .Portal:
+                                    view?.uploadImagePortalSuccess(keyRef: "\(url)")
+                                }
+                            } else {return}
+                            
+                        }
                     }
+                    
                 }
             })
             
@@ -234,13 +242,7 @@ class UpdateEventPresenter: UpdateEventPresenterProtocol {
             if error != nil {
                 view?.updateImageEventFailed()
             } else {
-                switch type {
-                case .Portal:
-                    view?.updateImageEventSuccess()
-                case .Landscape: break
-                    
-                }
-                
+                view?.updateImageEventSuccess()
             }
         }
     }

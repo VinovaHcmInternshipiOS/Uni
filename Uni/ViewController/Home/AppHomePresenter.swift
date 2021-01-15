@@ -78,13 +78,32 @@ class AppHomePresenter: AppHomePresenterProtocol {
                             let key = dict["Key"] as! String
                             let type = dict["Type"] as! String
                             let urrlImage = dict["ImageLandscape"] as! String
-                            let request = Event(title: title, key: key, date: date, checkout: checkout, checkin: checkin, type: type, urlImage: urrlImage, stateLike: true)
-                            if  currentDateTime >=  "\(date) \(checkin)".formatStringToDateTime24h() && currentDateTime <= "\(date) \(checkout)".formatStringToDateTime24h(){
-                                happeningEvent.append(request)
-                                view?.fetchInfoEventHappeningSuccess()
-                            } else {
-                                view?.fetchInfoEventHappeningFailed()
-                            }
+                            
+                            let placeRef = self.ref.child("Event/\(keyEvent.key)/Like/\(user?.uid ?? "")")
+                            placeRef.observeSingleEvent(of:.value, with: { [self] snapshot in
+                                if snapshot.exists()
+                                {
+                                    let dict = snapshot.value as! [String: Any]
+                                    let like = dict["StateLike"] as! Bool
+                                    let request = Event(title: title, key: key, date: date, checkout: checkout, checkin: checkin, type: type, urlImage: urrlImage, stateLike: like)
+                                    if  currentDateTime >=  "\(date) \(checkin)".formatStringToDateTime24h() && currentDateTime <= "\(date) \(checkout)".formatStringToDateTime24h(){
+                                        happeningEvent.append(request)
+                                        view?.fetchInfoEventHappeningSuccess()
+                                    } else {
+                                        view?.fetchInfoEventHappeningFailed()
+                                    }
+                                } else {
+                                    let request = Event(title: title, key: key, date: date, checkout: checkout, checkin: checkin, type: type, urlImage: urrlImage, stateLike: false)
+                                    if  currentDateTime >=  "\(date) \(checkin)".formatStringToDateTime24h() && currentDateTime <= "\(date) \(checkout)".formatStringToDateTime24h(){
+                                        happeningEvent.append(request)
+                                        view?.fetchInfoEventHappeningSuccess()
+                                    } else {
+                                        view?.fetchInfoEventHappeningFailed()
+                                    }
+                                }
+                                
+                            })
+                            
                         }
                         else
                         {

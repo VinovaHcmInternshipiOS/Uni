@@ -25,6 +25,8 @@ protocol CreateEventViewProtocol: class {
     func uploadImagePortalSuccess(keyRef:String,pathEvent:String)
     func uploadImageLandscapeFailed()
     func uploadImagePortalFailed()
+    func updateImageEventSuccess()
+    func updateImageEventFailed()
 }
 
 // MARK: Presenter -
@@ -113,14 +115,24 @@ class CreateEventPresenter: CreateEventPresenterProtocol {
                         }
                     }
                     else {
-                        switch i {
-                        case 0:
-                            view?.uploadImageLandscapeSuccess(keyRef: storedImage.fullPath, pathEvent: path)
-                        case 1:
-                            view?.uploadImagePortalSuccess(keyRef: storedImage.fullPath, pathEvent: path)
-                        default:
-                            break
+                        storedImage.downloadURL { (url, error) in
+                            if error == nil {
+                                if let url = url {
+                                    switch i {
+                                    case 0:
+                                        view?.uploadImageLandscapeSuccess(keyRef: "\(url)", pathEvent: path)
+                                
+                                    case 1:
+                                        view?.uploadImagePortalSuccess(keyRef: "\(url)", pathEvent: path)
+                                     
+                                    default:
+                                        break
+                                    }
+                                } else {return}
+ 
+                            }
                         }
+
                     }
                 })
                 
@@ -131,11 +143,11 @@ class CreateEventPresenter: CreateEventPresenterProtocol {
     
     func updateImageEvent(keyRef: String, path: String,type:typeImage) {
         let ImageEvent = ["Event/\(path)/Image\(type)":(keyRef)] as [String : Any]
-        ref.updateChildValues(ImageEvent as [AnyHashable : Any]) { (error, snapshot) in
+        ref.updateChildValues(ImageEvent as [AnyHashable : Any]) { [self] (error, snapshot) in
             if error != nil {
-                print("failed")
+                view?.updateImageEventFailed()
             } else {
-                print("success")
+                view?.updateImageEventSuccess()
             }
         }
     }
