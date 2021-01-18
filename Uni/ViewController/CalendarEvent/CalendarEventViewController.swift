@@ -39,6 +39,7 @@ class CalendarEventViewController: BaseViewController  {
         
         presenter.view = self
         presenter.getInfoEvent()
+        showSpinner()
         setupUI()
         setupLanguage()
         heightCollectionView.constant = 0
@@ -56,6 +57,7 @@ class CalendarEventViewController: BaseViewController  {
         pullControl.tintColor = AppColor.YellowFAB32A
         skeletonCollectionView()
         ActivityIndicator.isHidden = true
+        scrollView.alwaysBounceVertical = true
         if AppLanguage.English.localized == "English" {
             Calendar.locale = Locale(identifier: "en_US")
         } else {
@@ -152,7 +154,7 @@ extension CalendarEventViewController: CalendarEventViewProtocol {
         
     }
     
-    func fetchEentInDayFailed() {
+    func fetchEventInDayFailed() {
         collectionView.hideSkeleton()
         checkEmptyData()
     }
@@ -168,10 +170,12 @@ extension CalendarEventViewController: CalendarEventViewProtocol {
     func fetchEventSuccess() {
         Calendar.reloadData()
         pullControl.endRefreshing()
+        removeSpinner()
     }
     
     func fetchEventFailed() {
         pullControl.endRefreshing()
+        removeSpinner()
     }
     
     

@@ -33,6 +33,7 @@ class FavoriteEventViewController: BaseViewController {
 
         presenter.view = self
         presenter.getInfoEventFavorite()
+        showSpinner()
         setupUI()
         setupLanguage()
 
@@ -240,6 +241,7 @@ extension FavoriteEventViewController: FavoriteEventViewProtocol {
             ListEvent.remove(at: 0)
             collectionView.reloadData()
         }
+        removeSpinner()
     }
     
     func fetchEventSuccess() {

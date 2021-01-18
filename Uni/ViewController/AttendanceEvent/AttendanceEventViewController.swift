@@ -158,7 +158,7 @@ class AttendanceEventViewController: BaseViewController,AVCaptureMetadataOutputO
         let model = UIDevice.current.model
         mailComposerVC.setSubject(AppLanguage.ListAttendance.RerportEvent.localized)
         mailComposerVC.setToRecipients(["hanhuy308@gmail.com"])
-        mailComposerVC.addgAttachmentData(dataCSV!, mimeType: "text/csv", fileName: "UniAttendace.csv")
+        mailComposerVC.addAttachmentData(dataCSV!, mimeType: "text/csv", fileName: "UniAttendace.csv")
         mailComposerVC.setMessageBody("\n\n\n\n\nIOS: \(systemVersion) \nDevice: \(model)", isHTML: false)
         return mailComposerVC
     }

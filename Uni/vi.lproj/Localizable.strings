@@ -283,7 +283,7 @@
 
 //MARK: -- Calendar
 "Calendar\nEvents" = "Lịch\nSự kiện";
-"ongoing events." = "sự kiện đang diễn ra.";
+"ongoing events." = "sự kiện diễn ra trong ngày.";
 "upcoming events." = "sự kiện sắp tới.";
 "event has ended." = "sự kiện đã kết thúc.";
 

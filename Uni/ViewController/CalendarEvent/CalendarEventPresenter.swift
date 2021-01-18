@@ -19,7 +19,7 @@ protocol CalendarEventViewProtocol: class {
     func fetchEventSuccess()
     func fetchEventFailed()
     func fetchEventInDaySuccess()
-    func fetchEentInDayFailed()
+    func fetchEventInDayFailed()
     func likeEventSuccess()
     func likeEventFailed()
 }
@@ -131,12 +131,12 @@ class CalendarEventPresenter: CalendarEventPresenterProtocol {
                         }
                         else
                         {
-                            view?.fetchEentInDayFailed()
+                            view?.fetchEventInDayFailed()
                         }
                     })
                 }
             } else {
-                view?.fetchEentInDayFailed()
+                view?.fetchEventInDayFailed()
             }
 
         })
