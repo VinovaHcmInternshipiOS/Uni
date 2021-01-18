@@ -98,11 +98,11 @@ class AppHomeViewController:BaseViewController{
     
     func setupLanguage(){
         lbFeatures.text = AppLanguage.HomeApp.Features.localized
-        lbHappenning.text = AppLanguage.HomeApp.Happenning.localized
+        lbHappenning.text = AppLanguage.HomeApp.Happening.localized
         lbComingSoon.text = AppLanguage.HomeApp.ComingSoon.localized
         lbEnded.text = AppLanguage.HomeApp.Ended.localized
         lbAppHome.text = AppLanguage.HomeApp.AppHome.localized
-        lbNoDataHappening.text = AppLanguage.HandleError.noHappenning.localized
+        lbNoDataHappening.text = AppLanguage.HandleError.noHappening.localized
         lbNoDataComingSoon.text = AppLanguage.HandleError.noComingSoon.localized
         lbNoDataEnded.text = AppLanguage.HandleError.noEnded.localized
         lbRank.text = AppLanguage.Rank.Rank.localized

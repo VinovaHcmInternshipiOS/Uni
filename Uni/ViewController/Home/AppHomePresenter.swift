@@ -280,7 +280,6 @@ class AppHomePresenter: AppHomePresenterProtocol {
                     if(state == false ) {
                         view?.checkStateLiveSuccess()
                     }
-                    
                 }
             })
         } else {return}

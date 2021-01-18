@@ -15,6 +15,7 @@ enum MenuType: Int {
     case Setting
     case FavoriteEvent
     case PrivacyPolicy
+    case Calendar
     case Manage
 }
 class SlideMenuViewController: BaseViewController {
@@ -47,7 +48,7 @@ class SlideMenuViewController: BaseViewController {
         btLogout.setTitleColor(AppColor.YellowFAB32A, for: .normal)
         presenter.checkAuth { [self] (role) in
             if role == "Admin" {
-                arrayFeature = [AppLanguage.SlideMenu.Home.localized,AppLanguage.SlideMenu.About.localized,AppLanguage.SlideMenu.Setting.localized,AppLanguage.SlideMenu.Favorite.localized,AppLanguage.SlideMenu.Privacy.localized,AppLanguage.SlideMenu.Manage.localized]
+                arrayFeature = [AppLanguage.SlideMenu.Home.localized,AppLanguage.SlideMenu.About.localized,AppLanguage.SlideMenu.Setting.localized,AppLanguage.SlideMenu.Favorite.localized,AppLanguage.SlideMenu.Privacy.localized,AppLanguage.SlideMenu.Calendar.localized,AppLanguage.SlideMenu.Manage.localized]
                 
             } else {
                 arrayFeature = [AppLanguage.SlideMenu.Home.localized,AppLanguage.SlideMenu.About.localized,AppLanguage.SlideMenu.Setting.localized,AppLanguage.SlideMenu.Favorite.localized,AppLanguage.SlideMenu.Privacy.localized]

@@ -21,7 +21,7 @@
 
 //MARK: -- HomeApp
 "Features" = "Features";
-"Happenning" = "Happenning";
+"Happening" = "Happening";
 "Coming Soon" = "Coming Soon";
 "Ended" = "Ended";
 "App\nHome" = "App\nHome";
@@ -33,7 +33,8 @@
 "Manage" = "Manage";
 "Privacy Policy" = "Privacy Policy";
 "Logout" = "Logout";
-"Favorite Event" = "Favorite Event";
+"Favorite Events" = "Favorite Events";
+"Calendar Events" = "Calendar Events";
 
 //MARK: -- Profile
 "Gender" = "Gender";
@@ -275,6 +276,12 @@
 
 //MARK: -- Favorite Event
 "Favorite\nEvents" = "Favorite\nEvents";
+
+//MARK: -- Calendar
+"Calendar\nEvents" = "Calendar\nEvents";
+"ongoing events." = "ongoing events.";
+"upcoming events." = "upcoming events.";
+"event has ended." = "event has ended.";
 
 
 "Title" = "Title";

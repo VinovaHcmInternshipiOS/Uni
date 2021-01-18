@@ -127,6 +127,9 @@
 		F5940FAA25763B8C00427480 /* CreateUserPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5940FA725763B8C00427480 /* CreateUserPresenter.swift */; };
 		F5940FAB25763B8C00427480 /* CreateUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5940FA825763B8C00427480 /* CreateUserViewController.swift */; };
 		F5940FAC25763B8C00427480 /* CreateUserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5940FA925763B8C00427480 /* CreateUserViewController.xib */; };
+		F59C6E2F25B152FC0030EC76 /* CalendarEventPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59C6E2C25B152FC0030EC76 /* CalendarEventPresenter.swift */; };
+		F59C6E3025B152FC0030EC76 /* CalendarEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59C6E2D25B152FC0030EC76 /* CalendarEventViewController.swift */; };
+		F59C6E3125B152FC0030EC76 /* CalendarEventViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F59C6E2E25B152FC0030EC76 /* CalendarEventViewController.xib */; };
 		F59EC42425AAB51100388558 /* FavoriteEventPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59EC42125AAB51100388558 /* FavoriteEventPresenter.swift */; };
 		F59EC42525AAB51100388558 /* FavoriteEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59EC42225AAB51100388558 /* FavoriteEventViewController.swift */; };
 		F59EC42625AAB51100388558 /* FavoriteEventViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F59EC42325AAB51100388558 /* FavoriteEventViewController.xib */; };
@@ -192,6 +195,9 @@
 		F5CF0CFD257601D800D3BBF8 /* ListUserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5CF0CFA257601D800D3BBF8 /* ListUserViewController.xib */; };
 		F5CF0D022576020C00D3BBF8 /* ListUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CF0D002576020C00D3BBF8 /* ListUserCell.swift */; };
 		F5CF0D032576020C00D3BBF8 /* ListUserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5CF0D012576020C00D3BBF8 /* ListUserCell.xib */; };
+		F5D686E625B52C5300B9E53B /* DetailEventAtDayPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D686E325B52C5300B9E53B /* DetailEventAtDayPresenter.swift */; };
+		F5D686E725B52C5300B9E53B /* DetailEventAtDayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D686E425B52C5300B9E53B /* DetailEventAtDayViewController.swift */; };
+		F5D686E825B52C5300B9E53B /* DetailEventAtDayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5D686E525B52C5300B9E53B /* DetailEventAtDayViewController.xib */; };
 		F5DF01F2256B56CE00B5E444 /* TimePickerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DF01EF256B56CE00B5E444 /* TimePickerPresenter.swift */; };
 		F5DF01F3256B56CE00B5E444 /* TimePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DF01F0256B56CE00B5E444 /* TimePickerViewController.swift */; };
 		F5DF01F4256B56CE00B5E444 /* TimePickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5DF01F1256B56CE00B5E444 /* TimePickerViewController.xib */; };
@@ -327,6 +333,9 @@
 		F5940FA725763B8C00427480 /* CreateUserPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUserPresenter.swift; sourceTree = "<group>"; };
 		F5940FA825763B8C00427480 /* CreateUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUserViewController.swift; sourceTree = "<group>"; };
 		F5940FA925763B8C00427480 /* CreateUserViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateUserViewController.xib; sourceTree = "<group>"; };
+		F59C6E2C25B152FC0030EC76 /* CalendarEventPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventPresenter.swift; sourceTree = "<group>"; };
+		F59C6E2D25B152FC0030EC76 /* CalendarEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventViewController.swift; sourceTree = "<group>"; };
+		F59C6E2E25B152FC0030EC76 /* CalendarEventViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalendarEventViewController.xib; sourceTree = "<group>"; };
 		F59EC42125AAB51100388558 /* FavoriteEventPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteEventPresenter.swift; sourceTree = "<group>"; };
 		F59EC42225AAB51100388558 /* FavoriteEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteEventViewController.swift; sourceTree = "<group>"; };
 		F59EC42325AAB51100388558 /* FavoriteEventViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteEventViewController.xib; sourceTree = "<group>"; };
@@ -393,6 +402,9 @@
 		F5CF0CFA257601D800D3BBF8 /* ListUserViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListUserViewController.xib; sourceTree = "<group>"; };
 		F5CF0D002576020C00D3BBF8 /* ListUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListUserCell.swift; sourceTree = "<group>"; };
 		F5CF0D012576020C00D3BBF8 /* ListUserCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListUserCell.xib; sourceTree = "<group>"; };
+		F5D686E325B52C5300B9E53B /* DetailEventAtDayPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailEventAtDayPresenter.swift; sourceTree = "<group>"; };
+		F5D686E425B52C5300B9E53B /* DetailEventAtDayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailEventAtDayViewController.swift; sourceTree = "<group>"; };
+		F5D686E525B52C5300B9E53B /* DetailEventAtDayViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailEventAtDayViewController.xib; sourceTree = "<group>"; };
 		F5DF01EF256B56CE00B5E444 /* TimePickerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerPresenter.swift; sourceTree = "<group>"; };
 		F5DF01F0256B56CE00B5E444 /* TimePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerViewController.swift; sourceTree = "<group>"; };
 		F5DF01F1256B56CE00B5E444 /* TimePickerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimePickerViewController.xib; sourceTree = "<group>"; };
@@ -740,6 +752,7 @@
 		F582EA7F254FEE75002BF86F /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				F59C6E2B25B152E30030EC76 /* CalendarEvent */,
 				F59EC42025AAB4F200388558 /* FavoriteEvent */,
 				F52B884225985716004D9ABC /* ADENotification */,
 				F52B88152595CE70004D9ABC /* Notification */,
@@ -993,6 +1006,17 @@
 				F5940FA925763B8C00427480 /* CreateUserViewController.xib */,
 			);
 			path = CreateUser;
+			sourceTree = "<group>";
+		};
+		F59C6E2B25B152E30030EC76 /* CalendarEvent */ = {
+			isa = PBXGroup;
+			children = (
+				F5D686E225B52C2900B9E53B /* DetailEventAtDay */,
+				F59C6E2C25B152FC0030EC76 /* CalendarEventPresenter.swift */,
+				F59C6E2D25B152FC0030EC76 /* CalendarEventViewController.swift */,
+				F59C6E2E25B152FC0030EC76 /* CalendarEventViewController.xib */,
+			);
+			path = CalendarEvent;
 			sourceTree = "<group>";
 		};
 		F59EC42025AAB4F200388558 /* FavoriteEvent */ = {
@@ -1292,6 +1316,16 @@
 			path = ListUserCell;
 			sourceTree = "<group>";
 		};
+		F5D686E225B52C2900B9E53B /* DetailEventAtDay */ = {
+			isa = PBXGroup;
+			children = (
+				F5D686E325B52C5300B9E53B /* DetailEventAtDayPresenter.swift */,
+				F5D686E425B52C5300B9E53B /* DetailEventAtDayViewController.swift */,
+				F5D686E525B52C5300B9E53B /* DetailEventAtDayViewController.xib */,
+			);
+			path = DetailEventAtDay;
+			sourceTree = "<group>";
+		};
 		F5DF01EE256B56A700B5E444 /* PickerTime */ = {
 			isa = PBXGroup;
 			children = (
@@ -1405,6 +1439,8 @@
 				F5CF0CFD257601D800D3BBF8 /* ListUserViewController.xib in Resources */,
 				F582EAB7254FF1D1002BF86F /* Raleway-ExtraBoldItalic.ttf in Resources */,
 				F5B1A6CA255939BA00CC0C1A /* SemesterCell.xib in Resources */,
+				F5D686E825B52C5300B9E53B /* DetailEventAtDayViewController.xib in Resources */,
+				F59C6E3125B152FC0030EC76 /* CalendarEventViewController.xib in Resources */,
 				F582EAB8254FF1D1002BF86F /* Raleway-Regular.ttf in Resources */,
 				F5DF01F4256B56CE00B5E444 /* TimePickerViewController.xib in Resources */,
 				F582EABA254FF1D1002BF86F /* Raleway-SemiBoldItalic.ttf in Resources */,
@@ -1543,6 +1579,7 @@
 				F5C26FE1256B9D440015576A /* ListEventPresenter.swift in Sources */,
 				F56E7B05256D084E00F8EC23 /* UpdateEventPresenter.swift in Sources */,
 				F5694E712574CEFF00C1D14D /* AboutPresenter.swift in Sources */,
+				F5D686E625B52C5300B9E53B /* DetailEventAtDayPresenter.swift in Sources */,
 				F5CC24F5256415DA003EF2F1 /* DetailHistory.swift in Sources */,
 				F593CCA7255E2328005D4F15 /* BaseViewController.swift in Sources */,
 				F5CF0CF32575F3DB00D3BBF8 /* PrivacyPolicyViewController.swift in Sources */,
@@ -1554,7 +1591,9 @@
 				F5A04E332555054200DB396C /* SearchResultCell.swift in Sources */,
 				F5694E722574CEFF00C1D14D /* AboutViewController.swift in Sources */,
 				F5FAAF4625621AA50036EA95 /* HandleError.swift in Sources */,
+				F59C6E2F25B152FC0030EC76 /* CalendarEventPresenter.swift in Sources */,
 				F593CC98255CE1C7005D4F15 /* UIViewController+Extension.swift in Sources */,
+				F5D686E725B52C5300B9E53B /* DetailEventAtDayViewController.swift in Sources */,
 				F5CF0CFB257601D800D3BBF8 /* ListUserPresenter.swift in Sources */,
 				F59221CE2553FD8D002F3F50 /* RankPresenter.swift in Sources */,
 				F5CF0CF22575F3DB00D3BBF8 /* PrivacyPolicyPresenter.swift in Sources */,
@@ -1562,6 +1601,7 @@
 				F5ACA055259C86B100CCF09D /* ContentNotificationPresenter.swift in Sources */,
 				F57821CA255E857000222FCA /* Event.swift in Sources */,
 				F5785E3625776F7000EBEE8F /* PickerDataPresenter.swift in Sources */,
+				F59C6E3025B152FC0030EC76 /* CalendarEventViewController.swift in Sources */,
 				F59EE1122589E4E100ABF26D /* AppKey.swift in Sources */,
 				F59221CF2553FD8D002F3F50 /* RankViewController.swift in Sources */,
 				F5785E3F2577E6D900EBEE8F /* ChangePasswordPresenter.swift in Sources */,

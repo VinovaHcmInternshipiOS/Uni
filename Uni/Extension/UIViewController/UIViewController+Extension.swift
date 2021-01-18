@@ -178,6 +178,12 @@ extension UIViewController {
         return formatter.string(from: date)
     }
     
+    func formatDateToString(date:Date) ->String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd-MM-yyyy"
+        return formatter.string(from: date)
+    }
+    
     func transformStringDate(_ dateString: String,
                              fromDateFormat: String,
                              toDateFormat: String) -> String? {

@@ -13,7 +13,8 @@ import BarcodeScanner
 import AVFoundation
 import AudioToolbox
 import MessageUI
-class AttendanceEventViewController: BaseViewController,AVCaptureMetadataOutputObjectsDelegate,MFMailComposeViewControllerDelegate {
+import WebKit
+class AttendanceEventViewController: BaseViewController,AVCaptureMetadataOutputObjectsDelegate,MFMailComposeViewControllerDelegate, WKNavigationDelegate {
     @IBOutlet weak var lbNoData: UILabel!
     @IBOutlet weak var btPlus: UIButton!
     @IBOutlet weak var viewPlus: UIView!
@@ -97,9 +98,10 @@ class AttendanceEventViewController: BaseViewController,AVCaptureMetadataOutputO
         self.navigationController?.hideShadowLine()
     }
     
-    @IBAction func btExport(_ sender: Any) {
+    @IBAction func btExport(_ sender: UIButton) {
         presenter.getDetailEvent(keyEvent: keyDetailEvent)
     }
+
     
     func showMailComposer()
     {
@@ -107,11 +109,11 @@ class AttendanceEventViewController: BaseViewController,AVCaptureMetadataOutputO
         if MFMailComposeViewController.canSendMail() {
             self.present(mailComposeViewController, animated: true, completion: nil)
         } else {
-            showMailError()
+            UIApplication.shared.open(URL(string: "mailto:?subject=&body=")!)
         }
     }
     
-    func createfileCSV(title:String, date:String, location:String, checkin:String, checkout:String, score:Int,Array: [AttendanceEvent?], total:Int,   mailString: NSMutableString)
+    func createfileCSV(title:String, date:String, location:String, checkin:String, checkout:String, score:Int,Array: [AttendanceEvent?], total:Int,  mailString: NSMutableString)
     {
         
         
@@ -134,7 +136,6 @@ class AttendanceEventViewController: BaseViewController,AVCaptureMetadataOutputO
                     //let lastName = components.removeFirst()
                     let lastName = components.removeLast()
                     let firstName = components.joined(separator: " ")
-                    debugPrint(lastName, "",firstName)
                     if let code = Array[n]?.code, let checkin = Array[n]?.checkin, let date = Array[n]?.date {
                         mailString.append("\(n+1),\(code),\(firstName),\(lastName),\(formatterTime12h(time: checkin)),\(date)\n")
                     } else { return }
@@ -157,7 +158,7 @@ class AttendanceEventViewController: BaseViewController,AVCaptureMetadataOutputO
         let model = UIDevice.current.model
         mailComposerVC.setSubject(AppLanguage.ListAttendance.RerportEvent.localized)
         mailComposerVC.setToRecipients(["hanhuy308@gmail.com"])
-        mailComposerVC.addAttachmentData(dataCSV!, mimeType: "text/csv", fileName: "UniAttendace.csv")
+        mailComposerVC.addgAttachmentData(dataCSV!, mimeType: "text/csv", fileName: "UniAttendace.csv")
         mailComposerVC.setMessageBody("\n\n\n\n\nIOS: \(systemVersion) \nDevice: \(model)", isHTML: false)
         return mailComposerVC
     }
@@ -172,7 +173,6 @@ class AttendanceEventViewController: BaseViewController,AVCaptureMetadataOutputO
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         if let _ = error
         {
-            //show alert
             controller.dismiss(animated: true)
         }
         switch result {
@@ -200,28 +200,7 @@ class AttendanceEventViewController: BaseViewController,AVCaptureMetadataOutputO
     }
     
     @IBAction func addAttendance(_ sender: Any) {
-//        let alert = UIAlertController(title: "", message: AppLanguage.ListAttendance.Attendance.localized, preferredStyle: .alert)
-//        alert.addTextField(configurationHandler: { (TextField) in
-//            TextField.placeholder = AppLanguage.ListAttendance.EnterIDStudent.localized
-//            TextField.keyboardType = UIKeyboardType.numberPad
-//        })
-//        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [self] (updateAction) in
-//            let studentID = alert.textFields!.first!.text!
-//            let charactersetTextView = CharacterSet(charactersIn: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ,[]:;<>,+=-_|!@%^&?$/.{()*&^%#`~'} ")
-//            if (studentID.rangeOfCharacter(from: charactersetTextView.intersection(charactersetTextView)) != nil){
-//
-//                self.presentAlertWithTitle(title: "Invalid ID", message: "Please try again!", options: "OK") { (Int) in}
-//            }
-//            else
-//            {
-//                presenter.checkExistUser(keyEvent:keyDetailEvent,code: studentID,type: .keyboard)
-//
-//            }
-//        }))
-//        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
-//            alert.dismiss(animated: true, completion: nil)
-//        }))
-//        self.present(alert, animated: true, completion: nil)
+
     }
     
     func refreshListAttendance() {
@@ -310,7 +289,6 @@ class AttendanceEventViewController: BaseViewController,AVCaptureMetadataOutputO
             lbNoData.isHidden = false
         }
     }
-
 }
 
 extension AttendanceEventViewController: UICollectionViewDelegateFlowLayout,UICollectionViewDelegate {
@@ -493,9 +471,18 @@ extension AttendanceEventViewController: AttendanceEventViewProtocol {
         if let detail = detail {
             createfileCSV(title: detail.title ?? "", date: detail.date ?? "",location: detail.address ?? "", checkin: formatterTime12h(time: detail.checkin ?? "") , checkout: formatterTime12h(time: detail.checkout ?? ""), score: detail.score ?? 0, Array: listAttendance, total: listAttendance.count, mailString: mailString)
             //joinEvent.text = detail.joinEvent
-            
+            let filename = "\(detail.title ?? "") \(getCurrentDateTime24h()).csv"
+            let document = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as String
+            let documenturl = URL(fileURLWithPath: document).appendingPathComponent(filename)
+            do {
+                try dataCSV?.write(to: documenturl)
+            } catch  {
+                
+            }
+            let objectsToShare: [Any] = [documenturl]
+                    let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+                    self.present(activityVC, animated: true, completion: nil)
         } else { return }
-        showMailComposer()
         
     }
     

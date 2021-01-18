@@ -185,6 +185,9 @@ class BaseViewController: UIViewController,UIViewControllerTransitioningDelegate
         case .PrivacyPolicy:
             let Privacy = PrivacyPolicyViewController(presenter: PrivacyPolicyPresenter())
             navigationController?.pushViewController(Privacy, animated: true)
+        case .Calendar:
+            let Calendar = CalendarEventViewController(presenter: CalendarEventPresenter())
+            navigationController?.pushViewController(Calendar, animated: true)
         case .Manage:
             let Setting = ManageViewController(presenter: ManagePresenter())
             navigationController?.pushViewController(Setting, animated: true)

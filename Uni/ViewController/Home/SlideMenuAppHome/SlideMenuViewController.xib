@@ -68,7 +68,7 @@
                     </userDefinedRuntimeAttributes>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PDK-hP-XaD">
-                    <rect key="frame" x="0.0" y="216" width="290" height="616"/>
+                    <rect key="frame" x="0.0" y="171" width="290" height="661"/>
                     <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="290" id="eHg-gN-VZI"/>
@@ -84,7 +84,7 @@
                 <constraint firstItem="wMx-k3-zdZ" firstAttribute="bottom" secondItem="Nm4-ga-xaA" secondAttribute="bottom" constant="20" id="dwq-gC-Cy0"/>
                 <constraint firstItem="Nm4-ga-xaA" firstAttribute="leading" secondItem="wMx-k3-zdZ" secondAttribute="leading" constant="12" id="ltd-oo-pgg"/>
                 <constraint firstItem="6oA-Wo-7C1" firstAttribute="top" secondItem="PDK-hP-XaD" secondAttribute="bottom" id="u3p-by-FNa"/>
-                <constraint firstItem="PDK-hP-XaD" firstAttribute="top" secondItem="8IM-s8-6OY" secondAttribute="bottom" constant="75" id="zWq-gK-Imk"/>
+                <constraint firstItem="PDK-hP-XaD" firstAttribute="top" secondItem="8IM-s8-6OY" secondAttribute="bottom" constant="30" id="zWq-gK-Imk"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="44.799999999999997" y="93.553223388305852"/>

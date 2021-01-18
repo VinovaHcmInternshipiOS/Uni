@@ -21,7 +21,7 @@
 
 //MARK: -- HomeApp
 "Features" = "Tính năng";
-"Happenning" = "Đang diễn ra";
+"Happening" = "Đang diễn ra";
 "Coming Soon" = "Sắp diễn ra";
 "Ended" = "Đã kết thúc";
 "App\nHome" = "Trang\nChủ";
@@ -31,9 +31,10 @@
 "About" = "Về chúng tôi";
 "Setting" = "Cài đặt";
 "Manage" = "Quản lý";
-"Favorite Event" = "Sự kiện yêu thích";
+"Favorite Events" = "Sự kiện yêu thích";
 "Privacy Policy" = "Chính sách bảo mật";
 "Logout" = "Đăng xuất";
+"Calendar Events" = "Lịch sự kiện";
 
 //MARK: -- Profile
 "Gender" = "Giới tính";
@@ -279,6 +280,12 @@
 
 //MARK: -- Favorite Event
 "Favorite\nEvents" = "Sự kiện\nYêu thích";
+
+//MARK: -- Calendar
+"Calendar\nEvents" = "Lịch\nSự kiện";
+"ongoing events." = "sự kiện đang diễn ra.";
+"upcoming events." = "sự kiện sắp tới.";
+"event has ended." = "sự kiện đã kết thúc.";
 
 "Title" = "Tiêu đề";
 "Content" = "Nội dung";

@@ -58,7 +58,7 @@ class AppLanguage {
         static let updateEvent = "The event update failed."
         static let fillIn = "Please fill in all information."
         static let noData = "No Data."
-        static let noHappenning = "no ongoing events."
+        static let noHappening = "no ongoing events."
         static let noComingSoon = "no upcoming events."
         static let noEnded = "no event has ended."
         static let attendanceAlready = "Already exists ID in event list."
@@ -123,7 +123,7 @@ class AppLanguage {
     //MARK:-- HomeApp
     class HomeApp {
         static let Features = "Features"
-        static let Happenning = "Happenning"
+        static let Happening = "Happening"
         static let ComingSoon = "Coming Soon"
         static let Ended = "Ended"
         static let AppHome = "App\nHome"
@@ -135,9 +135,10 @@ class AppLanguage {
         static let About = "About"
         static let Setting = "Setting"
         static let Manage = "Manage"
-        static let Favorite = "Favorite Event"
+        static let Favorite = "Favorite Events"
         static let Privacy = "Privacy Policy"
         static let btLogout = "Logout"
+        static let Calendar = "Calendar Events"
     }
     
     //MARK:-- Profile
@@ -367,5 +368,13 @@ class AppLanguage {
     //MARK: -- Favorite Event
     class FavoriteEvent {
         static let FavoriteEvent = "Favorite\nEvents"
+    }
+    
+    //MARK: -- Calendar
+    class Calendar{
+        static let CalendarEvent = "Calendar\nEvents"
+        static let EventHappening = "ongoing events."
+        static let EventComingSoon = "upcoming events."
+        static let EventEnded = "event has ended."
     }
 }

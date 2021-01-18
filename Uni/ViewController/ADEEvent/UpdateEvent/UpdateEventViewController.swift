@@ -304,6 +304,15 @@ extension UpdateEventViewController: UpdateEventViewProtocol {
         } else { return }
             
         }
+        if imageLandscapeIsChanged == false && imagePortalIsChanged == false {
+            removeSpinner()
+            presentAlertWithTitle(title: AppLanguage.HandleSuccess.Success.localized, message: AppLanguage.HandleSuccess.updateEvent.localized, options: AppLanguage.Ok.localized) { [self] (option) in
+                if imagePortalIsChanged == true {
+                    updateListEvent?()
+                }
+                self.navigationController?.popViewController(animated: true)
+            }
+        }
     }
     
     func updateEventFailed() {
