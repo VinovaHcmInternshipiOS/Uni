@@ -43,6 +43,8 @@ protocol AttendanceEventViewProtocol: class {
     func checkFakeCodeFailed()
     func searchAttendanceEventSuccess()
     func searchAttendanceEventFailed()
+    func pushNotificationSuccess()
+    func pushNotificationFailed()
 }
 
 // MARK: Presenter -
@@ -67,6 +69,7 @@ protocol AttendanceEventPresenterProtocol: class {
     func getDetailEvent(keyEvent: String)
     func checkFakeCode(fakeCode: String,type: typeInput )
     func getDateTimeEvent(keyEvent: String)
+    func sendPushNotification(to token: String, title: String, body: String, codeUser:String)
 }
 
 class AttendanceEventPresenter: AttendanceEventPresenterProtocol {
@@ -84,6 +87,46 @@ class AttendanceEventPresenter: AttendanceEventPresenterProtocol {
     var dateEvent: String?
     var checkinEvent: String?
     var checkoutEvent: String?
+    
+    func sendPushNotification(to token: String, title: String, body: String, codeUser:String) {
+        let urlString = "https://fcm.googleapis.com/fcm/send"
+        let url = NSURL(string: urlString)!
+        let paramString: [String : Any] = ["condition": "'\(codeUser)' in topics",
+                                           "priority" : "high",
+                                           "notification" : [
+                                             "body" : body,
+                                             "title" : title,
+                                           ],
+                                           "data" :[
+                                               "userDetail": codeUser
+                                            ]
+        ]
+        let request = NSMutableURLRequest(url: url as URL)
+        request.httpMethod = "POST"
+        request.httpBody = try? JSONSerialization.data(withJSONObject:paramString, options: [.prettyPrinted])
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue(AppKey.keyPushNotification, forHTTPHeaderField: "Authorization")
+        let task =  URLSession.shared.dataTask(with: request as URLRequest)  {  (data, response, error) in
+            do {
+                if let jsonData = data {
+                    if let jsonDataDict  = try JSONSerialization.jsonObject(with: jsonData, options: JSONSerialization.ReadingOptions.allowFragments) as? [String: AnyObject] {
+                        
+                        NSLog("Received data:\n\(jsonDataDict))")
+                        DispatchQueue.main.async { [self] in
+                            view?.pushNotificationSuccess()
+                        }
+                    }
+                }
+            } catch let err as NSError {
+                DispatchQueue.main.async { [self] in
+                    view?.pushNotificationFailed()
+                }
+                
+                print(err.debugDescription)
+            }
+        }
+        task.resume()
+    }
     
     func getDetailEvent(keyEvent: String) {
         let placeRef = self.ref.child("Event/\(keyEvent)")

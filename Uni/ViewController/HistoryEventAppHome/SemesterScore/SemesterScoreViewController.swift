@@ -10,7 +10,7 @@
 
 import UIKit
 import SkeletonView
-
+import SVProgressHUD
 class SemesterScoreViewController: BaseViewController {
 
     @IBOutlet weak var lbNoData: UILabel!
@@ -44,6 +44,7 @@ class SemesterScoreViewController: BaseViewController {
         setupUI()
         setupLanguage()
         loadLabel()
+        SVProgressHUD.show()
         fetchSemester()
         
         
@@ -103,7 +104,7 @@ class SemesterScoreViewController: BaseViewController {
     }
     
     @objc func pulledRefreshControl(sender:AnyObject) {
-        showSpinner()
+        SVProgressHUD.show()
         detailHistory.removeAll()
         refreshListSemester()
         
@@ -118,6 +119,7 @@ class SemesterScoreViewController: BaseViewController {
     
     func hideSkeletonView(){
         pullControl.endRefreshing()
+        SVProgressHUD.dismiss()
         tableView.hideSkeleton()
         totalScore.hideSkeleton()
         totalEvent.hideSkeleton()
@@ -194,7 +196,7 @@ extension SemesterScoreViewController: SemesterScoreViewProtocol {
             tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
         } completion: { [self] (Bool) in
             hideSkeletonView()
-            removeSpinner()
+            SVProgressHUD.dismiss()
         }
 
 //        tableView.beginUpdates()

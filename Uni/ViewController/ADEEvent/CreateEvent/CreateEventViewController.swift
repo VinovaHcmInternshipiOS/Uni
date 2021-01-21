@@ -204,9 +204,9 @@ extension CreateEventViewController: CreateEventViewProtocol {
         presentAlertWithTitle(title: AppLanguage.HandleError.anError.localized, message: AppLanguage.HandleError.pushNotification.localized, options: AppLanguage.Ok.localized) { (Int) in}
     }
     
-    func createEventSuccess(path: String, title: String) {
+    func createEventSuccess(path: String, title: String,keyEvent:String) {
         removeSpinner()
-        presenter.sendPushNotification(to: "", title: AppLanguage.CreateEvent.newEvent.localized, body: "\(AppLanguage.CreateEvent.havejustAdded.localized) \(title) \(AppLanguage.CreateEvent.letExlore.localized)")
+        presenter.sendPushNotification(to: "", title: AppLanguage.CreateEvent.newEvent.localized, body: "\(AppLanguage.CreateEvent.havejustAdded.localized) \(title) \(AppLanguage.CreateEvent.letExlore.localized)",keyEvent:keyEvent)
         presentAlertWithTitle(title: AppLanguage.HandleSuccess.Success.localized, message: AppLanguage.HandleSuccess.createEvent.localized, options: AppLanguage.Ok.localized) { [self] (option) in
             self.navigationController?.popViewController(animated: true)
             refreshListEvent?()

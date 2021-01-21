@@ -38,6 +38,9 @@ class AppLanguage {
     static let More = "more"
     static let Vietnamese = "Vietnamese"
     static let English = "English"
+    static let Day = "d ago"
+    static let Hours = "h ago"
+    static let Minutes = "m ago"
     //MARK: -- HandleError
     class HandleError {
         static let anError = "An Error"

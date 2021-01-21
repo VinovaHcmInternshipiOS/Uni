@@ -57,6 +57,7 @@
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YYN-mJ-6bV">
                                 <rect key="frame" x="0.0" y="0.0" width="116" height="120"/>
+                                <color key="backgroundColor" red="0.91200849745008683" green="0.91200849745008683" blue="0.91200849745008683" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>

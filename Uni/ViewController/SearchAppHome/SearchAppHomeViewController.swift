@@ -10,6 +10,7 @@
 
 import UIKit
 import SkeletonView
+import SVProgressHUD
 
 class SearchAppHomeViewController: BaseViewController, UITextFieldDelegate {
     
@@ -82,7 +83,7 @@ class SearchAppHomeViewController: BaseViewController, UITextFieldDelegate {
     
     @objc func actionSearch(sender: UIButton) {
         lbNoData.isHidden = true
-        showSpinner()
+        SVProgressHUD.show()
         listResultsEvent.removeAll()
         getkeySearch?()
     }
@@ -93,7 +94,7 @@ class SearchAppHomeViewController: BaseViewController, UITextFieldDelegate {
         tableView.performBatchUpdates {
             tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
         } completion: { [self] (Bool) in
-            removeSpinner()
+            SVProgressHUD.dismiss()
             pullControl.endRefreshing()
         }
         tableView.hideSkeleton()
@@ -251,7 +252,7 @@ extension SearchAppHomeViewController: SearchAppHomeViewProtocol{
     }
     
     func fetchEventFailed() {
-        removeSpinner()
+        SVProgressHUD.dismiss()
         tableView.hideSkeleton()
         checkEmptyData()
         pullControl.endRefreshing()

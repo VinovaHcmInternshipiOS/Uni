@@ -10,6 +10,7 @@
 
 import UIKit
 import SkeletonView
+import SVProgressHUD
 class ListUserViewController: BaseViewController {
     
     @IBOutlet weak var lbNoData: UILabel!
@@ -39,6 +40,7 @@ class ListUserViewController: BaseViewController {
         presenter.view = self
         setupUI()
         setupLanguage()
+        SVProgressHUD.show()
         presenter.fetchListUser()
         pullRefreshData()
         skeletonView()
@@ -61,6 +63,7 @@ class ListUserViewController: BaseViewController {
         pullControl.tintColor = AppColor.YellowFAB32A
         collectionView.alwaysBounceVertical = true
         btPlus.setImage(AppIcon.icPlusYellow, for: .normal)
+        lbNoData.isHidden = true
     }
     
     func skeletonView(){
@@ -85,7 +88,7 @@ class ListUserViewController: BaseViewController {
     }
     
     @objc func actionSearch(sender: UIButton) {
-        showSpinner()
+        SVProgressHUD.show()
         skeletonView()
         lbNoData.isHidden = true
         getkeySearch?()
@@ -255,7 +258,7 @@ extension ListUserViewController: ListUserViewProtocol{
         remakeData()
         countUser?()
         pullControl.endRefreshing()
-        removeSpinner()
+        SVProgressHUD.dismiss()
         
     }
     
@@ -265,7 +268,7 @@ extension ListUserViewController: ListUserViewProtocol{
         countUser?()
         collectionView.hideSkeleton()
         checkEmptyData()
-        removeSpinner()
+        SVProgressHUD.dismiss()
         pullControl.endRefreshing()
         
     }
@@ -275,7 +278,7 @@ extension ListUserViewController: ListUserViewProtocol{
         remakeData()
         countUser?()
         pullControl.endRefreshing()
-        removeSpinner()
+        SVProgressHUD.dismiss()
         
     }
     

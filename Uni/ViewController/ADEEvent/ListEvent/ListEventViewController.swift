@@ -10,7 +10,7 @@
 
 import UIKit
 import SkeletonView
-
+import SVProgressHUD
 class ListEventViewController: BaseViewController {
 
     @IBOutlet weak var lbNoData: UILabel!
@@ -39,6 +39,7 @@ class ListEventViewController: BaseViewController {
         presenter.view = self
         setupUI()
         setupLanguage()
+        SVProgressHUD.show()
         presenter.fetchEvent()
     }
     
@@ -295,26 +296,25 @@ extension ListEventViewController: ListEventViewProtocol{
     }
     
     func checkJoinerSuccess() {
-        removeSpinner()
+        SVProgressHUD.dismiss()
         checkEmptyData()
         print("Cannot remove event")
     }
 
     func checkJoinerFailed(keyEvent:String) {
-        
-        removeSpinner()
+        SVProgressHUD.dismiss()
         checkEmptyData()
     }
     
     func removeEventSuccess() {
         refreshListEvent()
-        removeSpinner()
+        SVProgressHUD.dismiss()
         checkEmptyData()
         print("remove event success")
     }
     
     func removeEventFailed() {
-        removeSpinner()
+        SVProgressHUD.dismiss()
         print("remove event failed")
     }
     
@@ -324,7 +324,7 @@ extension ListEventViewController: ListEventViewProtocol{
     
     func fetchEventSearchFailed() {
         //remakeData()
-        removeSpinner()
+        SVProgressHUD.dismiss()
         collectionView.hideSkeleton()
         checkEmptyData()
         collectionView.reloadData()
@@ -334,7 +334,7 @@ extension ListEventViewController: ListEventViewProtocol{
     func fetchEventSuccess() {
         remakeData()
         pullControl.endRefreshing()
-        removeSpinner()
+        SVProgressHUD.dismiss()
     }
     
     func fetchEventFailed() {

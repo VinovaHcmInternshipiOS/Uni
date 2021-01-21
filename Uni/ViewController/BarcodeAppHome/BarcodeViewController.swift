@@ -9,6 +9,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 class BarcodeViewController: BaseViewController {
 
 	var presenter: BarcodePresenterProtocol
@@ -33,6 +34,7 @@ class BarcodeViewController: BaseViewController {
         super.viewDidLoad()
         setupLanguage()
         presenter.view = self
+        SVProgressHUD.show()
         presenter.fetchProfile()
         lbAttention.textColor = AppColor.YellowFAB32A
         
@@ -97,6 +99,7 @@ extension BarcodeViewController: BarcodeViewProtocol {
         barcodeView.image = generateBarcode(from: fakeCode)
         timeEnd = created + 60
         timeCount = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(generate), userInfo: nil, repeats: true)
+        SVProgressHUD.dismiss()
     }
     
     func createCodeFailed() {

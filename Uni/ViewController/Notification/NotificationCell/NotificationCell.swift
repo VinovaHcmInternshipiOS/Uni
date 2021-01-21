@@ -15,7 +15,7 @@ class NotificationCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        viewState.backgroundColor = AppColor.YellowFAB32A
+        viewState.backgroundColor = AppColor.SilverE5E5E5
         lbDate.textColor = AppColor.YellowFBC459
     }
 

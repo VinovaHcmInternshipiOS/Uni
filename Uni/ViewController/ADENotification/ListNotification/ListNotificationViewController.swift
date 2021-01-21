@@ -11,6 +11,7 @@
 import UIKit
 import Charts
 import SkeletonView
+import SVProgressHUD
 class ListNotificationViewController: BaseViewController {
     
     @IBOutlet weak var viewbtDelete: UIView!
@@ -34,7 +35,7 @@ class ListNotificationViewController: BaseViewController {
 
 	override func viewDidLoad() {
         super.viewDidLoad()
-
+        SVProgressHUD.show()
         presenter.view = self
         presenter.countUser()
         presenter.fetchNotification()
@@ -95,7 +96,7 @@ class ListNotificationViewController: BaseViewController {
             tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
             hideSkeletonView()
         } completion: { [self] (Bool) in
-            removeSpinner()
+            SVProgressHUD.dismiss()
             
         }
        
@@ -153,7 +154,16 @@ extension ListNotificationViewController: SkeletonTableViewDataSource {
 extension ListNotificationViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
-        
+        if let listNotification = listNotification[indexPath.row] {
+            tableView.reloadRows(at: [IndexPath(row: indexPath.row, section: 0)], with: .automatic)
+            hideSkeletonView()
+            let contentNotification = ContentNotificationViewController(presenter: ContentNotificationPresenter())
+            contentNotification.titleNoti = "\(listNotification.title ?? "")"
+            contentNotification.contentNoti = "\(listNotification.content ?? "")"
+            contentNotification.modalPresentationStyle = .overCurrentContext
+            present(contentNotification, animated: false, completion: nil)
+            
+        } else {return}
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -208,7 +218,7 @@ extension ListNotificationViewController: UITableViewDataSource {
             cell.lbTitle.text = "\(listNotification[indexPath.row]?.title ?? "")"
             cell.lbDate.text = " \(is12hClockFormat() == true ? formatterDateTime12h(time: listNotification[indexPath.row]?.date ?? "") : listNotification[indexPath.row]?.date ?? "")"
             
-            cell.lbDateTime.text = "\(componentsTime.day == 0 ? (componentsTime.hour == 0 ? (componentsTime.minute == 0 ? AppLanguage.JustNow.localized : "\(componentsTime.minute ?? 0)m ago") : "\(componentsTime.hour ?? 0)h ago") : "\(componentsTime.day ?? 0)d ago")"
+            cell.lbDateTime.text = "\(componentsTime.day == 0 ? (componentsTime.hour == 0 ? (componentsTime.minute == 0 ? AppLanguage.JustNow.localized : "\(componentsTime.minute ?? 0)\(AppLanguage.Minutes.localized)") : "\(componentsTime.hour ?? 0)\(AppLanguage.Hours.localized)") : "\(componentsTime.day ?? 0)\(AppLanguage.Day.localized)")"
             cell.customizeChart(values: (listNotification[indexPath.row]?.statistical)!.map{ Double($0) })
             switch listNotification[indexPath.row]?.stateCell {
             case true:
@@ -252,7 +262,7 @@ extension ListNotificationViewController: UITableViewDataSource {
 extension ListNotificationViewController: ListNotificationViewProtocol {
     func removeNotificationSuccess() {
         presentAlertWithTitle(title: AppLanguage.HandleSuccess.Success.localized, message: AppLanguage.HandleSuccess.deleteNotification.localized, options: AppLanguage.Ok.localized) { [self] (Int) in
-            showSpinner()
+            SVProgressHUD.dismiss()
             listNotification.removeAll()
             refreshListNotification()
         }
@@ -268,7 +278,7 @@ extension ListNotificationViewController: ListNotificationViewProtocol {
     
     func fetchNotificationFailed() {
         checkEmptyData()
-        removeSpinner()
+        SVProgressHUD.dismiss()
         hideSkeletonView()
         pullControl.endRefreshing()
         

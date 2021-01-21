@@ -10,6 +10,7 @@
 
 import UIKit
 import SkeletonView
+import SVProgressHUD
 
 class NotificationViewController: BaseViewController {
 
@@ -36,7 +37,9 @@ class NotificationViewController: BaseViewController {
         presenter.view = self
         setupLanguage()
         setupUI()
+        SVProgressHUD.show()
         presenter.fetchNotification(dateCurrent: is12hClockFormat() == true ? (formatterDateTime12h(time: getCurrentDateTime12h()).toDateTimeFormat(format: "dd-MM-yyyy hh:mma")) : (formatterDateTime24h(time: getCurrentDateTime12h()).toDateTimeFormat(format: "dd-MM-yyyy HH:mm")), isClockFormat12h: is12hClockFormat())
+        
     }
     
     func setupUI(){
@@ -62,7 +65,7 @@ class NotificationViewController: BaseViewController {
     }
     
     @objc func pulledRefreshControl(sender:AnyObject) {
-        showSpinner()
+       // showSpinner()
         listNotification.removeAll()
         refreshListNotification()
         
@@ -87,7 +90,7 @@ class NotificationViewController: BaseViewController {
             tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
         } completion: { [self] (Bool) in
             hideSkeletonView()
-            removeSpinner()
+            SVProgressHUD.dismiss()
         }
         checkEmptyData()
     }
@@ -148,18 +151,6 @@ extension NotificationViewController: UITableViewDelegate {
         self.heightTableView.constant = self.tableView.contentSize.height
     }
     
-//    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-//        let closeAction = UIContextualAction(style: .normal, title:  "Close", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
-//                 print("OK, marked as Closed")
-//                 success(true)
-//             })
-//        
-//        closeAction.image = AppIcon.icBellRed
-//             closeAction.backgroundColor = . white
-//
-//             return UISwipeActionsConfiguration(actions: [closeAction])
-//    }
-    
 }
 
 extension NotificationViewController: UITableViewDataSource {
@@ -172,7 +163,7 @@ extension NotificationViewController: UITableViewDataSource {
             let calendar = Calendar.current
             let componentsTime = calendar.dateComponents([.day,.month,.year,.hour,.minute,.second], from: is12hClockFormat() == true ? (formatterDateTime12h(time: listNotification[indexPath.row]?.date ?? "").toDateTimeFormat(format: "dd-MM-yyyy hh:mma")) : (formatterDateTime24h(time: listNotification[indexPath.row]?.date ?? "").toDateTimeFormat(format: "dd-MM-yyyy HH:mm")) , to: is12hClockFormat() == true ? (formatterDateTime12h(time: getCurrentDateTime12h()).toDateTimeFormat(format: "dd-MM-yyyy hh:mma")) : (formatterDateTime24h(time: getCurrentDateTime12h()).toDateTimeFormat(format: "dd-MM-yyyy HH:mm")))
                 cell.lbTitle.text = "\(listNotification[indexPath.row]?.title ?? "")"
-                cell.lbDate.text = "\(componentsTime.day == 0 ? (componentsTime.hour == 0 ? (componentsTime.minute == 0 ? AppLanguage.JustNow.localized : "\(componentsTime.minute ?? 0)m ago") : "\(componentsTime.hour ?? 0)h ago") : "\(componentsTime.day ?? 0)d ago")"
+                cell.lbDate.text = "\(componentsTime.day == 0 ? (componentsTime.hour == 0 ? (componentsTime.minute == 0 ? AppLanguage.JustNow.localized : "\(componentsTime.minute ?? 0)\(AppLanguage.Minutes.localized)") : "\(componentsTime.hour ?? 0)\(AppLanguage.Hours.localized)") : "\(componentsTime.day ?? 0)\(AppLanguage.Day.localized)")"
                 cell.viewState.backgroundColor = listNotification[indexPath.row]?.state == true ? AppColor.SilverE5E5E5 : AppColor.YellowFAB32A
             return cell
         } else { return UITableViewCell()}
@@ -190,6 +181,7 @@ extension NotificationViewController: NotificationViewProtocol {
     func fetchNotificationFailed() {
         checkEmptyData()
         removeSpinner()
+        SVProgressHUD.dismiss()
         pullControl.endRefreshing()
         
     }

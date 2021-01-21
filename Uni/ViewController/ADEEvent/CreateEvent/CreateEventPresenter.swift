@@ -19,7 +19,7 @@ import UserNotifications
 
 // MARK: View -
 protocol CreateEventViewProtocol: class {
-    func createEventSuccess(path:String,title:String)
+    func createEventSuccess(path:String,title:String,keyEvent:String)
     func createEventFailed()
     func uploadImageLandscapeSuccess(keyRef:String,pathEvent:String)
     func uploadImagePortalSuccess(keyRef:String,pathEvent:String)
@@ -36,7 +36,7 @@ protocol CreateEventPresenterProtocol: class {
     func createEvent(urlImgLanscape: String,urlImgPortal:String,title:String,overview:String,location:String,date:String,checkin:String,checkout:String,score:Int)
     func uploadImage(images: [UIImage],path:String)
     func updateImageEvent(keyRef:String,path:String,type:typeImage)
-    func sendPushNotification(to token: String, title: String, body: String)
+    func sendPushNotification(to token: String, title: String, body: String,keyEvent:String)
 }
 
 class CreateEventPresenter: CreateEventPresenterProtocol {
@@ -47,7 +47,7 @@ class CreateEventPresenter: CreateEventPresenterProtocol {
     var user = Auth.auth().currentUser
     let storageRef = Storage.storage().reference()
     var detailEvent: ADEEvent?
-    func sendPushNotification(to token: String, title: String, body: String) {
+    func sendPushNotification(to token: String, title: String, body: String,keyEvent:String) {
         let urlString = "https://fcm.googleapis.com/fcm/send"
         let url = NSURL(string: urlString)!
         let paramString: [String : Any] = ["condition": "'notify' in topics",
@@ -56,7 +56,10 @@ class CreateEventPresenter: CreateEventPresenterProtocol {
                                              "body" : body,
                                              "title" : title,
                                              "sound" : "default"
-                                           ]
+                                           ],
+                                           "data" :[
+                                            "keyEvent": keyEvent
+                                         ]
         ]
         let request = NSMutableURLRequest(url: url as URL)
         request.httpMethod = "POST"
@@ -91,7 +94,7 @@ class CreateEventPresenter: CreateEventPresenterProtocol {
             }
             else
             {
-                view?.createEventSuccess(path: childAuto!,title: title)
+                view?.createEventSuccess(path: childAuto!,title: title,keyEvent: childAuto ?? "")
             }
         }
     }

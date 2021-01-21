@@ -285,8 +285,8 @@ extension UpdateEventViewController: UpdateEventViewProtocol {
         print("Fetch detail event failed")
     }
     
-    func updateEventSuccess() {
-        presenter.sendPushNotification()
+    func updateEventSuccess(keyEvent:String) {
+        presenter.sendPushNotification(keyEvent:keyEvent)
         if imageLandscapeIsChanged == true {
             if let imageLanscape = imgLandscape.image {
                 DispatchQueue.main.async { [self] in

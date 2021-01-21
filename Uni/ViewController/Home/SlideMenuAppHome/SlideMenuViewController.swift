@@ -9,6 +9,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 enum MenuType: Int {
     case Home
     case About
@@ -51,7 +52,7 @@ class SlideMenuViewController: BaseViewController {
                 arrayFeature = [AppLanguage.SlideMenu.Home.localized,AppLanguage.SlideMenu.About.localized,AppLanguage.SlideMenu.Setting.localized,AppLanguage.SlideMenu.Favorite.localized,AppLanguage.SlideMenu.Privacy.localized,AppLanguage.SlideMenu.Calendar.localized,AppLanguage.SlideMenu.Manage.localized]
                 
             } else {
-                arrayFeature = [AppLanguage.SlideMenu.Home.localized,AppLanguage.SlideMenu.About.localized,AppLanguage.SlideMenu.Setting.localized,AppLanguage.SlideMenu.Favorite.localized,AppLanguage.SlideMenu.Privacy.localized]
+                arrayFeature = [AppLanguage.SlideMenu.Home.localized,AppLanguage.SlideMenu.About.localized,AppLanguage.SlideMenu.Setting.localized,AppLanguage.SlideMenu.Favorite.localized,AppLanguage.SlideMenu.Privacy.localized,AppLanguage.SlideMenu.Calendar.localized]
             }
             tableView.reloadData()
             
@@ -81,6 +82,7 @@ class SlideMenuViewController: BaseViewController {
     }
     
     @IBAction func btLogout(_ sender: Any) {
+        SVProgressHUD.show()
         self.dismiss(animated: true, completion: { [self] in
             presenter.signOut()
         })

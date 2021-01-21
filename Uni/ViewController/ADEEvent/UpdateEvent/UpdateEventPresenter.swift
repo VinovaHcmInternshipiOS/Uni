@@ -19,7 +19,7 @@ import UIKit
 protocol UpdateEventViewProtocol: class {
     func fetchDetailSuccess()
     func fetchDetailFailed()
-    func updateEventSuccess()
+    func updateEventSuccess(keyEvent:String)
     func updateEventFailed()
     func uploadImageLandscapeSuccess(keyRef:String)
     func uploadImagePortalSuccess(keyRef:String)
@@ -42,7 +42,7 @@ protocol UpdateEventPresenterProtocol: class {
     func uploadImage(image: UIImage,type:typeImage)
     func updateImageEvent(keyRef:String,type:typeImage)
     func updateScoreUser(score: Int)
-    func sendPushNotification()
+    func sendPushNotification(keyEvent:String)
 }
 
 class UpdateEventPresenter: UpdateEventPresenterProtocol {
@@ -60,7 +60,7 @@ class UpdateEventPresenter: UpdateEventPresenterProtocol {
         self.keyEvent = keyEvent
     }
     
-    func sendPushNotification() {
+    func sendPushNotification(keyEvent:String) {
         let urlString = "https://fcm.googleapis.com/fcm/send"
         let url = NSURL(string: urlString)!
         let paramString: [String : Any] = ["condition": "'notify' in topics",
@@ -68,8 +68,11 @@ class UpdateEventPresenter: UpdateEventPresenterProtocol {
                                            "notification" : [
                                             "body" : "\(AppLanguage.UpdateEvent.havejustUpdate.localized) \(detailEvent?.title ?? "") \(AppLanguage.UpdateEvent.letCheck.localized)",
                                             "title" : AppLanguage.UpdateEvent.editEvent.localized,
-                                             "sound" : "default"
-                                           ]
+                                           ],
+                                           "data" :[
+                                            "keyEvent": keyEvent
+                                         ]
+                                           
         ]
         let request = NSMutableURLRequest(url: url as URL)
         request.httpMethod = "POST"
@@ -132,7 +135,7 @@ class UpdateEventPresenter: UpdateEventPresenterProtocol {
             }
             else
             {   
-                view?.updateEventSuccess()
+                view?.updateEventSuccess(keyEvent: keyEvent)
                 updateScoreUser(score: score)
             }
         }

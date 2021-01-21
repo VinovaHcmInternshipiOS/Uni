@@ -18,14 +18,14 @@ import Firebase
 protocol PushNotificationViewProtocol: class {
     func pushNotificationSuccess()
     func pushNotificationFailed()
-    func createNotificationSuccess()
+    func createNotificationSuccess(keyNotification:String)
     func createNotificationFailed()
 }
 
 // MARK: Presenter -
 protocol PushNotificationPresenterProtocol: class {
 	var view: PushNotificationViewProtocol? { get set }
-    func sendPushNotification(to token: String, title: String, body: String)
+    func sendPushNotification(to token: String, title: String, body: String,keyNotification:String)
     func createNotification(title: String, content: String, date:String)
 }
 
@@ -34,7 +34,7 @@ class PushNotificationPresenter: PushNotificationPresenterProtocol {
     weak var view: PushNotificationViewProtocol?
     var ref = Database.database().reference()
     var databaseHandle = DatabaseHandle()
-    func sendPushNotification(to token: String, title: String, body: String) {
+    func sendPushNotification(to token: String, title: String, body: String, keyNotification:String) {
         let urlString = "https://fcm.googleapis.com/fcm/send"
         let url = NSURL(string: urlString)!
         let paramString: [String : Any] = ["condition": "'notify' in topics",
@@ -42,8 +42,10 @@ class PushNotificationPresenter: PushNotificationPresenterProtocol {
                                            "notification" : [
                                              "body" : body,
                                              "title" : title,
-                                             "sound" : "default"
-                                           ]
+                                           ],
+                                           "data" :[   
+                                               "keyNotification": keyNotification
+                                            ]
         ]
         let request = NSMutableURLRequest(url: url as URL)
         request.httpMethod = "POST"
@@ -74,6 +76,7 @@ class PushNotificationPresenter: PushNotificationPresenterProtocol {
     
     func createNotification(title: String, content: String, date:String) {
         let path = self.ref.child("Notification").childByAutoId()
+        let childAuto = path.key
         let sentValue = ["Title":"\(title)","Content":"\(content)","Date":"\(date)"] as [String : Any]
         path.setValue(sentValue) { [self]
             (error:Error?, ref:DatabaseReference) in
@@ -82,7 +85,7 @@ class PushNotificationPresenter: PushNotificationPresenterProtocol {
             }
             else
             {
-                view?.createNotificationSuccess()
+                view?.createNotificationSuccess(keyNotification:childAuto ?? "")
             }
         }
     }

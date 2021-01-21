@@ -1,4 +1,5 @@
 PODS:
+  - BadgeControl (1.2.1)
   - BarcodeScanner (5.0.0)
   - Charts (3.6.0):
     - Charts/Core (= 3.6.0)
@@ -121,8 +122,10 @@ PODS:
   - SDWebImage/Core (5.10.2)
   - ShimmerSwift (2.1.1)
   - SkeletonView (1.11.0)
+  - SVProgressHUD (2.2.5)
 
 DEPENDENCIES:
+  - BadgeControl
   - BarcodeScanner
   - Charts
   - Firebase/Analytics
@@ -137,9 +140,11 @@ DEPENDENCIES:
   - SDWebImage (~> 5.0)
   - ShimmerSwift
   - SkeletonView
+  - SVProgressHUD
 
 SPEC REPOS:
   trunk:
+    - BadgeControl
     - BarcodeScanner
     - Charts
     - Firebase
@@ -166,8 +171,10 @@ SPEC REPOS:
     - SDWebImage
     - ShimmerSwift
     - SkeletonView
+    - SVProgressHUD
 
 SPEC CHECKSUMS:
+  BadgeControl: 67036e7f586930bba15084dbf89ebce7aa2f2bc2
   BarcodeScanner: 2f5a53198eae49dc39bf61f2c1f05c04e01ff72d
   Charts: b1e3a1f5a1c9ba5394438ca3b91bd8c9076310af
   Firebase: 456eeacc158d8c58586b7871619a81bb9f27d4ae
@@ -194,7 +201,8 @@ SPEC CHECKSUMS:
   SDWebImage: b969dcfc02c40a5da71eac0b03b8f1a0c794a86f
   ShimmerSwift: f7ed2daf9c246de8299dfd9e12c6ab465cba9842
   SkeletonView: cc84ce90a804dd0dd7198dd802833411c8a64eaf
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: edfdc78305baf5d4b7a659e2bbb871ddc8747f55
+PODFILE CHECKSUM: b9ffc2a1dcaedf64c06cf36a437a6ebaa2595e4e
 
 COCOAPODS: 1.10.1

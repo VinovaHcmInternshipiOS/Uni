@@ -10,6 +10,7 @@
 
 import UIKit
 import SkeletonView
+import SVProgressHUD
 
 class FavoriteEventViewController: BaseViewController {
     
@@ -32,8 +33,8 @@ class FavoriteEventViewController: BaseViewController {
         super.viewDidLoad()
 
         presenter.view = self
+        SVProgressHUD.show()
         presenter.getInfoEventFavorite()
-        showSpinner()
         setupUI()
         setupLanguage()
 
@@ -117,7 +118,7 @@ class FavoriteEventViewController: BaseViewController {
         pullControl.endRefreshing()
         collectionView.reloadData()
         checkEmptyData()
-        removeSpinner()
+        SVProgressHUD.dismiss()
     }
 
 }
@@ -215,7 +216,7 @@ extension FavoriteEventViewController: UICollectionViewDataSource {
                 cell.titleEvent.text = listEvent.title
                 listEvent.stateLike == true ? cell.btLike.setImage(AppIcon.icLove, for: .normal) : cell.btLike.setImage(AppIcon.icUnLove, for: .normal)
                 cell.like = { [self] in
-                    showSpinner()
+                    SVProgressHUD.show()
                     cell.btLike.setImage(AppIcon.icUnLove, for: .normal)
                     listEvent.stateLike = false
                     presenter.isLikeEvent(keyEvent: listEvent.key ?? "", stateLike: false)
@@ -241,7 +242,7 @@ extension FavoriteEventViewController: FavoriteEventViewProtocol {
             ListEvent.remove(at: 0)
             collectionView.reloadData()
         }
-        removeSpinner()
+        SVProgressHUD.dismiss()
     }
     
     func fetchEventSuccess() {
@@ -253,7 +254,7 @@ extension FavoriteEventViewController: FavoriteEventViewProtocol {
         pullControl.endRefreshing()
         print("Fetch info event happening error")
         checkEmptyData()
-        removeSpinner()
+        SVProgressHUD.dismiss()
         collectionView.reloadData()
     }
 }

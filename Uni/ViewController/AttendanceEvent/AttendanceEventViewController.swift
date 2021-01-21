@@ -13,8 +13,9 @@ import BarcodeScanner
 import AVFoundation
 import AudioToolbox
 import MessageUI
-import WebKit
-class AttendanceEventViewController: BaseViewController,AVCaptureMetadataOutputObjectsDelegate,MFMailComposeViewControllerDelegate, WKNavigationDelegate {
+import SVProgressHUD
+
+class AttendanceEventViewController: BaseViewController,AVCaptureMetadataOutputObjectsDelegate,MFMailComposeViewControllerDelegate {
     @IBOutlet weak var lbNoData: UILabel!
     @IBOutlet weak var btPlus: UIButton!
     @IBOutlet weak var viewPlus: UIView!
@@ -46,6 +47,7 @@ class AttendanceEventViewController: BaseViewController,AVCaptureMetadataOutputO
         super.viewDidLoad()
         
         presenter.view = self
+        SVProgressHUD.show()
         presenter.fetchAttendance(keyEvent: keyDetailEvent)
         presenter.getDateTimeEvent(keyEvent: keyDetailEvent)
         setupUI()
@@ -440,18 +442,26 @@ extension AttendanceEventViewController: BarcodeScannerDismissalDelegate {
 }
 
 extension AttendanceEventViewController: AttendanceEventViewProtocol {
+    func pushNotificationSuccess() {
+        
+    }
+    
+    func pushNotificationFailed() {
+        
+    }
+    
     
     func searchAttendanceEventSuccess() {
         countUser?()
         remakeData()
-        removeSpinner()
+        SVProgressHUD.dismiss()
     }
     
     func searchAttendanceEventFailed() {
         checkEmptyData()
         countUser?()
         collectionView.hideSkeleton()
-        removeSpinner()
+        SVProgressHUD.dismiss()
         collectionView.reloadData()
     }
     
@@ -571,6 +581,7 @@ extension AttendanceEventViewController: AttendanceEventViewProtocol {
             presentAlertWithTitle(title: AppLanguage.HandleSuccess.Success.localized, message: "\(AppLanguage.HandleSuccess.attendance.localized)\r\(code)", options: AppLanguage.Ok.localized) { (Int) in
             }
         }
+        presenter.sendPushNotification(to: "", title: "You have", body: "You have attended the event successfully\nPlease check the event history", codeUser: code)
         presenter.getScoreEvent(keyEvent: keyDetailEvent, code: code)
     }
     

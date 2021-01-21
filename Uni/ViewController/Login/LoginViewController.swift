@@ -11,9 +11,11 @@
 import UIKit
 import UserNotifications
 import Firebase
+import SVProgressHUD
 class LoginViewController: UIViewController {
 
 
+    @IBOutlet weak var btLogin: UIButton!
     @IBOutlet weak var imgSignIn: UIImageView!
     @IBOutlet weak var spinnerLoading: UIActivityIndicatorView!
     @IBOutlet weak var lbSignUp: UILabel!
@@ -43,6 +45,12 @@ class LoginViewController: UIViewController {
         presenter.view = self
         setupUI()
         customNav()
+        defaultLoginHomeVC()
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -80,23 +88,48 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func gotoAppHomeVC(_ sender: Any) {
-        self.showSpinner()
+        SVProgressHUD.show()
+        btLogin.isEnabled = false
         btSignup.isEnabled = false
         imgSignIn.isHidden = true
         spinnerLoading.isHidden = false
         spinnerLoading.startAnimating()
         if let email = txtEmail.text, let password = txtPassword.text {
+            UserDefaults.standard.setValue(email, forKey: "email")
+            UserDefaults.standard.setValue(password, forKey: "password")
             presenter.siginIn(email: email, password: password)
         } else {return}
-        
-        
     }
-    let okActionHandler: ((UIAlertAction) -> Void) = {(action) in
-        print("OK")
+    
+    func defaultLoginHomeVC(){
+        if UserDefaults.standard.bool(forKey: "isLogin") == true {
+            SVProgressHUD.show()
+            btForgotPassword.isEnabled = false
+            btLogin.isEnabled = false
+            imgSignIn.isHidden = true
+            spinnerLoading.isHidden = false
+            txtEmail.isEnabled = false
+            txtPassword.isEnabled = false
+            spinnerLoading.startAnimating()
+            let email = UserDefaults.standard.string(forKey: "email")
+            let password = UserDefaults.standard.string(forKey: "password")
+            if let email = email, let password = password {
+                txtEmail.text = email
+                txtPassword.text = password
+                presenter.siginIn(email: email, password: password)
+            } else { return }
+           
+        }
     }
-
-    let cancelActionHandler: ((UIAlertAction) -> Void) = {(action) in
-        print("Error")
+    
+    func isLogging(){
+        imgSignIn.isHidden = false
+        btLogin.isEnabled = true
+        spinnerLoading.isHidden = true
+        spinnerLoading.stopAnimating()
+        btForgotPassword.isEnabled = true
+        txtEmail.isEnabled = true
+        txtPassword.isEnabled = true
     }
     
 }
@@ -105,6 +138,12 @@ extension LoginViewController: LoginViewProtocol {
 
     func checkAuthSuccess(role: String,code:String) {
         print(role,"Change")
+        print(code,"Code")
+        UserDefaults.standard.setValue(code, forKey: "CodeUser")
+        if UserDefaults.standard.string(forKey: "CodeUser") != nil {
+            Messaging.messaging().subscribe(toTopic: UserDefaults.standard.string(forKey: "CodeUser")!)
+        }
+        
         if role != "Admin" {
             Messaging.messaging().subscribe(toTopic: "notify")
         } else {
@@ -136,14 +175,15 @@ extension LoginViewController: LoginViewProtocol {
         
         UserDefaults.standard.set(false, forKey: "status")
         let AppHomeVC = AppHomeViewController(presenter: AppHomePresenter())
+        AppHomeVC.isUpdateBadge?("2")
         UserDefaults.standard.setValue(0, forKey: "caseMenu")
         navigationController?.pushViewController(AppHomeVC, animated: true)
         AppHomeVC.code = code
         Switcher.updateRootVC()
-        imgSignIn.isHidden = false
-        spinnerLoading.isHidden = true
-        spinnerLoading.stopAnimating()
-        removeSpinner()
+        isLogging()
+        SVProgressHUD.dismiss()
+        UserDefaults.standard.setValue(true, forKey: "isLogin")
+        UserDefaults.standard.setValue(code, forKey: "codeUser")
     }
     
     func checkAuthFailed() {
@@ -160,10 +200,8 @@ extension LoginViewController: LoginViewProtocol {
     }
     
     func loginFailed(error: Error) {
-        imgSignIn.isHidden = false
-        spinnerLoading.isHidden = true
-        spinnerLoading.stopAnimating()
-        removeSpinner()
+        isLogging()
+        SVProgressHUD.dismiss()
         handleError(error)
     }
 }

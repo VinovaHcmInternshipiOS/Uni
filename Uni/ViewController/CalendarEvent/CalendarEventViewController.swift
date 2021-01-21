@@ -11,6 +11,7 @@
 import UIKit
 import FSCalendar
 import SkeletonView
+import SVProgressHUD
 class CalendarEventViewController: BaseViewController  {
     
     @IBOutlet weak var ActivityIndicator: UIActivityIndicatorView!
@@ -38,15 +39,16 @@ class CalendarEventViewController: BaseViewController  {
         super.viewDidLoad()
         
         presenter.view = self
+        SVProgressHUD.show()
         presenter.getInfoEvent()
-        showSpinner()
         setupUI()
         setupLanguage()
         heightCollectionView.constant = 0
+        isUpdateBadge?("1")
     }
     
     func setupUI(){
-        addMenuButton()
+        addNav()
         Calendar.appearance.caseOptions = FSCalendarCaseOptions.headerUsesCapitalized
         Calendar.appearance.titleFont = AppFont.Raleway_Medium_17
         Calendar.appearance.headerTitleFont = AppFont.Raleway_Medium_18
@@ -74,6 +76,18 @@ class CalendarEventViewController: BaseViewController  {
         lbComingSoon.text = AppLanguage.Calendar.EventComingSoon.localized
         lbEnded.text = AppLanguage.Calendar.EventEnded.localized
         lbNoData.text = AppLanguage.HandleError.noData.localized
+    }
+    
+    func addNav() {
+        addMenuButton()
+        addButtonImageToNavigation(image: AppIcon.icBellYellow!, style: .right, action: #selector(notification))
+        self.navigationController?.hideShadowLine()
+    }
+    
+    @objc func notification(){
+        let appHome = AppHomeViewController(presenter: AppHomePresenter())
+        let notification = NotificationViewController(presenter: NotificationPresenter(code: appHome.code))
+        navigationController?.pushViewController(notification, animated: true)
     }
     
     private func pullRefreshData() {
@@ -142,6 +156,7 @@ extension CalendarEventViewController: FSCalendarDataSource {
 
 extension CalendarEventViewController: CalendarEventViewProtocol {
     func fetchEventInDaySuccess() {
+
         collectionView.hideSkeleton()
         collectionView.insertItems(at: [IndexPath(row: presenter.eventInDay.count - 1, section: 0)])
         collectionView.performBatchUpdates({
@@ -150,8 +165,8 @@ extension CalendarEventViewController: CalendarEventViewProtocol {
             // optional closure
             print("finished updating cell")
         }
+        collectionView.hideSkeleton()
         checkEmptyData()
-        
     }
     
     func fetchEventInDayFailed() {
@@ -170,12 +185,12 @@ extension CalendarEventViewController: CalendarEventViewProtocol {
     func fetchEventSuccess() {
         Calendar.reloadData()
         pullControl.endRefreshing()
-        removeSpinner()
+        SVProgressHUD.dismiss()
     }
     
     func fetchEventFailed() {
         pullControl.endRefreshing()
-        removeSpinner()
+        SVProgressHUD.dismiss()
     }
     
     

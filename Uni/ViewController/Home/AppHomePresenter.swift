@@ -27,6 +27,7 @@ protocol AppHomeViewProtocol: class {
     func checkStateLiveSuccess()
     func likeEventSuccess()
     func likeEventFailed()
+    func checkBadgeSuccess(amount:Int)
 }
 
 // MARK: Presenter -
@@ -44,6 +45,7 @@ protocol AppHomePresenterProtocol: class {
     func getInfoEventEnded(currentDateTime: Date)
     func checkStateLive()
     func isLikeEvent(keyEvent:String,stateLike:Bool)
+    func fetchBadge(code:String,dateCurrent:Date,isClockFormat12h:Bool)
     
     
 }
@@ -60,7 +62,6 @@ class AppHomePresenter: AppHomePresenterProtocol {
     var happeningEvent: [Event?] = []
     var comingsoonEvent: [Event?] = []
     var endedEvent: [Event?] = []
-
     func getInfoEventHappening(currentDateTime: Date) {
         happeningEvent.removeAll()
         ref.child("Event").observeSingleEvent(of: .value) { [self] (snapshot) in
@@ -298,5 +299,77 @@ class AppHomePresenter: AppHomePresenterProtocol {
             }
         }
     }
+    
+    func fetchBadge(code:String,dateCurrent:Date,isClockFormat12h:Bool) {
+        ref.child("Notification").observe(.value) { [self] (snapshot) in
+            if snapshot.exists() {
+                var countRead = 0
+                var countUnRead = 0
+                for keyNotification in snapshot.children.allObjects as! [DataSnapshot] {
+                    let placeRef = self.ref.child("Notification/\(keyNotification.key)")
+                    placeRef.observeSingleEvent(of:.value, with: { [self] snapshot in
+                        if snapshot.exists()
+                        {
+                            let dict = snapshot.value as! [String: Any]
+                            let date = dict["Date"] as! String
+                            let calendar = Calendar.current
+                            let componentsTime = calendar.dateComponents([.day,.month,.year,.hour,.minute,.second], from: isClockFormat12h == true ? ((date.formatterDateTime12h()).toDateTimeFormat(format: "dd-MM-yyyy hh:mma")) : ((date.formatterDateTime24h()).toDateTimeFormat(format: "dd-MM-yyyy HH:mm")), to: dateCurrent)
+                            let placeRef = self.ref.child("Notification/\(keyNotification.key)/List/\(code)")
+                            placeRef.observeSingleEvent(of:.value, with: { [] snapshot in
+                                if snapshot.exists() {
+                                    if componentsTime.day ?? 0 <= 7{
+                                        countRead += 1
+                                    }
+                                } else {
+                                    if componentsTime.day ?? 0 <= 7{
+                                        countUnRead += 1
+                                    }
+                                }
+                                //view?.checkBadgeSuccess(amount:countUnRead)
+                                view?.checkBadgeSuccess(amount:countUnRead)
+                                print(11111,countRead,countUnRead)
+                            })
+                        }
+                        else
+                        {
+                          
+                        }
+                    })
+                    
+                }
+                
+            } else {
+                
+            }
+        }
+//        ref.child("Notification").observe(.value) { [self] (snapshotNoti) in
+//            if snapshotNoti.exists() {
+//                for keyNotification in snapshotNoti.children.allObjects as! [DataSnapshot] {
+//                    let placeRef = self.ref.child("Notification/\(keyNotification.key)/List")
+//                    placeRef.observe(.value, with: { [] snapshot in
+//                     //   if snapshot.exists() {
+//                        var countRead = 0
+//                            for codeUser in snapshot.children.allObjects as! [DataSnapshot] {
+//                                if codeUser.key == code {
+//                                    countRead += 1
+//                                    if countRead == snapshotNoti.childrenCount {
+//                                        view?.checkBadgeSuccess(amount: 0)
+//                                    } else {
+//                                        view?.checkBadgeSuccess(amount: Int(snapshotNoti.childrenCount) - countRead )
+//                                    }
+//                                } else {
+//
+//                                }
+//                                print(111111,countRead)
+//                            }
+//                    //}
+//                    })
+//
+//                }
+//            } else {
+//
+//            }
+//        }
+//    }
+    }
 }
-

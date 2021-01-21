@@ -63,8 +63,7 @@ class PushNotificationViewController: BaseViewController {
                 presenter.createNotification(title: removeWhiteSpaceAndLine(text: title), content: removeWhiteSpaceAndLine(text: content), date: "\(getCurrentDate()) \(getCurrentTime())")
                 
             } else {
-                presentAlertWithTitle(title: AppLanguage.HandleError.anError.localized, message:
-                                        AppLanguage.HandleError.fillIn.localized, options: AppLanguage.Ok.localized) { (Int) in}
+                presentAlertWithTitle(title: AppLanguage.HandleError.anError.localized, message:AppLanguage.HandleError.fillIn.localized, options: AppLanguage.Ok.localized) { (Int) in}
             }
         } else { return }
         
@@ -73,8 +72,8 @@ class PushNotificationViewController: BaseViewController {
 }
 
 extension PushNotificationViewController: PushNotificationViewProtocol {
-    func createNotificationSuccess() {
-        presenter.sendPushNotification(to: "", title: "You have", body: "new notification.")
+    func createNotificationSuccess(keyNotification:String) {
+        presenter.sendPushNotification(to: "", title: "You have", body: "new notification.",keyNotification: keyNotification)
     }
     
     func createNotificationFailed() {

@@ -493,9 +493,9 @@
 		F5126062256677FF00B517DC /* ADEEvent */ = {
 			isa = PBXGroup;
 			children = (
+				F51260632566781E00B517DC /* CreateEvent */,
 				F56E7B01256D083800F8EC23 /* UpdateEvent */,
 				F5C26FDC256B9D230015576A /* ListEvent */,
-				F51260632566781E00B517DC /* CreateEvent */,
 			);
 			path = ADEEvent;
 			sourceTree = "<group>";

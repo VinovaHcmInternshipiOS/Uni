@@ -306,3 +306,7 @@
 
 "Vietnamese" = "Tiếng Việt";
 "English" = "Tiếng Anh";
+
+"d ago" = " ngày";
+"h ago" = " giờ";
+"m ago" = " phút";

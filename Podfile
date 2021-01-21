@@ -18,6 +18,8 @@ target 'Uni' do
   pod 'Charts'
   pod 'SDWebImage', '~> 5.0'
   pod 'FSCalendar'	
+  pod 'BadgeControl'
+  pod 'SVProgressHUD'
   # Pods for Uni
 post_install do |installer|
      installer.pods_project.targets.each do |target|

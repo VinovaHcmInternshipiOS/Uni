@@ -8,7 +8,8 @@
 import Foundation
 import UIKit
 import SkeletonView
-
+import BadgeControl
+import SVProgressHUD
 enum StyleNavigation {
     case left
     case right
@@ -18,6 +19,8 @@ class BaseViewController: UIViewController,UIViewControllerTransitioningDelegate
     let transition = SlideInTransition()
     var reloadHomeVC: (()->Void)? = nil
     var backTapped : (() -> Void)? = nil
+    var isUpdateBadge: ((_ badge:String) -> Void)? = nil
+    private var lowerRightBadge: BadgeController!
     var isUseMenuButton: Bool = false {
         didSet {
             if isUseMenuButton {
@@ -48,6 +51,7 @@ class BaseViewController: UIViewController,UIViewControllerTransitioningDelegate
         self.view.backgroundColor = .white
         overrideUserInterfaceStyle = .light
         addBackToNavigation()
+     
         //navigationController?.interactivePopGestureRecognizer?.delegate = self
         //navigationItem.titleView = lbTitleVC
         navigationController?.interactivePopGestureRecognizer?.delegate = self
@@ -78,10 +82,28 @@ class BaseViewController: UIViewController,UIViewControllerTransitioningDelegate
             btn.contentHorizontalAlignment = .left
             self.navigationItem.leftBarButtonItem = button
         } else {
-            btn.imageEdgeInsets = UIEdgeInsets(top: 5, left: 20, bottom: 5, right: 0)
+            btn.imageEdgeInsets = UIEdgeInsets(top: 5, left: 20, bottom: 5, right: 5)
             self.navigationItem.rightBarButtonItem = button
             btn.contentHorizontalAlignment = .right
+            isUpdateBadge = { [self] badge in
+                if badge != "0" {
+                    lowerRightBadge = BadgeController(for: btn, in: .custom(x: 50, y: 12), badgeBackgroundColor: .systemRed , badgeTextColor: UIColor.white, borderWidth: 0, badgeHeight: 20)
+                    lowerRightBadge.badgeTextFont = AppFont.Raleway_Medium_16
+                    lowerRightBadge.addOrReplaceCurrent(with: badge, animated: true)
+                    lowerRightBadge.animateOnlyWhenBadgeIsNotYetPresent = true
+                    lowerRightBadge.animation = BadgeAnimations.fadeIn
+                } else {
+                    lowerRightBadge = BadgeController(for: btn, in: .custom(x: 50, y: 12), badgeBackgroundColor: .systemRed , badgeTextColor: UIColor.white, borderWidth: 0, badgeHeight: 0)
+                    lowerRightBadge.badgeTextFont = AppFont.Raleway_Medium_16
+                    lowerRightBadge.addOrReplaceCurrent(with: "0", animated: true)
+                    lowerRightBadge.animateOnlyWhenBadgeIsNotYetPresent = true
+                    lowerRightBadge.animation = BadgeAnimations.fadeIn
+                }
+                btn.layoutIfNeeded()
+            }
+            
         }
+        
     }
     
     func addButtonToNavigation(title: String, style: StyleNavigation, action: Selector?, backgroundColor: UIColor = UIColor.white, textColor: UIColor = AppColor.Gray5B5B5B, font: UIFont = AppFont.Raleway_Regular_16, cornerRadius: CGFloat = 0, size: CGSize = CGSize(width: 20, height: 10), borderWidth: Double = 0, borderColor: UIColor = .clear){
@@ -226,7 +248,6 @@ class BaseViewController: UIViewController,UIViewControllerTransitioningDelegate
 extension BaseViewController: SlideMenuViewProtocol {
     func checkAuthSuccess(role: String) {
         print(role,"Change")
-        //        AppColor.YellowFAB32A = role == "Admin" ? #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1) : #colorLiteral(red: 0.9803921569, green: 0.7019607843, blue: 0.1647058824, alpha: 1)
     }
     
     func checkAuthFailed() {
@@ -234,6 +255,7 @@ extension BaseViewController: SlideMenuViewProtocol {
     }
     
     func signOutSuccess() {
+        SVProgressHUD.dismiss()
         print("OK")
         UserDefaults.standard.set(true, forKey: "status")
         Switcher.updateRootVC()
@@ -242,7 +264,8 @@ extension BaseViewController: SlideMenuViewProtocol {
     }
     
     func signOutFailed() {
-        print("OK") 
+        print("OK")
+        SVProgressHUD.dismiss()
     }
 }
 extension UINavigationController

@@ -9,7 +9,7 @@
 //
 
 import UIKit
-
+import SVProgressHUD
 class RankViewController: BaseViewController {
 
     @IBOutlet weak var lbNameProfile: UILabel!
@@ -46,11 +46,9 @@ class RankViewController: BaseViewController {
         setupXIB()
         setupLanguage()
         setupUI()
+        SVProgressHUD.show()
         presenter.fetchRank()
         pullRefreshData()
-    }
-    override func viewWillAppear(_ animated: Bool) {
-        //viewScore.roundCorners([.topLeft,.topRight], radius: 20)
     }
     
     @objc func pullRefreshControl(sender:AnyObject) {
@@ -61,8 +59,8 @@ class RankViewController: BaseViewController {
     private func pullRefreshData() {
         pullControl.addTarget(self, action: #selector(pullRefreshControl), for: UIControl.Event.valueChanged)
         scrollView.addSubview(pullControl)
-        
     }
+    
     func setupLanguage(){
         lbRank.text = AppLanguage.Rank.Rank.localized
         lbScore.text = AppLanguage.Rank.Score.localized
@@ -147,10 +145,12 @@ extension RankViewController: RankViewProtocol {
         }
         tableView.reloadData()
         pullControl.endRefreshing()
+        SVProgressHUD.dismiss()
     }
     
     func fetchRanhFailed() {
         pullControl.endRefreshing()
+        SVProgressHUD.dismiss()
         print("fetch rank failed")
     }
 }

@@ -75,12 +75,39 @@ class AppHomeViewController:BaseViewController{
         movetoProfile()
         pullRefreshData()
         _ = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(moveToNextPage), userInfo: nil, repeats: true)
-        
+        gotoDetailEvent()
+        gotoNotification()
+        gotoHistoryEvent()
     }
     override func viewDidAppear(_ animated: Bool) {
         navigationController?.interactivePopGestureRecognizer?.isEnabled = false
     }
     
+    func gotoDetailEvent(){
+        if UserDefaults.standard.string(forKey: "eventDetail") != nil {
+            let detailEvent = DetailEventViewController(presenter: DetailEventPresenter())
+            detailEvent.keyDetailEvent = UserDefaults.standard.string(forKey: "eventDetail")!
+            UserDefaults.standard.removeObject(forKey: "eventDetail")
+            self.navigationController?.pushViewController(detailEvent, animated: true)
+        }
+    }
+    
+    func gotoNotification(){
+        if UserDefaults.standard.string(forKey: "notificationDetail") != nil {
+            let appHome = AppHomeViewController(presenter: AppHomePresenter())
+            let notification = NotificationViewController(presenter: NotificationPresenter(code: appHome.code))
+            UserDefaults.standard.removeObject(forKey: "notificationDetail")
+            self.navigationController?.pushViewController(notification, animated: true)
+        }
+    }
+    
+    func gotoHistoryEvent(){
+        if UserDefaults.standard.string(forKey: "userDetail") != nil {
+            let history = HistoryEventViewController(presenter: HistoryEventPresenter())
+            UserDefaults.standard.removeObject(forKey: "userDetail")
+            self.navigationController?.pushViewController(history, animated: true)
+        }
+    }
     
     override func viewWillAppear(_ animated: Bool) {
       
@@ -479,6 +506,10 @@ extension AppHomeViewController: UICollectionViewDelegate,UICollectionViewDataSo
 }
 
 extension AppHomeViewController: AppHomeViewProtocol {
+    func checkBadgeSuccess(amount: Int) {
+        isUpdateBadge?("\(amount)")
+    }
+    
     func likeEventSuccess() {
 
     }
@@ -569,12 +600,14 @@ extension AppHomeViewController: AppHomeViewProtocol {
             } else {
                 imgUser.borderColor = .clear
             }
+            presenter.fetchBadge(code: profile.code ?? "",dateCurrent: is12hClockFormat() == true ? (formatterDateTime12h(time: getCurrentDateTime12h()).toDateTimeFormat(format: "dd-MM-yyyy hh:mma")) : (formatterDateTime24h(time: getCurrentDateTime12h()).toDateTimeFormat(format: "dd-MM-yyyy HH:mm")), isClockFormat12h: is12hClockFormat())
         } else { return }
         
         lbName.hideSkeleton()
         lbID.hideSkeleton()
         lbFaculty.hideSkeleton()
         imgUser.hideSkeleton()
+       
     }
     
     func fetchProfileFailed() {

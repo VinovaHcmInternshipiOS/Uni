@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let gcmMessageIDKey = "gcm.message_id"
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        
+        window = UIWindow(frame: UIScreen.main.bounds)
         NetworkState.shared.startMonitoring()
         FirebaseApp.configure()
         IQKeyboardManager.shared.enable = true
@@ -93,6 +93,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
+    private func coordinateToSomeVC(keyEvent:String)
+    {
+        guard let window = UIApplication.shared.keyWindow else { return }
+        let homeApp = UINavigationController(rootViewController: AppHomeViewController(presenter: AppHomePresenter()))
+        window.rootViewController = homeApp
+        window.makeKeyAndVisible()
+    }
     
     
 }
@@ -115,20 +122,30 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void)
     {
-        // Do whatever you want when the user tapped on a notification
-        // If you are waiting for a specific value from the notification
-        // (e.g., associated with key "valueKey"),
-        // you can capture it as follows then do the navigation:
-        // A. get the dict info from the notification
-        //let userInfo = response.notification.request.content.userInfo
-        //        let userInfo = response.notification.request.content.userInfo
-        //
-        //        if let targetValue = userInfo["keyvalue"] as? String, targetValue == "123"
-        //        {
-        //            print(targetValue)
-        //            coordinateToSomeVC()
-        //        }
-        resetBadgeCount()
+//         Do whatever you want when the user tapped on a notification
+//         If you are waiting for a specific value from the notification
+//         (e.g., associated with key "valueKey"),
+//         you can capture it as follows then do the navigation:
+//         A. get the dict info from the notification
+        let userInfo = response.notification.request.content.userInfo
+//                if let keyNotification = userInfo["keyNotification"] {
+//                    print("keyNotication",keyNotification)
+//                } else {return}
+        if let codeUser = userInfo["userDetail"] {
+            coordinateToSomeVC(keyEvent: codeUser as! String)
+            UserDefaults.standard.setValue(codeUser, forKey: "userDetail")
+        }
+        if let keyNotification = userInfo["keyNotification"] {
+            coordinateToSomeVC(keyEvent: keyNotification as! String)
+            UserDefaults.standard.setValue(keyNotification, forKey: "notificationDetail")
+        }
+        if let keyEvent = userInfo["keyEvent"] {
+            
+            coordinateToSomeVC(keyEvent: keyEvent as! String)
+            UserDefaults.standard.setValue(keyEvent, forKey: "eventDetail")
+        }
+                
+        //resetBadgeCunt()
         completionHandler()
     }
 }

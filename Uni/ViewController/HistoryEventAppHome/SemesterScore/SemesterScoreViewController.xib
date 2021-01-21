@@ -37,7 +37,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gJU-bg-is3">
-                    <rect key="frame" x="0.0" y="0.0" width="414" height="796.5"/>
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="803"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fCI-9Z-NOx">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="979"/>
@@ -75,7 +75,7 @@
                             </constraints>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Data." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zzt-4i-8P0">
-                            <rect key="frame" x="171.5" y="387.5" width="71" height="21"/>
+                            <rect key="frame" x="171.5" y="391" width="71" height="21"/>
                             <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="18"/>
                             <color key="textColor" name="5B5B5B"/>
                             <nil key="highlightedColor"/>
@@ -91,7 +91,7 @@
                     </constraints>
                 </scrollView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UVo-QI-3ub">
-                    <rect key="frame" x="32" y="806.5" width="350" height="89.5"/>
+                    <rect key="frame" x="32" y="813" width="350" height="107.5"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Event:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JKh-bH-d2V">
                             <rect key="frame" x="128.5" y="13" width="93.5" height="21"/>
@@ -138,19 +138,22 @@
                         <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
                             <size key="value" width="0.0" height="-4"/>
                         </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="20"/>
+                        </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="UVo-QI-3ub" secondAttribute="trailing" constant="32" id="CT6-R7-dzl"/>
+                <constraint firstAttribute="bottom" secondItem="9Sv-MQ-WFs" secondAttribute="bottom" constant="20" id="EKr-gE-hRO"/>
                 <constraint firstItem="fCI-9Z-NOx" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="EV2-8B-Jcq"/>
                 <constraint firstAttribute="trailing" secondItem="gJU-bg-is3" secondAttribute="trailing" id="M87-uc-52T"/>
                 <constraint firstItem="UVo-QI-3ub" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="32" id="T3n-CY-7m6"/>
-                <constraint firstItem="UVo-QI-3ub" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="1:10" id="T7t-eR-3vs"/>
+                <constraint firstItem="UVo-QI-3ub" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="1.2:10" id="T7t-eR-3vs"/>
                 <constraint firstItem="gJU-bg-is3" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="hQE-yb-Vk8"/>
                 <constraint firstItem="fCI-9Z-NOx" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" priority="250" id="hQK-d3-kfe"/>
-                <constraint firstAttribute="bottom" secondItem="UVo-QI-3ub" secondAttribute="bottom" id="iZe-IJ-Em4"/>
                 <constraint firstItem="gJU-bg-is3" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="q4L-At-xOA"/>
                 <constraint firstItem="UVo-QI-3ub" firstAttribute="top" secondItem="gJU-bg-is3" secondAttribute="bottom" constant="10" id="tVl-aB-OdW"/>
             </constraints>
