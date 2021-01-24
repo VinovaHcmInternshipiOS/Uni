@@ -24,6 +24,7 @@ class SemesterScoreViewController: BaseViewController {
     @IBOutlet weak var lbYear: UILabel!
     @IBOutlet weak var lbSemester: UILabel!
     private var pullControl = UIRefreshControl()
+    var updateLikeHomeVC: ((_ keyEvent: String,_ stateLike:Bool)->Void)? = nil
     var presenter: SemesterScorePresenterProtocol
     var dataSemester = [History?]()
     var detailHistory = [DetailHistory?]()
@@ -161,6 +162,9 @@ extension SemesterScoreViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailEvent = DetailEventViewController(presenter: DetailEventPresenter())
         detailEvent.keyDetailEvent = (detailHistory[indexPath.row]?.key)!
+        detailEvent.updateLikeHomeVC = { [self] keyEvent,stateLike in
+            updateLikeHomeVC?(keyEvent,stateLike)
+        }
         self.navigationController?.pushViewController(detailEvent, animated: true)
     }
     
@@ -183,6 +187,7 @@ extension SemesterScoreViewController: UITableViewDataSource {
 }
 
 extension SemesterScoreViewController: SemesterScoreViewProtocol {
+    
     func fetchHistoryEventSuccess() {
         var score = 0
         detailHistory = presenter.detailHistory
@@ -198,10 +203,6 @@ extension SemesterScoreViewController: SemesterScoreViewProtocol {
             hideSkeletonView()
             SVProgressHUD.dismiss()
         }
-
-//        tableView.beginUpdates()
-//        tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
-//        tableView.endUpdates()
        
     }
     

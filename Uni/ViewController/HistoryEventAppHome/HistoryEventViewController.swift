@@ -19,6 +19,7 @@ class HistoryEventViewController: BaseViewController {
     @IBOutlet weak var heightCollectionView: NSLayoutConstraint!
     @IBOutlet weak var totalEvent: UILabel!
     @IBOutlet weak var totalScore: UILabel!
+    var updateLikeHomeVC: ((_ keyEvent: String,_ stateLike:Bool)->Void)? = nil
     var totalSemester = [String]()
     var infoEvents = [History?]()
     var dataEvent = [History?]()
@@ -146,6 +147,9 @@ extension HistoryEventViewController: UICollectionViewDataSource {
         semesterEvent.dataSemester = dataEvent
         semesterEvent.dataLabelYear = totalSemester[indexPath.section]
         semesterEvent.dataLabelSemester = AppLanguage.Semester.Semester.localized + " \(indexPath.row + 1)"
+        semesterEvent.updateLikeHomeVC = { [self] keyEvent,stateLike in
+            updateLikeHomeVC?(keyEvent,stateLike)
+        }
         self.navigationController?.pushViewController(semesterEvent, animated: true)
     }
     

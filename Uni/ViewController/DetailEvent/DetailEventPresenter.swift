@@ -20,7 +20,7 @@ protocol DetailEventViewProtocol: class {
     func fetchDetailFailed()
     func fetchJoinerEventSuccess()
     func fetchJoinerEventFailed()
-    func likeEventSuccess(stateLike:Bool)
+    func likeEventSuccess(stateLike:Bool,keyEvent:String)
     func likeEventFailed()
 }
 
@@ -109,7 +109,7 @@ class DetailEventPresenter: DetailEventPresenterProtocol {
             }
             else
             {
-                view?.likeEventSuccess(stateLike:stateLike)
+                view?.likeEventSuccess(stateLike:stateLike,keyEvent: keyEvent)
             }
         }
     }

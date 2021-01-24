@@ -44,7 +44,7 @@ class CalendarEventViewController: BaseViewController  {
         setupUI()
         setupLanguage()
         heightCollectionView.constant = 0
-        isUpdateBadge?("1")
+        //isUpdateBadge?("1")
     }
     
     func setupUI(){

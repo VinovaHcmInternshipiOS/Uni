@@ -88,5 +88,4 @@ class SemesterScorePresenter: SemesterScorePresenterProtocol {
     
     
     
-    
 }

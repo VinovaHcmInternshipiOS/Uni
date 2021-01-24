@@ -27,6 +27,7 @@ class DetailEventViewController: BaseViewController {
     var keyDetailEvent = ""
     var stateLike = false
     var updateStateLike: ((_ state:Bool)->Void)? = nil
+    var updateLikeHomeVC: ((_ keyEvent: String,_ stateLike:Bool)->Void)? = nil
 	init(presenter: DetailEventPresenterProtocol) {
         self.presenter = presenter
         super.init(nibName: "DetailEventViewController", bundle: nil)
@@ -73,10 +74,11 @@ class DetailEventViewController: BaseViewController {
 }
 
 extension DetailEventViewController: DetailEventViewProtocol {
-    func likeEventSuccess(stateLike:Bool) {
+    func likeEventSuccess(stateLike:Bool,keyEvent:String) {
         self.stateLike = stateLike
         stateLike == true ? btLike.setImage(AppIcon.icLove30, for: .normal) : btLike.setImage(AppIcon.icUnLove30, for: .normal)
         updateStateLike?(stateLike)
+        updateLikeHomeVC?(keyEvent,stateLike)
         
     }
     

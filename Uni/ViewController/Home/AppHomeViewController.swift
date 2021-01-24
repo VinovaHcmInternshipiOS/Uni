@@ -302,6 +302,26 @@ class AppHomeViewController:BaseViewController{
     @IBAction func btHistoryEvent(_ sender: UIButton) {
         sender.animationScale()
         let historyEvent = HistoryEventViewController(presenter: HistoryEventPresenter())
+        historyEvent.updateLikeHomeVC = { [self] keyEvent,stateLike in
+            if listEventHappening.contains(where: {$0?.key == keyEvent}) {
+                if let i = listEventHappening.firstIndex(where: { $0!.key == keyEvent }) {
+                    listEventHappening[i]?.stateLike = stateLike
+                    collectionHappenning.reloadItems(at: [IndexPath(row: i, section: 0)])
+                } else {return}
+                
+                
+            } else if listEventComingSoon.contains(where: {$0?.key == keyEvent}) {
+                if let i = listEventComingSoon.firstIndex(where: { $0!.key == keyEvent }) {
+                    listEventComingSoon[i]?.stateLike = stateLike
+                    collectionComingSoon.reloadItems(at: [IndexPath(row: i, section: 0)])
+                } else {return}
+            } else {
+                if let i = listEventEnded.firstIndex(where: { $0!.key == keyEvent }) {
+                    listEventEnded[i]?.stateLike = stateLike
+                    collectionEnded.reloadItems(at: [IndexPath(row: i, section: 0)])
+                } else {return}
+            }
+        }
         self.navigationController?.pushViewController(historyEvent, animated: true)
     }
     @IBAction func btBarcode(_ sender: UIButton) {
@@ -600,7 +620,7 @@ extension AppHomeViewController: AppHomeViewProtocol {
             } else {
                 imgUser.borderColor = .clear
             }
-            presenter.fetchBadge(code: profile.code ?? "",dateCurrent: is12hClockFormat() == true ? (formatterDateTime12h(time: getCurrentDateTime12h()).toDateTimeFormat(format: "dd-MM-yyyy hh:mma")) : (formatterDateTime24h(time: getCurrentDateTime12h()).toDateTimeFormat(format: "dd-MM-yyyy HH:mm")), isClockFormat12h: is12hClockFormat())
+//            presenter.fetchBadge(code: profile.code ?? "",dateCurrent: is12hClockFormat() == true ? (formatterDateTime12h(time: getCurrentDateTime12h()).toDateTimeFormat(format: "dd-MM-yyyy hh:mma")) : (formatterDateTime24h(time: getCurrentDateTime12h()).toDateTimeFormat(format: "dd-MM-yyyy HH:mm")), isClockFormat12h: is12hClockFormat())
         } else { return }
         
         lbName.hideSkeleton()

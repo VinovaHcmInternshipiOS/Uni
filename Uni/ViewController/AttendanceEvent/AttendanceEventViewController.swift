@@ -290,6 +290,7 @@ class AttendanceEventViewController: BaseViewController,AVCaptureMetadataOutputO
             listAttendance.removeAll()
             lbNoData.isHidden = false
         }
+        SVProgressHUD.dismiss()
     }
 }
 
@@ -481,7 +482,7 @@ extension AttendanceEventViewController: AttendanceEventViewProtocol {
         if let detail = detail {
             createfileCSV(title: detail.title ?? "", date: detail.date ?? "",location: detail.address ?? "", checkin: formatterTime12h(time: detail.checkin ?? "") , checkout: formatterTime12h(time: detail.checkout ?? ""), score: detail.score ?? 0, Array: listAttendance, total: listAttendance.count, mailString: mailString)
             //joinEvent.text = detail.joinEvent
-            let filename = "\(detail.title ?? "") \(getCurrentDateTime24h()).csv"
+            let filename = "\(detail.title ?? "") \(getCurrentDate()).csv"
             let document = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as String
             let documenturl = URL(fileURLWithPath: document).appendingPathComponent(filename)
             do {
