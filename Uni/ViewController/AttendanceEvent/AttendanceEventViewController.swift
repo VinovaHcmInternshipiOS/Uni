@@ -322,7 +322,7 @@ extension AttendanceEventViewController: UICollectionViewDelegateFlowLayout,UICo
                                 presenter.fetchAttendance(keyEvent: keyDetailEvent)
                             } else {
                                 skeletonView()
-                                showSpinner()
+                                SVProgressHUD.show()
                                 presenter.fetchEventResult(keyEvent: keyDetailEvent, keySearch: keysearch.lowercased())
                             }
 

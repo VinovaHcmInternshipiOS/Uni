@@ -174,7 +174,7 @@ extension ListEventViewController: UICollectionViewDelegateFlowLayout,UICollecti
                         }
                         else {
                             skeletonView()
-                            showSpinner()
+                            SVProgressHUD.show()
                             presenter.fetchEventResult(keySearch: keySearch.lowercased())
                         }
                         

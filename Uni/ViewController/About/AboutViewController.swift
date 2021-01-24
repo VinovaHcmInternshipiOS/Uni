@@ -56,8 +56,8 @@ class AboutViewController: BaseViewController, AboutViewProtocol {
         lbContactUs.text = AppLanguage.About.ContactUs.localized
         lbFeedBack.text = AppLanguage.About.Feedback.localized
         lbPleaseSend.text = AppLanguage.About.PleaseSend.localized + " theUni@uni.com.vn"
-        lbLocation.text = AppLanguage.About.Location.localized + " 207 Dinh Tien Hoang Street,1 Distric, HCM City"
-        lbPhone.text = AppLanguage.About.Phone.localized + " (+84) 123456789"
+        lbLocation.text = AppLanguage.About.Location.localized + " 276 Thong Nhat, Go Vap Distric, HCM City"
+        lbPhone.text = AppLanguage.About.Phone.localized + " (+84) 798080558"
     }
     
     func setupUI(){
