@@ -11,6 +11,7 @@
 import UIKit
 import Foundation
 import SkeletonView
+import SVProgressHUD
 
 class ProfileViewController: BaseViewController  {
     @IBOutlet weak var scrollView: UIScrollView!
@@ -137,6 +138,7 @@ extension ProfileViewController: SkeletonTableViewDataSource {
 extension ProfileViewController: ImagePickerDelegate {
     func didSelect(image: UIImage?, type: typeImage) {
         skeletonImage()
+        SVProgressHUD.show()
         presenter.updateImage(image: image ?? AppIcon.icDefaultImageCircle!)
     }
 }
@@ -208,6 +210,7 @@ extension ProfileViewController: ProfileViewProtocol {
     }
     
     func updateImageSuccess() {
+        SVProgressHUD.dismiss()
         imgBaner.hideSkeleton()
         imgProfile.hideSkeleton()
         presentAlertWithTitle(title: AppLanguage.HandleSuccess.Success.localized, message: AppLanguage.HandleSuccess.updateAvatar.localized, options: AppLanguage.Ok.localized) { (Int) in}
@@ -215,6 +218,7 @@ extension ProfileViewController: ProfileViewProtocol {
     }
     
     func updateImageFailed() {
+        SVProgressHUD.dismiss()
         imgBaner.hideSkeleton()
         imgProfile.hideSkeleton()
         presentAlertWithTitle(title: AppLanguage.HandleError.anError.localized, message: AppLanguage.HandleError.updateAvatar.localized, options: AppLanguage.Ok.localized) { (Int) in}
