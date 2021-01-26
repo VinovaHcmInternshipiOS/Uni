@@ -102,7 +102,7 @@
 "Done" = "Xong";
 "New event!!!" = "Sự kiện mới!!!";
 "Hi, we have just added event" = "Xin chào, chúng tôi vừa mới thêm sự kiện";
-"in the Uni.\nWe will be happy if you join us.\nLets explore." = "trong Uni.\nChúng tôi sẽ rất vui nếu bạn tham gia cùng chúng tôi.\nHãy cùng khám phá nào.";
+"in the Uni.\nWe will be happy if you join us.\nLet's explore." = "trong Uni.\nChúng tôi sẽ rất vui nếu bạn tham gia cùng chúng tôi.\nHãy cùng khám phá nào.";
 "Update event!!!" = "Cập nhật sự kiện!!!";
 "Hi, we have just update event information" = "Xin chào, chúng tôi vừa cập nhật thông tin sự kiện";
 "in the Uni.\nPlease check the event information to avoid being missed." = "trong Uni.\nVui lòng kiểm tra thông tin sự kiện để tránh bị bỏ lỡ.";
@@ -129,12 +129,12 @@
 
 //MARK: -- About
 "About\nUs" = "Về\nChúng tôi";
-"Versison" = "Phiên bản";
+"Version" = "Phiên bản";
 "Update on" = "Cập nhật lúc";
 "Our Team" = "Đội ngũ";
 "Contact Us" = "Liên hệ";
 "Feedback" = "Phản hồi";
-"Please send your feedbback to:" = "Vui lòng gửi phản hồi đến email:";
+"Please send your feedback to:" = "Vui lòng gửi phản hồi đến email:";
 "Location:" = "Địa chỉ:";
 "Phone:" = "Số điện thoại:";
 
@@ -161,7 +161,7 @@
 "Account" = "Tài khoản";
 "Role" = "Quyền";
 "State" = "Trạng thái";
-"Infomation" = "Thông tin";
+"Information" = "Thông tin";
 "Name" = "Tên";
 "Gender" = "Giới tính";
 "Class" = "Lớp";
@@ -182,7 +182,7 @@
 "Female" = "Nữ";
 "Business Administration" = "Quản trị kinh doanh";
 "Accounting Finance" = "Kế toán Tài chính";
-"Infomation Systems Commerce" = "Thương mại điện tử";
+"Information Systems Commerce" = "Thương mại điện tử";
 "Linguistics International Cultures" ="Văn hóa quốc tế";
 "Law" = "Luật";
 "Hospitality Management Tourism" = "Du lịch Khách Sạn";
@@ -306,7 +306,14 @@
 
 "Vietnamese" = "Tiếng Việt";
 "English" = "Tiếng Anh";
+"French" = "Tiếng Pháp";
 
 "d ago" = " ngày";
 "h ago" = " giờ";
 "m ago" = " phút";
+
+"Filter"= "Bộ lọc màu";
+"Crop"= "Cắt xén";
+
+"Camera" = "Máy ảnh";
+"Photo Library" = "Thư viện ảnh";

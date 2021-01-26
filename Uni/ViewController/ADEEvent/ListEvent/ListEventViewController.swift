@@ -13,6 +13,8 @@ import SkeletonView
 import SVProgressHUD
 class ListEventViewController: BaseViewController {
 
+    
+
     @IBOutlet weak var lbNoData: UILabel!
     @IBOutlet weak var btCreate: UIButton!
     @IBOutlet weak var viewButton: UIView!
@@ -98,7 +100,7 @@ class ListEventViewController: BaseViewController {
             refreshListEvent()
         }
     }
-    
+
     @objc func actionSearch(sender: UIButton) {
         
         lbNoData.isHidden = true

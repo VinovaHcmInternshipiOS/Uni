@@ -49,8 +49,8 @@ class AboutViewController: BaseViewController, AboutViewProtocol {
     
     func setupLanguage(){
         lbAboutUs.text = AppLanguage.About.About.localized
-        titleVersion.text = AppLanguage.About.Versison.localized
-        lbVersion.text = AppLanguage.About.Versison.localized + " 1.0.0"
+        titleVersion.text = AppLanguage.About.Version.localized
+        lbVersion.text = AppLanguage.About.Version.localized + " 1.0.0"
         lbUpdateOn.text = AppLanguage.About.UpdateOn.localized + " Aug 21th"
         lbOurTeam.text = AppLanguage.About.OurTeam.localized
         lbContactUs.text = AppLanguage.About.ContactUs.localized

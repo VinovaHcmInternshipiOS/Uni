@@ -12,8 +12,10 @@ import UIKit
 import Foundation
 import SkeletonView
 import SVProgressHUD
+import FMPhotoPicker
 
 class ProfileViewController: BaseViewController  {
+
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var imgBaner: UIImageView!
     @IBOutlet weak var imgProfile: UIImageView!
@@ -23,7 +25,7 @@ class ProfileViewController: BaseViewController  {
     @IBOutlet weak var heightTableView: NSLayoutConstraint!
     private var pullControl = UIRefreshControl()
     var profileUser = Profile()
-    
+    var config = FMPhotoPickerConfig()
 	var presenter: ProfilePresenterProtocol
     var dataTitle = ["Email","Gender","Class","Course","Faculty"]
     var imagePicker: ImagePicker!
@@ -118,6 +120,16 @@ class ProfileViewController: BaseViewController  {
 
     }
     
+
+}
+extension ProfileViewController: FMImageEditorViewControllerDelegate {
+    func fmImageEditorViewController(_ editor: FMImageEditorViewController, didFinishEdittingPhotoWith photo: UIImage) {
+        SVProgressHUD.show()
+        skeletonImage()
+        presenter.updateImage(image: photo)
+        dismiss(animated: true, completion: nil)
+    }
+    
 }
 
 extension ProfileViewController: SkeletonTableViewDataSource {
@@ -137,9 +149,9 @@ extension ProfileViewController: SkeletonTableViewDataSource {
 
 extension ProfileViewController: ImagePickerDelegate {
     func didSelect(image: UIImage?, type: typeImage) {
-        skeletonImage()
-        SVProgressHUD.show()
-        presenter.updateImage(image: image ?? AppIcon.icDefaultImageCircle!)
+        let editor = FMImageEditorViewController(config: config, sourceImage: image ?? AppIcon.icDefaultImageSquare!)
+        editor.delegate = self
+        self.present(editor, animated: true)
     }
 }
 

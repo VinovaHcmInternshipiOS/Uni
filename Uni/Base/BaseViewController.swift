@@ -142,6 +142,7 @@ class BaseViewController: UIViewController,UIViewControllerTransitioningDelegate
         if let complete = self.backTapped {
             complete()
         }
+        SVProgressHUD.dismiss()
         self.navigationController?.popViewController(animated: true)
     }
     

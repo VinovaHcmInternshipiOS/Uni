@@ -102,7 +102,7 @@
 "Done" = "Done";
 "New event!!!" = "New event!!!";
 "Hi, we have just added" = "Hi, we have just added event";
-"in the Uni.\nWe will be happy if you join us.\nLets explore." = "in the Uni.\nWe will be happy if you join us.\nLets explore.";
+"in the Uni.\nWe will be happy if you join us.\nLet's explore." = "in the Uni.\nWe will be happy if you join us.\nLet's explore.";
 
 //MARK: -- UpdateEvent
 "Update\nEvent" = "Update\nEvent";
@@ -130,12 +130,12 @@
 
 //MARK: -- About
 "About\nUs" = "About\nUs";
-"Versison" = "Versison";
+"Version" = "Version";
 "Update on" = "Update on";
 "Our Team" = "Our Team";
 "Contact Us" = "Contact Us";
 "Feedback" = "Feedback";
-"Please send your feedbback to:" = "Please send your feedbback to:";
+"Please send your feedback to:" = "Please send your feedback to:";
 "Location:" = "Location:";
 "Phone:" = "Phone:";
 
@@ -158,7 +158,7 @@
 "Account" = "Account";
 "Role" = "Role";
 "State" = "State";
-"Infomation" = "Infomation";
+"Information" = "Information";
 "Name" = "Name";
 "Gender" = "Gender";
 "Class" = "Class";
@@ -179,7 +179,7 @@
 "Female" = "Female";
 "Business Administration" = "Business Administration";
 "Accounting Finance" = "Accounting Finance";
-"Infomation Systems Commerce" = "Infomation Systems Commerce";
+"Information Systems Commerce" = "Information Systems Commerce";
 "Linguistics International Cultures" ="Linguistics International Cultures";
 "Law" = "Law";
 "Hospitality Management Tourism" = "Hospitality Management Tourism";
@@ -301,7 +301,14 @@
 
 "Vietnamese" = "Vietnamese";
 "English" = "English";
+"French" = "French";
 
 "d ago" = "d ago";
 "h ago" = "h ago";
 "m ago" = "m ago";
+
+"Filter"= "Filter";
+"Crop"= "Crop";
+
+"Camera" = "Camera";
+"Photo Library" = "Photo Library";

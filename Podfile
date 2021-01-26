@@ -20,6 +20,7 @@ target 'Uni' do
   pod 'FSCalendar'	
   pod 'BadgeControl'
   pod 'SVProgressHUD'
+  pod 'FMPhotoPicker', '~> 1.3.0'
   # Pods for Uni
 post_install do |installer|
      installer.pods_project.targets.each do |target|

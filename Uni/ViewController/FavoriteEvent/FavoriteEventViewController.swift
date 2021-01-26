@@ -115,9 +115,9 @@ class FavoriteEventViewController: BaseViewController {
             // optional closure
             print("finished updating cell")
         }
+        checkEmptyData()
         pullControl.endRefreshing()
         collectionView.reloadData()
-        checkEmptyData()
         SVProgressHUD.dismiss()
     }
 

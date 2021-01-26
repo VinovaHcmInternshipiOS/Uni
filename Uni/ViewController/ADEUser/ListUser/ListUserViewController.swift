@@ -63,7 +63,6 @@ class ListUserViewController: BaseViewController {
         pullControl.tintColor = AppColor.YellowFAB32A
         collectionView.alwaysBounceVertical = true
         btPlus.setImage(AppIcon.icPlusYellow, for: .normal)
-        lbNoData.isHidden = true
     }
     
     func skeletonView(){

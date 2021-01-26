@@ -91,7 +91,6 @@ class SettingViewController: BaseViewController, SettingViewProtocol {
             chooseLanguage.text = "\(UserDefaults.standard.value(forKey: "AppleLanguage") ?? "en")"
             viewDidLoad()
             }))
-            
         alert.addAction(UIAlertAction(title: AppLanguage.Cancel.localized, style: .destructive , handler:{ (UIAlertAction)in
             }))
             self.present(alert, animated: true, completion: {

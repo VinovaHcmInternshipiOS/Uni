@@ -7,7 +7,7 @@
 
 import Foundation
 import UIKit
-class AppLanguage {
+public class AppLanguage {
     static let Male = "Male"
     static let Female = "Female"
     static let User = "User"
@@ -38,9 +38,12 @@ class AppLanguage {
     static let More = "more"
     static let Vietnamese = "Vietnamese"
     static let English = "English"
+    static let French = "French"
     static let Day = "d ago"
     static let Hours = "h ago"
     static let Minutes = "m ago"
+    static let Camera = "Camera"
+    static let PhotoLibrary = "Photo Library"
     //MARK: -- HandleError
     class HandleError {
         static let anError = "An Error"
@@ -226,7 +229,7 @@ class AppLanguage {
         static let btDone = "Done"
         static let newEvent = "New event!!!"
         static let havejustAdded = "Hi, we have just added event"
-        static let letExlore = "in the Uni.\nWe will be happy if you join us.\nLets explore."
+        static let letExlore = "in the Uni.\nWe will be happy if you join us.\nLet's explore."
         
     }
     
@@ -267,12 +270,12 @@ class AppLanguage {
     //MARK:-- About
     class About {
         static let About = "About\nUs"
-        static let Versison = "Versison"
+        static let Version = "Version"
         static let UpdateOn = "Update on"
         static let OurTeam = "Our Team"
         static let ContactUs = "Contact Us"
         static let Feedback = "Feedback"
-        static let PleaseSend = "Please send your feedbback to:"
+        static let PleaseSend = "Please send your feedback to:"
         static let Location = "Location:"
         static let Phone = "Phone:"
     }
@@ -304,7 +307,7 @@ class AppLanguage {
         static let Account = "Account"
         static let Role = "Role"
         static let State = "State"
-        static let Infomation = "Infomation"
+        static let Information = "Information"
         static let Name = "Name"
         static let Gender = "Gender"
         static let Class = "Class"
@@ -322,7 +325,7 @@ class AppLanguage {
         static let placeHolderFaculty = "Please choose Faculty"
         static let BA = "Business Administration"
         static let AF = "Accounting Finance"
-        static let ISC = "Infomation Systems Commerce"
+        static let ISC = "Information Systems Commerce"
         static let LIC = "Linguistics International Cultures"
         static let LAW = "Law"
         static let HMT = "Hospitality Management Tourism"
@@ -379,5 +382,11 @@ class AppLanguage {
         static let EventHappening = "ongoing events."
         static let EventComingSoon = "upcoming events."
         static let EventEnded = "event has ended."
+    }
+    
+    //MARK: -- FilterImage
+    class FilterImage{
+        static let Filter = "Filter"
+        static let Crop = "Crop"
     }
 }

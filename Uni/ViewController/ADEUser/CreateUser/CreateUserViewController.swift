@@ -70,7 +70,7 @@ class CreateUserViewController: BaseViewController {
         lbAccount.text = AppLanguage.CreateUser.Account.localized
         lbRole.text = AppLanguage.CreateUser.Role.localized
         lbState.text = AppLanguage.CreateUser.State.localized
-        lbInformation.text = AppLanguage.CreateUser.Infomation.localized
+        lbInformation.text = AppLanguage.CreateUser.Information.localized
         lbName.text = AppLanguage.CreateUser.Name.localized
         lbGender.text = AppLanguage.CreateUser.Gender.localized
         lbClass.text = AppLanguage.CreateUser.Class.localized

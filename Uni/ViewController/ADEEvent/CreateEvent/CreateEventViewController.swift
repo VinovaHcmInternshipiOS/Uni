@@ -9,6 +9,7 @@
 //
 
 import UIKit
+import FMPhotoPicker
 
 class CreateEventViewController: BaseViewController {
     @IBOutlet weak var lbCreateEvent: UILabel!
@@ -36,6 +37,9 @@ class CreateEventViewController: BaseViewController {
     var imagePicker: ImagePicker!
     var scoreEvent = 0
     var refreshListEvent: (()->Void)? = nil
+    var config = FMPhotoPickerConfig()
+    var flagImageLandscape = false
+    var flagImagePortal = false
 	init(presenter: CreateEventPresenterProtocol) {
         self.presenter = presenter
         super.init(nibName: "CreateEventViewController", bundle: nil)
@@ -171,16 +175,48 @@ class CreateEventViewController: BaseViewController {
         
     }
     
+    func filterImage(image:UIImage){
+        let editor = FMImageEditorViewController(config: config, sourceImage: image)
+        editor.delegate = self
+        self.present(editor, animated: true)
+    }
+    
 }
+
+extension CreateEventViewController: FMImageEditorViewControllerDelegate {
+    func fmImageEditorViewController(_ editor: FMImageEditorViewController, didFinishEdittingPhotoWith photo: UIImage) {
+        if flagImageLandscape {
+            flagImageLandscape = !flagImageLandscape
+            imgLandscape.image = photo
+            dismiss(animated: true, completion:  nil)
+            return
+        }
+        if flagImagePortal {
+            flagImagePortal = !flagImagePortal
+            imgPortal.image = photo
+            dismiss(animated: true, completion:  nil)
+            return
+        }
+        
+        
+    }
+    
+    
+}
+
 extension CreateEventViewController: ImagePickerDelegate {
     func didSelect(image: UIImage?, type: typeImage) {
         switch type {
         case .Landscape:
             imgLandscape.image = image
+            flagImageLandscape = true
+            filterImage(image: (image ?? AppIcon.defaultImagenil!))
             imgPortal.layer.borderWidth = 1
             imgPortal.layer.borderColor = AppColor.YellowFAB32A.cgColor
         case .Portal:
             imgPortal.image = image
+            flagImagePortal = true
+            filterImage(image: (image ?? AppIcon.defaultImagenil!))
             
         }
     }

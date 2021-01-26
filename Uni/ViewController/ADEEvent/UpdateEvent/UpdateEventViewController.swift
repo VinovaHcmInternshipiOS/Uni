@@ -9,6 +9,7 @@
 //
 
 import UIKit
+import FMPhotoPicker
 
 class UpdateEventViewController: BaseViewController {
     @IBOutlet weak var lbUpdateEvent: UILabel!
@@ -35,11 +36,13 @@ class UpdateEventViewController: BaseViewController {
     var presenter: UpdateEventPresenterProtocol
     var imagePicker: ImagePicker!
     var scoreEvent = 0
-    //var keyDetailEvent = ""
+    var config = FMPhotoPickerConfig()
     var imageLandscapeIsChanged = false
     var imagePortalIsChanged = false
     var urlImageLandscape = ""
     var urlImagePortal = ""
+    var flagImageLandscape = false
+    var flagImagePortal = false
     
     var updateListEvent: (()->Void)? = nil
     init(presenter: UpdateEventPresenterProtocol) {
@@ -180,19 +183,46 @@ class UpdateEventViewController: BaseViewController {
             
         } else {return}
     }
+    func filterImage(image:UIImage){
+        let editor = FMImageEditorViewController(config: config, sourceImage: image)
+        editor.delegate = self
+        self.present(editor, animated: true)
+    }
     
 }
+extension UpdateEventViewController: FMImageEditorViewControllerDelegate {
+    func fmImageEditorViewController(_ editor: FMImageEditorViewController, didFinishEdittingPhotoWith photo: UIImage) {
+        if flagImageLandscape {
+            flagImageLandscape = !flagImageLandscape
+            imgLandscape.image = photo
+            dismiss(animated: true, completion:  nil)
+            return
+        }
+        if flagImagePortal {
+            flagImagePortal = !flagImagePortal
+            imgPortal.image = photo
+            dismiss(animated: true, completion:  nil)
+            return
+        }
+        
+    }
+}
+
 extension UpdateEventViewController: ImagePickerDelegate {
     func didSelect(image: UIImage?, type: typeImage) {
         switch type {
         case .Landscape:
             imgLandscape.image = image
+            flagImageLandscape = true
+            filterImage(image: (image ?? AppIcon.defaultImagenil!))
             imgPortal.layer.borderWidth = 1
             imgPortal.layer.borderColor = AppColor.YellowFAB32A.cgColor
             imageLandscapeIsChanged = true
         case .Portal:
             imagePortalIsChanged = true
             imgPortal.image = image
+            flagImagePortal = true
+            filterImage(image: (image ?? AppIcon.defaultImagenil!))
             
         }
     }
@@ -246,12 +276,10 @@ extension UpdateEventViewController: UpdateEventViewProtocol {
     
     func uploadImageLandscapeSuccess(keyRef: String) {
         presenter.updateImageEvent(keyRef: keyRef, type: .Landscape)
-        print(1111,keyRef)
     }
     
     func uploadImagePortalSuccess(keyRef: String) {
         presenter.updateImageEvent(keyRef: keyRef, type: .Portal)
-        print(1111,keyRef)
     }
     
     func uploadImageLandscapeFailed() {

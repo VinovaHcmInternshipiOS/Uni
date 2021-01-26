@@ -283,7 +283,6 @@ class AttendanceEventViewController: BaseViewController,AVCaptureMetadataOutputO
     }
     
     func checkEmptyData(){
-        print(listAttendance.count)
         if presenter.infoAttendance.count != 0 {
             lbNoData.isHidden = true
         } else {

@@ -263,7 +263,7 @@ class AttendanceEventPresenter: AttendanceEventPresenterProtocol {
     
     func fetchAttendance(keyEvent:String) {
         infoAttendance.removeAll()
-        ref.child("Joiner/\(keyEvent)").observeSingleEvent(of: .value) { (snapshot) in
+        ref.child("Joiner/\(keyEvent)").observeSingleEvent(of: .value) { [self] (snapshot) in
             if(snapshot.exists()) {
                 for keyJoiner in snapshot.children.allObjects as! [DataSnapshot] {
                     let placeRef = self.ref.child("Joiner/\(keyEvent)/\(keyJoiner.key)")
@@ -300,6 +300,8 @@ class AttendanceEventPresenter: AttendanceEventPresenterProtocol {
                     })
                     
                 }
+            } else {
+                view?.fetchAttendanceFailed()
             }
         }
         
@@ -351,42 +353,6 @@ class AttendanceEventPresenter: AttendanceEventPresenterProtocol {
             
         }
     }
-    //    func fetchEventResult(keyEvent: String,keySearch:String) {
-    //                    let placeRef = self.ref.child("Joiner/\(keyEvent)/\(keyJoiner)")
-    //                    placeRef.observeSingleEvent(of:.value, with: { [self] snapshot in
-    //                        if snapshot.exists()
-    //                        {
-    //                            let placeDict = snapshot.value as! [String: Any]
-    //                            let checkin = placeDict["Checkin"] as! String
-    //                            let date = placeDict["Date"] as! String
-    //
-    //                            let placeRef = self.ref.child("Data").child("\(keyJoiner)")
-    //                            placeRef.observeSingleEvent(of:.value, with: { [self] snapshot in
-    //                                if(snapshot.exists())
-    //                                {
-    //                                    let placeDict = snapshot.value as! [String: Any]
-    //                                    let name = placeDict["Name"] as! String
-    //                                    let urlImage = placeDict["Image"] as! String
-    //
-    //                                    if infoAttendance.contains(where: {$0?.code == keyJoiner}) == false {                           infoAttendance.insert(AttendanceEvent(code: keyJoiner, name: name, checkin: checkin, date: date, urlImage: urlImage), at: 0)
-    //
-    //                                        view?.searchAttendanceEventSuccess()
-    //
-    //                                    }
-    //
-    //                                }
-    //                                else
-    //                                {
-    //                                    view?.searchAttendanceEventFailed()
-    //                                }
-    //                            })
-    //                        }
-    //                        else
-    //                        {
-    //                            view?.searchAttendanceEventFailed()
-    //                        }
-    //                    })
-    //    }
     
     func createUser(code: String) {
         let path = self.ref.child("Data").child(code)

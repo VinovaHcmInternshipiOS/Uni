@@ -1,0 +1,314 @@
+/*
+  Localizable.strings
+  Uni
+
+  Created by nguyen gia huy on 30/11/2020.
+  
+*/
+//MARK: -- LoginViewController
+"Welcome Back" = "Bienvenue à nouveau";
+"Sign in continue using our app" = "Connectez-vous continuez à utiliser notre application";
+"Email" = "E-mail";
+"Password" = "Mot de passe";
+"Forgot password?" = "Mot de passe oublié?";
+"Login" = "Connexion";
+"Don't have an account?" = "Vous n'avez pas de compte?";
+"Sign Up" = "Inscription";
+
+//MARK: -- ForgotPassword
+"Forgot\nPassword?" = "Mot de passe\noublié? ";
+"Send" = "Envoyer";
+
+//MARK: -- HomeApp
+"Features" = "Caractéristiques";
+"Happening" = "Événement";
+"Coming Soon" = "Bientôt disponible";
+"Ended" = "Terminé";
+"App\nHome" = "App\nAccueil";
+
+//MARK: -- Slide Menu
+"Home" = "Accueil";
+"About" = "À propos";
+"Setting" = "Réglage";
+"Manage" = "Gérer";
+"Privacy Policy" = "Politique de confidentialité";
+"Logout" = "Déconnexion";
+"Favorite Events" = "Événements favoris";
+"Calendar Events" = "Agenda Events";
+
+//MARK: -- Profile
+"Gender" = "Le sexe";
+"Class" = "Classe";
+"Course" = "Course";
+"Faculty" = "la faculté";
+
+//MARK: -- Barcode
+"Your\nBarcode" = "Votre\ncode-barres";
+"Please give barcode to the event for attendance." = "Veuillez donner le code-barres à l'événement pour y assister.";
+
+//MARK: -- SearchEvent
+"Search\nEvent" = "Recherche\nÉvénement";
+"Search" = "Chercher";
+
+//MARK: -- DetailEvent
+"Detail" = "Détail";
+"Overview" = "Aperçu";
+
+//MARK: -- History
+"Your\nHistory" = "Votre\ndans l'histoire";
+"Total Event:" = "Événement total:";
+"Total Score:" = "Score Total:";
+"SEMESTER" = "SEMESTER";
+"History" = "History";
+
+//MARK: -- Semester
+"Total Event:" = "Total Event:";
+"Total Score:" = "Score Total:";
+"SEMESTER" = "L'histoire";
+
+//MARK: -- ListEvent
+"List\nEvent" = "Liste\nÉvénement";
+"Update" = "Mettre à jour";
+"Delete" = "Effacer";
+
+//MARK: -- ListAttendance
+"List\nAttendance" = "Liste\nPrésence";
+"Attendance" = "Présence";
+"Please Enter ID Student" = "Veuillez entrer votre ID étudiant.";
+"Title:" = "Titre:";
+"Date:" = "Date:";
+"Location:" = "Location:";
+"Check-In:" = "Enregistrement:";
+"Check-Out:" = "Check-Out:";
+"Student ID" = "Carte d'étudiant";
+"First Name" = "Prénom";
+"Last Name" = "Nom de famille";
+"Check-In" = "Enregistrement";
+"Total Participants:" = "Total Participants:";
+"Report Event" = "Signaler un événement";
+"Total:" = "Total:";
+
+//MARK: -- CreateEvent
+"Create\nEvent" = "Créer\névénement ";
+"Title" = "Titre";
+"Overview" = "Overview";
+"Location" = "Emplacement";
+"Date" = "Date";
+"Time" = "Time";
+"Score" = "But";
+"Choose Date" = "Choisissez la date";
+"Check-in" = "Enregistrement";
+"Check-out" = "Check-out";
+"Done" = "Terminé";
+"New event!!!" = "Nouvel événement !!!";
+"Hi, we have just added" = "Bonjour, nous venons d'ajouter l'événement";
+"in the Uni.\nWe will be happy if you join us.\nLet's explore." = "à l'Uni.\nNous serons heureux si vous nous rejoignez.\nExplorons."; 
+
+//MARK: -- UpdateEvent
+"Update\nEvent" = "Mettre à jour\nÉvénements";
+"Title" = "Titre";
+"Overview" = "Overview";
+"Date" = "Date";
+"Time" = "Time";
+"Score" = "But";
+"Choose Date" = "Choisissez la date";
+"Check-in" = "Enregistrement";
+"Check-out" = "Check-out";
+"Done" = "Terminé";
+"Update event!!!" = "Mettre à jour\nÉvénements!!!";
+"Hi, we have just update event information" = "Salut, nous venons de mettre à jour les informations sur l'événement";
+"in the Uni.\nPlease check the event information to avoid being missed." = "dans l'Uni.\nVeuillez vérifier les informations de l'événement pour éviter d'être manqué.";
+
+//MARK: -- Rank
+"Rank" = "Rang";
+"Score:" = "But:";
+
+//MARK: -- Setting
+"Setting" = "Réglage";
+"Language" = "Langue";
+"Change Password" = "Changer le mot de passe";
+
+//MARK: -- About
+"About\nUs" = "À propos\nUs";
+"Version" = "Version";
+"Update on" = "Update on";
+"Our Team" = "Notre équipe";
+"Contact Us" = "Nous contacter";
+"Feedback" = "Retour d'information";
+"Please send your feedback to:" = "Veuillez envoyer vos commentaires à:";
+"Location:" = "Emplacement:";
+"Phone:" = "Téléphone:";
+
+//MARK: -- Manage
+"Events\nManage" = "Événements\nGérer";
+"Users\nManage" = "Utilisateurs\nGérer";
+"Hi,\nAdmin" = "Salut,\nAdmin";
+"Send\nNotification" = "Envoyer\nNotification";
+
+//MARK: -- Privacy
+"Privacy\nPolicy" = "Confidentialité\nEt politique";
+"Your privacy is important to us. It is The Uni Company's policy to respect your privacy regarding any information we may collect from you through our app, The Uni.\nWe only ask for personal information when we truly need it to provide a service to you. We collect it by fair and lawful means, with your knowledge and consent. We also let you know why we’re collecting it and how it will be used.\nWe only retain collected information for as long as necessary to provide you with your requested service.\nWhat data we store, we’ll protect within commercially acceptable means to prevent loss and theft, as well as unauthorized access, disclosure, copying, use or modification.\nWe don’t share any personally identifying information publicly or with third-parties, except when required to by law.\nOur app may link to external sites that are not operated by us. Please be aware that we have no control over the content and practices of these sites, and cannot accept responsibility or liability for their respective privacy policies.\nYou are free to refuse our request for your personal information, with the understanding that we may be unable to provide you with some of your desired services.\nYour continued use of our app will be regarded as acceptance of our practices around privacy and personal information. If you have any questions about how we handle user data and personal information, feel free to contact us.\nThis policy is effective as of 30 October 2020." = "Votre vie privée est importante pour nous. La politique de The Uni Company est de respecter votre vie privée en ce qui concerne les informations que nous pouvons collecter auprès de vous via notre application, The Uni.\nNous ne demandons des informations personnelles que lorsque nous en avons vraiment besoin pour vous fournir un service. Nous les collectons par des moyens équitables et licites, à votre connaissance et avec votre consentement. Nous vous indiquons également pourquoi nous les collectons et comment ils seront utilisés.\nNous ne conservons les informations collectées que le temps nécessaire pour vous fournir le service demandé.\nLes données que nous stockons, nous les protégerons selon des moyens commercialement acceptables pour empêcher la perte et le vol, ainsi que l'accès, la divulgation, la copie, l'utilisation ou la modification non autorisés.\nNous ne partageons aucune information d'identification personnelle publiquement ou avec des tiers, sauf lorsque la loi l'exige.\nNotre application peut être liée à des sites externes que nous ne gérons pas. Veuillez noter que nous n'avons aucun contrôle sur le contenu et les pratiques de ces sites et que nous ne pouvons accepter la responsabilité de leurs politiques de confidentialité respectives.\nVous êtes libre de refuser notre demande de renseignements personnels, étant entendu que nous pourrions être incapables de vous fournir certains des services souhaités.\nVotre utilisation continue de notre application sera considérée comme une acceptation de nos pratiques en matière de confidentialité et d'informations personnelles. Si vous avez des questions sur la manière dont nous traitons les données des utilisateurs et les informations personnelles, n'hésitez pas à nous contacter.\nCette politique est effective à compter du 30 octobre 2020.";
+
+//MARK: -- ListUser
+"List\nUser" = "Liste\nUtilisateur ";
+"Disable" = "Désactiver";
+"Enable" = "Activer";
+
+//MARK: --CreateUser
+"Account" = "Account";
+"Role" = "Role";
+"State" = "State";
+"Information" = "Information";
+"Name" = "Nom";
+"Gender" = "Le sexe";
+"Class" = "Classe";
+"Course" = "Cours";
+"Faculty" = "la faculté";
+"Create\nUser"="Créer\nUtilisateur";
+"Done" = "Terminé";
+"Please enter Email" = "Veuillez saisir un e-mail";
+"Please enter ID" = "Veuillez saisir votre identifiant";
+"Please enter Role" = "Veuillez choisir le rôle";
+"Please enter State" = "Veuillez choisir l'état";
+"Please enter Name" = "Veuillez saisir votre nom";
+"Please enter Gender" = "Veuillez choisir le sexe";
+"Please enter Class" = "Veuillez choisir la classe";
+"Please enter Course" = "Veuillez choisir le cours";
+"Please enter Faculty" = "Veuillez choisir la faculté";
+"Male" = "Mâle";
+"Female" = "Femelle";
+"Business Administration" = "Administration des affaires";
+"Accounting Finance" = "Comptabilité et Finance";
+"Infomation Systems Commerce" = "Commerce des systèmes d'information";
+"Linguistics International Cultures" ="Linguistics International Cultures";
+"Law" = "Law";
+"Hospitality Management Tourism" = "Hospitality Management Tourism";
+"International Relations Communications" = "Communications des relations internationales";
+"User" = "User";
+"Admin" = "Admin";
+"true" = "true";
+"false" = "false";
+
+//MARK: -- ConfirmPassword
+"Enter your password" = "Enter your password";
+"Cancel" = "Cancel";
+"OK" = "OK";
+"Password" = "Password";
+
+//MARK: -- ChangePassword
+"Change\nPassword" = "Change\nPassword";
+"Enter your new password bellow.\nPassword has at least 6 characters."="Enter your new password bellow.\nPassword has at least 6 characters.";
+"New Password" = "New Password";
+"Confirm Password" = "Confirm Password";
+"Save" = "Save";
+
+//MARK: -- HandleError
+"An Error" = "An Error";
+"Error" = "Error";
+"The email is already in use with another account." = "The email is already in use with another account.";
+"Account not found for the specified user. Please check and try again." = "Account not found for the specified user. Please check and try again.";
+"Your account has been disabled. Please contact support." = "Your account has been disabled. Please contact support.";
+"Please enter a valid email." = "Please enter a valid email.";
+"You are not connected to the Internet." = "You are not connected to the Internet.";
+"Your password is too weak. The password must be 6 characters long or more." = "Your password is too weak. The password must be 6 characters long or more.";
+"Your password is incorrect." = "Your password is incorrect.";
+"Something went wrong." = "Something went wrong.";
+"The new password is not the same as the confirmation password." = "The new password is not the same as the confirmation password.";
+"Account status change failed." = "Account status change failed.";
+"Account created failed." = "Account created failed.";
+"ID already exists belong another account." = "ID already exists belong another account.";
+"The event created failed."  = "The event created failed.";
+"The event update failed." = "The event update failed.";
+"Please fill in all information." = "Please fill in all information.";
+"No Data." = "No Data.";
+"no ongoing events." = "no ongoing events.";
+"no upcoming events." = "no upcoming events.";
+"no event has ended." = "no event has ended.";
+"Already exists ID in event list." = "Already exists ID in event list.";
+"Invalid ID." = "Invalid ID.";
+"The event could not be deleted because a user already exists in the list." = "The event could not be deleted because a user already exists in the list.";
+"Please select an event date." = "Please select an event date.";
+"It's not time to take attendance yet, please come back later." = "It's not time to take attendance yet, please come back later.";
+"It's time to take attendance has passed." = "It's time to take attendance has passed.";
+"Ongoing events cannot be updated information." = "Ongoing events cannot be updated.";
+"The event has ended cannot be updated information." = "The event has ended cannot be updated.";
+"Cannot scan the code at this time because the event has not taken place yet or the event has ended." = "Cannot scan the code at this time because the event has not taken place yet or the event has ended.";
+"Updated avatar failed." = "Updated avatar failed.";
+"Delete failed message." = "Delete failed message.";
+
+
+//MARK: -- HandleSuccess
+"Your password has been changed." = "Your password has been changed.";
+"Success" = "Success";
+"Account status changed successfully." = "Account status changed successfully.";
+"Account created successfully." = "Account created successfully.";
+"The event has been successfully updated." = "The event has been successfully updated.";
+"The event has been successfully updated." = "The event has been successfully updated.";
+"Please update information of the ID." = "Please update information of the ID.";
+"Attendance success for ID." = "Attendance success for ID.";
+"Checking..." = "Checking...";
+"Place the barcode within the window to scan.\nThe search will start automatically." = "Place the barcode within the window to scan.\nThe search will start automatically.";
+"Scan Barcode" = "Scan Barcode";
+"Please check your email to change your password." = "Please check your email to change your password.";
+"Successful avatar update." = "Successful avatar update.";
+"Successfully deleted message." = "Successfully deleted message.";
+
+
+//MARK: -- DetailAccount
+"Detail\nAccount" = "Detail\nAccount";
+"Created:" = "Created:";
+"Signed In:" = "Signed In:";
+"State:" = "State:";
+"Role:" = "Role:";
+
+//MARK: -- HandleConfirm
+"Do you want to enable account?" = "Do you want to enable account?";
+"Do you want to disable account?" = "Do you want to disable account?";
+"Confirm" = "Confirm";
+"Do you want to delete this message?" = "Do you want to delete this message?";
+"Do you want to delete all notifications 7 days ago?" = "Do you want to delete all notifications 7 days ago?";
+
+//MARK: -- ResetPassword
+"Please enter your Email" = "Please enter your Email";
+
+//MARK: -- ListNotification
+"List\nNotifications" = "List\nNotifications";
+
+//MARK: -- Favorite Event
+"Favorite\nEvents" = "Favorite\nEvents";
+
+//MARK: -- Calendar
+"Calendar\nEvents" = "Calendar\nEvents";
+"ongoing events." = "ongoing events.";
+"upcoming events." = "upcoming events.";
+"event has ended." = "event has ended.";
+
+
+"Title" = "Title";
+"Content" = "Content";
+
+"Send failure notification." = "Send failure notification.";
+"Notification has been sent." = "Notification has been sent.";
+"Do you want to delete this event?" = "Do you want to delete this event?";
+
+"Notifications" = "Notifications";
+"just now" = "just now";
+"Seen" = "Seen";
+"Total" = "Total";
+
+"less" = "less";
+"more" = "more";
+
+"Vietnamese" = "Vietnamese";
+"English" = "English";
+"French" = "French";
+
+"d ago" = "d ago";
+"h ago" = "h ago";
+"m ago" = "m ago";
+
+"Filter"= "Filter";
+"Crop"= "Crop";
+
+"Camera" = "Camera";
+"Photo Library" = "Photo Library";
