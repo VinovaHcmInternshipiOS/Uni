@@ -19,11 +19,11 @@ class SlideInTransition: NSObject, UIViewControllerAnimatedTransitioning {
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         guard let toViewController = transitionContext.viewController(forKey: .to), let fromViewController = transitionContext.viewController(forKey: .from) else { return }
         let containerView = transitionContext.containerView
-        
         let finalWidth = toViewController.view.bounds.width * 0.8
         let finalHeight = UIScreen.main.bounds.height
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTapCloseMenu(_:)))
         dimingView.addGestureRecognizer(tap)
+
         
         if isPresenting {
             //add dimingview
@@ -59,6 +59,7 @@ class SlideInTransition: NSObject, UIViewControllerAnimatedTransitioning {
     
     @objc func handleTapCloseMenu(_ sender: UITapGestureRecognizer? = nil) {
         closeSlideMenu?()
+        
     }
     
 }

@@ -111,10 +111,8 @@ class CreateEventPresenter: CreateEventPresenterProtocol {
                         switch i {
                         case 0:
                             view?.uploadImageLandscapeFailed()
-                        case 1:
-                            view?.uploadImagePortalFailed()
                         default:
-                            break
+                            view?.uploadImagePortalFailed()
                         }
                     }
                     else {
@@ -124,12 +122,8 @@ class CreateEventPresenter: CreateEventPresenterProtocol {
                                     switch i {
                                     case 0:
                                         view?.uploadImageLandscapeSuccess(keyRef: "\(url)", pathEvent: path)
-                                
-                                    case 1:
-                                        view?.uploadImagePortalSuccess(keyRef: "\(url)", pathEvent: path)
-                                     
                                     default:
-                                        break
+                                        view?.uploadImagePortalSuccess(keyRef: "\(url)", pathEvent: path)
                                     }
                                 } else {return}
  

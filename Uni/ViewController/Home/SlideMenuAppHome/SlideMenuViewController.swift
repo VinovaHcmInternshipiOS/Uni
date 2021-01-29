@@ -89,6 +89,9 @@ class SlideMenuViewController: BaseViewController {
         
         
     }
+    @IBAction func actionDismissMenu(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
 }
 
 extension SlideMenuViewController: UITableViewDelegate {

@@ -10,6 +10,7 @@
 
 import UIKit
 import FMPhotoPicker
+import SVProgressHUD
 
 class CreateEventViewController: BaseViewController {
     @IBOutlet weak var lbCreateEvent: UILabel!
@@ -165,8 +166,9 @@ class CreateEventViewController: BaseViewController {
         if let title = contentTitle.text, let overview = contentOverview.text, let location = contentLocation.text, let date = btChooseDate.titleLabel?.text,let checkin = btCheckin.titleLabel?.text,let checkout = btCheckout.titleLabel?.text {
             
             if checkin != AppLanguage.CreateEvent.Checkin.localized && checkout != AppLanguage.CreateEvent.Checkout.localized && removeWhiteSpaceAndLine(text: overview) != "" && removeWhiteSpaceAndLine(text: title) != "" && removeWhiteSpaceAndLine(text: location) != "" && date != AppLanguage.CreateEvent.ChooseDate.localized {
-                            showSpinner()
-                            presenter.createEvent(urlImgLanscape: "", urlImgPortal: "", title: removeWhiteSpaceAndLine(text: title), overview: removeWhiteSpaceAndLine(text: overview), location: removeWhiteSpaceAndLine(text: location), date: date, checkin: checkin.formatDateCreate(), checkout: checkout.formatDateCreate(), score: scoreEvent)
+                SVProgressHUD.show()
+                btDone.isEnabled = false
+                presenter.createEvent(urlImgLanscape: "", urlImgPortal: "", title: removeWhiteSpaceAndLine(text: title), overview: removeWhiteSpaceAndLine(text: overview), location: removeWhiteSpaceAndLine(text: location), date: date, checkin: checkin.formatDateCreate(), checkout: checkout.formatDateCreate(), score: scoreEvent)
                 
             } else {
                 showAlert(title: AppLanguage.HandleError.anError.localized, message: AppLanguage.HandleError.fillIn.localized, actionTitles: [AppLanguage.Ok.localized], style: [.default], actions: [.none])
@@ -225,7 +227,7 @@ extension CreateEventViewController: ImagePickerDelegate {
 
 extension CreateEventViewController: CreateEventViewProtocol {
     func updateImageEventSuccess() {
-
+        refreshListEvent?()
     }
     
     func updateImageEventFailed() {
@@ -241,47 +243,50 @@ extension CreateEventViewController: CreateEventViewProtocol {
     }
     
     func createEventSuccess(path: String, title: String,keyEvent:String) {
-        removeSpinner()
+        SVProgressHUD.dismiss()
         presenter.sendPushNotification(to: "", title: AppLanguage.CreateEvent.newEvent.localized, body: "\(AppLanguage.CreateEvent.havejustAdded.localized) \(title) \(AppLanguage.CreateEvent.letExlore.localized)",keyEvent:keyEvent)
         presentAlertWithTitle(title: AppLanguage.HandleSuccess.Success.localized, message: AppLanguage.HandleSuccess.createEvent.localized, options: AppLanguage.Ok.localized) { [self] (option) in
-            self.navigationController?.popViewController(animated: true)
+            btDone.isEnabled = true
             refreshListEvent?()
-    }
-       
-        if let imageLanscape = imgLandscape.image {
-            presenter.uploadImage(images: [imageLanscape],path: path)
-        } else {return}
-        
-        if let imagePortal = imgPortal.image {
-            presenter.uploadImage(images: [UIImage(),imagePortal],path: path)
-        } else {return}
+            self.navigationController?.popViewController(animated: true)
+            
+        }
+        presenter.uploadImage(images: [imgLandscape.image!,imgPortal.image!], path: path)
+//        if let imageLanscape = imgLandscape.image {
+//            presenter.uploadImage(images: [imageLanscape],path: path)
+//        } else {return}
+//
+//        if let imagePortal = imgPortal.image {
+//            presenter.uploadImage(images: [,imagePortal],path: path)
+//        } else {return}
         
         
     }
     
     func uploadImageLandscapeSuccess(keyRef: String, pathEvent: String) {
         presenter.updateImageEvent(keyRef: keyRef, path: pathEvent, type: .Landscape)
-        removeSpinner()
+        SVProgressHUD.dismiss()
     }
     
     func uploadImagePortalSuccess(keyRef: String, pathEvent: String) {
         presenter.updateImageEvent(keyRef: keyRef, path: pathEvent, type: .Portal)
-        removeSpinner()
+        SVProgressHUD.dismiss()
     }
     
     func uploadImageLandscapeFailed() {
         print("Upload image lanscape failed")
-        removeSpinner()
+        SVProgressHUD.dismiss()
     }
     
     func uploadImagePortalFailed() {
         print("Upload image portal failed")
-        removeSpinner()
+        SVProgressHUD.dismiss()
     }
 
     func createEventFailed() {
-        removeSpinner()
-        presentAlertWithTitle(title: AppLanguage.HandleError.anError.localized, message: AppLanguage.HandleError.createEvent.localized, options: AppLanguage.Ok.localized) { [] (option) in
+        SVProgressHUD.dismiss()
+        presentAlertWithTitle(title: AppLanguage.HandleError.anError.localized, message: AppLanguage.HandleError.createEvent.localized, options: AppLanguage.Ok.localized) { [self] (option) in
+            btDone.isEnabled = true
         }
        
     }

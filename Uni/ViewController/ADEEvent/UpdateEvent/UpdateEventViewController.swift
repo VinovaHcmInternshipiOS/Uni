@@ -10,6 +10,7 @@
 
 import UIKit
 import FMPhotoPicker
+import SVProgressHUD
 
 class UpdateEventViewController: BaseViewController {
     @IBOutlet weak var lbUpdateEvent: UILabel!
@@ -173,7 +174,8 @@ class UpdateEventViewController: BaseViewController {
         if let title = contentTitle.text, let overview = contentOverview.text, let location = contentLocation.text, let date = btChooseDate.titleLabel?.text,let checkin = btCheckin.titleLabel?.text,let checkout = btCheckout.titleLabel?.text {
             if checkTimeUpdateEvent() {
                 if checkin != AppLanguage.CreateEvent.Checkin.localized && checkout != AppLanguage.CreateEvent.Checkout.localized && removeWhiteSpaceAndLine(text: overview) != "" && removeWhiteSpaceAndLine(text: title) != "" && removeWhiteSpaceAndLine(text: location) != "" && date != AppLanguage.CreateEvent.ChooseDate.localized {
-                    showSpinner()
+                    SVProgressHUD.show()
+                    btDone.isEnabled = false
                     presenter.updateEvent(urlImgLanscape: urlImageLandscape, urlImgPortal: urlImagePortal, title: removeWhiteSpaceAndLine(text: title), overview: removeWhiteSpaceAndLine(text: overview), location: removeWhiteSpaceAndLine(text: location), date: date, checkin: checkin.formatDateCreate(), checkout: checkout.formatDateCreate(), score: scoreEvent)
                     
                 } else {
@@ -260,7 +262,7 @@ extension UpdateEventViewController: UITableViewDataSource {
 
 extension UpdateEventViewController: UpdateEventViewProtocol {
     func updateImageEventSuccess() {
-        removeSpinner()
+        SVProgressHUD.dismiss()
         presentAlertWithTitle(title: AppLanguage.HandleSuccess.Success.localized, message: AppLanguage.HandleSuccess.updateEvent.localized, options: AppLanguage.Ok.localized) { [self] (option) in
             if imagePortalIsChanged == true {
                 updateListEvent?()
@@ -271,6 +273,7 @@ extension UpdateEventViewController: UpdateEventViewProtocol {
     }
     
     func updateImageEventFailed() {
+        SVProgressHUD.dismiss()
         print("Update list event failed")
     }
     
@@ -283,10 +286,12 @@ extension UpdateEventViewController: UpdateEventViewProtocol {
     }
     
     func uploadImageLandscapeFailed() {
+        SVProgressHUD.dismiss()
         print("Upload ref image landscape failed")
     }
     
     func uploadImagePortalFailed() {
+        SVProgressHUD.dismiss()
         print("Upload ref image portal failed")
     }
     
@@ -315,6 +320,7 @@ extension UpdateEventViewController: UpdateEventViewProtocol {
     
     func updateEventSuccess(keyEvent:String) {
         presenter.sendPushNotification(keyEvent:keyEvent)
+        btDone.isEnabled = true
         if imageLandscapeIsChanged == true {
             if let imageLanscape = imgLandscape.image {
                 DispatchQueue.main.async { [self] in
@@ -333,7 +339,7 @@ extension UpdateEventViewController: UpdateEventViewProtocol {
             
         }
         if imageLandscapeIsChanged == false && imagePortalIsChanged == false {
-            removeSpinner()
+            SVProgressHUD.dismiss()
             presentAlertWithTitle(title: AppLanguage.HandleSuccess.Success.localized, message: AppLanguage.HandleSuccess.updateEvent.localized, options: AppLanguage.Ok.localized) { [self] (option) in
                 if imagePortalIsChanged == true {
                     updateListEvent?()
@@ -344,7 +350,8 @@ extension UpdateEventViewController: UpdateEventViewProtocol {
     }
     
     func updateEventFailed() {
-        removeSpinner()
+        btDone.isEnabled = true
+        SVProgressHUD.dismiss()
         presentAlertWithTitle(title: AppLanguage.HandleError.anError.localized, message: AppLanguage.HandleError.updateEvent.localized, options: AppLanguage.Ok.localized) { [] (option) in
         }
     }
